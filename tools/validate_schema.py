@@ -101,6 +101,7 @@ ins("INSERT INTO ClockAnchor VALUES (?,?,?,?)", s1, 60_000_000, T0 + 61_000_000,
 ins("INSERT INTO ConnectionEvent(Id,SessionId,OffsetUs,Source,Kind) VALUES (?,?,?,?,?)", U(), s1, 5, "Wlan", "WlanRoamed")
 ins("INSERT INTO CoverageGap VALUES (?,?,?,?,?)", U(), s1, 10, 20, "Sleep")
 ins("INSERT INTO SessionCapability(SessionId,Capability,StreamKey,SinceUs,State) VALUES (?,?,?,?,?)", s1, "IcmpResponse", "ext-a|Icmp|IPv4", 0, "Available")
+ins("INSERT INTO SessionCapability(SessionId,Capability,StreamKey,SinceUs,State,Reason) VALUES (?,?,?,?,?,?)", s1, "Target", "ext-b", 0, "Unavailable", "Retired")
 ins("INSERT INTO SymptomMarker(Id,SessionId,OffsetUs,Source) VALUES (?,?,?,?)", U(), s1, 30, "Hotkey")
 r1 = U(); ins("INSERT INTO AnalysisRun VALUES (?,?,?,?)", r1, s1, "rules-1", T0)
 ins("INSERT INTO Finding VALUES (?,?,?,?,?,?,?,?)", U(), r1, "R04", 0, 0, 10, "Observed", "{}")
@@ -132,6 +133,7 @@ neg = [
   ("notes over 2000 chars", lambda: ins("UPDATE Investigation SET Notes=? WHERE Id=?", "x" * 2001, i1)),
   ("clock anchor at offset 0", lambda: ins("INSERT INTO ClockAnchor VALUES (?,?,?,?)", s1, 0, T0, "Resume")),
   ("icmp capability without stream key", lambda: ins("INSERT INTO SessionCapability(SessionId,Capability,SinceUs,State) VALUES (?,?,?,?)", s1, "IcmpResponse", 0, "Unknown")),
+  ("session-level capability with stream key", lambda: ins("INSERT INTO SessionCapability(SessionId,Capability,StreamKey,SinceUs,State) VALUES (?,?,?,?,?)", s1, "Hotkey", "x", 0, "Unavailable")),
   ("wlan event from non-wlan source", lambda: ins("INSERT INTO ConnectionEvent(Id,SessionId,OffsetUs,Source,Kind) VALUES (?,?,?,?,?)", U(), s1, 5, "IpHelper", "WlanRoamed")),
   ("duplicate primary finding", lambda: ins("INSERT INTO Finding VALUES (?,?,?,?,?,?,?,?)", U(), r1, "R10", 0, 0, 1, "Observed", "{}")),
   ("delete session still referenced by action", lambda: ins("DELETE FROM Session WHERE Id=?", s1)),

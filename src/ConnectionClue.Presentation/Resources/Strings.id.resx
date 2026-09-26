@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>Pemeriksaan cepat</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>Pemeriksaan panjang</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>Barusan lag</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>Hentikan</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>Ekspor laporan</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>Lag saat bermain game</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>Video tersendat</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>Panggilan putus-putus</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>Koneksi terputus</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>Pemeriksaan dimulai.</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>Penanda dicatat.</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>Mulai pemeriksaan terlebih dahulu.</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>Sisa {0} menit</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>Jaringan rumah</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>Internet</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>Layanan web</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>Merespons</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>Tidak merespons</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>Menunggu</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Bahasa</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>Apa yang terjadi?</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>Periksa koneksi Anda</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue menguji jalur PC ini ke internet dan menunjukkan di mana masalah terjadi.</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>PC ini</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>Pengaturan</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>Bantuan</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>Aplikasi dimulai ulang dalam bahasa yang dipilih.</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>Sejauh ini semuanya merespons.</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>{0} tidak merespons saat ini.</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>Penundaan dari waktu ke waktu</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>Tidak ada jawaban</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>Periksa secara berkala di latar belakang</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>Periksa secara berkala melalui jaringan seluler</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Nonaktif secara default. Jika diaktifkan, pemeriksaan konektivitas berkala juga berjalan melalui jaringan seluler. Pemeriksaan latar belakang tidak menjalankan tes kecepatan.</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>Periksa setiap</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} menit</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>Peringatkan jika penundaan internet di atas</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>Peringatkan jika pemeriksaan tanpa jawaban di atas</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>Peringatkan jika penundaan berubah lebih dari</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue tetap berada di area notifikasi dan memperingatkan Anda tentang masalah. Hanya berjalan saat aplikasi terbuka.</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Buka ConnectionClue</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Keluar</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue terus memeriksa di latar belakang.</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>Masalah koneksi</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>Performa di bawah batas Anda</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>Kembali normal</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>Tidak ditemukan masalah.</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>Data tidak cukup untuk menilai.</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>Koneksi antara PC ini dan router Anda terputus.</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>Internet berhenti merespons selama sekitar {0} detik.</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>Situs web tidak dapat dijangkau.</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>{0} pemeriksaan internet tidak dijawab (batas {1}).</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>Penundaan internet {0} ms (batas {1} ms).</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>Penundaan internet bervariasi {0} ms (batas {1} ms).</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>Sebagian besar terjadi antara PC ini dan router Anda, sering kali Wi-Fi.</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>Tampaknya berada di luar router Anda.</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>Pemeriksaan terakhir: {0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>Median {0} · p95 {1} · Variasi {2} · Tanpa jawaban {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>Di atas batas Anda ({0} ms)</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>Rekomendasi</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>Tutup</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>Berdasarkan pemeriksaan pada {0}</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>Kondisi mungkin telah berubah sejak saat itu. Jalankan pemeriksaan cepat untuk memastikan.</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>Yang bisa dicoba: {0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>Tingkatkan sinyal Wi-Fi</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>Mendekatlah ke router, singkirkan penghalang di antaranya, atau beralih ke jaringan 5 GHz jika tersedia.</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>Coba kabel jaringan</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>Hubungkan PC ini ke router dengan kabel Ethernet, lalu jalankan pemeriksaan cepat untuk membandingkan.</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>Periksa kabel jaringan</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>Pasang ulang kabel di kedua ujung, atau coba kabel atau port router lain.</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>Mulai ulang router Anda</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>Cabut router dan modem selama 30 detik, pasang kembali, lalu tunggu sekitar 2 menit sebelum memeriksa lagi.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>Jeda unggahan dan unduhan besar</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>Pencadangan cloud, unggahan video, unduhan game, dan streaming di perangkat lain dapat memperlambat seluruh koneksi.</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>Coba tanpa VPN</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>Jika Anda menggunakan VPN dan diizinkan, putuskan sebentar lalu periksa lagi.</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>Hubungi penyedia internet Anda</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>Jika masih terjadi setelah router dimulai ulang, bagikan hasil ini kepada penyedia Anda.</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>Sisa {0} detik</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>Durasi pemeriksaan cepat</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>detik</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>Antara {0} dan {1} detik.</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>Memeriksa koneksi Anda…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>Pemeriksaan</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>Pemeriksaan</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>Peringatan</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>Lambat</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>Unduh</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>Unggah</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>Latensi</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>Variasi</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>Saat terbebani: {0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>Tidak diukur</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>Dilewati pada koneksi terukur</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>Tidak dapat mengukur</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>Mengukur kecepatan unduh…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>Mengukur kecepatan unggah…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Ukur kecepatan unduh dan unggah</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Menambah sekitar 16 detik pada pemeriksaan cepat dan dapat memakai hingga 300 MB. Tidak pernah berjalan pada pemeriksaan latar belakang atau koneksi terukur.</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>Perbaiki masalah yang ditemukan</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>Praktik terbaik untuk PC ini</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>Penting</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>Saran</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>Tidak ditemukan masalah koneksi. Pengaturan ini tetap dapat membuat koneksi Anda lebih cepat atau lebih andal.</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>Layak diperiksa: {0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>Latensi naik {0} ms saat koneksi sibuk</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>Unduhan dan unggahan menunda semua hal lain (bufferbloat). Aktifkan Smart Queue Management (SQM) atau QoS di router jika tersedia.</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>Sinyal Wi-Fi lemah ({0} dari 5 bar)</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>Mendekatlah ke router, singkirkan penghalang, atau tambahkan titik akses mesh. Kabel memberi koneksi paling stabil.</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>Penyetelan otomatis jendela penerimaan TCP dibatasi</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>Ini membatasi kecepatan unduh. Di terminal yang dibuka sebagai administrator, jalankan: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>Tautan kabel hanya berjalan pada {0} Mbps</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Gigabit memerlukan kabel Cat5e atau yang lebih baik dan port gigabit. Coba kabel atau port router lain.</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>Tautan Wi-Fi lambat ({0} Mbps)</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>Sambungkan ke jaringan 5 GHz atau 6 GHz jika router memilikinya, dan letakkan router di tempat terbuka dan tengah.</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>Windows dapat mematikan adaptor jaringan untuk menghemat daya</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>Di Manajer Perangkat, buka adaptor jaringan Anda. Pada tab Manajemen Daya, jika ada, kosongkan “Izinkan komputer mematikan perangkat ini untuk menghemat daya”.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet aktif</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>Ini dapat menambah lonjakan keterlambatan. Di Manajer Perangkat, buka adaptor Ethernet dan pada tab Tingkat Lanjut, atur Energy-Efficient Ethernet ke Nonaktif.</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>Penghemat daya dapat memperlambat koneksi Anda</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>Penghemat energi dan penghematan daya baterai memperlambat Wi-Fi. Colokkan PC, atau di Pengaturan &gt; Sistem &gt; Daya &amp; baterai, matikan Penghemat energi dan atur Mode daya ke Seimbang.</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>Pencarian nama lambat ({0} ms)</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>Situs web lebih lama mulai dimuat. Mulai ulang router, atau di Pengaturan &gt; Jaringan &amp; internet, buka properti koneksi dan edit Penetapan server DNS.</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>Driver jaringan berasal dari {0}</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>Driver lama dapat menyebabkan koneksi terputus dan kecepatan lambat. Dapatkan driver terbaru dari pembuat PC atau adaptor, atau periksa Windows Update &gt; Opsi lanjutan &gt; Pembaruan opsional.</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>Koneksi ini diatur sebagai terukur</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows menunda pembaruan dan beberapa aplikasi lebih jarang disinkronkan. Jika data Anda tidak terbatas, matikan Koneksi terukur di properti jaringan.</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>Server proksi sedang digunakan</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>Lalu lintas melewati server lain, yang dapat memperlambat atau memblokir situs. Jika Anda atau organisasi Anda tidak mengaturnya, matikan di Pengaturan &gt; Jaringan &amp; internet &gt; Proksi.</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 dimatikan</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>Beberapa aplikasi dan fitur Windows bergantung pada IPv6, dan Microsoft tidak menyarankan untuk mematikannya. Nyalakan kembali di properti adaptor jaringan, atau tanyakan kepada admin IT Anda.</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>Tekan ini saat Anda melihat lag, macet, atau panggilan terputus selama pemeriksaan. Bendera menandai momen itu di bagan, sehingga Anda bisa melihat apa yang terjadi pada koneksi saat itu.</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>Tanda lag Anda: {0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>Buka Pengaturan</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>Buka Manajer Perangkat</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>Buka Opsi Daya</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>Buka Manajer Tugas</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>Buka halaman router</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>Salin perintah</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>Salin ringkasan untuk penyedia Anda</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>Disalin ke clipboard.</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>Aplikasi lain memakai koneksi selama pemeriksaan (↓ {0} · ↑ {1} Mbps)</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>Unduhan, sinkronisasi cloud, dan pembaruan di PC ini bersaing dengan game dan panggilan, sehingga hasil tampak lebih buruk. Jeda semuanya, lalu periksa lagi. Manajer Tugas menunjukkan aplikasi yang memakai jaringan.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>Penghemat daya USB dapat memutus adaptor jaringan USB Anda</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>Di Opsi Daya, pilih Ubah pengaturan skema &gt; Ubah pengaturan daya tingkat lanjut &gt; Pengaturan USB, lalu atur Pengaturan penangguhan selektif USB ke Dinonaktifkan.</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>Sudah diperiksa, tidak perlu perubahan: {0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>sinyal Wi-Fi</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>kecepatan tautan</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>driver jaringan</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>manajemen daya adaptor</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>penghemat daya USB</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>penyetelan otomatis TCP</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>penghemat daya</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>pencarian nama (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>latensi saat terbebani</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>lalu lintas lain di PC ini</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>proksi</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>koneksi terukur</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>Unduhan memenuhi antrean koneksi. Di pengaturan router, aktifkan SQM, Smart Queue, atau Adaptive QoS dan atur batas unduhan sekitar {1} Mbps (90% dari kecepatan terukur).</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>Unggahan memenuhi antrean koneksi. Jeda pencadangan dan sinkronisasi cloud saat bermain game atau melakukan panggilan, atau aktifkan SQM, Smart Queue, atau Adaptive QoS di router dengan batas unggahan sekitar {1} Mbps (90% dari kecepatan terukur).</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>OneDrive sedang menyinkronkan saat pemeriksaan ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>Jeda saat bermain game atau melakukan panggilan: pilih ikon awan OneDrive di sudut taskbar, lalu Pengaturan &gt; Jeda sinkronisasi &gt; 2 jam. Sinkronisasi dilanjutkan otomatis.</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>{2} sedang menyinkronkan saat pemeriksaan ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>Jeda saat bermain game atau melakukan panggilan: pilih ikonnya di sudut taskbar dan pilih Jeda.</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>{2} sedang mengunduh saat pemeriksaan ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>Game atau pembaruan sedang diunduh. Di {2}, buka Unduhan dan jeda saat Anda bermain.</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>{2} menggunakan {3} MB saat pemeriksaan</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>Unduhan, atau tab video atau streaming, sedang menggunakan koneksi. Di {2}, tekan Ctrl+J untuk menjeda unduhan, dan tutup tab yang tidak diperlukan.</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>Layanan Windows menggunakan {3} MB saat pemeriksaan</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update atau Pengoptimalan Pengiriman sedang mentransfer data. Batasi bandwidth di Pengoptimalan Pengiriman &gt; Opsi tingkat lanjut.</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>{2} menggunakan {3} MB saat pemeriksaan</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>Tutup {2}, atau jeda aktivitasnya, saat bermain game atau melakukan panggilan. Manajer Tugas &gt; Proses, diurutkan menurut Jaringan, menampilkannya secara langsung.</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>Juga aktif: {0} ({1} MB).</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>Layanan Windows</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>Sinyal Wi-Fi lemah di “{2}” ({0} dari 5 bar)</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>{3} hanya terhubung pada {1} Mbps dari sini. Letakkan PC ini dan router di ruangan yang sama atau saling terlihat, jangan taruh router di lemari, atau gunakan kabel untuk bermain game dan panggilan.</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>“{2}” hanya terhubung pada {0} Mbps</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>Itu biasanya berarti band 2,4 GHz atau router yang jauh. Jika router juga memiliki jaringan 5 GHz (sering bernama “{2}-5G”), sambungkan ke jaringan itu di Pengaturan &gt; Jaringan &amp; internet &gt; Wi-Fi.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>{3} mendukung {4}, jadi {0} Mbps berarti koneksi berada di band 2,4 GHz atau jauh dari router. Sambungkan ke jaringan 5 GHz atau 6 GHz router (sering bernama “{2}-5G”) di Pengaturan &gt; Jaringan &amp; internet &gt; Wi-Fi.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>{3} adalah adaptor {4} yang lebih lama. Adaptor USB Wi-Fi 6 atau kabel jaringan akan jauh lebih cepat.</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} berjalan hanya pada {0} Mbps</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>Gigabit memerlukan kedelapan kabel. Ganti kabel dengan Cat5e atau Cat6 dan coba port router lain; jika tetap {0} Mbps, port atau switch di antaranya terbatas.</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>Windows dapat mematikan {2} untuk menghemat daya</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>Di Manajer Perangkat, buka Adaptor jaringan &gt; {2} &gt; Manajemen Daya dan kosongkan “Izinkan komputer mematikan perangkat ini untuk menghemat daya”.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>Penghemat daya USB dapat memutuskan {2}</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>Di Opsi Daya, pilih Ubah pengaturan paket &gt; Ubah pengaturan daya tingkat lanjut &gt; Pengaturan USB &gt; Pengaturan penangguhan selektif USB, lalu atur Dicolokkan ke Dinonaktifkan.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>Di Opsi Daya, pilih Ubah pengaturan paket &gt; Ubah pengaturan daya tingkat lanjut &gt; Pengaturan USB &gt; Pengaturan penangguhan selektif USB, lalu atur Menggunakan baterai ke Dinonaktifkan.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>Energy-Efficient Ethernet aktif untuk {2}</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>Ini dapat menambah lonjakan penundaan. Di Manajer Perangkat, buka Adaptor jaringan &gt; {2} &gt; Lanjutan, pilih Energy-Efficient Ethernet (atau Green Ethernet) dan atur ke Dinonaktifkan.</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>Penghemat energi aktif</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>Ini membatasi Wi-Fi dan aktivitas latar belakang. Matikan di Pengaturan &gt; Sistem &gt; Daya &amp; baterai &gt; Penghemat energi, atau colokkan PC.</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>Mode daya diatur ke Efisiensi daya terbaik</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>Ini memperlambat Wi-Fi untuk menghemat baterai. Di Pengaturan &gt; Sistem &gt; Daya &amp; baterai, atur Mode daya ke Seimbang atau Performa terbaik.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>Penghemat daya Wi-Fi diatur ke {2} saat menggunakan baterai</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>Di Opsi Daya, pilih Ubah pengaturan paket &gt; Ubah pengaturan daya tingkat lanjut &gt; Pengaturan Adaptor Nirkabel &gt; Mode Hemat Daya, lalu atur Menggunakan baterai ke Performa Maksimum.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>Penghemat daya Wi-Fi diatur ke {2} saat dicolokkan</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>Di Opsi Daya, pilih Ubah pengaturan paket &gt; Ubah pengaturan daya tingkat lanjut &gt; Pengaturan Adaptor Nirkabel &gt; Mode Hemat Daya, lalu atur Dicolokkan ke Performa Maksimum.</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>Penghemat Daya Rendah</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>Penghemat Daya Sedang</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>Penghemat Daya Maksimum</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>Pencarian nama melalui {2} lambat ({0} ms)</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>PC Anda menggunakan router ({2}) untuk DNS, dan responsnya lambat. Mulai ulang router; jika pencarian tetap lambat, atur server DNS publik seperti 1.1.1.1 atau 8.8.8.8 di penetapan server DNS pada properti koneksi.</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>Server DNS {2} merespons dengan lambat. Atur yang lebih cepat, seperti 1.1.1.1 atau 8.8.8.8, di penetapan server DNS pada properti koneksi.</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>Driver {2} berasal dari {0} (versi {3})</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>Dapatkan driver terbaru dari halaman dukungan pembuat PC, atau periksa Windows Update &gt; Opsi tingkat lanjut &gt; Pembaruan opsional.</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>Intel menerbitkan driver yang lebih baru untuk adaptor ini. Instal dengan Intel Driver &amp; Support Assistant.</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>“{2}” diatur sebagai koneksi terukur</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>Di koneksi ini, Windows menunda pembaruan dan beberapa aplikasi lebih jarang menyinkronkan. Jika paket data Anda tidak terbatas, matikan Koneksi terukur di properti “{2}”.</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>Lalu lintas web melewati proksi {2}</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} adalah program di PC ini, seperti alat debugging, pemblokir iklan, atau aplikasi keamanan. Tutup program itu, atau matikan proksi di Pengaturan &gt; Jaringan &amp; internet &gt; Proksi.</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>Jika Anda atau organisasi Anda tidak mengaturnya, matikan di Pengaturan &gt; Jaringan &amp; internet &gt; Proksi.</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>VPN merutekan lalu lintas Anda</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>VPN menambah rute memutar untuk setiap paket. Untuk bermain game dan panggilan, putuskan VPN, atau kecualikan game atau aplikasi panggilan di pengaturan split tunneling.</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} merutekan lalu lintas Anda</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>Penyetelan otomatis jendela penerimaan diatur ke “{2}”</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>Ini membatasi kecepatan unduhan pada koneksi cepat. Di Terminal (Admin), jalankan: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>IPv6 dimatikan untuk seluruh PC</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>Nilai registri DisabledComponents adalah {2}, sering kali diatur oleh alat tweak. Microsoft merekomendasikan 0x20 (lebih mengutamakan IPv4) sebagai gantinya: minta admin mengubahnya, lalu mulai ulang.</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>IPv6 dimatikan pada {2}</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>Di Koneksi Jaringan, buka {2} &gt; Properti dan pilih Protokol Internet Versi 6 (TCP/IPv6).</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>Buka halaman unduhan</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>Buka Koneksi Jaringan</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>Di PC ini, {0} menggunakan {1} MB saat pemeriksaan. Jeda terlebih dahulu, lalu periksa lagi.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>PC ini tidak aktif saat pemeriksaan, jadi periksa perangkat lain di rumah: konsol yang mengunduh pembaruan, TV yang streaming, ponsel yang mencadangkan foto, atau kamera yang mengunggah video.</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>Cabut router ({0}) selama 30 detik, colokkan kembali, lalu jalankan pemeriksaan cepat setelah lampunya stabil.</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>Beri tahu penyedia Anda apa yang ditemukan pemeriksaan: “{0}” Salin ringkasan memberi mereka detailnya.</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>Tidak ada koneksi jaringan</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>Sambungkan ke Wi-Fi atau pasang kabel jaringan. Pemeriksaan tidak dijalankan sampai PC ini terhubung.</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>Periksa rekomendasi dengan AI online</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>Sebelum saran ditampilkan, hanya teks umumnya yang dikirim ke layanan AI publik gratis (LLM7.io, Pollinations), bukan nama, alamat, atau pengukuran dari PC ini. Hasil diingat selama 30 hari.</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>Memeriksa rekomendasi dengan AI online…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>Diperiksa oleh AI online ({0}).</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>Beberapa rekomendasi tidak dapat diperiksa oleh AI online.</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>Pemeriksaan AI online tidak tersedia, jadi rekomendasi ini ditampilkan tanpa diperiksa.</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>Beberapa saran ditahan karena dua peninjau AI online menandainya sebagai tidak benar.</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>Diperiksa AI</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>Tampilan</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>Tema</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>Setiap tema memenuhi kontras WCAG 2.2 AA untuk teks, tombol, dan label; tema kontras tinggi memenuhi AAA.</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>Gelap</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>Terang</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>Kontras tinggi gelap</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>Kontras tinggi terang</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>Gunakan pengaturan Windows</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Kontras tinggi Windows aktif, jadi ConnectionClue menggunakan warna kontras Windows Anda.</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>Kecepatan unduh: seberapa cepat data mencapai PC ini dari internet, diukur dengan mengunduh data uji selama 8 detik. Lebih tinggi lebih baik; streaming video memerlukan sekitar 5 hingga 25 Mbps.</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>Kecepatan unggah: seberapa cepat PC ini mengirim data ke internet, diukur selama 8 detik. Lebih tinggi lebih baik; panggilan video dan pencadangan cloud bergantung padanya.</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>Latensi: berapa lama pesan mencapai server internet dan kembali, dalam milidetik. Lebih rendah lebih baik; di bawah 50 ms terasa instan dalam game dan panggilan. “Saat terbebani” menunjukkannya saat mengunduh dan mengunggah.</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>Variasi (jitter): seberapa besar latensi berubah dari satu saat ke saat berikutnya. Lebih rendah lebih baik; di atas 30 ms, panggilan dan game mulai tersendat.</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>Setiap batang adalah satu pengujian; tingginya adalah penundaan dalam milidetik (skala di kiri, waktu di bawah). Lebih rendah lebih baik. Batang berwarna “Di atas batas Anda” melebihi batas Anda, dan batang berarsir tidak mendapat jawaban. Arahkan ke batang untuk melihat nilainya.</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>Jaringan rumah: berapa lama router Anda menjawab PC ini. Ini menunjukkan masalah dengan Wi-Fi atau kabel di dalam rumah.</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>Internet: berapa lama waktu yang diperlukan untuk terhubung ke server di internet. Ini menunjukkan masalah dengan penyedia internet Anda.</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>Layanan web: berapa lama waktu yang diperlukan untuk mencari alamat web dan memuat halaman web. Ini menunjukkan pencarian nama atau situs web yang lambat.</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>Pilih ini jika game lag, macet, atau mengalami rubber-banding. Saran kemudian berfokus pada latensi, variasi, dan stabilitas.</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>Pilih ini jika video berhenti untuk buffering atau kualitasnya menurun. Saran kemudian berfokus pada kecepatan unduh dan pencarian nama.</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>Pilih ini jika panggilan suara atau video terputus-putus atau macet. Saran kemudian berfokus pada latensi, variasi, dan kecepatan unggah.</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Pilih ini jika koneksi sesekali terputus sepenuhnya. Saran kemudian berfokus pada sinyal Wi-Fi, penghemat daya, dan adaptor.</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} d: {1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} d: tidak ada jawaban</value></data>
+</root>

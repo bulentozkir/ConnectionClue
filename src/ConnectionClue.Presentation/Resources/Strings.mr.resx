@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>जलद तपासणी</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>दीर्घ तपासणी</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>आत्ताच लॅग झाला</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>थांबवा</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>अहवाल निर्यात करा</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>गेमिंगमध्ये लॅग</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>व्हिडिओ बफरिंग</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>कॉलमध्ये व्यत्यय</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>कनेक्शन तुटणे</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>तपासणी सुरू झाली.</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>खूण नोंदवली गेली.</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>आधी तपासणी सुरू करा.</value></data>
+  <data name="Capture_MinutesLeft.one" xml:space="preserve"><value>{0} मिनिट शिल्लक</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>{0} मिनिटे शिल्लक</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>घरगुती नेटवर्क</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>इंटरनेट</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>वेब सेवा</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>प्रतिसाद देत आहे</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>प्रतिसाद देत नाही</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>प्रतीक्षेत</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>भाषा</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>काय समस्या आहे?</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>तुमचे कनेक्शन तपासा</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue या पीसीपासून इंटरनेटपर्यंतचा मार्ग तपासते आणि समस्या कुठे येते ते दाखवते.</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>हा पीसी</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>सेटिंग्ज</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>मदत</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>ॲप निवडलेल्या भाषेत पुन्हा सुरू होईल.</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>आतापर्यंत सर्व काही प्रतिसाद देत आहे.</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>{0} कडून सध्या प्रतिसाद मिळत नाही.</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>कालानुसार विलंब</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>उत्तर नाही</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>पार्श्वभूमीत नियमितपणे तपासा</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>मोबाइल नेटवर्कवर नियमितपणे तपासा</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>डीफॉल्टने बंद. सुरू केल्यावर मोबाइल नेटवर्कवरही नियमित कनेक्टिव्हिटी तपासणी होईल. पार्श्वभूमीतील तपासणी वेग चाचणी करत नाही.</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>तपासणीचा कालावधी</value></data>
+  <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} मिनिट</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} मिनिटे</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>इंटरनेट विलंब यापेक्षा जास्त झाल्यास सूचना द्या</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>उत्तर न मिळालेल्या तपासण्या यापेक्षा जास्त झाल्यास सूचना द्या</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>विलंबातील चढ-उतार यापेक्षा जास्त झाल्यास सूचना द्या</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue सूचना क्षेत्रात राहते आणि समस्यांबद्दल सूचित करते. ॲप उघडे असतानाच ते चालते.</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>ConnectionClue उघडा</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>बाहेर पडा</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue पार्श्वभूमीत तपासणी सुरू ठेवेल.</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>कनेक्शनमध्ये समस्या</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>कार्यक्षमता तुमच्या मर्यादांपेक्षा कमी आहे</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>पुन्हा सामान्य</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>कोणतीही समस्या आढळली नाही.</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>निर्णयासाठी पुरेसा डेटा नाही.</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>हा पीसी आणि तुमच्या राउटरमधील कनेक्शन खंडित झाले.</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>इंटरनेटने सुमारे {0} सेकंद प्रतिसाद दिला नाही.</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>वेबसाइट्सपर्यंत पोहोचता आले नाही.</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>{0} इंटरनेट तपासण्यांना उत्तर मिळाले नाही (मर्यादा {1}).</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>इंटरनेट विलंब {0} ms होता (मर्यादा {1} ms).</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>इंटरनेट विलंबात {0} ms चढ-उतार झाला (मर्यादा {1} ms).</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>याचा बहुतांश भाग हा पीसी आणि तुमच्या राउटरदरम्यान आहे, बहुधा वाय-फाय.</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>हे तुमच्या राउटरच्या पलीकडे असल्याचे दिसते.</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>शेवटची तपासणी: {0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>मध्यक {0} · p95 {1} · चढ-उतार {2} · उत्तर नाही {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>तुमच्या मर्यादेपेक्षा जास्त ({0} ms)</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>शिफारसी</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>डिसमिस करा</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>{0} च्या तपासणीवर आधारित</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>तेव्हापासून परिस्थिती बदललेली असू शकते. खात्री करण्यासाठी जलद तपासणी चालवा.</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>काय करून पाहावे: {0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>वाय-फाय सिग्नल सुधारा</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>राउटरच्या जवळ जा, मधले अडथळे दूर करा किंवा उपलब्ध असल्यास 5 GHz नेटवर्कवर जा.</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>नेटवर्क केबल वापरून पाहा</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>हा पीसी इथरनेट केबलने राउटरला जोडा, मग तुलना करण्यासाठी जलद तपासणी चालवा.</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>नेटवर्क केबल तपासा</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>केबल दोन्ही टोकांना पुन्हा नीट लावा, किंवा दुसरी केबल किंवा राउटर पोर्ट वापरून पाहा.</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>तुमचा राउटर रीस्टार्ट करा</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>राउटर आणि मॉडेम 30 सेकंदांसाठी अनप्लग करा, पुन्हा प्लग करा आणि पुन्हा तपासण्यापूर्वी सुमारे 2 मिनिटे थांबा.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>मोठे अपलोड आणि डाउनलोड थांबवा</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>इतर उपकरणांवरील क्लाउड बॅकअप, व्हिडिओ अपलोड, गेम डाउनलोड आणि स्ट्रीमिंग संपूर्ण कनेक्शन मंद करू शकतात.</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>VPN शिवाय करून पाहा</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>तुम्ही VPN वापरत असल्यास आणि परवानगी असल्यास, ते थोडा वेळ डिस्कनेक्ट करून पुन्हा तपासा.</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>तुमच्या इंटरनेट सेवा प्रदात्याशी संपर्क साधा</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>राउटर रीस्टार्ट केल्यानंतरही असे होत राहिल्यास, हे निकाल तुमच्या सेवा प्रदात्याला द्या.</value></data>
+  <data name="Capture_SecondsLeft.one" xml:space="preserve"><value>{0} सेकंद शिल्लक</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>{0} सेकंद शिल्लक</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>जलद तपासणीचा कालावधी</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>सेकंद</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>{0} ते {1} सेकंदांदरम्यान.</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>तुमचे कनेक्शन तपासले जात आहे…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>तपासणी</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>तपासण्या</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>सूचना</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>मंद</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>डाउनलोड</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>अपलोड</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>विलंब</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>चढ-उतार</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>लोडखाली: {0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>मोजले नाही</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>मीटर केलेल्या कनेक्शनवर वगळले</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>मोजता आले नाही</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>डाउनलोड वेग मोजला जात आहे…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>अपलोड वेग मोजला जात आहे…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>डाउनलोड आणि अपलोड वेग मोजा</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>जलद तपासणीत सुमारे 16 सेकंद वाढतात आणि 300 MB पर्यंत डेटा लागू शकतो. पार्श्वभूमी तपासणीत किंवा मीटर केलेल्या कनेक्शनवर कधीही चालत नाही.</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>आढळलेल्या समस्या दुरुस्त करा</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>या पीसीसाठी सर्वोत्तम पद्धती</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>महत्त्वाचे</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>सूचना</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>कोणतीही कनेक्शन समस्या आढळली नाही. या सेटिंग्ज तरीही तुमचे कनेक्शन अधिक जलद किंवा अधिक विश्वासार्ह करू शकतात.</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>तपासण्यासारखे: {0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>लोडमध्ये लेटेंसी {0} ms ने वाढते</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>डाउनलोड आणि अपलोड इतर सर्व गोष्टींना उशीर करतात (bufferbloat). तुमच्या राउटरमध्ये Smart Queue Management (SQM) किंवा QoS असल्यास ते चालू करा.</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>कमकुवत Wi-Fi सिग्नल (5 पैकी {0} बार)</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>राउटरच्या जवळ जा, अडथळे दूर करा किंवा mesh access point जोडा. केबल सर्वात स्थिर कनेक्शन देते.</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>TCP receive window auto-tuning मर्यादित आहे</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>हे डाउनलोड वेग मर्यादित करते. प्रशासक म्हणून उघडलेल्या टर्मिनलमध्ये चालवा: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>केबल लिंक फक्त {0} Mbps वर चालतो</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Gigabit साठी Cat5e किंवा त्यापेक्षा चांगली केबल आणि gigabit पोर्ट लागतो. दुसरी केबल किंवा राउटर पोर्ट वापरून पाहा.</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>मंद Wi-Fi लिंक ({0} Mbps)</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>तुमच्या राउटरमध्ये 5 GHz किंवा 6 GHz नेटवर्क असल्यास त्यावर कनेक्ट करा आणि राउटर खुल्या, मध्यवर्ती ठिकाणी ठेवा.</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>वीज वाचवण्यासाठी Windows नेटवर्क अडॅप्टर बंद करू शकते</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>Device Manager मध्ये तुमचा नेटवर्क अडॅप्टर उघडा. Power Management टॅबवर, दिसत असल्यास, “Allow the computer to turn off this device to save power” निवड काढा.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet चालू आहे</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>यामुळे विलंब अचानक वाढू शकतो. Device Manager मध्ये तुमचा Ethernet अडॅप्टर उघडा आणि Advanced टॅबवर Energy-Efficient Ethernet ला Off सेट करा.</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>पॉवर सेविंगमुळे तुमचे कनेक्शन मंद होऊ शकते</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>Energy saver आणि बॅटरी पॉवर सेविंग Wi-Fi मंद करतात. PC प्लग इन करा, किंवा Settings &gt; System &gt; Power &amp; battery मध्ये Energy saver बंद करा आणि Power mode Balanced वर सेट करा.</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>नाव शोधणे मंद आहे ({0} ms)</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>वेबसाइट लोड व्हायला सुरू होण्यास जास्त वेळ लागतो. राउटर रीस्टार्ट करा, किंवा Settings &gt; Network &amp; internet मध्ये तुमच्या कनेक्शनचे properties उघडून DNS server assignment संपादित करा.</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>नेटवर्क ड्रायव्हर {0} मधील आहे</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>जुने ड्रायव्हर कनेक्शन तुटणे आणि कमी वेगाला कारणीभूत ठरू शकतात. तुमच्या PC किंवा अडॅप्टर निर्मात्याकडून नवीनतम ड्रायव्हर घ्या, किंवा Windows Update &gt; Advanced options &gt; Optional updates तपासा.</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>हे कनेक्शन मीटर केलेले म्हणून सेट आहे</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows अपडेटला उशीर करते आणि काही अ‍ॅप्स कमी सिंक होतात. तुमचा डेटा अमर्यादित असल्यास, नेटवर्क properties मध्ये Metered connection बंद करा.</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>प्रॉक्सी सर्व्हर वापरात आहे</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>ट्रॅफिक दुसऱ्या सर्व्हरमधून जाते, त्यामुळे साइट्स मंद होऊ किंवा ब्लॉक होऊ शकतात. तुम्ही किंवा तुमच्या संस्थेने ते सेट केले नसेल, तर Settings &gt; Network &amp; internet &gt; Proxy मध्ये ते बंद करा.</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 बंद आहे</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>काही अ‍ॅप्स आणि Windows वैशिष्ट्ये IPv6 वर अवलंबून असतात, आणि Microsoft ते बंद करण्याची शिफारस करत नाही. नेटवर्क अडॅप्टर properties मध्ये ते पुन्हा चालू करा, किंवा तुमच्या IT admin ला विचारा.</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>तपासणीदरम्यान लॅग, अडकणे किंवा कॉल कट होणे लक्षात येताच हे दाबा. चार्टवर त्या क्षणी खूण दिसेल, त्यामुळे तेव्हा तुमचे कनेक्शन काय करत होते ते पाहता येईल.</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>तुमच्या लॅग खुणा: {0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>सेटिंग्ज उघडा</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>Device Manager उघडा</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>Power Options उघडा</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>Task Manager उघडा</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>राउटर पेज उघडा</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>कमांड कॉपी करा</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>तुमच्या प्रदात्यासाठी सारांश कॉपी करा</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>क्लिपबोर्डवर कॉपी केले.</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>तपासणीदरम्यान इतर अ‍ॅप्सनी कनेक्शन वापरले (↓ {0} · ↑ {1} Mbps)</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>या PC वरील डाउनलोड, क्लाउड सिंक आणि अपडेट्स गेम्स आणि कॉल्सशी स्पर्धा करतात, आणि निकाल अधिक वाईट दिसू शकतात. ते थांबवा, मग पुन्हा तपासा. Task Manager कोणते अ‍ॅप्स नेटवर्क वापरतात ते दाखवतो.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>USB पॉवर सेविंगमुळे तुमचा USB नेटवर्क अडॅप्टर डिस्कनेक्ट होऊ शकतो</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>Power Options मध्ये Change plan settings &gt; Change advanced power settings &gt; USB settings निवडा आणि USB selective suspend setting Disabled वर सेट करा.</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>तपासले, बदलाची गरज नाही: {0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>Wi-Fi सिग्नल</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>लिंक वेग</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>नेटवर्क ड्रायव्हर</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>अडॅप्टर पॉवर व्यवस्थापन</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>USB पॉवर सेविंग</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>TCP auto-tuning</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>पॉवर सेविंग</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>नाव शोधणे (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>लोडखाली लेटेंसी</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>या PC वरील इतर ट्रॅफिक</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>प्रॉक्सी</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>मीटर केलेले कनेक्शन</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>डाउनलोड्स तुमच्या कनेक्शनची रांग भरतात. तुमच्या राउटरच्या सेटिंग्जमध्ये SQM, Smart Queue किंवा Adaptive QoS चालू करा आणि डाउनलोड मर्यादा सुमारे {1} Mbps ठेवा (मोजलेल्या वेगाच्या 90%).</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>अपलोड्स तुमच्या कनेक्शनची रांग भरतात. गेमिंग किंवा कॉलदरम्यान क्लाउड बॅकअप आणि सिंक थांबवा, किंवा तुमच्या राउटरमध्ये SQM, Smart Queue किंवा Adaptive QoS चालू करून अपलोड मर्यादा सुमारे {1} Mbps ठेवा (मोजलेल्या वेगाच्या 90%).</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>तपासणीदरम्यान OneDrive सिंक होत होते ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>गेमिंग किंवा कॉलदरम्यान ते थांबवा: टास्कबारच्या कोपऱ्यातील OneDrive क्लाउड चिन्ह निवडा, मग Settings &gt; Pause syncing &gt; 2 hours. ते आपोआप पुन्हा सुरू होते.</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>तपासणीदरम्यान {2} सिंक होत होते ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>गेमिंग किंवा कॉलदरम्यान ते थांबवा: टास्कबारच्या कोपऱ्यातील त्याचे चिन्ह निवडा आणि Pause निवडा.</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>तपासणीदरम्यान {2} डाउनलोड करत होते ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>गेम किंवा अपडेट डाउनलोड होत आहे. {2} मध्ये Downloads उघडा आणि खेळताना त्यांना थांबवा.</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>तपासणीदरम्यान {2} ने {3} MB वापरले</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>डाउनलोड, किंवा व्हिडिओ किंवा स्ट्रीमिंग टॅब, कनेक्शन वापरत आहे. {2} मध्ये डाउनलोड थांबवण्यासाठी Ctrl+J दाबा आणि गरज नसलेले टॅब बंद करा.</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>तपासणीदरम्यान Windows services ने {3} MB वापरले</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update किंवा Delivery Optimization डेटा हस्तांतरित करत आहे. Delivery Optimization &gt; Advanced options मध्ये त्यांची बँडविड्थ मर्यादित करा.</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>तपासणीदरम्यान {2} ने {3} MB वापरले</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>गेमिंग किंवा कॉलदरम्यान {2} बंद करा, किंवा ते करत असलेले काम थांबवा. Task Manager &gt; Processes मध्ये Network नुसार क्रम लावल्यास ते थेट दिसते.</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>हेही सक्रिय: {0} ({1} MB).</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>Windows services</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>“{2}” वर Wi-Fi सिग्नल कमकुवत आहे (5 पैकी {0} बार)</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>{3} येथून फक्त {1} Mbps वेगाने लिंक होते. हा PC आणि राउटर एकाच खोलीत किंवा दृष्टीरेषेत आणा, राउटर कपाटात ठेवू नका, किंवा गेमिंग आणि कॉलसाठी केबल वापरा.</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>“{2}” फक्त {0} Mbps वर लिंक होते</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>याचा अर्थ सहसा 2.4 GHz बँड किंवा दूरचा राउटर असतो. तुमच्या राउटरमध्ये 5 GHz नेटवर्कही असल्यास (अनेकदा “{2}-5G” नावाचे), Settings &gt; Network &amp; internet &gt; Wi-Fi मध्ये त्याला कनेक्ट करा.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>तुमचे {3} {4} ला समर्थन देते, म्हणून {0} Mbps म्हणजे ते 2.4 GHz बँडवर आहे किंवा राउटरपासून दूर आहे. Settings &gt; Network &amp; internet &gt; Wi-Fi मध्ये तुमच्या राउटरच्या 5 GHz किंवा 6 GHz नेटवर्कला (अनेकदा “{2}-5G” नावाचे) कनेक्ट करा.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>तुमचे {3} हे जुने {4} अ‍ॅडॅप्टर आहे. Wi-Fi 6 USB अ‍ॅडॅप्टर किंवा नेटवर्क केबल खूप वेगवान असेल.</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} फक्त {0} Mbps वर चालते</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>Gigabit साठी सर्व आठ वायर लागतात. केबल Cat5e किंवा Cat6 ने बदला आणि दुसरा राउटर पोर्ट वापरून पाहा; ती {0} Mbps वरच राहिल्यास, पोर्ट किंवा मधला स्विच मर्यादित आहे.</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>वीज वाचवण्यासाठी Windows {2} बंद करू शकते</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>Device Manager मध्ये Network adapters &gt; {2} &gt; Power Management उघडा आणि “Allow the computer to turn off this device to save power” निवड काढा.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>USB पॉवर सेव्हिंगमुळे {2} डिस्कनेक्ट होऊ शकते</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>Power Options मध्ये Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting निवडा आणि Plugged in ला Disabled सेट करा.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>Power Options मध्ये Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting निवडा आणि On battery ला Disabled सेट करा.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>{2} साठी Energy-Efficient Ethernet चालू आहे</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>यामुळे विलंबाच्या उड्या येऊ शकतात. Device Manager मध्ये Network adapters &gt; {2} &gt; Advanced उघडा, Energy-Efficient Ethernet (किंवा Green Ethernet) निवडा आणि Disabled सेट करा.</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>Energy saver चालू आहे</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>हे Wi-Fi आणि पार्श्वभूमी क्रिया मर्यादित करते. Settings &gt; System &gt; Power &amp; battery &gt; Energy saver मध्ये ते बंद करा, किंवा तुमचा PC प्लग इन करा.</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>Power mode Best power efficiency ஆக सेट आहे</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>हे बॅटरी वाचवण्यासाठी Wi-Fi मंद करते. Settings &gt; System &gt; Power &amp; battery मध्ये Power mode ला Balanced किंवा Best performance सेट करा.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>बॅटरीवर Wi-Fi पॉवर सेव्हिंग {2} वर सेट आहे</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>Power Options मध्ये Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode निवडा आणि On battery ला Maximum Performance सेट करा.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>प्लग इन असताना Wi-Fi पॉवर सेव्हिंग {2} वर सेट आहे</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>Power Options मध्ये Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode निवडा आणि Plugged in ला Maximum Performance सेट करा.</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>कमी पॉवर सेव्हिंग</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>मध्यम पॉवर सेव्हिंग</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>कमाल पॉवर सेव्हिंग</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>{2} द्वारे नाव शोधणे मंद आहे ({0} ms)</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>तुमचा PC DNS साठी राउटर ({2}) वापरतो आणि तो हळू उत्तर देतो. राउटर रीस्टार्ट करा; शोध अजूनही मंद राहिल्यास, तुमच्या कनेक्शनच्या properties मध्ये DNS server assignment अंतर्गत 1.1.1.1 किंवा 8.8.8.8 सारखा सार्वजनिक DNS सर्व्हर सेट करा.</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>DNS सर्व्हर {2} हळू उत्तर देतो. तुमच्या कनेक्शनच्या properties मध्ये DNS server assignment अंतर्गत 1.1.1.1 किंवा 8.8.8.8 सारखा जलद सर्व्हर सेट करा.</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>{2} ड्रायव्हर {0} मधला आहे (आवृत्ती {3})</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>तुमच्या PC निर्मात्याच्या सपोर्ट पेजवरून सर्वात नवीन ड्रायव्हर मिळवा, किंवा Windows Update &gt; Advanced options &gt; Optional updates तपासा.</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>Intel या अ‍ॅडॅप्टरसाठी नवीन ड्रायव्हर्स प्रकाशित करते. Intel Driver &amp; Support Assistant सह ते इन्स्टॉल करा.</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>“{2}” metered connection म्हणून सेट आहे</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>त्यावर Windows अपडेट्स उशिरा करते आणि काही अ‍ॅप्स कमी सिंक करतात. तुमचा डेटा प्लॅन अमर्यादित असल्यास, “{2}” च्या properties मध्ये Metered connection बंद करा.</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>वेब ट्रॅफिक प्रॉक्सी {2} मधून जाते</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} हा या PC वरील प्रोग्राम आहे, जसे debugging tool, ad blocker किंवा security app. तो बंद करा, किंवा Settings &gt; Network &amp; internet &gt; Proxy मध्ये proxy बंद करा.</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>तुम्ही किंवा तुमच्या संस्थेने ते सेट केले नसेल, तर Settings &gt; Network &amp; internet &gt; Proxy मध्ये ते बंद करा.</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>VPN तुमचा ट्रॅफिक रूट करत आहे</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>VPN प्रत्येक पॅकेटला वळसा घालते. गेमिंग आणि कॉलसाठी, ते डिस्कनेक्ट करा किंवा त्याच्या split tunneling सेटिंग्जमध्ये गेम किंवा कॉल अ‍ॅप वगळा.</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} तुमचा ट्रॅफिक रूट करत आहे</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>Receive window auto-tuning “{2}” वर सेट आहे</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>यामुळे जलद कनेक्शनवर डाउनलोड वेग मर्यादित होतो. Terminal (Admin) मध्ये चालवा: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>संपूर्ण PC साठी IPv6 बंद आहे</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>DisabledComponents रजिस्ट्री मूल्य {2} आहे, जे अनेकदा tweak tool ने सेट केलेले असते. Microsoft त्याऐवजी 0x20 (IPv4 ला प्राधान्य) शिफारस करते: तुमच्या admin ला ते बदलायला सांगा, मग रीस्टार्ट करा.</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>{2} वर IPv6 बंद आहे</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>Network Connections मध्ये {2} &gt; Properties उघडा आणि Internet Protocol Version 6 (TCP/IPv6) निवडा.</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>डाउनलोड पेज उघडा</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>Network Connections उघडा</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>या PC वर, तपासणीदरम्यान {0} ने {1} MB वापरले. आधी ते थांबवा, मग पुन्हा तपासा.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>तपासणीदरम्यान हा PC शांत होता, म्हणून घरातील इतर डिव्हाइस पहा: अपडेट्स डाउनलोड करणारे कन्सोल, स्ट्रीमिंग करणारे TV, फोटो बॅकअप करणारे फोन किंवा व्हिडिओ अपलोड करणारे कॅमेरे.</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>राउटर ({0}) 30 सेकंद अनप्लग करा, पुन्हा प्लग इन करा, आणि त्याचे दिवे स्थिर झाल्यावर जलद तपासणी चालवा.</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>तपासणीत काय आढळले ते तुमच्या प्रदात्याला सांगा: “{0}” Copy summary त्यांना तपशील देते.</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>नेटवर्क कनेक्शन नाही</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>वाय-फायशी कनेक्ट करा किंवा नेटवर्क केबल लावा. हा पीसी कनेक्ट होईपर्यंत तपासणी चालणार नाही.</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>ऑनलाइन AI ने शिफारसी तपासा</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>सल्ला दाखवण्यापूर्वी, फक्त त्याचा सर्वसाधारण मजकूर मोफत सार्वजनिक AI सेवांना (LLM7.io, Pollinations) पाठवला जातो, या PC वरील नावे, पत्ते किंवा मोजमापे कधीही नाहीत. निकाल 30 दिवस लक्षात ठेवले जातात.</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>ऑनलाइन AI ने शिफारसी तपासल्या जात आहेत…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>ऑनलाइन AI ने तपासले ({0}).</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>काही शिफारसी ऑनलाइन AI ने तपासता आल्या नाहीत.</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>ऑनलाइन AI तपासणी उपलब्ध नव्हती, त्यामुळे या शिफारसी न तपासता दाखवल्या आहेत.</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>दोन ऑनलाइन AI समीक्षकांनी चुकीचे म्हणून चिन्हांकित केल्यामुळे काही सल्ला रोखून ठेवला गेला.</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>AI-तपासलेले</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>देखावा</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>थीम</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>प्रत्येक थीम मजकूर, बटणे आणि लेबलांसाठी WCAG 2.2 AA कॉन्ट्रास्ट पूर्ण करते; उच्च-कॉन्ट्रास्ट थीम AAA पूर्ण करतात.</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>गडद</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>हलके</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>उच्च कॉन्ट्रास्ट गडद</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>उच्च कॉन्ट्रास्ट हलके</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>Windows सेटिंग वापरा</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Windows high contrast चालू आहे, म्हणून ConnectionClue तुमचे Windows contrast colors वापरते.</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>डाउनलोड वेग: इंटरनेटवरून या PC पर्यंत डेटा किती जलद पोहोचतो; 8 सेकंद चाचणी डेटा डाउनलोड करून मोजला जातो. जास्त असणे चांगले; व्हिडिओ स्ट्रीमिंगला सुमारे 5 ते 25 Mbps लागतात.</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>अपलोड वेग: हा PC इंटरनेटवर डेटा किती जलद पाठवतो; 8 सेकंदांसाठी मोजला जातो. जास्त असणे चांगले; व्हिडिओ कॉल आणि क्लाउड बॅकअप त्यावर अवलंबून असतात.</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>लेटेंसी: संदेश इंटरनेट सर्व्हरपर्यंत जाऊन परत यायला किती वेळ लागतो, मिलीसेकंदात. कमी असणे चांगले; 50 ms पेक्षा कमी गेम आणि कॉलमध्ये तत्काळ वाटते. “लोडखाली” डाउनलोड आणि अपलोडदरम्यान ते दाखवते.</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>फरक (jitter): लेटेंसी एका क्षणापासून दुसऱ्या क्षणापर्यंत किती बदलते. कमी असणे चांगले; 30 ms पेक्षा जास्त झाल्यावर कॉल आणि गेम अडखळू लागतात.</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>प्रत्येक बार एक चाचणी आहे; त्याची उंची मिलीसेकंदातील विलंब आहे (स्केल डावीकडे, वेळ तळाशी). कमी असणे चांगले. “तुमच्या मर्यादेपेक्षा जास्त” रंगातील बार तुमची मर्यादा ओलांडतात आणि हॅच केलेल्या बारना उत्तर मिळाले नाही. मूल्य पाहण्यासाठी बारकडे निर्देश करा.</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>घरगुती नेटवर्क: तुमचा राउटर या PC ला उत्तर द्यायला किती वेळ घेतो. हे तुमच्या घरातील Wi-Fi किंवा केबल्सच्या समस्या दाखवते.</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>इंटरनेट: इंटरनेटवरील सर्व्हरशी कनेक्ट व्हायला किती वेळ लागतो. हे तुमच्या इंटरनेट प्रदात्याच्या समस्या दाखवते.</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>वेब सेवा: वेब पत्ता शोधायला आणि वेब पेज लोड करायला किती वेळ लागतो. हे मंद नाव शोधणे किंवा वेबसाइट्स दाखवते.</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>गेममध्ये लॅग, फ्रीझ किंवा rubber-band होत असल्यास हे निवडा. मग सल्ला लेटेंसी, फरक आणि स्थिरतेवर लक्ष केंद्रित करतो.</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>व्हिडिओ बफर होण्यासाठी थांबत असल्यास किंवा गुणवत्ता कमी होत असल्यास हे निवडा. मग सल्ला डाउनलोड वेग आणि नाव शोधण्यावर लक्ष केंद्रित करतो.</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>व्हॉइस किंवा व्हिडिओ कॉल तुटत किंवा फ्रीझ होत असल्यास हे निवडा. मग सल्ला लेटेंसी, फरक आणि अपलोड वेगावर लक्ष केंद्रित करतो.</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>कनेक्शन कधी कधी पूर्णपणे तुटत असल्यास हे निवडा. मग सल्ला Wi-Fi सिग्नल, पॉवर सेव्हिंग आणि अ‍ॅडॅप्टर्सवर लक्ष केंद्रित करतो.</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: उत्तर नाही</value></data>
+</root>

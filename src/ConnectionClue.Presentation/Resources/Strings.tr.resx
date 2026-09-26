@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>Hızlı kontrol</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>Uzun ölçüm</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>Az önce lag oldu</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>Durdur</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>Raporu dışa aktar</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>Oyunda gecikme</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>Takılan video</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>Kesik kesik aramalar</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>Bağlantı kopmaları</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>Ölçüm başladı.</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>İşaret kaydedildi.</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>Önce bir ölçüm başlatın.</value></data>
+  <data name="Capture_MinutesLeft.one" xml:space="preserve"><value>{0} dakika kaldı</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>{0} dakika kaldı</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>Ev ağı</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>İnternet</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>Web hizmetleri</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>Yanıt veriyor</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>Yanıt vermiyor</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>Bekleniyor</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Dil</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>Ne oluyor?</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>Bağlantınızı kontrol edin</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue, bu bilgisayarın internete giden yolunu test eder ve sorunların nerede olduğunu gösterir.</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>Bu bilgisayar</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>Ayarlar</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>Yardım</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>Uygulama seçilen dilde yeniden başlar.</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>Şu ana kadar her şey yanıt veriyor.</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>{0} şu anda yanıt vermiyor.</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>Zaman içinde gecikme</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>Yanıt yok</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>Arka planda düzenli olarak kontrol et</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>Mobil ağlarda düzenli olarak kontrol et</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Varsayılan olarak kapalıdır. Açıldığında mobil ağlarda da düzenli bağlantı denetimleri yapılır. Arka plan denetimleri hız testi çalıştırmaz.</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>Kontrol aralığı</value></data>
+  <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} dakika</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} dakika</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>İnternet gecikmesi şu değeri aşarsa uyar</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>Yanıtsız kontroller şu değeri aşarsa uyar</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>Gecikme dalgalanması şu değeri aşarsa uyar</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue bildirim alanında kalır ve sorunlarda sizi uyarır. Yalnızca uygulama açıkken çalışır.</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>ConnectionClue'yu aç</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Çıkış</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue arka planda kontrole devam ediyor.</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>Bağlantı sorunu</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>Performans sınırlarınızın altında</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>Normale döndü</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>Sorun bulunamadı.</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>Değerlendirmek için yeterli veri yok.</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>Bu bilgisayar ile yönlendiriciniz arasındaki bağlantı kesildi.</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>İnternet yaklaşık {0} sn yanıt vermedi.</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>Web sitelerine ulaşılamadı.</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>İnternet kontrollerinin {0} kadarı yanıtsız kaldı (sınır {1}).</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>İnternet gecikmesi {0} ms idi (sınır {1} ms).</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>İnternet gecikmesi {0} ms dalgalandı (sınır {1} ms).</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>Büyük kısmı bu bilgisayar ile yönlendiriciniz arasında, genellikle Wi-Fi kaynaklı.</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>Sorun yönlendiricinizin ötesinde görünüyor.</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>Son kontrol: {0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>Medyan {0} · p95 {1} · Dalgalanma {2} · Yanıtsız {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>Sınırınızın üzerinde ({0} ms)</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>Öneriler</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>Kapat</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>{0} tarihli kontrole göre</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>O zamandan beri koşullar değişmiş olabilir. Doğrulamak için hızlı kontrol çalıştırın.</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>Deneyebilecekleriniz: {0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>Wi-Fi çekimini iyileştirin</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>Yönlendiriciye yaklaşın, aradaki engelleri kaldırın veya varsa 5 GHz ağına geçin.</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>Ağ kablosu deneyin</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>Bu bilgisayarı yönlendiriciye Ethernet kablosuyla bağlayın, ardından karşılaştırmak için hızlı kontrol çalıştırın.</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>Ağ kablosunu kontrol edin</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>Kabloyu her iki uçtan yeniden takın veya başka bir kablo ya da yönlendirici bağlantı noktası deneyin.</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>Yönlendiricinizi yeniden başlatın</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>Yönlendiriciyi ve modemi 30 saniyeliğine fişten çekin, tekrar takın ve yeniden kontrol etmeden önce yaklaşık 2 dakika bekleyin.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>Büyük yükleme ve indirmeleri duraklatın</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>Diğer cihazlardaki bulut yedeklemeleri, video yüklemeleri, oyun indirmeleri ve yayın akışı tüm bağlantıyı yavaşlatabilir.</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>VPN olmadan deneyin</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>VPN kullanıyorsanız ve izniniz varsa, bağlantısını kısa süreliğine kesip yeniden kontrol edin.</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>İnternet sağlayıcınızla iletişime geçin</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>Yönlendiriciyi yeniden başlattıktan sonra da devam ederse bu sonuçları sağlayıcınızla paylaşın.</value></data>
+  <data name="Capture_SecondsLeft.one" xml:space="preserve"><value>{0} saniye kaldı</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>{0} saniye kaldı</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>Hızlı kontrol süresi</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>saniye</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>{0} ile {1} saniye arasında.</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>Bağlantınız kontrol ediliyor…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>Kontrol</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>Kontroller</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>Uyarılar</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>Yavaş</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>İndirme</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>Yükleme</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>Gecikme</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>Dalgalanma</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>Yük altında: {0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>Ölçülmedi</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>Tarifeli bağlantıda atlandı</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>Ölçülemedi</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>İndirme hızı ölçülüyor…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>Yükleme hızı ölçülüyor…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>İndirme ve yükleme hızını ölç</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Hızlı kontrollere yaklaşık 16 saniye ekler ve 300 MB'a kadar veri kullanabilir. Arka plan kontrollerinde veya tarifeli bağlantılarda asla çalışmaz.</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>Bulunan sorunları düzeltin</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>Bu bilgisayar için en iyi uygulamalar</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>Önemli</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>Öneri</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>Bağlantı sorunu bulunamadı. Bu ayarlar yine de bağlantınızı daha hızlı veya daha güvenilir yapabilir.</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>Kontrol etmeye değer: {0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>Yük altında gecikme {0} ms artıyor</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>İndirme ve yüklemeler diğer her şeyi geciktirir (bufferbloat). Yönlendiricinizde varsa Smart Queue Management (SQM) veya QoS özelliğini açın.</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>Zayıf Wi-Fi sinyali (5 çubuktan {0})</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>Yönlendiriciye yaklaşın, engelleri kaldırın veya mesh erişim noktası ekleyin. Kablo en kararlı bağlantıyı sağlar.</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>TCP alma penceresi otomatik ayarı sınırlı</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>Bu, indirme hızını sınırlar. Yönetici olarak açılmış bir terminalde şunu çalıştırın: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>Kablo bağlantısı yalnızca {0} Mbps hızında çalışıyor</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Gigabit için Cat5e veya daha iyi bir kablo ve gigabit bağlantı noktası gerekir. Başka bir kablo veya yönlendirici bağlantı noktası deneyin.</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>Yavaş Wi-Fi bağlantısı ({0} Mbps)</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>Yönlendiricinizde varsa 5 GHz veya 6 GHz ağına bağlanın ve yönlendiriciyi açık, merkezi bir yerde tutun.</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>Windows güç tasarrufu için ağ bağdaştırıcısını kapatabilir</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>Aygıt Yöneticisi’nde ağ bağdaştırıcınızı açın. Güç Yönetimi sekmesinde, görünüyorsa “Güç kazancı sağlamak için bilgisayar bu aygıtı kapatsın” seçimini kaldırın.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet açık</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>Gecikme sıçramaları ekleyebilir. Aygıt Yöneticisi’nde Ethernet bağdaştırıcınızı açın ve Gelişmiş sekmesinde Energy-Efficient Ethernet’i Kapalı olarak ayarlayın.</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>Güç tasarrufu bağlantınızı yavaşlatabilir</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>Enerji tasarrufu ve pil güç tasarrufu Wi-Fi’yi yavaşlatır. Bilgisayarı prize takın veya Ayarlar &gt; Sistem &gt; Güç ve pil bölümünde Enerji tasarrufu’nu kapatıp Güç modu’nu Dengeli yapın.</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>Ad aramaları yavaş ({0} ms)</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>Web sitelerinin yüklenmeye başlaması daha uzun sürer. Yönlendiricinizi yeniden başlatın veya Ayarlar &gt; Ağ ve internet bölümünde bağlantı özelliklerini açıp DNS sunucusu ataması’nı düzenleyin.</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>Ağ sürücüsü {0} tarihli</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>Eski sürücüler kopmalara ve düşük hızlara neden olabilir. En yeni sürücüyü PC veya bağdaştırıcı üreticisinden alın ya da Windows Update &gt; Gelişmiş seçenekler &gt; İsteğe bağlı güncelleştirmeler bölümünü kontrol edin.</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>Bu bağlantı tarifeli olarak ayarlanmış</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows güncelleştirmeleri geciktirir ve bazı uygulamalar daha az eşitlenir. Veriniz sınırsızsa ağ özelliklerinde Tarifeli bağlantı’yı kapatın.</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>Bir proxy sunucusu kullanılıyor</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>Trafik başka bir sunucudan geçer; bu siteleri yavaşlatabilir veya engelleyebilir. Siz ya da kuruluşunuz ayarlamadıysa Ayarlar &gt; Ağ ve internet &gt; Proxy bölümünde kapatın.</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 kapalı</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>Bazı uygulamalar ve Windows özellikleri IPv6’ya güvenir; Microsoft bunu kapatmanızı önermez. Ağ bağdaştırıcısı özelliklerinde yeniden açın veya BT yöneticinize sorun.</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>Kontrol sırasında lag, donma veya kopan arama fark ettiğiniz anda buna basın. Grafik üzerinde o an işaretlenir, böylece bağlantınızın o sırada ne yaptığını görebilirsiniz.</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>Lag işaretleriniz: {0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>Ayarları aç</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>Aygıt Yöneticisi’ni aç</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>Güç Seçenekleri’ni aç</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>Görev Yöneticisi’ni aç</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>Yönlendirici sayfasını aç</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>Komutu kopyala</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>Sağlayıcınız için özeti kopyala</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>Panoya kopyalandı.</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>Kontrol sırasında diğer uygulamalar bağlantıyı kullandı (↓ {0} · ↑ {1} Mbps)</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>Bu bilgisayardaki indirmeler, bulut eşitleme ve güncelleştirmeler oyunlar ve aramalarla yarışır, sonuçları daha kötü gösterir. Bunları duraklatın, sonra yeniden kontrol edin. Görev Yöneticisi ağı kullanan uygulamaları gösterir.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>USB güç tasarrufu USB ağ bağdaştırıcınızın bağlantısını kesebilir</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>Güç Seçenekleri’nde Plan ayarlarını değiştir &gt; Gelişmiş güç ayarlarını değiştir &gt; USB ayarları’nı seçin ve USB seçmeli askıya alma ayarı’nı Devre dışı olarak ayarlayın.</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>Kontrol edildi, değişiklik gerekmiyor: {0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>Wi-Fi sinyali</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>bağlantı hızı</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>ağ sürücüsü</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>bağdaştırıcı güç yönetimi</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>USB güç tasarrufu</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>TCP otomatik ayarı</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>güç tasarrufu</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>ad aramaları (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>yük altında gecikme</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>bu bilgisayardaki diğer trafik</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>proxy</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>tarifeli bağlantı</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>İndirmeler bağlantınızın kuyruğunu doldurur. Yönlendirici ayarlarınızda SQM, Smart Queue veya Adaptive QoS özelliğini açın ve indirme sınırını yaklaşık {1} Mbps olarak ayarlayın (ölçülen hızınızın %90’ı).</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>Yüklemeler bağlantınızın kuyruğunu doldurur. Oyun oynarken veya aramalarda bulut yedekleme ve eşitlemeyi duraklatın ya da yönlendiricinizde yaklaşık {1} Mbps yükleme sınırıyla SQM, Smart Queue veya Adaptive QoS özelliğini açın (ölçülen hızınızın %90’ı).</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>Denetim sırasında OneDrive eşitleniyordu ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>Oyun oynarken veya aramalarda duraklatın: görev çubuğu köşesindeki OneDrive bulut simgesini seçin, ardından Ayarlar &gt; Eşitlemeyi duraklat &gt; 2 saat’i seçin. Kendiliğinden sürdürülür.</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>Denetim sırasında {2} eşitleniyordu ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>Oyun oynarken veya aramalarda duraklatın: görev çubuğu köşesindeki simgesini seçin ve Duraklat’ı seçin.</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>Denetim sırasında {2} indiriyordu ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>Bir oyun veya güncelleştirme indiriliyor. {2} içinde Downloads bölümünü açın ve oynarken duraklatın.</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>Denetim sırasında {2} {3} MB kullandı</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>Bir indirme ya da video veya akış sekmesi bağlantıyı kullanıyor. {2} içinde indirmeleri duraklatmak için Ctrl+J tuşlarına basın ve gerek duymadığınız sekmeleri kapatın.</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>Denetim sırasında Windows services {3} MB kullandı</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update veya Teslim İyileştirme veri aktarıyor. Teslim İyileştirme &gt; Gelişmiş seçenekler bölümünde bant genişliklerini sınırlayın.</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>Denetim sırasında {2} {3} MB kullandı</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>Oyun oynarken veya aramalarda {2} uygulamasını kapatın ya da yaptığı işi duraklatın. Görev Yöneticisi &gt; İşlemler, Ağ’a göre sıralandığında bunu canlı gösterir.</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>Ayrıca etkin: {0} ({1} MB).</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>Windows services</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>“{2}” üzerinde zayıf Wi-Fi sinyali (5 çubuktan {0})</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>{3} buradan yalnızca {1} Mbps hızında bağlanıyor. Bu PC ile yönlendiriciyi aynı odaya veya görüş hattına getirin, yönlendiriciyi dolap dışında tutun ya da oyun ve aramalar için kablo kullanın.</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>“{2}” yalnızca {0} Mbps hızında bağlanıyor</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>Bu genellikle 2.4 GHz bandı veya uzaktaki bir yönlendirici anlamına gelir. Yönlendiricinizde 5 GHz ağı da varsa (çoğu zaman “{2}-5G” olarak adlandırılır), Ayarlar &gt; Ağ ve internet &gt; Wi-Fi bölümünde ona bağlanın.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>{3} bağdaştırıcınız {4} destekler, bu nedenle {0} Mbps onun 2.4 GHz bandında olduğunu veya yönlendiriciden uzakta olduğunu gösterir. Ayarlar &gt; Ağ ve internet &gt; Wi-Fi bölümünde yönlendiricinizin 5 GHz veya 6 GHz ağına (çoğu zaman “{2}-5G” olarak adlandırılır) bağlanın.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>{3} daha eski bir {4} bağdaştırıcısıdır. Bir Wi-Fi 6 USB bağdaştırıcısı veya ağ kablosu çok daha hızlı olur.</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} yalnızca {0} Mbps hızında çalışıyor</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>Gigabit için sekiz telin tamamı gerekir. Kabloyu Cat5e veya Cat6 ile değiştirin ve başka bir yönlendirici bağlantı noktasını deneyin; {0} Mbps hızında kalırsa bağlantı noktası veya aradaki anahtar sınırlıdır.</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>Windows güç tasarrufu için {2} aygıtını kapatabilir</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>Aygıt Yöneticisi’nde Ağ bağdaştırıcıları &gt; {2} &gt; Güç Yönetimi’ni açın ve “Güç kazancı sağlamak için bilgisayar bu aygıtı kapatsın” seçimini kaldırın.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>USB güç tasarrufu {2} bağlantısını kesebilir</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>Güç Seçenekleri’nde Plan ayarlarını değiştir &gt; Gelişmiş güç ayarlarını değiştir &gt; USB ayarları &gt; USB seçmeli askıya alma ayarı’nı seçin ve Prize takılı değerini Disabled olarak ayarlayın.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>Güç Seçenekleri’nde Plan ayarlarını değiştir &gt; Gelişmiş güç ayarlarını değiştir &gt; USB ayarları &gt; USB seçmeli askıya alma ayarı’nı seçin ve Pilde değerini Disabled olarak ayarlayın.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>{2} için Energy-Efficient Ethernet açık</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>Bu gecikme sıçramaları ekleyebilir. Aygıt Yöneticisi’nde Ağ bağdaştırıcıları &gt; {2} &gt; Gelişmiş’i açın, Energy-Efficient Ethernet (veya Green Ethernet) seçin ve Disabled olarak ayarlayın.</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>Enerji tasarrufu açık</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>Wi-Fi ve arka plan etkinliğini sınırlar. Ayarlar &gt; Sistem &gt; Güç ve pil &gt; Enerji tasarrufu bölümünde kapatın veya PC’nizi prize takın.</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>Güç modu En iyi güç verimliliği olarak ayarlı</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>Pil tasarrufu için Wi-Fi’yi yavaşlatır. Ayarlar &gt; Sistem &gt; Güç ve pil bölümünde Güç modu’nu Dengeli veya En iyi performans olarak ayarlayın.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>Pilde Wi-Fi güç tasarrufu {2} olarak ayarlı</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>Güç Seçenekleri’nde Plan ayarlarını değiştir &gt; Gelişmiş güç ayarlarını değiştir &gt; Kablosuz Bağdaştırıcı Ayarları &gt; Güç Tasarrufu Modu’nu seçin ve Pilde değerini Maximum Performance olarak ayarlayın.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>Prize takılıyken Wi-Fi güç tasarrufu {2} olarak ayarlı</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>Güç Seçenekleri’nde Plan ayarlarını değiştir &gt; Gelişmiş güç ayarlarını değiştir &gt; Kablosuz Bağdaştırıcı Ayarları &gt; Güç Tasarrufu Modu’nu seçin ve Prize takılı değerini Maximum Performance olarak ayarlayın.</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>Düşük Güç Tasarrufu</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>Orta Güç Tasarrufu</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>En Yüksek Güç Tasarrufu</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>{2} üzerinden ad aramaları yavaş ({0} ms)</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>PC’niz DNS için yönlendiriciyi ({2}) kullanıyor ve yavaş yanıt veriyor. Yönlendiriciyi yeniden başlatın; aramalar yavaş kalırsa bağlantı özelliklerinizde DNS sunucusu ataması altında 1.1.1.1 veya 8.8.8.8 gibi genel bir DNS sunucusu ayarlayın.</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>DNS sunucusu {2} yavaş yanıt veriyor. Bağlantı özelliklerinizde DNS sunucusu ataması altında 1.1.1.1 veya 8.8.8.8 gibi daha hızlı bir sunucu ayarlayın.</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>{2} sürücüsü {0} tarihli (sürüm {3})</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>En yeni sürücüyü PC üreticinizin destek sayfasından alın veya Windows Update &gt; Gelişmiş seçenekler &gt; İsteğe bağlı güncelleştirmeler’i denetleyin.</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>Intel bu bağdaştırıcı için daha yeni sürücüler yayımlar. Bunları Intel Driver &amp; Support Assistant ile yükleyin.</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>“{2}” tarifeli bağlantı olarak ayarlı</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>Bu ağda Windows güncelleştirmeleri geciktirir ve bazı uygulamalar daha az eşitlenir. Veri planınız sınırsızsa “{2}” özelliklerinde Tarifeli bağlantı’yı kapatın.</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>Web trafiği {2} proxy’sinden geçiyor</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} bu PC’de hata ayıklama aracı, reklam engelleyici veya güvenlik uygulaması gibi bir programdır. Kapatın veya Ayarlar &gt; Ağ ve internet &gt; Proxy bölümünde proxy’yi kapatın.</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>Siz veya kuruluşunuz ayarlamadıysa Ayarlar &gt; Ağ ve internet &gt; Proxy bölümünde kapatın.</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>VPN trafiğinizi yönlendiriyor</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>VPN her pakete dolambaçlı bir yol ekler. Oyun ve aramalar için bağlantısını kesin veya split tunneling ayarlarında oyun ya da arama uygulamasını hariç tutun.</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} trafiğinizi yönlendiriyor</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>Alma penceresi otomatik ayarı “{2}” olarak ayarlı</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>Bu, hızlı bağlantılarda indirme hızını sınırlar. Terminal (Yönetici) içinde çalıştırın: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>IPv6 tüm PC için kapalı</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>DisabledComponents kayıt defteri değeri {2}; bu genellikle bir ince ayar aracı tarafından ayarlanır. Microsoft bunun yerine 0x20 (IPv4 tercih et) önerir: yöneticinizden değiştirmesini isteyin, ardından yeniden başlatın.</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>{2} üzerinde IPv6 kapalı</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>Ağ Bağlantıları’nda {2} &gt; Özellikler’i açın ve Internet Protocol Version 6 (TCP/IPv6) seçin.</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>İndirme sayfasını aç</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>Ağ Bağlantıları’nı aç</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>Bu PC’de denetim sırasında {0} {1} MB kullandı. Önce duraklatın, sonra yeniden denetleyin.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>Bu PC denetim sırasında sessizdi; bu yüzden evdeki diğer cihazlara bakın: güncelleştirme indiren konsollar, yayın yapan TV’ler, fotoğraf yedekleyen telefonlar veya video yükleyen kameralar.</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>Yönlendiricinin ({0}) fişini 30 saniye çıkarın, geri takın ve ışıkları sabitlenince hızlı bir denetim çalıştırın.</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>Sağlayıcınıza denetimin ne bulduğunu söyleyin: “{0}” Özeti kopyala onlara ayrıntıları verir.</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>Ağ bağlantısı yok</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>Wi-Fi’ye bağlanın veya bir ağ kablosu takın. Bu bilgisayar bağlanana kadar kontrol çalıştırılmaz.</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>Önerileri çevrimiçi AI ile kontrol et</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>Öneri gösterilmeden önce yalnızca genel metni ücretsiz herkese açık AI hizmetlerine (LLM7.io, Pollinations) gönderilir; bu PC’deki adlar, adresler veya ölçümler asla gönderilmez. Sonuçlar 30 gün hatırlanır.</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>Öneriler çevrimiçi AI ile kontrol ediliyor…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>Çevrimiçi AI tarafından kontrol edildi ({0}).</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>Bazı öneriler çevrimiçi AI tarafından kontrol edilemedi.</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>Çevrimiçi AI kontrolü kullanılamadı, bu nedenle bu öneriler kontrol edilmemiş olarak gösteriliyor.</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>İki çevrimiçi AI inceleyicisi yanlış olarak işaretlediği için bazı öneriler gösterilmedi.</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>AI kontrol edildi</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>Görünüm</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>Tema</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>Her tema metin, düğmeler ve etiketler için WCAG 2.2 AA karşıtlığını karşılar; yüksek karşıtlık temaları AAA’yı karşılar.</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>Koyu</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>Açık</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>Yüksek karşıtlık koyu</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>Yüksek karşıtlık açık</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>Windows ayarını kullan</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Windows yüksek karşıtlık açık, bu yüzden ConnectionClue Windows karşıtlık renklerinizi kullanır.</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>İndirme hızı: verilerin internetten bu PC’ye ne kadar hızlı ulaştığı; 8 saniye boyunca test verisi indirilerek ölçülür. Daha yüksek daha iyidir; video akışı yaklaşık 5 ila 25 Mbps gerektirir.</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>Yükleme hızı: bu PC’nin internete ne kadar hızlı veri gönderdiği; 8 saniye ölçülür. Daha yüksek daha iyidir; görüntülü aramalar ve bulut yedeklemeleri buna bağlıdır.</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>Gecikme: bir iletinin internet sunucusuna ulaşıp geri dönmesinin ne kadar sürdüğü, milisaniye cinsinden. Daha düşük daha iyidir; 50 ms altı oyunlarda ve aramalarda anlık hissedilir. “Yük altında” indirme ve yükleme sırasında bunu gösterir.</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>Değişim (jitter): gecikmenin bir andan diğerine ne kadar değiştiği. Daha düşük daha iyidir; 30 ms üzerinde aramalar ve oyunlar takılmaya başlar.</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>Her çubuk bir testtir; yüksekliği milisaniye cinsinden gecikmedir (ölçek solda, zaman altta). Daha düşük daha iyidir. “Sınırınızın üzerinde” rengindeki çubuklar sınırınızı aşar, taralı çubuklar ise yanıt almamıştır. Değerini görmek için çubuğun üzerine gelin.</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>Ev ağı: yönlendiricinizin bu PC’ye yanıt vermesinin ne kadar sürdüğü. Evinizdeki Wi-Fi veya kablo sorunlarını gösterir.</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>İnternet: internetteki bir sunucuya bağlanmanın ne kadar sürdüğü. İnternet sağlayıcınızdaki sorunları gösterir.</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>Web hizmetleri: bir web adresini aramanın ve web sayfasını yüklemenin ne kadar sürdüğü. Yavaş ad aramalarını veya web sitelerini gösterir.</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>Oyunlar gecikiyor, donuyor veya rubber-band yapıyorsa bunu seçin. Öneriler sonra gecikme, değişim ve kararlılığa odaklanır.</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>Videolar arabelleğe almak için duruyor veya kalite düşürüyorsa bunu seçin. Öneriler sonra indirme hızı ve ad aramalarına odaklanır.</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>Sesli veya görüntülü aramalar kesiliyor ya da donuyorsa bunu seçin. Öneriler sonra gecikme, değişim ve yükleme hızına odaklanır.</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Bağlantı zaman zaman tamamen kopuyorsa bunu seçin. Öneriler sonra Wi-Fi sinyali, güç tasarrufu ve bağdaştırıcılara odaklanır.</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: yanıt yok</value></data>
+</root>

@@ -1,0 +1,46 @@
+<!--
+  ConnectionClue MSI (WiX Toolset 5, pinned in dotnet-tools.json). Built by tools/build-release.ps1:
+  wix build ConnectionClue.wxs -arch x64|arm64 -d Version=… -d PublishDir=… -d AppIcon=…
+  Per-machine install to Program Files; no services, scheduled tasks, or startup entries are installed. The app's
+  explicit startup opt-in is separate and uses a per-user Run entry.
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="ConnectionClue"
+           Manufacturer="ConnectionClue"
+           Version="$(var.Version)"
+           UpgradeCode="7C6F1D5E-3B8A-4F2C-9D41-5A0E8B2C6F13"
+           Scope="perMachine"
+           Compressed="yes">
+    <SummaryInformation Description="ConnectionClue $(var.Version)" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of ConnectionClue is already installed." />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+
+    <Icon Id="AppIcon.ico" SourceFile="$(var.AppIcon)" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
+    <Property Id="ARPNOMODIFY" Value="1" />
+
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="INSTALLFOLDER" Name="ConnectionClue" />
+    </StandardDirectory>
+
+    <Feature Id="Main" Title="ConnectionClue">
+      <ComponentRef Id="MainExecutable" />
+      <ComponentGroupRef Id="AppFiles" />
+    </Feature>
+
+    <!-- The executable carries the Start menu shortcut (advertised, so it repairs itself). -->
+    <Component Id="MainExecutable" Directory="INSTALLFOLDER">
+      <File Id="ConnectionClueExe" Source="$(var.PublishDir)\ConnectionClue.exe" KeyPath="yes">
+        <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuFolder" Name="ConnectionClue"
+                  WorkingDirectory="INSTALLFOLDER" Icon="AppIcon.ico" Advertise="yes" />
+      </File>
+    </Component>
+
+    <ComponentGroup Id="AppFiles" Directory="INSTALLFOLDER">
+      <Files Include="$(var.PublishDir)\**">
+        <Exclude Files="$(var.PublishDir)\ConnectionClue.exe" />
+        <Exclude Files="$(var.PublishDir)\**\*.pdb" />
+      </Files>
+    </ComponentGroup>
+  </Package>
+</Wix>

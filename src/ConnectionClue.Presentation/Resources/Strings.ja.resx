@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>クイックチェック</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>長時間計測</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>今ラグった</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>停止</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>レポートをエクスポート</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>ゲームのラグ</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>動画のバッファリング</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>通話が途切れる</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>接続の切断</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>計測を開始しました。</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>マーカーを記録しました。</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>先に計測を開始してください。</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>残り {0} 分</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>ホームネットワーク</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>インターネット</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>Web サービス</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>応答あり</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>応答なし</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>待機中</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>言語</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>どんな問題がありますか？</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>接続をチェック</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue は、この PC からインターネットまでの経路をテストし、どこで問題が起きているかを示します。</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>この PC</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>設定</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>ヘルプ</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>アプリは選択した言語で再起動します。</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>今のところ、すべて応答しています。</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>{0} が現在応答していません。</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>遅延の推移</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>応答なし</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>バックグラウンドで定期的にチェック</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>モバイルネットワークで定期的にチェック</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>既定ではオフです。オンにすると、モバイルネットワークでも定期的に接続を確認します。バックグラウンドの確認では速度テストを行いません。</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>チェック間隔</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} 分</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>インターネットの遅延がこの値を超えたら警告</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>応答なしの割合がこの値を超えたら警告</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>遅延の変動がこの値を超えたら警告</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue は通知領域に常駐し、問題があれば警告します。アプリが開いている間だけ動作します。</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>ConnectionClue を開く</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>終了</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue はバックグラウンドでチェックを続けます。</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>接続の問題</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>パフォーマンスが設定した基準を下回っています</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>正常に戻りました</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>問題は見つかりませんでした。</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>判断に十分なデータがありません。</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>この PC とルーターの間の接続が途切れました。</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>インターネットが約 {0} 秒間応答しませんでした。</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>Web サイトに接続できませんでした。</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>インターネットのチェックの {0} が応答なしでした（基準 {1}）。</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>インターネットの遅延は {0} ms でした（基準 {1} ms）。</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>インターネットの遅延が {0} ms 変動しました（基準 {1} ms）。</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>その大部分はこの PC とルーターの間で発生しています（多くの場合 Wi-Fi）。</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>ルーターより先で発生しているようです。</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>前回のチェック: {0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>中央値 {0} · p95 {1} · 変動 {2} · 応答なし {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>基準超過（{0} ms）</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>おすすめの対処</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>閉じる</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>{0} のチェック結果に基づく</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>その後、状況が変わっている可能性があります。クイックチェックで確認してください。</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>試せること: {0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>Wi-Fi の受信状態を改善する</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>ルーターに近づく、間の障害物を取り除く、または 5 GHz のネットワークがあれば切り替えてください。</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>LAN ケーブルを試す</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>この PC をイーサネット ケーブルでルーターに接続し、クイックチェックで比べてください。</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>LAN ケーブルを確認する</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>ケーブルを両端で差し直すか、別のケーブルやルーターのポートを試してください。</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>ルーターを再起動する</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>ルーターとモデムの電源を 30 秒間抜いてから差し直し、約 2 分待ってからもう一度チェックしてください。</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>大きなアップロードとダウンロードを一時停止する</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>他のデバイスのクラウド バックアップ、動画のアップロード、ゲームのダウンロード、ストリーミングは接続全体を遅くすることがあります。</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>VPN なしで試す</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>VPN を使用していて許可されている場合は、一時的に切断してもう一度チェックしてください。</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>インターネット プロバイダーに問い合わせる</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>ルーターを再起動しても続く場合は、この結果をプロバイダーに伝えてください。</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>残り {0} 秒</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>クイックチェックの長さ</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>秒</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>{0}～{1} 秒の範囲で指定します。</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>接続をチェックしています…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>チェック</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>チェック</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>警告</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>遅い</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>ダウンロード</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>アップロード</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>遅延</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>変動</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>負荷時: {0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>未測定</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>従量制課金接続のためスキップ</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>測定できませんでした</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>ダウンロード速度を測定しています…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>アップロード速度を測定しています…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>ダウンロードとアップロードの速度を測定</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>クイックチェックが約 16 秒長くなり、最大 300 MB を使用する場合があります。バックグラウンドのチェックや従量制課金接続では実行されません。</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>見つかった問題を修正する</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>この PC のベスト プラクティス</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>重要</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>提案</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>接続の問題は見つかりませんでした。これらの設定で、接続がさらに速く、または安定する場合があります。</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>確認する価値があります: {0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>負荷がかかると待ち時間が {0} ms 増えます</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>ダウンロードとアップロードが他の通信を遅らせています（bufferbloat）。ルーターに機能があれば、Smart Queue Management (SQM) または QoS をオンにしてください。</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>Wi-Fi 信号が弱い（5 本中 {0} 本）</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>ルーターに近づき、障害物を取り除くか、メッシュ アクセス ポイントを追加してください。ケーブル接続が最も安定します。</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>TCP 受信ウィンドウの自動チューニングが制限されています</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>これによりダウンロード速度が制限されます。管理者として開いたターミナルで実行してください: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>ケーブル接続が {0} Mbps でしか動作していません</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Gigabit には Cat5e 以上のケーブルと gigabit ポートが必要です。別のケーブルやルーターのポートを試してください。</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>Wi-Fi リンクが低速です（{0} Mbps）</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>ルーターに 5 GHz または 6 GHz のネットワークがある場合は接続し、ルーターを開けた中央の場所に置いてください。</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>Windows が省電力のためにネットワーク アダプターをオフにする場合があります</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>デバイス マネージャーでネットワーク アダプターを開きます。電源の管理タブが表示されている場合は、「電力の節約のために、コンピューターでこのデバイスの電源をオフにできるようにする」をオフにします。</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet がオンです</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>遅延の急増が起きる場合があります。デバイス マネージャーで Ethernet アダプターを開き、詳細設定タブで Energy-Efficient Ethernet をオフにします。</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>省電力により接続が遅くなる場合があります</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>省エネルギー機能とバッテリー節約により Wi-Fi が遅くなります。PC を電源に接続するか、設定 &gt; システム &gt; 電源とバッテリーで省エネルギー機能をオフにし、電源モードをバランスに設定してください。</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>名前解決が遅いです（{0} ms）</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>Web サイトの読み込み開始に時間がかかります。ルーターを再起動するか、設定 &gt; ネットワークとインターネットで接続のプロパティを開き、DNS サーバーの割り当てを編集してください。</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>ネットワーク ドライバーは {0} のものです</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>古いドライバーにより切断や低速が起きる場合があります。PC またはアダプターのメーカーから最新ドライバーを入手するか、Windows Update &gt; 詳細オプション &gt; オプションの更新プログラムを確認してください。</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>この接続は従量制課金接続に設定されています</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows は更新を遅らせ、一部のアプリは同期の頻度を下げます。データ通信量が無制限の場合は、ネットワークのプロパティで従量制課金接続をオフにしてください。</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>プロキシ サーバーが使用されています</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>通信が別のサーバーを経由するため、サイトが遅くなったりブロックされたりする場合があります。自分または組織が設定したものでない場合は、設定 &gt; ネットワークとインターネット &gt; プロキシでオフにしてください。</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 がオフです</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>一部のアプリや Windows 機能は IPv6 に依存しており、Microsoft はオフにすることを推奨していません。ネットワーク アダプターのプロパティでオンに戻すか、IT 管理者に相談してください。</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>チェック中にラグ、フリーズ、通話の切断に気づいた瞬間に押してください。その時点がグラフにフラグで示され、接続の状態を確認できます。</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>ラグのマーク: {0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>設定を開く</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>デバイス マネージャーを開く</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>電源オプションを開く</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>タスク マネージャーを開く</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>ルーターのページを開く</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>コマンドをコピー</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>プロバイダー向けの概要をコピー</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>クリップボードにコピーしました。</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>チェック中に他のアプリが接続を使用しました（↓ {0} · ↑ {1} Mbps）</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>この PC のダウンロード、クラウド同期、更新はゲームや通話と競合し、結果を悪く見せることがあります。一時停止してから、もう一度チェックしてください。タスク マネージャーでネットワークを使っているアプリを確認できます。</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>USB の省電力により USB ネットワーク アダプターが切断される場合があります</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>電源オプションで、プラン設定の変更 &gt; 詳細な電源設定の変更 &gt; USB 設定を選び、USB のセレクティブ サスペンドの設定を無効にします。</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>確認済み、変更は不要: {0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>Wi-Fi 信号</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>リンク速度</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>ネットワーク ドライバー</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>アダプターの電源管理</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>USB の省電力</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>TCP 自動チューニング</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>省電力</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>名前解決 (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>負荷時の遅延</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>この PC の他の通信</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>プロキシ</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>従量制課金接続</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>ダウンロードで接続のキューがいっぱいになっています。ルーターの設定で SQM、Smart Queue、または Adaptive QoS をオンにし、ダウンロード制限を測定速度の 90% 程度（約 {1} Mbps）に設定してください。</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>アップロードで接続のキューがいっぱいになっています。ゲーム中や通話中はクラウド バックアップと同期を一時停止するか、ルーターで SQM、Smart Queue、または Adaptive QoS をオンにし、アップロード制限を測定速度の 90% 程度（約 {1} Mbps）に設定してください。</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>チェック中に OneDrive が同期していました（{3} MB）</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>ゲーム中や通話中は一時停止してください。タスク バーの隅にある OneDrive のクラウド アイコンを選択し、設定 &gt; 同期の一時停止 &gt; 2 時間 の順に選びます。自動的に再開されます。</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>チェック中に {2} が同期していました（{3} MB）</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>ゲーム中や通話中は一時停止してください。タスク バーの隅にあるアイコンを選択し、一時停止を選びます。</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>チェック中に {2} がダウンロードしていました（{3} MB）</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>ゲームまたは更新プログラムをダウンロード中です。{2} でダウンロードを開き、プレイ中は一時停止してください。</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>チェック中に {2} が {3} MB 使用しました</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>ダウンロード、または動画やストリーミングのタブが接続を使用しています。{2} で Ctrl+J を押してダウンロードを一時停止し、不要なタブを閉じてください。</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>チェック中に Windows サービスが {3} MB 使用しました</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update または配信の最適化がデータを転送しています。配信の最適化 &gt; 詳細オプション で帯域幅を制限してください。</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>チェック中に {2} が {3} MB 使用しました</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>ゲーム中や通話中は {2} を閉じるか、処理を一時停止してください。タスク マネージャー &gt; プロセス をネットワークで並べ替えると、リアルタイムで確認できます。</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>こちらもアクティブです: {0} ({1} MB)。</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>Windows サービス</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>「{2}」の Wi-Fi 信号が弱いです（5 本中 {0} 本）</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>ここからは {3} が {1} Mbps でしかリンクしていません。この PC とルーターを同じ部屋または見通せる場所に置き、ルーターを棚やキャビネットの中に入れないでください。ゲームや通話にはケーブルを使うのも有効です。</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>「{2}」は {0} Mbps でしかリンクしていません</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>通常は 2.4 GHz 帯か、ルーターが遠いことを示します。ルーターに 5 GHz ネットワーク（多くの場合「{2}-5G」という名前）もある場合は、設定 &gt; ネットワークとインターネット &gt; Wi-Fi で接続してください。</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>お使いの {3} は {4} に対応しているため、{0} Mbps は 2.4 GHz 帯に接続しているか、ルーターから遠いことを示します。設定 &gt; ネットワークとインターネット &gt; Wi-Fi で、ルーターの 5 GHz または 6 GHz ネットワーク（多くの場合「{2}-5G」という名前）に接続してください。</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>お使いの {3} は古い {4} アダプターです。Wi-Fi 6 USB アダプターまたはネットワーク ケーブルなら、はるかに高速になります。</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} は {0} Mbps でしか動作していません</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>ギガビットには 8 本すべてのワイヤが必要です。ケーブルを Cat5e または Cat6 に交換し、別のルーター ポートを試してください。それでも {0} Mbps のままなら、ポートまたは途中のスイッチに制限があります。</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>Windows が電力節約のために {2} をオフにする可能性があります</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>デバイス マネージャーで ネットワーク アダプター &gt; {2} &gt; 電源の管理 を開き、「電力の節約のために、コンピューターでこのデバイスの電源をオフにできるようにする」をオフにします。</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>USB の省電力機能で {2} が切断される可能性があります</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>電源オプションで プラン設定の変更 &gt; 詳細な電源設定の変更 &gt; USB 設定 &gt; USB のセレクティブ サスペンドの設定 を選び、電源に接続 を 無効 に設定します。</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>電源オプションで プラン設定の変更 &gt; 詳細な電源設定の変更 &gt; USB 設定 &gt; USB のセレクティブ サスペンドの設定 を選び、バッテリ駆動 を 無効 に設定します。</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>{2} で Energy-Efficient Ethernet がオンになっています</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>遅延スパイクが発生することがあります。デバイス マネージャーで ネットワーク アダプター &gt; {2} &gt; 詳細設定 を開き、Energy-Efficient Ethernet（または Green Ethernet）を選択して 無効 に設定します。</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>エネルギー節約機能がオンです</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>Wi-Fi とバックグラウンド アクティビティが制限されます。設定 &gt; システム &gt; 電源とバッテリー &gt; エネルギー節約機能 でオフにするか、PC を電源に接続してください。</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>電源モードがトップクラスの電力効率に設定されています</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>バッテリー節約のため Wi-Fi が遅くなります。設定 &gt; システム &gt; 電源とバッテリー で、電源モードを バランス または 最適なパフォーマンス に設定してください。</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>バッテリ駆動時の Wi-Fi 省電力が {2} に設定されています</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>電源オプションで プラン設定の変更 &gt; 詳細な電源設定の変更 &gt; ワイヤレス アダプターの設定 &gt; 省電力モード を選び、バッテリ駆動 を 最大パフォーマンス に設定します。</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>電源接続時の Wi-Fi 省電力が {2} に設定されています</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>電源オプションで プラン設定の変更 &gt; 詳細な電源設定の変更 &gt; ワイヤレス アダプターの設定 &gt; 省電力モード を選び、電源に接続 を 最大パフォーマンス に設定します。</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>低省電力</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>中省電力</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>最大省電力</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>{2} 経由の名前解決が遅いです（{0} ms）</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>この PC は DNS にルーター（{2}）を使用していますが、応答が遅いです。ルーターを再起動してください。名前解決が遅いままの場合は、接続のプロパティにある DNS サーバーの割り当てで、1.1.1.1 や 8.8.8.8 などのパブリック DNS サーバーを設定してください。</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>DNS サーバー {2} の応答が遅いです。接続のプロパティにある DNS サーバーの割り当てで、1.1.1.1 や 8.8.8.8 など、より高速なものを設定してください。</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>{2} のドライバーは {0} のものです（バージョン {3}）</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>PC メーカーのサポート ページから最新のドライバーを入手するか、Windows Update &gt; 詳細オプション &gt; オプションの更新プログラム を確認してください。</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>Intel はこのアダプター向けに新しいドライバーを公開しています。Intel Driver &amp; Support Assistant でインストールしてください。</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>「{2}」は従量制課金接続に設定されています</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>この接続では Windows が更新を遅らせ、一部のアプリの同期が少なくなります。データ プランが無制限の場合は、「{2}」のプロパティで 従量制課金接続 をオフにしてください。</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>Web トラフィックがプロキシ {2} を経由しています</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} はこの PC 上のプログラムです。デバッグ ツール、広告ブロッカー、またはセキュリティ アプリの可能性があります。閉じるか、設定 &gt; ネットワークとインターネット &gt; プロキシ でプロキシをオフにしてください。</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>自分または組織が設定したものでない場合は、設定 &gt; ネットワークとインターネット &gt; プロキシ でオフにしてください。</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>VPN がトラフィックをルーティングしています</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>VPN は各パケットに遠回りを追加します。ゲームや通話では切断するか、split tunneling 設定でゲームまたは通話アプリを除外してください。</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} がトラフィックをルーティングしています</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>受信ウィンドウの自動チューニングが「{2}」に設定されています</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>高速接続でダウンロード速度が制限されます。ターミナル（管理者）で次を実行してください: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>PC 全体で IPv6 がオフになっています</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>レジストリ値 DisabledComponents が {2} になっています。これは調整ツールで設定されることがよくあります。Microsoft は代わりに 0x20（IPv4 を優先）を推奨しています。管理者に変更を依頼し、その後再起動してください。</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>{2} で IPv6 がオフになっています</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>ネットワーク接続で {2} &gt; プロパティ を開き、インターネット プロトコル バージョン 6 (TCP/IPv6) を選択します。</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>ダウンロード ページを開く</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>ネットワーク接続を開く</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>この PC では、チェック中に {0} が {1} MB 使用しました。まず一時停止してから、もう一度チェックしてください。</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>チェック中、この PC の通信は少なめでした。家の他のデバイスを確認してください。更新をダウンロードしているゲーム機、ストリーミング中のテレビ、写真をバックアップしているスマートフォン、動画をアップロードしているカメラなどです。</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>ルーター（{0}）の電源を 30 秒間抜き、再度接続します。ランプが安定したらクイック チェックを実行してください。</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>プロバイダーにチェック結果を伝えてください: 「{0}」概要をコピー で詳細を共有できます。</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>ネットワークに接続されていません</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>Wi-Fi に接続するか、LAN ケーブルを差し込んでください。この PC が接続されるまでチェックは実行されません。</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>オンライン AI でおすすめを確認する</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>アドバイスを表示する前に、その汎用テキストだけが無料の公開 AI サービス（LLM7.io、Pollinations）に送信されます。この PC の名前、アドレス、測定値は送信されません。結果は 30 日間記憶されます。</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>オンライン AI でおすすめを確認しています…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>オンライン AI による確認済み（{0}）。</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>一部のおすすめはオンライン AI で確認できませんでした。</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>オンライン AI チェックを利用できなかったため、これらのおすすめは未確認として表示されています。</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>2 つのオンライン AI レビュアーが誤りとしてフラグを付けたため、一部のアドバイスは非表示になりました。</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>AI 確認済み</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>外観</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>テーマ</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>すべてのテーマは、テキスト、ボタン、ラベルについて WCAG 2.2 AA のコントラストを満たしています。高コントラスト テーマは AAA を満たしています。</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>ダーク</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>ライト</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>ハイ コントラスト ダーク</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>ハイ コントラスト ライト</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>Windows の設定を使用</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Windows のハイ コントラストがオンのため、ConnectionClue は Windows のコントラスト色を使用します。</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>ダウンロード速度: インターネットからこの PC にデータが届く速さです。テスト データを 8 秒間ダウンロードして測定します。高いほど良好です。動画ストリーミングには約 5 ～ 25 Mbps が必要です。</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>アップロード速度: この PC がインターネットへデータを送信する速さです。8 秒間測定します。高いほど良好です。ビデオ通話やクラウド バックアップはこれに左右されます。</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>遅延: メッセージがインターネット サーバーに到達して戻るまでの時間をミリ秒で示します。低いほど良好です。50 ms 未満ならゲームや通話で即時に感じられます。「負荷時」はダウンロードとアップロード中の値を示します。</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>変動（ジッター）: 遅延が瞬間ごとにどれだけ変わるかを示します。低いほど良好です。30 ms を超えると、通話やゲームが途切れ始めます。</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>各バーは 1 回のテストです。高さはミリ秒単位の遅延です（左側が目盛り、下側が時刻）。低いほど良好です。「基準超過」の色のバーは制限を超えており、斜線のバーは応答がありませんでした。バーをポイントすると値を確認できます。</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>ホームネットワーク: ルーターがこの PC に応答するまでの時間です。自宅内の Wi-Fi やケーブルの問題を示します。</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>インターネット: インターネット上のサーバーに接続するまでの時間です。インターネット プロバイダーの問題を示します。</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>Web サービス: Web アドレスを検索し、Web ページを読み込むまでの時間です。名前解決や Web サイトが遅いことを示します。</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>ゲームでラグ、フリーズ、または rubber-band が発生する場合はこれを選びます。アドバイスは遅延、変動、安定性を中心に表示されます。</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>動画がバッファリングで一時停止したり、品質が低下したりする場合はこれを選びます。アドバイスはダウンロード速度と名前解決を中心に表示されます。</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>音声通話やビデオ通話が途切れたりフリーズしたりする場合はこれを選びます。アドバイスは遅延、変動、アップロード速度を中心に表示されます。</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>接続がときどき完全に切断される場合はこれを選びます。アドバイスは Wi-Fi 信号、省電力、アダプターを中心に表示されます。</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} 秒: {1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} 秒: 応答なし</value></data>
+</root>

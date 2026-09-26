@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>శీఘ్ర తనిఖీ</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>దీర్ఘ తనిఖీ</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>ఇప్పుడే ల్యాగ్ అయింది</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>ఆపండి</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>నివేదికను ఎగుమతి చేయండి</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>గేమింగ్‌లో ల్యాగ్</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>వీడియో బఫరింగ్</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>కాల్స్‌లో అంతరాయం</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>కనెక్షన్ తెగిపోవడం</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>తనిఖీ ప్రారంభమైంది.</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>గుర్తు నమోదైంది.</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>ముందుగా తనిఖీని ప్రారంభించండి.</value></data>
+  <data name="Capture_MinutesLeft.one" xml:space="preserve"><value>{0} నిమిషం మిగిలి ఉంది</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>{0} నిమిషాలు మిగిలి ఉన్నాయి</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>హోమ్ నెట్‌వర్క్</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>ఇంటర్నెట్</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>వెబ్ సేవలు</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>స్పందిస్తోంది</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>స్పందించడం లేదు</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>వేచి ఉంది</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>భాష</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>ఏం జరుగుతోంది?</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>మీ కనెక్షన్‌ను తనిఖీ చేయండి</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue ఈ PC నుండి ఇంటర్నెట్ వరకు మార్గాన్ని పరీక్షించి, సమస్య ఎక్కడ ఉందో చూపిస్తుంది.</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>ఈ PC</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>సెట్టింగ్‌లు</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>సహాయం</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>యాప్ ఎంచుకున్న భాషలో పునఃప్రారంభమవుతుంది.</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>ఇప్పటివరకు అన్నీ స్పందిస్తున్నాయి.</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>{0} ప్రస్తుతం స్పందించడం లేదు.</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>కాలక్రమేణా ఆలస్యం</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>సమాధానం లేదు</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>నేపథ్యంలో క్రమం తప్పకుండా తనిఖీ చేయండి</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>మొబైల్ నెట్‌వర్క్‌లో క్రమం తప్పకుండా తనిఖీ చేయండి</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>డిఫాల్ట్‌గా ఆఫ్‌లో ఉంటుంది. ఆన్ చేస్తే మొబైల్ నెట్‌వర్క్‌లలో కూడా క్రమమైన కనెక్టివిటీ తనిఖీలు జరుగుతాయి. బ్యాక్‌గ్రౌండ్ తనిఖీలు వేగ పరీక్షలు చేయవు.</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>తనిఖీ విరామం</value></data>
+  <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} నిమిషం</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} నిమిషాలు</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>ఇంటర్నెట్ ఆలస్యం దీనికి మించితే హెచ్చరించు</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>సమాధానం లేని తనిఖీలు దీనికి మించితే హెచ్చరించు</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>ఆలస్యంలో హెచ్చుతగ్గులు దీనికి మించితే హెచ్చరించు</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue నోటిఫికేషన్ ప్రాంతంలో ఉండి, సమస్యల గురించి మిమ్మల్ని హెచ్చరిస్తుంది. యాప్ తెరిచి ఉన్నప్పుడు మాత్రమే పనిచేస్తుంది.</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>ConnectionClue తెరవండి</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>నిష్క్రమించు</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue నేపథ్యంలో తనిఖీని కొనసాగిస్తుంది.</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>కనెక్షన్ సమస్య</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>పనితీరు మీ పరిమితుల కంటే తక్కువగా ఉంది</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>మళ్లీ సాధారణ స్థితికి వచ్చింది</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>సమస్యలు ఏవీ కనుగొనబడలేదు.</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>నిర్ణయించడానికి తగినంత డేటా లేదు.</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>ఈ PC మరియు మీ రూటర్ మధ్య కనెక్షన్‌కు అంతరాయం కలిగింది.</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>ఇంటర్నెట్ సుమారు {0} సెకన్ల పాటు స్పందించలేదు.</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>వెబ్‌సైట్‌లను చేరుకోలేకపోయాం.</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>{0} ఇంటర్నెట్ తనిఖీలకు సమాధానం రాలేదు (పరిమితి {1}).</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>ఇంటర్నెట్ ఆలస్యం {0} ms (పరిమితి {1} ms).</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>ఇంటర్నెట్ ఆలస్యం {0} ms మేర హెచ్చుతగ్గులకు లోనైంది (పరిమితి {1} ms).</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>ఇందులో ఎక్కువ భాగం ఈ PC మరియు మీ రూటర్ మధ్య ఉంది, తరచుగా Wi-Fi వల్ల.</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>ఇది మీ రూటర్ అవతల ఉన్నట్లు కనిపిస్తోంది.</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>చివరి తనిఖీ: {0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>మధ్యస్థం {0} · p95 {1} · హెచ్చుతగ్గులు {2} · సమాధానం లేదు {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>మీ పరిమితికి మించి ({0} ms)</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>సిఫార్సులు</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>తీసివేయండి</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>{0} నాటి తనిఖీ ఆధారంగా</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>అప్పటి నుండి పరిస్థితులు మారి ఉండవచ్చు. నిర్ధారించడానికి శీఘ్ర తనిఖీని అమలు చేయండి.</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>ప్రయత్నించండి: {0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>Wi-Fi సిగ్నల్‌ను మెరుగుపరచండి</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>రూటర్‌కు దగ్గరగా వెళ్లండి, మధ్యలో ఉన్న అడ్డంకులను తొలగించండి, లేదా అందుబాటులో ఉంటే 5 GHz నెట్‌వర్క్‌కు మారండి.</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>నెట్‌వర్క్ కేబుల్‌ను ప్రయత్నించండి</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>ఈ PCని ఈథర్నెట్ కేబుల్‌తో రూటర్‌కు కనెక్ట్ చేసి, పోల్చడానికి శీఘ్ర తనిఖీని అమలు చేయండి.</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>నెట్‌వర్క్ కేబుల్‌ను తనిఖీ చేయండి</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>కేబుల్‌ను రెండు చివర్లలో మళ్లీ సరిగ్గా అమర్చండి, లేదా వేరే కేబుల్ లేదా రూటర్ పోర్ట్‌ను ప్రయత్నించండి.</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>మీ రూటర్‌ను రీస్టార్ట్ చేయండి</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>రూటర్ మరియు మోడెమ్‌ను 30 సెకన్ల పాటు అన్‌ప్లగ్ చేసి, మళ్లీ ప్లగ్ చేసి, మళ్లీ తనిఖీ చేసే ముందు సుమారు 2 నిమిషాలు వేచి ఉండండి.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>పెద్ద అప్‌లోడ్‌లు, డౌన్‌లోడ్‌లను నిలిపివేయండి</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>ఇతర పరికరాల్లోని క్లౌడ్ బ్యాకప్‌లు, వీడియో అప్‌లోడ్‌లు, గేమ్ డౌన్‌లోడ్‌లు, స్ట్రీమింగ్ మొత్తం కనెక్షన్‌ను నెమ్మదింపజేయవచ్చు.</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>VPN లేకుండా ప్రయత్నించండి</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>మీరు VPN ఉపయోగిస్తుంటే, అనుమతి ఉంటే, కాసేపు దాన్ని డిస్‌కనెక్ట్ చేసి మళ్లీ తనిఖీ చేయండి.</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>మీ ఇంటర్నెట్ ప్రొవైడర్‌ను సంప్రదించండి</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>రూటర్‌ను రీస్టార్ట్ చేసిన తర్వాత కూడా ఇలా జరుగుతుంటే, ఈ ఫలితాలను మీ ప్రొవైడర్‌తో పంచుకోండి.</value></data>
+  <data name="Capture_SecondsLeft.one" xml:space="preserve"><value>{0} సెకను మిగిలి ఉంది</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>{0} సెకన్లు మిగిలి ఉన్నాయి</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>శీఘ్ర తనిఖీ వ్యవధి</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>సెకన్లు</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>{0} నుండి {1} సెకన్ల మధ్య.</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>మీ కనెక్షన్‌ను తనిఖీ చేస్తోంది…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>తనిఖీ</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>తనిఖీలు</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>హెచ్చరికలు</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>నెమ్మదిగా</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>డౌన్‌లోడ్</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>అప్‌లోడ్</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>లేటెన్సీ</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>హెచ్చుతగ్గులు</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>లోడ్‌లో: {0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>కొలవలేదు</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>మీటర్డ్ కనెక్షన్‌లో దాటవేయబడింది</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>కొలవలేకపోయాం</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>డౌన్‌లోడ్ వేగాన్ని కొలుస్తోంది…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>అప్‌లోడ్ వేగాన్ని కొలుస్తోంది…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>డౌన్‌లోడ్, అప్‌లోడ్ వేగాన్ని కొలవండి</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>శీఘ్ర తనిఖీకి సుమారు 16 సెకన్లు జోడిస్తుంది, 300 MB వరకు ఉపయోగించవచ్చు. నేపథ్య తనిఖీల్లో లేదా మీటర్డ్ కనెక్షన్‌లలో ఎప్పుడూ అమలు కాదు.</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>కనుగొన్న సమస్యలను పరిష్కరించండి</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>ఈ PC కోసం ఉత్తమ పద్ధతులు</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>ముఖ్యం</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>సూచన</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>కనెక్షన్ సమస్యలు ఏవీ కనుగొనబడలేదు. ఈ సెట్టింగ్‌లు మీ కనెక్షన్‌ను ఇంకా వేగంగా లేదా మరింత నమ్మదగినదిగా చేయవచ్చు.</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>తనిఖీ చేయదగ్గది: {0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>లోడ్‌లో లేటెన్సీ {0} ms పెరుగుతుంది</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>డౌన్‌లోడ్‌లు మరియు అప్‌లోడ్‌లు మిగతా అన్నింటినీ ఆలస్యం చేస్తాయి (bufferbloat). మీ రూటర్‌లో ఉంటే Smart Queue Management (SQM) లేదా QoS ఆన్ చేయండి.</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>బలహీనమైన Wi-Fi సిగ్నల్ (5 బార్‌లలో {0})</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>రూటర్‌కు దగ్గరగా వెళ్లండి, అడ్డంకులను తొలగించండి, లేదా mesh access point జోడించండి. కేబుల్ అత్యంత స్థిరమైన కనెక్షన్ ఇస్తుంది.</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>TCP receive window auto-tuning పరిమితం చేయబడింది</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>ఇది డౌన్‌లోడ్ వేగాన్ని పరిమితం చేస్తుంది. నిర్వాహకుడిగా తెరిచిన టెర్మినల్‌లో అమలు చేయండి: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>కేబుల్ లింక్ కేవలం {0} Mbps వద్ద నడుస్తోంది</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Gigabit కోసం Cat5e లేదా అంతకంటే మెరుగైన కేబుల్ మరియు gigabit పోర్ట్ అవసరం. వేరే కేబుల్ లేదా రూటర్ పోర్ట్ ప్రయత్నించండి.</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>నెమ్మదైన Wi-Fi లింక్ ({0} Mbps)</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>మీ రూటర్‌లో ఉంటే 5 GHz లేదా 6 GHz నెట్‌వర్క్‌కు కనెక్ట్ చేయండి, మరియు రూటర్‌ను తెరిచి ఉన్న, మధ్యలోని ప్రదేశంలో ఉంచండి.</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>Windows పవర్ ఆదా చేయడానికి నెట్‌వర్క్ అడాప్టర్‌ను ఆఫ్ చేయవచ్చు</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>Device Managerలో మీ నెట్‌వర్క్ అడాప్టర్‌ను తెరవండి. Power Management ట్యాబ్‌లో, కనిపిస్తే, “Allow the computer to turn off this device to save power” ఎంపికను తొలగించండి.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet ఆన్‌లో ఉంది</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>ఇది ఆలస్యం ఒక్కసారిగా పెరగడానికి కారణమవుతుంది. Device Managerలో మీ Ethernet అడాప్టర్‌ను తెరిచి, Advanced ట్యాబ్‌లో Energy-Efficient Ethernetను Offగా సెట్ చేయండి.</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>పవర్ సేవింగ్ మీ కనెక్షన్‌ను నెమ్మదింపజేయవచ్చు</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>Energy saver మరియు బ్యాటరీ పవర్ సేవింగ్ Wi-Fiను నెమ్మదింపజేస్తాయి. PCని ప్లగ్ ఇన్ చేయండి, లేదా Settings &gt; System &gt; Power &amp; batteryలో Energy saver ఆఫ్ చేసి Power modeను Balancedగా సెట్ చేయండి.</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>పేరు శోధనలు నెమ్మదిగా ఉన్నాయి ({0} ms)</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>వెబ్‌సైట్‌లు లోడ్ కావడం ప్రారంభించడానికి ఎక్కువ సమయం పడుతుంది. రూటర్‌ను రీస్టార్ట్ చేయండి, లేదా Settings &gt; Network &amp; internetలో మీ కనెక్షన్ properties తెరిచి DNS server assignmentని సవరించండి.</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>నెట్‌వర్క్ డ్రైవర్ {0} నాటిది</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>పాత డ్రైవర్‌లు కనెక్షన్ డ్రాప్‌లు మరియు నెమ్మదైన వేగాలకు కారణమవచ్చు. మీ PC లేదా అడాప్టర్ తయారీదారు నుండి తాజా డ్రైవర్ పొందండి, లేదా Windows Update &gt; Advanced options &gt; Optional updates తనిఖీ చేయండి.</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>ఈ కనెక్షన్ మీటర్డ్‌గా సెట్ చేయబడింది</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows నవీకరణలను ఆలస్యం చేస్తుంది మరియు కొన్ని యాప్‌లు తక్కువగా సమకాలీకరిస్తాయి. మీ డేటా అపరిమితమైతే, నెట్‌వర్క్ propertiesలో Metered connection ఆఫ్ చేయండి.</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>ప్రాక్సీ సర్వర్ ఉపయోగంలో ఉంది</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>ట్రాఫిక్ మరో సర్వర్ ద్వారా వెళ్తుంది, ఇది సైట్‌లను నెమ్మదింపజేయవచ్చు లేదా బ్లాక్ చేయవచ్చు. మీరు లేదా మీ సంస్థ దాన్ని సెటప్ చేయకపోతే, Settings &gt; Network &amp; internet &gt; Proxyలో దాన్ని ఆఫ్ చేయండి.</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 ఆఫ్‌లో ఉంది</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>కొన్ని యాప్‌లు మరియు Windows ఫీచర్‌లు IPv6పై ఆధారపడతాయి, మరియు Microsoft దాన్ని ఆఫ్ చేయమని సిఫార్సు చేయదు. నెట్‌వర్క్ అడాప్టర్ propertiesలో దాన్ని మళ్లీ ఆన్ చేయండి, లేదా మీ IT adminను అడగండి.</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>తనిఖీ సమయంలో ల్యాగ్, ఫ్రీజ్ లేదా కాల్ డ్రాప్ గమనించిన వెంటనే దీన్ని నొక్కండి. ఆ క్షణాన్ని చార్ట్‌పై ఫ్లాగ్ గుర్తిస్తుంది, అప్పుడు మీ కనెక్షన్ ఏమి చేసిందో మీరు చూడగలరు.</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>మీ ల్యాగ్ గుర్తులు: {0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>సెట్టింగ్‌లను తెరవండి</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>Device Managerను తెరవండి</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>Power Optionsను తెరవండి</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>Task Managerను తెరవండి</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>రూటర్ పేజీని తెరవండి</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>కమాండ్‌ను కాపీ చేయండి</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>మీ ప్రొవైడర్ కోసం సారాంశాన్ని కాపీ చేయండి</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది.</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>తనిఖీ సమయంలో ఇతర యాప్‌లు కనెక్షన్‌ను ఉపయోగించాయి (↓ {0} · ↑ {1} Mbps)</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>ఈ PCలోని డౌన్‌లోడ్‌లు, క్లౌడ్ సమకాలీకరణ మరియు నవీకరణలు గేమ్‌లు, కాల్‌లతో పోటీ పడతాయి, ఫలితాలను మరింత చెడ్డగా చూపిస్తాయి. వాటిని నిలిపివేసి, మళ్లీ తనిఖీ చేయండి. Task Manager ఏ యాప్‌లు నెట్‌వర్క్ ఉపయోగిస్తున్నాయో చూపిస్తుంది.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>USB పవర్ సేవింగ్ మీ USB నెట్‌వర్క్ అడాప్టర్‌ను డిస్‌కనెక్ట్ చేయవచ్చు</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>Power Optionsలో Change plan settings &gt; Change advanced power settings &gt; USB settings ఎంచుకుని, USB selective suspend settingను Disabledగా సెట్ చేయండి.</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>తనిఖీ పూర్తయింది, మార్పు అవసరం లేదు: {0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>Wi-Fi సిగ్నల్</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>లింక్ వేగం</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>నెట్‌వర్క్ డ్రైవర్</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>అడాప్టర్ పవర్ మేనేజ్‌మెంట్</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>USB పవర్ సేవింగ్</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>TCP auto-tuning</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>పవర్ సేవింగ్</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>పేరు శోధనలు (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>లోడ్‌లో లేటెన్సీ</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>ఈ PCలో ఇతర ట్రాఫిక్</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>ప్రాక్సీ</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>మీటర్డ్ కనెక్షన్</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>డౌన్‌లోడ్‌లు మీ కనెక్షన్ క్యూ‌ని నింపుతాయి. మీ రూటర్ సెట్టింగ్‌లలో SQM, Smart Queue లేదా Adaptive QoS ఆన్ చేసి, డౌన్‌లోడ్ పరిమితిని సుమారు {1} Mbpsగా పెట్టండి (మీరు కొలిచిన వేగం 90%).</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>అప్‌లోడ్‌లు మీ కనెక్షన్ క్యూ‌ని నింపుతాయి. గేమింగ్ లేదా కాల్స్ సమయంలో క్లౌడ్ బ్యాకప్ మరియు సమకాలీకరణను పాజ్ చేయండి, లేదా మీ రూటర్‌లో SQM, Smart Queue లేదా Adaptive QoS ఆన్ చేసి అప్‌లోడ్ పరిమితిని సుమారు {1} Mbpsగా పెట్టండి (మీరు కొలిచిన వేగం 90%).</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>తనిఖీ సమయంలో OneDrive సమకాలీకరిస్తోంది ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>గేమింగ్ లేదా కాల్స్ సమయంలో దాన్ని పాజ్ చేయండి: టాస్క్‌బార్ మూలలో OneDrive క్లౌడ్ చిహ్నాన్ని ఎంచుకుని, Settings &gt; Pause syncing &gt; 2 hours ఎంచుకోండి. అది స్వయంగా మళ్లీ మొదలవుతుంది.</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>తనిఖీ సమయంలో {2} సమకాలీకరిస్తోంది ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>గేమింగ్ లేదా కాల్స్ సమయంలో దాన్ని పాజ్ చేయండి: టాస్క్‌బార్ మూలలో దాని చిహ్నాన్ని ఎంచుకుని Pause ఎంచుకోండి.</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>తనిఖీ సమయంలో {2} డౌన్‌లోడ్ చేస్తోంది ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>గేమ్ లేదా అప్‌డేట్ డౌన్‌లోడ్ అవుతోంది. {2}లో Downloads తెరిచి, మీరు ఆడుతున్నప్పుడు వాటిని పాజ్ చేయండి.</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>తనిఖీ సమయంలో {2} {3} MB ఉపయోగించింది</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>డౌన్‌లోడ్, లేదా వీడియో లేదా స్ట్రీమింగ్ ట్యాబ్, కనెక్షన్‌ను ఉపయోగిస్తోంది. {2}లో డౌన్‌లోడ్‌లను పాజ్ చేయడానికి Ctrl+J నొక్కి, అవసరం లేని ట్యాబ్‌లను మూసివేయండి.</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>తనిఖీ సమయంలో Windows services {3} MB ఉపయోగించాయి</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update లేదా Delivery Optimization డేటాను బదిలీ చేస్తోంది. Delivery Optimization &gt; Advanced optionsలో వాటి బ్యాండ్‌విడ్త్‌ను పరిమితం చేయండి.</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>తనిఖీ సమయంలో {2} {3} MB ఉపయోగించింది</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>గేమింగ్ లేదా కాల్స్ సమయంలో {2}ను మూసివేయండి, లేదా అది చేస్తున్న పనిని పాజ్ చేయండి. Task Manager &gt; Processesలో Network ప్రకారం క్రమబద్ధీకరిస్తే అది ప్రత్యక్షంగా కనిపిస్తుంది.</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>ఇంకా సక్రియంగా ఉంది: {0} ({1} MB).</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>Windows services</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>“{2}”లో Wi-Fi సిగ్నల్ బలహీనంగా ఉంది (5 బార్‌లలో {0})</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>ఇక్కడి నుంచి {3} కేవలం {1} Mbps వద్ద మాత్రమే లింక్ అవుతోంది. ఈ PC మరియు రూటర్‌ను ఒకే గదిలో లేదా నేరుగా కనిపించే చోట పెట్టండి, రూటర్‌ను కబోర్డ్‌లలో పెట్టవద్దు, లేదా గేమింగ్ మరియు కాల్స్ కోసం కేబుల్ ఉపయోగించండి.</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>“{2}” కేవలం {0} Mbps వద్ద మాత్రమే లింక్ అవుతోంది</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>దాని అర్థం సాధారణంగా 2.4 GHz బ్యాండ్ లేదా దూరంగా ఉన్న రూటర్. మీ రూటర్‌లో 5 GHz నెట్‌వర్క్ కూడా ఉంటే (తరచుగా “{2}-5G” అని పేరు), Settings &gt; Network &amp; internet &gt; Wi-Fiలో దానికీ కనెక్ట్ అవండి.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>మీ {3} {4}కు మద్దతు ఇస్తుంది, కాబట్టి {0} Mbps అంటే అది 2.4 GHz బ్యాండ్‌లో ఉంది లేదా రూటర్‌కి దూరంగా ఉంది. Settings &gt; Network &amp; internet &gt; Wi-Fiలో మీ రూటర్ 5 GHz లేదా 6 GHz నెట్‌వర్క్‌కు (తరచుగా “{2}-5G” అని పేరు) కనెక్ట్ అవండి.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>మీ {3} పాత {4} అడాప్టర్. Wi-Fi 6 USB అడాప్టర్ లేదా నెట్‌వర్క్ కేబుల్ చాలా వేగంగా ఉంటుంది.</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} కేవలం {0} Mbps వద్ద నడుస్తోంది</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>Gigabitకి ఎనిమిది వైర్లు అన్నీ అవసరం. కేబుల్‌ను Cat5e లేదా Cat6తో మార్చి మరో రూటర్ పోర్ట్ ప్రయత్నించండి; అది {0} Mbpsగానే ఉంటే, మధ్యలో ఉన్న పోర్ట్ లేదా స్విచ్ పరిమితంగా ఉంది.</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>విద్యుత్ ఆదా చేయడానికి Windows {2}ను ఆఫ్ చేయవచ్చు</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>Device Managerలో Network adapters &gt; {2} &gt; Power Management తెరిచి “Allow the computer to turn off this device to save power” ఎంపికను తీసివేయండి.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>USB పవర్ సేవింగ్ {2}ను డిస్‌కనెక్ట్ చేయవచ్చు</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>Power Optionsలో Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting ఎంచుకుని, Plugged inను Disabledగా సెట్ చేయండి.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>Power Optionsలో Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting ఎంచుకుని, On batteryను Disabledగా సెట్ చేయండి.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>{2} కోసం Energy-Efficient Ethernet ఆన్‌లో ఉంది</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>ఇది ఆలస్యపు స్పైక్‌లను జోడించవచ్చు. Device Managerలో Network adapters &gt; {2} &gt; Advanced తెరిచి, Energy-Efficient Ethernet (లేదా Green Ethernet) ఎంచుకుని Disabledగా సెట్ చేయండి.</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>Energy saver ఆన్‌లో ఉంది</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>ఇది Wi-Fi మరియు నేపథ్య కార్యకలాపాన్ని పరిమితం చేస్తుంది. Settings &gt; System &gt; Power &amp; battery &gt; Energy saverలో దాన్ని ఆఫ్ చేయండి, లేదా మీ PCని ప్లగ్ ఇన్ చేయండి.</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>Power mode Best power efficiencyకు సెట్ చేయబడింది</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>బ్యాటరీ ఆదా చేయడానికి ఇది Wi-Fiని నెమ్మదిస్తుంది. Settings &gt; System &gt; Power &amp; batteryలో Power modeను Balanced లేదా Best performanceగా సెట్ చేయండి.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>బ్యాటరీపై Wi-Fi పవర్ సేవింగ్ {2}కు సెట్ చేయబడింది</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>Power Optionsలో Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode ఎంచుకుని, On batteryను Maximum Performanceగా సెట్ చేయండి.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>ప్లగ్ ఇన్‌లో ఉన్నప్పుడు Wi-Fi పవర్ సేవింగ్ {2}కు సెట్ చేయబడింది</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>Power Optionsలో Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode ఎంచుకుని, Plugged inను Maximum Performanceగా సెట్ చేయండి.</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>తక్కువ పవర్ సేవింగ్</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>మధ్యస్థ పవర్ సేవింగ్</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>గరిష్ఠ పవర్ సేవింగ్</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>{2} ద్వారా పేరు శోధనలు నెమ్మదిగా ఉన్నాయి ({0} ms)</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>మీ PC DNS కోసం రూటర్ ({2})ను ఉపయోగిస్తోంది, అది నెమ్మదిగా స్పందిస్తోంది. రూటర్‌ను రీస్టార్ట్ చేయండి; శోధనలు ఇంకా నెమ్మదిగా ఉంటే, మీ కనెక్షన్ propertiesలో DNS server assignment కింద 1.1.1.1 లేదా 8.8.8.8 వంటి పబ్లిక్ DNS సర్వర్‌ను సెట్ చేయండి.</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>DNS సర్వర్ {2} నెమ్మదిగా స్పందిస్తోంది. మీ కనెక్షన్ propertiesలో DNS server assignment కింద 1.1.1.1 లేదా 8.8.8.8 వంటి వేగమైనదాన్ని సెట్ చేయండి.</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>{2} డ్రైవర్ {0}నాటిది (వెర్షన్ {3})</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>మీ PC తయారీదారు మద్దతు పేజీ నుంచి తాజా డ్రైవర్ పొందండి, లేదా Windows Update &gt; Advanced options &gt; Optional updates తనిఖీ చేయండి.</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>ఈ అడాప్టర్ కోసం Intel కొత్త డ్రైవర్‌లను విడుదల చేస్తుంది. Intel Driver &amp; Support Assistantతో వాటిని ఇన్‌స్టాల్ చేయండి.</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>“{2}” metered connectionగా సెట్ చేయబడింది</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>దానిపై Windows నవీకరణలను ఆలస్యం చేస్తుంది మరియు కొన్ని యాప్‌లు తక్కువగా సమకాలీకరిస్తాయి. మీ డేటా ప్లాన్ అపరిమితమైతే, “{2}” propertiesలో Metered connection ఆఫ్ చేయండి.</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>వెబ్ ట్రాఫిక్ ప్రాక్సీ {2} ద్వారా వెళ్తోంది</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} ఈ PCలోని ప్రోగ్రామ్, ఉదాహరణకు debugging tool, ad blocker లేదా security app. దాన్ని మూసివేయండి, లేదా Settings &gt; Network &amp; internet &gt; Proxyలో proxyని ఆఫ్ చేయండి.</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>మీరు లేదా మీ సంస్థ దాన్ని సెటప్ చేయకపోతే, Settings &gt; Network &amp; internet &gt; Proxyలో దాన్ని ఆఫ్ చేయండి.</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>VPN మీ ట్రాఫిక్‌ను రూట్ చేస్తోంది</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>VPN ప్రతి ప్యాకెట్‌కి ఒక మలుపు జోడిస్తుంది. గేమింగ్ మరియు కాల్స్ కోసం దాన్ని డిస్‌కనెక్ట్ చేయండి, లేదా దాని split tunneling సెట్టింగ్‌లలో గేమ్ లేదా కాల్ యాప్‌ను మినహాయించండి.</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} మీ ట్రాఫిక్‌ను రూట్ చేస్తోంది</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>Receive window auto-tuning “{2}”కు సెట్ చేయబడింది</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>అది వేగమైన కనెక్షన్‌లలో డౌన్‌లోడ్ వేగాన్ని పరిమితం చేస్తుంది. Terminal (Admin)లో అమలు చేయండి: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>మొత్తం PCకి IPv6 ఆఫ్ చేయబడింది</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>రిజిస్ట్రీ విలువ DisabledComponents {2}, ఇది తరచుగా tweak tool ద్వారా సెట్ చేయబడుతుంది. Microsoft బదులుగా 0x20 (IPv4కు ప్రాధాన్యం) సిఫార్సు చేస్తుంది: దాన్ని మార్చమని మీ adminని అడిగి, తర్వాత రీస్టార్ట్ చేయండి.</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>{2}లో IPv6 ఆఫ్ చేయబడింది</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>Network Connectionsలో {2} &gt; Properties తెరిచి Internet Protocol Version 6 (TCP/IPv6)ను ఎంచుకోండి.</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>డౌన్‌లోడ్ పేజీని తెరవండి</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>Network Connections తెరవండి</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>ఈ PCలో, తనిఖీ సమయంలో {0} {1} MB ఉపయోగించింది. ముందుగా దాన్ని పాజ్ చేసి, తర్వాత మళ్లీ తనిఖీ చేయండి.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>తనిఖీ సమయంలో ఈ PC నిశ్శబ్దంగా ఉంది, కాబట్టి ఇంట్లోని ఇతర పరికరాలను చూడండి: అప్‌డేట్‌లు డౌన్‌లోడ్ చేస్తున్న కన్సోల్‌లు, స్ట్రీమింగ్ చేస్తున్న TVలు, ఫోటోలు బ్యాకప్ చేస్తున్న ఫోన్లు, లేదా వీడియో అప్‌లోడ్ చేస్తున్న కెమెరాలు.</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>రూటర్ ({0})ను 30 సెకన్లపాటు అన్‌ప్లగ్ చేసి, మళ్లీ ప్లగ్ ఇన్ చేసి, దాని లైట్లు స్థిరంగా ఉన్నప్పుడు శీఘ్ర తనిఖీ నడపండి.</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>తనిఖీ ఏమి కనుగొన్నదో మీ ప్రొవైడర్‌కు చెప్పండి: “{0}” Copy summary వారికి వివరాలను ఇస్తుంది.</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>నెట్‌వర్క్ కనెక్షన్ లేదు</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>Wi-Fiకి కనెక్ట్ చేయండి లేదా నెట్‌వర్క్ కేబుల్‌ను ప్లగ్ చేయండి. ఈ PC కనెక్ట్ అయ్యే వరకు తనిఖీలు జరగవు.</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>ఆన్‌లైన్ AIతో సిఫార్సులను తనిఖీ చేయండి</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>సలహా చూపించే ముందు, దాని సాధారణ వచనం మాత్రమే ఉచిత పబ్లిక్ AI సేవలకు (LLM7.io, Pollinations) పంపబడుతుంది; ఈ PCలోని పేర్లు, చిరునామాలు లేదా కొలతలు ఎప్పుడూ పంపబడవు. ఫలితాలు 30 రోజులు గుర్తుంచబడతాయి.</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>ఆన్‌లైన్ AIతో సిఫార్సులను తనిఖీ చేస్తోంది…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>ఆన్‌లైన్ AI తనిఖీ చేసింది ({0}).</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>కొన్ని సిఫార్సులను ఆన్‌లైన్ AI తనిఖీ చేయలేకపోయింది.</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>ఆన్‌లైన్ AI తనిఖీ అందుబాటులో లేదు, కాబట్టి ఈ సిఫార్సులు తనిఖీ చేయనివిగా చూపబడుతున్నాయి.</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>రెండు ఆన్‌లైన్ AI సమీక్షకులు తప్పు అని గుర్తించినందున కొన్ని సలహాలు నిలిపివేయబడ్డాయి.</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>AI తనిఖీ చేసింది</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>రూపం</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>థీమ్</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>ప్రతి థీమ్ టెక్స్ట్, బటన్‌లు మరియు లేబుల్‌ల కోసం WCAG 2.2 AA కాంట్రాస్ట్‌ను పాటిస్తుంది; హై-కాంట్రాస్ట్ థీమ్‌లు AAAను పాటిస్తాయి.</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>డార్క్</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>లైట్</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>అధిక కాంట్రాస్ట్ డార్క్</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>అధిక కాంట్రాస్ట్ లైట్</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>Windows సెట్టింగ్‌ను ఉపయోగించండి</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Windows high contrast ఆన్‌లో ఉంది, కాబట్టి ConnectionClue మీ Windows contrast colorsను ఉపయోగిస్తుంది.</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>డౌన్‌లోడ్ వేగం: ఇంటర్నెట్ నుంచి ఈ PCకి డేటా ఎంత వేగంగా చేరుతుందో; 8 సెకన్ల పాటు టెస్ట్ డేటా డౌన్‌లోడ్ చేసి కొలుస్తుంది. ఎక్కువైతే మంచిది; వీడియో స్ట్రీమింగ్‌కు సుమారు 5 నుంచి 25 Mbps అవసరం.</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>అప్‌లోడ్ వేగం: ఈ PC ఇంటర్నెట్‌కు డేటాను ఎంత వేగంగా పంపుతుందో; 8 సెకన్ల పాటు కొలుస్తుంది. ఎక్కువైతే మంచిది; వీడియో కాల్స్ మరియు క్లౌడ్ బ్యాకప్‌లు దీనిపై ఆధారపడతాయి.</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>లేటెన్సీ: ఒక సందేశం ఇంటర్నెట్ సర్వర్‌కు వెళ్లి తిరిగి రావడానికి పట్టే సమయం, మిల్లీసెకన్లలో. తక్కువైతే మంచిది; 50 ms కంటే తక్కువైతే గేమ్‌లు మరియు కాల్స్‌లో వెంటనే స్పందించినట్లు అనిపిస్తుంది. “లోడ్‌లో” డౌన్‌లోడ్ మరియు అప్‌లోడ్ సమయంలో దాన్ని చూపిస్తుంది.</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>వేరియేషన్ (jitter): లేటెన్సీ ఒక క్షణం నుంచి మరొక క్షణానికి ఎంత మారుతుంది. తక్కువైతే మంచిది; 30 msకి మించి కాల్స్ మరియు గేమ్‌లు తడబడటం మొదలవుతుంది.</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>ప్రతి బార్ ఒక పరీక్ష; దాని ఎత్తు మిల్లీసెకన్లలో ఆలస్యం (ఎడమవైపు స్కేల్, దిగువన సమయం). తక్కువైతే మంచిది. “మీ పరిమితికి మించి” రంగులోని బార్‌లు మీ పరిమితిని మించాయి, హ్యాచ్ చేసిన బార్‌లకు సమాధానం రాలేదు. విలువ చూడడానికి బార్‌పై చూపండి.</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>హోమ్ నెట్‌వర్క్: మీ రూటర్ ఈ PCకి సమాధానం ఇవ్వడానికి ఎంత సమయం తీసుకుంటుంది. ఇది మీ ఇంట్లోని Wi-Fi లేదా కేబుల్‌ల సమస్యలను చూపిస్తుంది.</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>ఇంటర్నెట్: ఇంటర్నెట్‌లోని సర్వర్‌కు కనెక్ట్ కావడానికి ఎంత సమయం పడుతుంది. ఇది మీ ఇంటర్నెట్ ప్రొవైడర్ సమస్యలను చూపిస్తుంది.</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>వెబ్ సేవలు: వెబ్ చిరునామాను వెతికి వెబ్ పేజీని లోడ్ చేయడానికి ఎంత సమయం పడుతుంది. ఇది నెమ్మదైన పేరు శోధనలు లేదా వెబ్‌సైట్‌లను చూపిస్తుంది.</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>గేమ్‌లు ల్యాగ్ అవుతున్నా, ఫ్రీజ్ అవుతున్నా లేదా rubber-band అవుతున్నా దీన్ని ఎంచుకోండి. అప్పుడు సలహా లేటెన్సీ, వేరియేషన్ మరియు స్థిరత్వంపై దృష్టి పెడుతుంది.</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>వీడియోలు బఫర్ కావడానికి ఆగిపోతే లేదా నాణ్యత తగ్గితే దీన్ని ఎంచుకోండి. అప్పుడు సలహా డౌన్‌లోడ్ వేగం మరియు పేరు శోధనలపై దృష్టి పెడుతుంది.</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>వాయిస్ లేదా వీడియో కాల్స్ తెగిపోతే లేదా ఫ్రీజ్ అయితే దీన్ని ఎంచుకోండి. అప్పుడు సలహా లేటెన్సీ, వేరియేషన్ మరియు అప్‌లోడ్ వేగంపై దృష్టి పెడుతుంది.</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>కనెక్షన్ అప్పుడప్పుడూ పూర్తిగా తెగిపోతే దీన్ని ఎంచుకోండి. అప్పుడు సలహా Wi-Fi సిగ్నల్, పవర్ సేవింగ్ మరియు అడాప్టర్‌లపై దృష్టి పెడుతుంది.</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: సమాధానం లేదు</value></data>
+</root>

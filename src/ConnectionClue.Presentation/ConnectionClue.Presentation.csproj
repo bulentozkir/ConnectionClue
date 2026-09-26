@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Platform-neutral view models and accessibility policy: testable without WPF. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <ProjectReference Include="..\ConnectionClue.Core\ConnectionClue.Core.csproj" />
+    <ProjectReference Include="..\ConnectionClue.Analysis\ConnectionClue.Analysis.csproj" />
+  </ItemGroup>
+</Project>

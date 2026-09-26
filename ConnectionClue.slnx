@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ConnectionClue.Analysis/ConnectionClue.Analysis.csproj" />
+    <Project Path="src/ConnectionClue.App/ConnectionClue.App.csproj" />
+    <Project Path="src/ConnectionClue.Core/ConnectionClue.Core.csproj" />
+    <Project Path="src/ConnectionClue.Presentation/ConnectionClue.Presentation.csproj" />
+    <Project Path="src/ConnectionClue.Windows/ConnectionClue.Windows.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ConnectionClue.Analysis.Tests/ConnectionClue.Analysis.Tests.csproj" />
+    <Project Path="tests/ConnectionClue.Core.Tests/ConnectionClue.Core.Tests.csproj" />
+    <Project Path="tests/ConnectionClue.Presentation.Tests/ConnectionClue.Presentation.Tests.csproj" />
+    <Project Path="tests/ConnectionClue.Windows.IntegrationTests/ConnectionClue.Windows.IntegrationTests.csproj" />
+  </Folder>
+</Solution>

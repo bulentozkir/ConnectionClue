@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>Vérification rapide</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>Capture prolongée</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>Ça a ramé à l'instant</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>Arrêter</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>Exporter le rapport</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>Lag en jeu</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>Vidéo qui saccade</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>Appels hachés</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>Déconnexions</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>Capture démarrée.</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>Marqueur enregistré.</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>Démarrez d'abord une capture.</value></data>
+  <data name="Capture_MinutesLeft.one" xml:space="preserve"><value>{0} minute restante</value></data>
+  <data name="Capture_MinutesLeft.many" xml:space="preserve"><value>{0} de minutes restantes</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>{0} minutes restantes</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>Réseau domestique</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>Internet</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>Services web</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>Répond</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>Ne répond pas</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>En attente</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Langue</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>Que se passe-t-il ?</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>Vérifiez votre connexion</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue teste le chemin de ce PC vers Internet et montre où les problèmes surviennent.</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>Ce PC</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>Paramètres</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>Aide</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>L'application redémarre dans la langue choisie.</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>Tout répond pour l'instant.</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>Aucune réponse pour le moment : {0}.</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>Délai au fil du temps</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>Pas de réponse</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>Vérifier régulièrement en arrière-plan</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>Vérifier régulièrement sur les réseaux mobiles</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Désactivé par défaut. Une fois activé, les vérifications régulières s’exécutent aussi sur les réseaux mobiles. Les vérifications en arrière-plan ne mesurent jamais le débit.</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>Vérifier toutes les</value></data>
+  <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} minute</value></data>
+  <data name="Duration_Minutes.many" xml:space="preserve"><value>{0} de minutes</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} minutes</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>Avertir si le délai Internet dépasse</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>Avertir si les vérifications sans réponse dépassent</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>Avertir si le délai varie de plus de</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue reste dans la zone de notification et vous avertit en cas de problème. Il ne fonctionne que lorsque l'application est ouverte.</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Ouvrir ConnectionClue</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Quitter</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue continue de vérifier en arrière-plan.</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>Problème de connexion</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>Performances en dessous de vos limites</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>Retour à la normale</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>Aucun problème détecté.</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>Pas assez de données pour conclure.</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>La connexion entre ce PC et votre routeur a été interrompue.</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>Internet a cessé de répondre pendant environ {0} s.</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>Les sites web étaient inaccessibles.</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>{0} des vérifications Internet sont restées sans réponse (limite {1}).</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>Le délai Internet était de {0} ms (limite {1} ms).</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>Le délai Internet a varié de {0} ms (limite {1} ms).</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>L'essentiel se situe entre ce PC et votre routeur, souvent le Wi-Fi.</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>Cela semble se situer au-delà de votre routeur.</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>Dernière vérification : {0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>Médiane {0} · p95 {1} · Variation {2} · Sans réponse {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>Au-dessus de votre limite ({0} ms)</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>Recommandations</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>Ignorer</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>D'après la vérification du {0}</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>La situation a pu changer depuis. Lancez une vérification rapide pour confirmer.</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>À essayer : {0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>Améliorez la réception Wi-Fi</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>Rapprochez-vous du routeur, supprimez les obstacles entre vous ou passez au réseau 5 GHz si vous en avez un.</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>Essayez un câble réseau</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>Reliez ce PC au routeur avec un câble Ethernet, puis lancez une vérification rapide pour comparer.</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>Vérifiez le câble réseau</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>Rebranchez le câble aux deux extrémités, ou essayez un autre câble ou un autre port du routeur.</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>Redémarrez votre routeur</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>Débranchez le routeur et le modem pendant 30 secondes, rebranchez-les et attendez environ 2 minutes avant de vérifier à nouveau.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>Suspendez les gros envois et téléchargements</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>Les sauvegardes cloud, les envois de vidéos, les téléchargements de jeux et le streaming sur d'autres appareils peuvent ralentir toute la connexion.</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>Essayez sans VPN</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>Si vous utilisez un VPN et que vous y êtes autorisé, déconnectez-le brièvement et vérifiez à nouveau.</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>Contactez votre fournisseur d'accès</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>Si le problème persiste après le redémarrage du routeur, communiquez ces résultats à votre fournisseur.</value></data>
+  <data name="Capture_SecondsLeft.one" xml:space="preserve"><value>{0} seconde restante</value></data>
+  <data name="Capture_SecondsLeft.many" xml:space="preserve"><value>{0} de secondes restantes</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>{0} secondes restantes</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>Durée de la vérification rapide</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>secondes</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>Entre {0} et {1} secondes.</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>Vérification de votre connexion…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>Vérification</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>Vérifications</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>Alertes</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>Lent</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>Téléchargement</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>Envoi</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>Latence</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>Variation</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>En charge : {0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>Non mesuré</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>Ignoré sur une connexion limitée</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>Mesure impossible</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>Mesure du débit descendant…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>Mesure du débit montant…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Mesurer les débits descendant et montant</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Ajoute environ 16 secondes aux vérifications rapides et peut utiliser jusqu'à 300 Mo. Ne s'exécute jamais en arrière-plan ni sur une connexion limitée.</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>Corrigez les problèmes trouvés</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>Bonnes pratiques pour ce PC</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>Important</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>Suggestion</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>Aucun problème de connexion détecté. Ces paramètres peuvent tout de même rendre votre connexion plus rapide ou plus fiable.</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>À vérifier : {0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>La latence augmente de {0} ms en charge</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>Les téléchargements et les envois retardent tout le reste (bufferbloat). Activez Smart Queue Management (SQM) ou QoS dans votre routeur, s’il en dispose.</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>Signal Wi-Fi faible ({0} barres sur 5)</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>Rapprochez-vous du routeur, retirez les obstacles ou ajoutez un point d’accès maillé. Un câble donne la connexion la plus stable.</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>Le réglage automatique de la fenêtre de réception TCP est limité</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>Cela limite le débit de téléchargement. Dans un terminal ouvert en tant qu’administrateur, exécutez : netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>La liaison par câble ne fonctionne qu’à {0} Mbps</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Le Gigabit nécessite un câble Cat5e ou supérieur et un port gigabit. Essayez un autre câble ou un autre port du routeur.</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>Liaison Wi-Fi lente ({0} Mbps)</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>Connectez-vous au réseau 5 GHz ou 6 GHz si votre routeur en dispose, et placez le routeur dans un endroit ouvert et central.</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>Windows peut éteindre la carte réseau pour économiser l’énergie</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>Dans le Gestionnaire de périphériques, ouvrez votre carte réseau. Dans l’onglet Gestion de l’alimentation, s’il apparaît, décochez « Autoriser l’ordinateur à éteindre ce périphérique pour économiser l’énergie ».</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet est activé</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>Cela peut ajouter des pics de délai. Dans le Gestionnaire de périphériques, ouvrez votre carte Ethernet puis, dans l’onglet Avancé, définissez Energy-Efficient Ethernet sur Désactivé.</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>L’économie d’énergie peut ralentir votre connexion</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>L’Économiseur d’énergie et l’économie sur batterie ralentissent le Wi-Fi. Branchez le PC ou, dans Paramètres &gt; Système &gt; Alimentation et batterie, désactivez Économiseur d’énergie et réglez Mode d’alimentation sur Équilibré.</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>Les recherches de noms sont lentes ({0} ms)</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>Les sites web mettent plus de temps à commencer à charger. Redémarrez votre routeur ou, dans Paramètres &gt; Réseau et Internet, ouvrez les propriétés de votre connexion et modifiez Attribution du serveur DNS.</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>Le pilote réseau date de {0}</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>Les pilotes anciens peuvent provoquer des coupures et des débits lents. Obtenez le dernier pilote auprès du fabricant de votre PC ou de votre carte, ou vérifiez Windows Update &gt; Options avancées &gt; Mises à jour facultatives.</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>Cette connexion est définie comme limitée</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows retarde les mises à jour et certaines applications se synchronisent moins. Si vos données sont illimitées, désactivez Connexion limitée dans les propriétés du réseau.</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>Un serveur proxy est utilisé</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>Le trafic passe par un autre serveur, ce qui peut ralentir ou bloquer des sites. Si vous ou votre organisation ne l’avez pas configuré, désactivez-le dans Paramètres &gt; Réseau et Internet &gt; Proxy.</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 est désactivé</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>Certaines applications et fonctionnalités Windows dépendent d’IPv6, et Microsoft ne recommande pas de le désactiver. Réactivez-le dans les propriétés de la carte réseau ou demandez à votre administrateur informatique.</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>Appuyez ici dès que vous remarquez un lag, un blocage ou un appel coupé pendant la vérification. Un repère marque ce moment sur le graphique, pour voir ce que faisait votre connexion.</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>Vos repères de lag : {0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>Ouvrir les Paramètres</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>Ouvrir le Gestionnaire de périphériques</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>Ouvrir les Options d’alimentation</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>Ouvrir le Gestionnaire des tâches</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>Ouvrir la page du routeur</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>Copier la commande</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>Copier le résumé pour votre fournisseur</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>Copié dans le Presse-papiers.</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>D’autres applications ont utilisé la connexion pendant la vérification (↓ {0} · ↑ {1} Mbps)</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>Les téléchargements, la synchronisation cloud et les mises à jour sur ce PC concurrencent les jeux et les appels, et dégradent les résultats. Suspendez-les, puis vérifiez à nouveau. Le Gestionnaire des tâches montre les applications qui utilisent le réseau.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>L’économie d’énergie USB peut déconnecter votre carte réseau USB</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>Dans Options d’alimentation, choisissez Modifier les paramètres du mode &gt; Modifier les paramètres d’alimentation avancés &gt; Paramètres USB, puis définissez Paramètre de suspension sélective USB sur Désactivé.</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>Vérifié, aucune modification nécessaire : {0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>signal Wi-Fi</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>vitesse de liaison</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>pilote réseau</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>gestion de l’alimentation de la carte</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>économie d’énergie USB</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>réglage automatique TCP</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>économie d’énergie</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>recherches de noms (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>latence en charge</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>autre trafic sur ce PC</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>proxy</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>connexion limitée</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>Les téléchargements remplissent la file d’attente de votre connexion. Dans les paramètres du routeur, activez SQM, Smart Queue ou Adaptive QoS et définissez la limite de téléchargement à environ {1} Mbps (90 % du débit mesuré).</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>Les envois remplissent la file d’attente de votre connexion. Suspendez la sauvegarde et la synchronisation cloud pendant les jeux ou les appels, ou activez SQM, Smart Queue ou Adaptive QoS sur votre routeur avec une limite d’envoi d’environ {1} Mbps (90 % du débit mesuré).</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>OneDrive se synchronisait pendant la vérification ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>Suspendez-le pendant les jeux ou les appels : sélectionnez l’icône cloud OneDrive dans le coin de la barre des tâches, puis Paramètres &gt; Suspendre la synchronisation &gt; 2 heures. La reprise est automatique.</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>{2} se synchronisait pendant la vérification ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>Suspendez-le pendant les jeux ou les appels : sélectionnez son icône dans le coin de la barre des tâches et choisissez Suspendre.</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>{2} téléchargeait pendant la vérification ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>Un jeu ou une mise à jour est en cours de téléchargement. Dans {2}, ouvrez Téléchargements et suspendez-les pendant que vous jouez.</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>{2} a utilisé {3} MB pendant la vérification</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>Un téléchargement, une vidéo ou un onglet de streaming utilise la connexion. Dans {2}, appuyez sur Ctrl+J pour suspendre les téléchargements et fermez les onglets inutiles.</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>Les services Windows ont utilisé {3} MB pendant la vérification</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update ou Optimisation de la distribution transfère des données. Limitez leur bande passante dans Optimisation de la distribution &gt; Options avancées.</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>{2} a utilisé {3} MB pendant la vérification</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>Fermez {2}, ou suspendez son activité, pendant les jeux ou les appels. Gestionnaire des tâches &gt; Processus, trié par Réseau, l’affiche en direct.</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>Également actif : {0} ({1} MB).</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>services Windows</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>Signal Wi-Fi faible sur « {2} » ({0} barres sur 5)</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>{3} établit une liaison à seulement {1} Mbps d’ici. Placez ce PC et le routeur dans la même pièce ou en vue directe, gardez le routeur hors des placards, ou utilisez un câble pour les jeux et les appels.</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>« {2} » établit une liaison à seulement {0} Mbps</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>Cela indique généralement la bande 2,4 GHz ou un routeur éloigné. Si votre routeur possède aussi un réseau 5 GHz (souvent nommé « {2}-5G »), connectez-vous-y dans Paramètres &gt; Réseau et Internet &gt; Wi-Fi.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>Votre {3} prend en charge {4}, donc {0} Mbps signifie qu’il est sur la bande 2,4 GHz ou loin du routeur. Connectez-vous au réseau 5 GHz ou 6 GHz du routeur (souvent nommé « {2}-5G ») dans Paramètres &gt; Réseau et Internet &gt; Wi-Fi.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>Votre {3} est une ancienne carte {4}. Un adaptateur USB Wi-Fi 6 ou un câble réseau serait beaucoup plus rapide.</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} fonctionne à seulement {0} Mbps</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>Le Gigabit nécessite les huit fils. Remplacez le câble par un Cat5e ou Cat6 et essayez un autre port du routeur ; s’il reste à {0} Mbps, le port ou un switch intermédiaire est limité.</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>Windows peut éteindre {2} pour économiser l’énergie</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>Dans le Gestionnaire de périphériques, ouvrez Cartes réseau &gt; {2} &gt; Gestion de l’alimentation et décochez « Autoriser l’ordinateur à éteindre ce périphérique pour économiser l’énergie ».</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>L’économie d’énergie USB peut déconnecter {2}</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>Dans Options d’alimentation, choisissez Modifier les paramètres du mode &gt; Modifier les paramètres d’alimentation avancés &gt; Paramètres USB &gt; Paramètre de suspension sélective USB, puis définissez Sur secteur sur Désactivé.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>Dans Options d’alimentation, choisissez Modifier les paramètres du mode &gt; Modifier les paramètres d’alimentation avancés &gt; Paramètres USB &gt; Paramètre de suspension sélective USB, puis définissez Sur batterie sur Désactivé.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>Energy-Efficient Ethernet est activé pour {2}</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>Cela peut ajouter des pics de délai. Dans le Gestionnaire de périphériques, ouvrez Cartes réseau &gt; {2} &gt; Avancé, sélectionnez Energy-Efficient Ethernet (ou Green Ethernet) et définissez-le sur Désactivé.</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>L’Économiseur d’énergie est activé</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>Il limite le Wi-Fi et l’activité en arrière-plan. Désactivez-le dans Paramètres &gt; Système &gt; Alimentation et batterie &gt; Économiseur d’énergie, ou branchez votre PC.</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>Le mode d’alimentation est réglé sur Meilleure efficacité énergétique</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>Il ralentit le Wi-Fi pour économiser la batterie. Dans Paramètres &gt; Système &gt; Alimentation et batterie, réglez Mode d’alimentation sur Équilibré ou Performances optimales.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>L’économie d’énergie Wi-Fi est réglée sur {2} sur batterie</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>Dans Options d’alimentation, choisissez Modifier les paramètres du mode &gt; Modifier les paramètres d’alimentation avancés &gt; Paramètres de la carte sans fil &gt; Mode d’économie d’énergie, puis définissez Sur batterie sur Performances maximales.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>L’économie d’énergie Wi-Fi est réglée sur {2} sur secteur</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>Dans Options d’alimentation, choisissez Modifier les paramètres du mode &gt; Modifier les paramètres d’alimentation avancés &gt; Paramètres de la carte sans fil &gt; Mode d’économie d’énergie, puis définissez Sur secteur sur Performances maximales.</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>Économie d’énergie faible</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>Économie d’énergie moyenne</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>Économie d’énergie maximale</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>Les recherches de noms via {2} sont lentes ({0} ms)</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>Votre PC utilise le routeur ({2}) pour le DNS, et il répond lentement. Redémarrez le routeur ; si les recherches restent lentes, définissez un serveur DNS public, comme 1.1.1.1 ou 8.8.8.8, sous Attribution du serveur DNS dans les propriétés de votre connexion.</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>Le serveur DNS {2} répond lentement. Définissez-en un plus rapide, comme 1.1.1.1 ou 8.8.8.8, sous Attribution du serveur DNS dans les propriétés de votre connexion.</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>Le pilote {2} date de {0} (version {3})</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>Obtenez le dernier pilote sur la page de support du fabricant de votre PC, ou vérifiez Windows Update &gt; Options avancées &gt; Mises à jour facultatives.</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>Intel publie des pilotes plus récents pour cette carte. Installez-les avec Intel Driver &amp; Support Assistant.</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>« {2} » est défini comme connexion limitée</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>Sur cette connexion, Windows retarde les mises à jour et certaines applications se synchronisent moins. Si votre forfait de données est illimité, désactivez Connexion limitée dans les propriétés de « {2} ».</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>Le trafic web passe par le proxy {2}</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} est un programme sur ce PC, comme un outil de débogage, un bloqueur de publicités ou une application de sécurité. Fermez-le, ou désactivez le proxy dans Paramètres &gt; Réseau et Internet &gt; Proxy.</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>Si vous ou votre organisation ne l’avez pas configuré, désactivez-le dans Paramètres &gt; Réseau et Internet &gt; Proxy.</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>Un VPN achemine votre trafic</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>Un VPN ajoute un détour à chaque paquet. Pour les jeux et les appels, déconnectez-le ou excluez l’application de jeu ou d’appel dans ses paramètres de split tunneling.</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} achemine votre trafic</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>Le réglage automatique de la fenêtre de réception est défini sur « {2} »</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>Cela limite le débit de téléchargement sur les connexions rapides. Dans Terminal (Admin), exécutez : netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>IPv6 est désactivé pour tout le PC</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>La valeur de Registre DisabledComponents est {2}, souvent définie par un outil de réglage. Microsoft recommande plutôt 0x20 (préférer IPv4) : demandez à votre administrateur de la modifier, puis redémarrez.</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>IPv6 est désactivé sur {2}</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>Dans Connexions réseau, ouvrez {2} &gt; Propriétés et sélectionnez Protocole Internet version 6 (TCP/IPv6).</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>Ouvrir la page de téléchargement</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>Ouvrir Connexions réseau</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>Sur ce PC, {0} a utilisé {1} MB pendant la vérification. Suspendez-le d’abord, puis vérifiez à nouveau.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>Ce PC était silencieux pendant la vérification ; regardez donc les autres appareils à la maison : consoles qui téléchargent des mises à jour, TV en streaming, téléphones qui sauvegardent des photos ou caméras qui envoient des vidéos.</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>Débranchez le routeur ({0}) pendant 30 secondes, rebranchez-le, puis lancez une vérification rapide quand ses voyants sont stables.</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>Indiquez à votre fournisseur ce que la vérification a trouvé : « {0} » Copier le résumé leur donne les détails.</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>Aucune connexion réseau</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>Connectez-vous au Wi-Fi ou branchez un câble réseau. Aucune vérification ne sera lancée tant que ce PC n’est pas connecté.</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>Vérifier les recommandations avec une IA en ligne</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>Avant l’affichage du conseil, seul son texte générique est envoyé à des services d’IA publics gratuits (LLM7.io, Pollinations), jamais les noms, adresses ou mesures de ce PC. Les résultats sont mémorisés pendant 30 jours.</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>Vérification des recommandations avec une IA en ligne…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>Vérifié par une IA en ligne ({0}).</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>Certaines recommandations n’ont pas pu être vérifiées par une IA en ligne.</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>La vérification par IA en ligne n’était pas disponible ; ces recommandations sont donc affichées sans vérification.</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>Certains conseils ont été retenus, car deux réviseurs IA en ligne les ont signalés comme incorrects.</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>Vérifié par IA</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>Apparence</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>Thème</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>Chaque thème respecte le contraste WCAG 2.2 AA pour le texte, les boutons et les étiquettes ; les thèmes à contraste élevé respectent AAA.</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>Sombre</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>Clair</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>Contraste élevé sombre</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>Contraste élevé clair</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>Utiliser le paramètre Windows</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Le contraste élevé Windows est activé ; ConnectionClue utilise donc vos couleurs de contraste Windows.</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>Débit descendant : vitesse à laquelle les données atteignent ce PC depuis Internet, mesurée en téléchargeant des données de test pendant 8 secondes. Plus il est élevé, mieux c’est ; le streaming vidéo nécessite environ 5 à 25 Mbps.</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>Débit montant : vitesse à laquelle ce PC envoie des données vers Internet, mesurée pendant 8 secondes. Plus il est élevé, mieux c’est ; les appels vidéo et les sauvegardes cloud en dépendent.</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>Latence : temps nécessaire pour qu’un message atteigne un serveur Internet et revienne, en millisecondes. Plus elle est basse, mieux c’est ; sous 50 ms, les jeux et appels semblent instantanés. « En charge » l’affiche pendant le téléchargement et l’envoi.</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>Variation (jitter) : amplitude des changements de latence d’un moment à l’autre. Plus elle est basse, mieux c’est ; au-dessus de 30 ms, les appels et les jeux commencent à saccader.</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>Chaque barre est un test ; sa hauteur est le délai en millisecondes (échelle à gauche, temps en bas). Plus elle est basse, mieux c’est. Les barres de la couleur « Au-dessus de votre limite » dépassent votre limite, et les barres hachurées n’ont reçu aucune réponse. Pointez une barre pour voir sa valeur.</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>Réseau domestique : temps nécessaire à votre routeur pour répondre à ce PC. Il indique les problèmes de Wi-Fi ou de câbles dans votre domicile.</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>Internet : temps nécessaire pour se connecter à un serveur sur Internet. Il indique les problèmes avec votre fournisseur d’accès.</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>Services web : temps nécessaire pour rechercher une adresse web et charger une page web. Il indique les recherches de noms ou sites web lents.</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>Choisissez ceci si les jeux ont du lag, se figent ou font du rubber-banding. Les conseils se concentreront sur la latence, la variation et la stabilité.</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>Choisissez ceci si les vidéos s’arrêtent pour mettre en mémoire tampon ou baissent en qualité. Les conseils se concentreront sur le débit descendant et les recherches de noms.</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>Choisissez ceci si les appels vocaux ou vidéo se hachent ou se figent. Les conseils se concentreront sur la latence, la variation et le débit montant.</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Choisissez ceci si la connexion se coupe complètement de temps en temps. Les conseils se concentreront sur le signal Wi-Fi, l’économie d’énergie et les cartes.</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} s : {1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s : aucune réponse</value></data>
+</root>

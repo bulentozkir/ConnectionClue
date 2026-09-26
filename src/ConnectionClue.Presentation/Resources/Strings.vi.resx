@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>Kiểm tra nhanh</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>Kiểm tra lâu hơn</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>Vừa bị lag</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>Dừng</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>Xuất báo cáo</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>Lag khi chơi game</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>Video tải chậm</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>Cuộc gọi bị ngắt quãng</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>Mất kết nối</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>Đã bắt đầu kiểm tra.</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>Đã ghi dấu mốc.</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>Hãy bắt đầu kiểm tra trước.</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>Còn {0} phút</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>Mạng gia đình</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>Internet</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>Dịch vụ web</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>Đang phản hồi</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>Không phản hồi</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>Đang chờ</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Ngôn ngữ</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>Bạn gặp vấn đề gì?</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>Kiểm tra kết nối của bạn</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue kiểm tra đường đi từ PC này đến Internet và cho biết sự cố xảy ra ở đâu.</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>PC này</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>Cài đặt</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>Trợ giúp</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>Ứng dụng sẽ khởi động lại bằng ngôn ngữ đã chọn.</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>Đến giờ mọi thứ đều phản hồi.</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>{0} hiện không phản hồi.</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>Độ trễ theo thời gian</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>Không có phản hồi</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>Kiểm tra định kỳ trong nền</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>Kiểm tra định kỳ trên mạng di động</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Mặc định tắt. Khi bật, kiểm tra kết nối định kỳ cũng chạy trên mạng di động. Kiểm tra nền không chạy thử nghiệm tốc độ.</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>Kiểm tra mỗi</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} phút</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>Cảnh báo nếu độ trễ Internet vượt quá</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>Cảnh báo nếu tỷ lệ kiểm tra không phản hồi vượt quá</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>Cảnh báo nếu độ trễ dao động quá</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue ở lại trong khu vực thông báo và cảnh báo bạn khi có sự cố. Ứng dụng chỉ chạy khi đang mở.</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Mở ConnectionClue</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Thoát</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue vẫn tiếp tục kiểm tra trong nền.</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>Sự cố kết nối</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>Hiệu suất thấp hơn ngưỡng của bạn</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>Đã trở lại bình thường</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>Không phát hiện sự cố.</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>Không đủ dữ liệu để đánh giá.</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>Kết nối giữa PC này và bộ định tuyến đã bị gián đoạn.</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>Internet ngừng phản hồi khoảng {0} giây.</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>Không thể truy cập các trang web.</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>{0} lượt kiểm tra Internet không được phản hồi (ngưỡng {1}).</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>Độ trễ Internet là {0} ms (ngưỡng {1} ms).</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>Độ trễ Internet dao động {0} ms (ngưỡng {1} ms).</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>Phần lớn xảy ra giữa PC này và bộ định tuyến, thường do Wi-Fi.</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>Có vẻ nằm ở phía sau bộ định tuyến của bạn.</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>Lần kiểm tra gần nhất: {0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>Trung vị {0} · p95 {1} · Dao động {2} · Không phản hồi {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>Vượt ngưỡng của bạn ({0} ms)</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>Đề xuất</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>Bỏ qua</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>Dựa trên lần kiểm tra lúc {0}</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>Tình hình có thể đã thay đổi kể từ đó. Hãy chạy kiểm tra nhanh để xác nhận.</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>Bạn có thể thử: {0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>Cải thiện sóng Wi-Fi</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>Di chuyển lại gần bộ định tuyến, loại bỏ vật cản ở giữa hoặc chuyển sang mạng 5 GHz nếu có.</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>Thử dùng cáp mạng</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>Kết nối PC này với bộ định tuyến bằng cáp Ethernet, rồi chạy kiểm tra nhanh để so sánh.</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>Kiểm tra cáp mạng</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>Cắm lại cáp ở cả hai đầu hoặc thử cáp khác hay cổng khác trên bộ định tuyến.</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>Khởi động lại bộ định tuyến</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>Rút điện bộ định tuyến và modem trong 30 giây, cắm lại và đợi khoảng 2 phút trước khi kiểm tra lại.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>Tạm dừng tải lên và tải xuống lớn</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>Sao lưu đám mây, tải video lên, tải trò chơi và phát trực tuyến trên các thiết bị khác có thể làm chậm toàn bộ kết nối.</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>Thử không dùng VPN</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>Nếu bạn dùng VPN và được phép, hãy tạm ngắt kết nối rồi kiểm tra lại.</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>Liên hệ nhà cung cấp Internet</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>Nếu vẫn tiếp diễn sau khi khởi động lại bộ định tuyến, hãy chia sẻ kết quả này với nhà cung cấp.</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>Còn {0} giây</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>Thời lượng kiểm tra nhanh</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>giây</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>Từ {0} đến {1} giây.</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>Đang kiểm tra kết nối của bạn…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>Kiểm tra</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>Kiểm tra</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>Cảnh báo</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>Chậm</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>Tải xuống</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>Tải lên</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>Độ trễ</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>Dao động</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>Khi tải: {0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>Chưa đo</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>Đã bỏ qua trên kết nối có đo lưu lượng</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>Không thể đo</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>Đang đo tốc độ tải xuống…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>Đang đo tốc độ tải lên…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Đo tốc độ tải xuống và tải lên</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Thêm khoảng 16 giây vào kiểm tra nhanh và có thể dùng tới 300 MB. Không bao giờ chạy khi kiểm tra trong nền hoặc trên kết nối có đo lưu lượng.</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>Khắc phục các sự cố tìm thấy</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>Các cách nên dùng cho PC này</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>Quan trọng</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>Gợi ý</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>Không phát hiện sự cố kết nối. Các cài đặt này vẫn có thể giúp kết nối nhanh hơn hoặc đáng tin cậy hơn.</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>Nên kiểm tra: {0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>Khi có tải, độ trễ tăng {0} ms</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>Tải xuống và tải lên làm chậm mọi thứ khác (bufferbloat). Bật Smart Queue Management (SQM) hoặc QoS trên bộ định tuyến nếu có.</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>Tín hiệu Wi-Fi yếu ({0}/5 vạch)</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>Di chuyển lại gần bộ định tuyến, loại bỏ vật cản hoặc thêm điểm truy nhập mesh. Dùng cáp cho kết nối ổn định nhất.</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>Tự động điều chỉnh cửa sổ nhận TCP bị giới hạn</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>Điều này giới hạn tốc độ tải xuống. Trong terminal mở với quyền quản trị viên, chạy: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>Liên kết cáp chỉ chạy ở {0} Mbps</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Gigabit cần cáp Cat5e hoặc tốt hơn và cổng gigabit. Thử cáp khác hoặc cổng khác trên bộ định tuyến.</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>Liên kết Wi-Fi chậm ({0} Mbps)</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>Kết nối với mạng 5 GHz hoặc 6 GHz nếu bộ định tuyến có, và đặt bộ định tuyến ở vị trí thoáng, trung tâm.</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>Windows có thể tắt bộ điều hợp mạng để tiết kiệm pin</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>Trong Trình quản lý Thiết bị, mở bộ điều hợp mạng. Trên tab Quản lý Nguồn, nếu có, bỏ chọn “Cho phép máy tính tắt thiết bị này để tiết kiệm nguồn”.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet đang bật</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>Tính năng này có thể gây các đợt tăng độ trễ. Trong Trình quản lý Thiết bị, mở bộ điều hợp Ethernet và trên tab Nâng cao, đặt Energy-Efficient Ethernet thành Tắt.</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>Tiết kiệm pin có thể làm chậm kết nối</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>Trình tiết kiệm năng lượng và tiết kiệm pin làm chậm Wi-Fi. Cắm nguồn cho PC, hoặc trong Cài đặt &gt; Hệ thống &gt; Nguồn và pin, tắt Trình tiết kiệm năng lượng và đặt Chế độ nguồn thành Cân bằng.</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>Tra cứu tên chậm ({0} ms)</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>Trang web mất nhiều thời gian hơn để bắt đầu tải. Khởi động lại bộ định tuyến, hoặc trong Cài đặt &gt; Mạng &amp; Internet, mở thuộc tính kết nối và chỉnh sửa Gán máy chủ DNS.</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>Trình điều khiển mạng từ {0}</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>Trình điều khiển cũ có thể gây rớt kết nối và tốc độ chậm. Lấy trình điều khiển mới nhất từ hãng PC hoặc bộ điều hợp, hoặc kiểm tra Windows Update &gt; Tùy chọn nâng cao &gt; Bản cập nhật tùy chọn.</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>Kết nối này được đặt là kết nối có đo lưu lượng</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows trì hoãn bản cập nhật và một số ứng dụng đồng bộ ít hơn. Nếu dữ liệu của bạn không giới hạn, hãy tắt Kết nối có đo lưu lượng trong thuộc tính mạng.</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>Đang sử dụng máy chủ proxy</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>Lưu lượng đi qua một máy chủ khác, có thể làm chậm hoặc chặn trang web. Nếu bạn hoặc tổ chức không thiết lập, hãy tắt trong Cài đặt &gt; Mạng &amp; Internet &gt; Proxy.</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 đang tắt</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>Một số ứng dụng và tính năng Windows phụ thuộc vào IPv6, và Microsoft không khuyên tắt tính năng này. Bật lại trong thuộc tính bộ điều hợp mạng hoặc hỏi quản trị viên IT.</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>Nhấn nút này ngay khi bạn thấy lag, treo hoặc cuộc gọi bị rớt trong khi kiểm tra. Một cờ đánh dấu thời điểm đó trên biểu đồ để bạn xem khi ấy kết nối đang làm gì.</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>Dấu lag của bạn: {0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>Mở Cài đặt</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>Mở Trình quản lý Thiết bị</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>Mở Tùy chọn Nguồn</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>Mở Trình quản lý Tác vụ</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>Mở trang bộ định tuyến</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>Sao chép lệnh</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>Sao chép tóm tắt cho nhà cung cấp</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>Đã sao chép vào bảng tạm.</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>Ứng dụng khác đã dùng kết nối trong khi kiểm tra (↓ {0} · ↑ {1} Mbps)</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>Tải xuống, đồng bộ đám mây và bản cập nhật trên PC này cạnh tranh với trò chơi và cuộc gọi, làm kết quả trông tệ hơn. Tạm dừng chúng rồi kiểm tra lại. Trình quản lý Tác vụ cho biết ứng dụng nào đang dùng mạng.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>Tiết kiệm điện USB có thể ngắt bộ điều hợp mạng USB</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>Trong Tùy chọn Nguồn, chọn Thay đổi cài đặt gói &gt; Thay đổi cài đặt nguồn nâng cao &gt; Cài đặt USB, rồi đặt Cài đặt tạm ngừng chọn lọc USB thành Đã tắt.</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>Đã kiểm tra, không cần thay đổi: {0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>tín hiệu Wi-Fi</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>tốc độ liên kết</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>trình điều khiển mạng</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>quản lý nguồn bộ điều hợp</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>tiết kiệm điện USB</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>tự động điều chỉnh TCP</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>tiết kiệm pin</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>tra cứu tên (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>độ trễ khi tải</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>lưu lượng khác trên PC này</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>proxy</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>kết nối có đo lưu lượng</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>Tải xuống làm đầy hàng đợi của kết nối. Trong cài đặt bộ định tuyến, hãy bật SQM, Smart Queue hoặc Adaptive QoS và đặt giới hạn tải xuống khoảng {1} Mbps (90% tốc độ đo được).</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>Tải lên làm đầy hàng đợi của kết nối. Tạm dừng sao lưu và đồng bộ đám mây khi chơi game hoặc gọi điện, hoặc bật SQM, Smart Queue hoặc Adaptive QoS trên bộ định tuyến với giới hạn tải lên khoảng {1} Mbps (90% tốc độ đo được).</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>OneDrive đang đồng bộ trong lúc kiểm tra ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>Tạm dừng khi chơi game hoặc gọi điện: chọn biểu tượng đám mây OneDrive ở góc thanh tác vụ, rồi chọn Settings &gt; Pause syncing &gt; 2 hours. Nó sẽ tự tiếp tục.</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>{2} đang đồng bộ trong lúc kiểm tra ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>Tạm dừng khi chơi game hoặc gọi điện: chọn biểu tượng của ứng dụng ở góc thanh tác vụ và chọn Pause.</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>{2} đang tải xuống trong lúc kiểm tra ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>Một trò chơi hoặc bản cập nhật đang tải xuống. Trong {2}, mở Downloads và tạm dừng khi bạn chơi.</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>{2} đã dùng {3} MB trong lúc kiểm tra</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>Một bản tải xuống, hoặc tab video hay phát trực tuyến, đang dùng kết nối. Trong {2}, nhấn Ctrl+J để tạm dừng tải xuống và đóng các tab không cần.</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>Windows services đã dùng {3} MB trong lúc kiểm tra</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update hoặc Delivery Optimization đang truyền dữ liệu. Giới hạn băng thông của chúng trong Delivery Optimization &gt; Advanced options.</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>{2} đã dùng {3} MB trong lúc kiểm tra</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>Đóng {2}, hoặc tạm dừng việc ứng dụng đang làm, khi chơi game hoặc gọi điện. Task Manager &gt; Processes, sắp xếp theo Network, sẽ hiển thị trực tiếp.</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>Cũng đang hoạt động: {0} ({1} MB).</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>Windows services</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>Tín hiệu Wi-Fi yếu trên “{2}” ({0}/5 vạch)</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>{3} chỉ liên kết ở {1} Mbps từ vị trí này. Đưa PC này và bộ định tuyến vào cùng phòng hoặc trong tầm nhìn thẳng, tránh đặt bộ định tuyến trong tủ, hoặc dùng cáp khi chơi game và gọi điện.</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>“{2}” chỉ liên kết ở {0} Mbps</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>Điều đó thường nghĩa là băng tần 2.4 GHz hoặc bộ định tuyến ở xa. Nếu bộ định tuyến cũng có mạng 5 GHz (thường tên là “{2}-5G”), hãy kết nối với mạng đó trong Settings &gt; Network &amp; internet &gt; Wi-Fi.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>{3} của bạn hỗ trợ {4}, nên {0} Mbps nghĩa là nó đang ở băng tần 2.4 GHz hoặc ở xa bộ định tuyến. Kết nối với mạng 5 GHz hoặc 6 GHz của bộ định tuyến (thường tên là “{2}-5G”) trong Settings &gt; Network &amp; internet &gt; Wi-Fi.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>{3} của bạn là bộ điều hợp {4} cũ hơn. Bộ điều hợp USB Wi-Fi 6 hoặc cáp mạng sẽ nhanh hơn nhiều.</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} chỉ chạy ở {0} Mbps</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>Gigabit cần đủ tám dây. Thay cáp bằng cáp Cat5e hoặc Cat6 và thử cổng bộ định tuyến khác; nếu vẫn ở {0} Mbps, cổng hoặc bộ chuyển mạch ở giữa bị giới hạn.</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>Windows có thể tắt {2} để tiết kiệm điện</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>Trong Device Manager, mở Network adapters &gt; {2} &gt; Power Management và bỏ chọn “Allow the computer to turn off this device to save power”.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>Tiết kiệm điện USB có thể làm ngắt kết nối {2}</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>Trong Power Options, chọn Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting, rồi đặt Plugged in thành Disabled.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>Trong Power Options, chọn Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting, rồi đặt On battery thành Disabled.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>Energy-Efficient Ethernet đang bật cho {2}</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>Nó có thể gây tăng độ trễ đột biến. Trong Device Manager, mở Network adapters &gt; {2} &gt; Advanced, chọn Energy-Efficient Ethernet (hoặc Green Ethernet) và đặt thành Disabled.</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>Energy saver đang bật</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>Nó giới hạn Wi-Fi và hoạt động nền. Tắt trong Settings &gt; System &gt; Power &amp; battery &gt; Energy saver, hoặc cắm nguồn PC.</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>Power mode đang đặt là Best power efficiency</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>Nó làm chậm Wi-Fi để tiết kiệm pin. Trong Settings &gt; System &gt; Power &amp; battery, đặt Power mode thành Balanced hoặc Best performance.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>Tiết kiệm điện Wi-Fi được đặt thành {2} khi dùng pin</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>Trong Power Options, chọn Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode, rồi đặt On battery thành Maximum Performance.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>Tiết kiệm điện Wi-Fi được đặt thành {2} khi cắm nguồn</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>Trong Power Options, chọn Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode, rồi đặt Plugged in thành Maximum Performance.</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>Tiết kiệm điện thấp</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>Tiết kiệm điện trung bình</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>Tiết kiệm điện tối đa</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>Tra cứu tên qua {2} chậm ({0} ms)</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>PC của bạn dùng bộ định tuyến ({2}) cho DNS và nó phản hồi chậm. Khởi động lại bộ định tuyến; nếu tra cứu vẫn chậm, hãy đặt máy chủ DNS công cộng như 1.1.1.1 hoặc 8.8.8.8 trong DNS server assignment ở thuộc tính kết nối.</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>Máy chủ DNS {2} phản hồi chậm. Đặt máy chủ nhanh hơn, như 1.1.1.1 hoặc 8.8.8.8, trong DNS server assignment ở thuộc tính kết nối.</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>Trình điều khiển {2} từ {0} (phiên bản {3})</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>Tải trình điều khiển mới nhất từ trang hỗ trợ của nhà sản xuất PC, hoặc kiểm tra Windows Update &gt; Advanced options &gt; Optional updates.</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>Intel phát hành trình điều khiển mới hơn cho bộ điều hợp này. Cài đặt bằng Intel Driver &amp; Support Assistant.</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>“{2}” được đặt là metered connection</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>Trên đó, Windows trì hoãn bản cập nhật và một số ứng dụng đồng bộ ít hơn. Nếu gói dữ liệu của bạn không giới hạn, hãy tắt Metered connection trong thuộc tính của “{2}”.</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>Lưu lượng web đi qua proxy {2}</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} là một chương trình trên PC này, như công cụ gỡ lỗi, trình chặn quảng cáo hoặc ứng dụng bảo mật. Đóng nó, hoặc tắt proxy trong Settings &gt; Network &amp; internet &gt; Proxy.</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>Nếu bạn hoặc tổ chức của bạn không thiết lập, hãy tắt trong Settings &gt; Network &amp; internet &gt; Proxy.</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>VPN đang định tuyến lưu lượng của bạn</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>VPN thêm một đường vòng cho mọi gói tin. Khi chơi game và gọi điện, hãy ngắt kết nối VPN, hoặc loại trừ trò chơi hay ứng dụng gọi điện trong cài đặt split tunneling của VPN.</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} đang định tuyến lưu lượng của bạn</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>Receive window auto-tuning được đặt thành “{2}”</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>Điều đó giới hạn tốc độ tải xuống trên kết nối nhanh. Trong Terminal (Admin), chạy: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>IPv6 bị tắt cho toàn bộ PC</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>Giá trị registry DisabledComponents là {2}, thường do công cụ tinh chỉnh đặt. Microsoft khuyên dùng 0x20 (ưu tiên IPv4) thay vào đó: hãy nhờ quản trị viên thay đổi, rồi khởi động lại.</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>IPv6 bị tắt trên {2}</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>Trong Network Connections, mở {2} &gt; Properties và chọn Internet Protocol Version 6 (TCP/IPv6).</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>Mở trang tải xuống</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>Mở Network Connections</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>Trên PC này, {0} đã dùng {1} MB trong lúc kiểm tra. Tạm dừng trước, rồi kiểm tra lại.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>PC này yên lặng trong lúc kiểm tra, vì vậy hãy xem các thiết bị khác ở nhà: máy chơi game đang tải bản cập nhật, TV đang phát trực tuyến, điện thoại đang sao lưu ảnh hoặc camera đang tải video lên.</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>Rút nguồn bộ định tuyến ({0}) trong 30 giây, cắm lại, rồi chạy kiểm tra nhanh khi đèn ổn định.</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>Cho nhà cung cấp biết kết quả kiểm tra: “{0}” Copy summary sẽ cung cấp chi tiết cho họ.</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>Không có kết nối mạng</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>Hãy kết nối Wi-Fi hoặc cắm cáp mạng. Sẽ không chạy kiểm tra cho đến khi máy tính này được kết nối.</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>Kiểm tra đề xuất bằng AI trực tuyến</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>Trước khi lời khuyên hiển thị, chỉ văn bản chung của lời khuyên được gửi đến các dịch vụ AI công cộng miễn phí (LLM7.io, Pollinations), không bao giờ gửi tên, địa chỉ hoặc số đo từ PC này. Kết quả được ghi nhớ trong 30 ngày.</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>Đang kiểm tra đề xuất bằng AI trực tuyến…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>Đã được AI trực tuyến kiểm tra ({0}).</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>Một số đề xuất không thể được AI trực tuyến kiểm tra.</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>Không có kiểm tra AI trực tuyến, nên các đề xuất này được hiển thị khi chưa kiểm tra.</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>Một số lời khuyên đã bị giữ lại vì hai bộ đánh giá AI trực tuyến đánh dấu là không chính xác.</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>AI đã kiểm tra</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>Giao diện</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>Chủ đề</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>Mọi chủ đề đều đáp ứng độ tương phản WCAG 2.2 AA cho văn bản, nút và nhãn; các chủ đề tương phản cao đáp ứng AAA.</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>Tối</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>Sáng</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>Tương phản cao tối</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>Tương phản cao sáng</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>Dùng cài đặt Windows</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Windows high contrast đang bật, nên ConnectionClue dùng màu tương phản Windows của bạn.</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>Tốc độ tải xuống: dữ liệu đến PC này từ internet nhanh đến mức nào, được đo bằng cách tải dữ liệu thử nghiệm trong 8 giây. Càng cao càng tốt; phát video trực tuyến cần khoảng 5 đến 25 Mbps.</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>Tốc độ tải lên: PC này gửi dữ liệu lên internet nhanh đến mức nào, được đo trong 8 giây. Càng cao càng tốt; cuộc gọi video và sao lưu đám mây phụ thuộc vào tốc độ này.</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>Độ trễ: thời gian để một thông điệp đến máy chủ internet rồi quay lại, tính bằng mili giây. Càng thấp càng tốt; dưới 50 ms cho cảm giác tức thì trong game và cuộc gọi. “Khi tải” hiển thị giá trị này trong lúc tải xuống và tải lên.</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>Dao động (jitter): độ trễ thay đổi bao nhiêu từ thời điểm này sang thời điểm khác. Càng thấp càng tốt; trên 30 ms, cuộc gọi và game bắt đầu bị giật.</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>Mỗi cột là một lần kiểm tra; chiều cao là độ trễ tính bằng mili giây (thang ở bên trái, thời gian ở phía dưới). Càng thấp càng tốt. Các cột có màu “Vượt ngưỡng của bạn” vượt quá giới hạn của bạn, còn cột gạch chéo không có phản hồi. Trỏ vào một cột để xem giá trị.</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>Mạng gia đình: bộ định tuyến mất bao lâu để phản hồi PC này. Nó cho thấy sự cố với Wi-Fi hoặc cáp trong nhà bạn.</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>Internet: mất bao lâu để kết nối tới một máy chủ trên internet. Nó cho thấy sự cố với nhà cung cấp internet của bạn.</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>Dịch vụ web: mất bao lâu để tra cứu một địa chỉ web và tải trang web. Nó cho thấy tra cứu tên hoặc trang web chậm.</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>Chọn mục này nếu game bị lag, đứng hình hoặc rubber-band. Lời khuyên sau đó tập trung vào độ trễ, dao động và độ ổn định.</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>Chọn mục này nếu video tạm dừng để tải đệm hoặc giảm chất lượng. Lời khuyên sau đó tập trung vào tốc độ tải xuống và tra cứu tên.</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>Chọn mục này nếu cuộc gọi thoại hoặc video bị ngắt quãng hoặc đứng hình. Lời khuyên sau đó tập trung vào độ trễ, dao động và tốc độ tải lên.</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Chọn mục này nếu kết nối thỉnh thoảng bị mất hoàn toàn. Lời khuyên sau đó tập trung vào tín hiệu Wi-Fi, tiết kiệm điện và bộ điều hợp.</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: không có phản hồi</value></data>
+</root>

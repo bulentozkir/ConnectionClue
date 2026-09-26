@@ -1,0 +1,23 @@
+<Window x:Class="ConnectionClue.App.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding [Action_Help]}" Width="760" Height="640" MinWidth="520" MinHeight="420"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+        Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+    <Grid Margin="22" FocusManager.FocusedElement="{Binding ElementName=HelpViewer}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding [Action_Help]}" FontSize="22" FontWeight="SemiBold" Margin="0,0,0,12" />
+        <FlowDocumentScrollViewer x:Name="HelpViewer" Grid.Row="1" IsToolBarVisible="False"
+                                 IsSelectionEnabled="True" Focusable="True" IsTabStop="True"
+                                 AutomationProperties.Name="{Binding [Action_Help]}"
+                                 Background="Transparent">
+            <FlowDocument x:Name="HelpDocument" PagePadding="0"
+                          FontFamily="Segoe UI" FontSize="13"
+                          Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        </FlowDocumentScrollViewer>
+    </Grid>
+</Window>

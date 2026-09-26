@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>快速檢測</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>長時間檢測</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>剛才卡住了</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>停止</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>匯出報告</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>遊戲延遲</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>影片緩衝</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>通話斷續</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>連線中斷</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>檢測已開始。</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>已記錄標記。</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>請先開始檢測。</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>剩餘 {0} 分鐘</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>家用網路</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>網際網路</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>網路服務</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>正常回應</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>無回應</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>等待中</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>語言</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>遇到了什麼問題？</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>檢查你的網路連線</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue 會檢測這台電腦到網際網路的路徑，並顯示問題出在哪裡。</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>這台電腦</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>設定</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>說明</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>應用程式將以所選語言重新啟動。</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>目前一切回應正常。</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>{0} 目前無回應。</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>延遲變化</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>無應答</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>在背景定期檢測</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>在行動網路上定期檢測</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>預設關閉。啟用後，也會透過行動網路定期檢查連線。背景檢查不會執行速度測試。</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>檢測間隔</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} 分鐘</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>網際網路延遲高於此值時提醒</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>無應答比例高於此值時提醒</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>延遲波動大於此值時提醒</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue 會留在通知區域，並在出現問題時提醒你。僅在應用程式開啟時執行。</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>開啟 ConnectionClue</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>結束</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue 會繼續在背景檢測。</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>連線問題</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>效能低於你設定的限值</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>已恢復正常</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>未發現問題。</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>資料不足，無法判斷。</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>這台電腦與路由器之間的連線中斷了。</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>網際網路約有 {0} 秒沒有回應。</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>無法連上網站。</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>{0} 的網際網路檢測無應答（限值 {1}）。</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>網際網路延遲為 {0} ms（限值 {1} ms）。</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>網際網路延遲波動 {0} ms（限值 {1} ms）。</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>大部分發生在這台電腦與路由器之間，通常與 Wi-Fi 有關。</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>問題似乎出在路由器之外。</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>上次檢測：{0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>中位數 {0} · p95 {1} · 波動 {2} · 無應答 {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>高於你的限值（{0} ms）</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>建議</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>關閉</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>根據 {0} 的檢測</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>此後情況可能已改變。請執行快速檢測以確認。</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>可以嘗試：{0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>改善 Wi-Fi 訊號</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>靠近路由器，移除兩者之間的障礙物，或在可用時切換到 5 GHz 網路。</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>試試網路線</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>用乙太網路線將這台電腦連接到路由器，然後執行快速檢測進行比較。</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>檢查網路線</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>重新插緊網路線兩端，或換一條網路線或路由器連接埠。</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>重新啟動路由器</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>拔掉路由器和數據機的電源 30 秒，再插回，等待約 2 分鐘後再檢測。</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>暫停大型上傳和下載</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>其他裝置上的雲端備份、影片上傳、遊戲下載和串流都可能拖慢整個連線。</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>嘗試不使用 VPN</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>如果你在使用 VPN，且允許中斷，請暫時中斷後再檢測。</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>聯絡你的網路服務供應商</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>如果重新啟動路由器後問題仍然出現，請將這些結果提供給你的服務供應商。</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>剩餘 {0} 秒</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>快速檢測時長</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>秒</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>介於 {0} 到 {1} 秒之間。</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>正在檢測你的網路連線…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>檢測</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>檢測</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>提醒</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>較慢</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>下載</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>上傳</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>延遲</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>波動</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>負載下：{0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>未測量</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>按流量計費的連線上已略過</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>無法測量</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>正在測量下載速度…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>正在測量上傳速度…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>測量下載和上傳速度</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>快速檢測將增加約 16 秒，最多可能使用 300 MB 流量。不會在背景檢測或按流量計費的連線上執行。</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>修正發現的問題</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>這台電腦的最佳做法</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>重要</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>建議</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>未發現連線問題。這些設定仍可讓你的連線更快或更可靠。</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>值得檢查：{0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>負載下延遲上升 {0} ms</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>下載和上傳會讓其他所有操作變慢（bufferbloat）。如果你的路由器支援，請開啟 Smart Queue Management (SQM) 或 QoS。</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>Wi-Fi 訊號弱（5 格中 {0} 格）</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>靠近路由器，移除障礙物，或新增一個 Mesh 存取點。網路線能提供最穩定的連線。</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>TCP 接收視窗自動調整受限</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>這會限制下載速度。在以系統管理員身分開啟的終端機中執行：netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>網路線連線速度只有 {0} Mbps</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Gigabit 需要 Cat5e 或更好的網路線以及 Gigabit 連接埠。試試另一條網路線或路由器連接埠。</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>Wi-Fi 連線速度較慢（{0} Mbps）</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>如果你的路由器支援，請連線到 5 GHz 或 6 GHz 網路，並把路由器放在開闊、中央的位置。</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>Windows 可能會關閉網路介面卡以節省電源</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>在裝置管理員中開啟你的網路介面卡。在電源管理索引標籤上，如果顯示，請取消勾選「允許電腦關閉這個裝置以節省電源」。</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet 已開啟</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>它可能會造成延遲尖峰。在裝置管理員中開啟你的乙太網路介面卡，並在進階索引標籤上將 Energy-Efficient Ethernet 設為關閉。</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>省電模式可能會拖慢連線</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>節能模式和電池省電會拖慢 Wi-Fi。接上電腦電源，或在 設定 &gt; 系統 &gt; 電源與電池 中關閉節能模式，並將電源模式設為平衡。</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>名稱查詢較慢（{0} ms）</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>網站開始載入會更慢。重新啟動路由器，或在 設定 &gt; 網路和網際網路 中開啟你的連線內容並編輯 DNS 伺服器指派。</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>網路驅動程式來自 {0}</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>較舊的驅動程式可能會造成斷線和速度慢。請從電腦或介面卡製造商取得最新驅動程式，或檢查 Windows Update &gt; 進階選項 &gt; 選用更新。</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>此連線已設為計量付費</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows 會延遲更新，某些應用程式同步也會減少。如果你的流量不限量，請在網路內容中關閉計量付費連線。</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>正在使用 Proxy 伺服器</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>流量會經過另一台伺服器，這可能會拖慢或封鎖網站。如果不是你或你的組織設定的，請在 設定 &gt; 網路和網際網路 &gt; Proxy 中關閉它。</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 已關閉</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>某些應用程式和 Windows 功能仰賴 IPv6，Microsoft 不建議關閉它。請在網路介面卡內容中重新開啟，或詢問你的 IT 管理員。</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>在檢測期間，一發現延遲、卡住或通話中斷就按這裡。圖表上會用旗標標出那一刻，方便你查看當時連線的狀態。</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>你的延遲標記：{0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>開啟設定</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>開啟裝置管理員</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>開啟電源選項</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>開啟工作管理員</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>開啟路由器頁面</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>複製命令</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>複製給服務供應商的摘要</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>已複製到剪貼簿。</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>檢測期間其他應用程式使用了連線（↓ {0} · ↑ {1} Mbps）</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>這台電腦上的下載、雲端同步和更新會與遊戲和通話爭用連線，並讓結果看起來更差。暫停它們，然後再次檢測。工作管理員會顯示哪些應用程式使用網路。</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>USB 省電可能會中斷你的 USB 網路介面卡</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>在電源選項中，選擇 變更計劃設定 &gt; 變更進階電源設定 &gt; USB 設定，並將 USB 選擇性暫停設定 設為 已停用。</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>已檢查，不需變更：{0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>Wi-Fi 訊號</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>連線速度</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>網路驅動程式</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>介面卡電源管理</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>USB 省電</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>TCP 自動調整</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>省電</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>名稱查詢 (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>負載下延遲</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>這台電腦上的其他流量</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>Proxy</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>計量付費連線</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>下載占滿了連線佇列。在路由器設定中開啟 SQM、Smart Queue 或 Adaptive QoS，並將下載限制設為約 {1} Mbps（實測速度的 90%）。</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>上傳占滿了連線佇列。玩遊戲或通話時暫停雲端備份和同步，或在路由器中開啟 SQM、Smart Queue 或 Adaptive QoS，並設定約 {1} Mbps 的上傳限制（實測速度的 90%）。</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>檢測期間 OneDrive 正在同步（{3} MB）</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>玩遊戲或通話時暫停它：選取工作列角落的 OneDrive 雲朵圖示，然後選取 設定 &gt; 暫停同步 &gt; 2 小時。它會自行恢復。</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>檢測期間 {2} 正在同步（{3} MB）</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>玩遊戲或通話時暫停它：選取工作列角落中的圖示，然後選擇暫停。</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>檢測期間 {2} 正在下載（{3} MB）</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>有遊戲或更新正在下載。在 {2} 中開啟下載，並在玩遊戲時暫停它們。</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>檢測期間 {2} 使用了 {3} MB</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>有下載、影片或串流分頁正在使用連線。在 {2} 中按 Ctrl+J 暫停下載，並關閉不需要的分頁。</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>檢測期間 Windows 服務使用了 {3} MB</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update 或傳遞最佳化正在傳輸資料。請在 傳遞最佳化 &gt; 進階選項 中限制其頻寬。</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>檢測期間 {2} 使用了 {3} MB</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>玩遊戲或通話時關閉 {2}，或暫停它正在做的事。工作管理員 &gt; 處理程序 按 網路 排序，可即時顯示它。</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>也在活動：{0}（{1} MB）。</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>Windows 服務</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>「{2}」上的 Wi-Fi 訊號弱（5 格中 {0} 格）</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>{3} 從這裡僅以 {1} Mbps 連線。把這台電腦和路由器移到同一房間或保持視線直達，不要把路由器放在櫃子裡，或在遊戲和通話時使用網路線。</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>「{2}」僅以 {0} Mbps 連線</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>這通常表示正在使用 2.4 GHz 頻段，或路由器距離較遠。如果你的路由器也有 5 GHz 網路（通常名為「{2}-5G」），請在 設定 &gt; 網路和網際網路 &gt; Wi-Fi 中連線。</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>你的 {3} 支援 {4}，因此 {0} Mbps 表示它在 2.4 GHz 頻段上，或距離路由器太遠。請在 設定 &gt; 網路和網際網路 &gt; Wi-Fi 中連線到路由器的 5 GHz 或 6 GHz 網路（通常名為「{2}-5G」）。</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>你的 {3} 是較舊的 {4} 介面卡。Wi-Fi 6 USB 介面卡或網路線會快得多。</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} 僅以 {0} Mbps 執行</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>Gigabit 需要全部八條線芯。請將網路線更換為 Cat5e 或 Cat6，並嘗試另一個路由器連接埠；如果仍維持 {0} Mbps，則連接埠或中間的交換器受限。</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>Windows 可以關閉 {2} 以節省電源</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>在裝置管理員中開啟 網路介面卡 &gt; {2} &gt; 電源管理，並取消勾選「允許電腦關閉這個裝置以節省電源」。</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>USB 省電可能會中斷 {2}</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>在電源選項中，選擇 變更計劃設定 &gt; 變更進階電源設定 &gt; USB 設定 &gt; USB 選擇性暫停設定，並將 接通電源 設為 已停用。</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>在電源選項中，選擇 變更計劃設定 &gt; 變更進階電源設定 &gt; USB 設定 &gt; USB 選擇性暫停設定，並將 使用電池 設為 已停用。</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>{2} 已開啟 Energy-Efficient Ethernet</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>它可能會造成延遲尖峰。在裝置管理員中開啟 網路介面卡 &gt; {2} &gt; 進階，選取 Energy-Efficient Ethernet（或 Green Ethernet）並將其設為 已停用。</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>節能模式已開啟</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>它會限制 Wi-Fi 和背景活動。請在 設定 &gt; 系統 &gt; 電源與電池 &gt; 節能模式 中關閉，或接上電腦電源。</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>電源模式設為最佳電源效率</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>它會為節省電池而減慢 Wi-Fi。在 設定 &gt; 系統 &gt; 電源與電池 中，將 電源模式 設為 平衡 或 最佳效能。</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>使用電池時 Wi-Fi 省電設為 {2}</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>在電源選項中，選擇 變更計劃設定 &gt; 變更進階電源設定 &gt; 無線介面卡設定 &gt; 省電模式，並將 使用電池 設為 最高效能。</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>接通電源時 Wi-Fi 省電設為 {2}</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>在電源選項中，選擇 變更計劃設定 &gt; 變更進階電源設定 &gt; 無線介面卡設定 &gt; 省電模式，並將 接通電源 設為 最高效能。</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>低度省電</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>中度省電</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>最高省電</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>透過 {2} 的名稱查詢較慢（{0} ms）</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>你的電腦使用路由器（{2}）進行 DNS，且它回應較慢。重新啟動路由器；如果查詢仍然慢，請在連線內容的 DNS 伺服器指派 下設定公用 DNS 伺服器，例如 1.1.1.1 或 8.8.8.8。</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>DNS 伺服器 {2} 回應較慢。請在連線內容的 DNS 伺服器指派 下設定更快的伺服器，例如 1.1.1.1 或 8.8.8.8。</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>{2} 驅動程式來自 {0}（版本 {3}）</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>從電腦製造商的支援頁面取得最新驅動程式，或檢查 Windows Update &gt; 進階選項 &gt; 選用更新。</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>Intel 為這個介面卡發布了更新的驅動程式。請使用 Intel Driver &amp; Support Assistant 安裝。</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>「{2}」已設為計量付費連線</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>在此連線上，Windows 會延遲更新，某些應用程式同步也會減少。如果你的數據方案不限量，請在「{2}」的內容中關閉計量付費連線。</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>Web 流量透過 Proxy {2}</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} 是這台電腦上的程式，例如偵錯工具、廣告封鎖器或安全性應用程式。請關閉它，或在 設定 &gt; 網路和網際網路 &gt; Proxy 中關閉 Proxy。</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>如果不是你或你的組織設定的，請在 設定 &gt; 網路和網際網路 &gt; Proxy 中關閉它。</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>VPN 正在路由你的流量</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>VPN 會讓每個封包繞路。玩遊戲和通話時中斷它，或在它的 split tunneling 設定中排除遊戲或通話應用程式。</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} 正在路由你的流量</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>接收視窗自動調整設為「{2}」</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>這會限制高速連線的下載速度。在 Terminal (Admin) 中執行：netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>整台電腦的 IPv6 已關閉</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>登錄值 DisabledComponents 為 {2}，通常由調整工具設定。Microsoft 建議改用 0x20（偏好 IPv4）：請讓管理員變更它，然後重新啟動。</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>{2} 上的 IPv6 已關閉</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>在網路連線中開啟 {2} &gt; 內容，並選取 Internet Protocol Version 6 (TCP/IPv6)。</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>開啟下載頁面</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>開啟網路連線</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>在這台電腦上，檢測期間 {0} 使用了 {1} MB。請先暫停它，然後再次檢測。</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>檢測期間這台電腦很安靜，所以請查看家中的其他裝置：正在下載更新的遊戲主機、正在串流的電視、正在備份相片的手機，或正在上傳影片的攝影機。</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>拔掉路由器（{0}）電源 30 秒，再插回，等指示燈穩定後執行快速檢測。</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>告訴你的服務供應商檢測發現的內容：「{0}」複製摘要會提供詳細資訊。</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>未連線到網路</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>請連線到 Wi-Fi 或插入網路線。這台電腦連上網路之前不會執行檢測。</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>用線上 AI 檢查建議</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>顯示建議前，只會將其通用文字傳送到免費的公開 AI 服務（LLM7.io、Pollinations），絕不會傳送這台電腦上的名稱、位址或測量值。結果會保留 30 天。</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>正在用線上 AI 檢查建議…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>已由線上 AI 檢查（{0}）。</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>部分建議無法由線上 AI 檢查。</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>線上 AI 檢查無法使用，因此這些建議顯示為未檢查。</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>一些建議已被隱藏，因為兩個線上 AI 審閱者將其標記為不正確。</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>AI 已檢查</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>外觀</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>佈景主題</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>每個佈景主題都符合 WCAG 2.2 AA 對文字、按鈕和標籤的對比要求；高對比佈景主題符合 AAA。</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>深色</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>淺色</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>高對比深色</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>高對比淺色</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>使用 Windows 設定</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Windows 高對比已開啟，因此 ConnectionClue 會使用你的 Windows 對比色。</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>下載速度：資料從網際網路到達這台電腦的速度，透過下載測試資料 8 秒來測量。越高越好；影片串流大約需要 5 到 25 Mbps。</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>上傳速度：這台電腦向網際網路傳送資料的速度，測量 8 秒。越高越好；視訊通話和雲端備份仰賴它。</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>延遲：一則訊息到達網際網路伺服器並返回所需的時間，以毫秒為單位。越低越好；低於 50 ms 在遊戲和通話中感覺很即時。「負載下」會顯示下載和上傳時的延遲。</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>波動（jitter）：延遲從一個時刻到下一個時刻變化的幅度。越低越好；超過 30 ms 時，通話和遊戲會開始卡頓。</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>每個長條代表一次測試；高度是以毫秒表示的延遲（左側為刻度，底部為時間）。越低越好。「高於你的限值」色彩的長條超過你的限值，帶斜線的長條沒有收到回應。指向長條可查看其值。</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>家用網路：路由器回應這台電腦所需的時間。它顯示家中 Wi-Fi 或網路線的問題。</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>網際網路：連線到網際網路上伺服器所需的時間。它顯示你的網路服務供應商的問題。</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>網路服務：查詢網址和載入網頁所需的時間。它顯示名稱查詢或網站緩慢的問題。</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>如果遊戲延遲、卡住或回彈，請選擇此項。之後建議會著重於延遲、波動和穩定性。</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>如果影片暫停緩衝或畫質下降，請選擇此項。之後建議會著重於下載速度和名稱查詢。</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>如果語音或視訊通話斷續或卡住，請選擇此項。之後建議會著重於延遲、波動和上傳速度。</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>如果連線不時完全中斷，請選擇此項。之後建議會著重於 Wi-Fi 訊號、省電和介面卡。</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} s：{1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s：無回應</value></data>
+</root>

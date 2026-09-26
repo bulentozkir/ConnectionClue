@@ -1,0 +1,8 @@
+bin/
+obj/
+.vs/
+*.user
+TestResults/
+artifacts/
+# Release binaries: publish via GitHub Releases (the bundle exceeds the 100 MB git file limit).
+releases/

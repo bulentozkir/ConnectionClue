@@ -1,0 +1,288 @@
+<Application x:Class="ConnectionClue.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ThemeMode="System"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <!-- Design tokens: ThemeManager sets every brush used here from the verified palettes in Themes.cs (text roles,
+             action roles, disabled colours), or from the user's own colours when Windows high contrast is on.
+             Compact density: 28–34 px targets (the WCAG 2.2 minimum is 24 px). -->
+
+        <Style x:Key="Glyph" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <!-- Text roles, each in its own colour: headings (Heading), labels that name a setting or field (Label), body text
+             (primary), supporting text (secondary). Size and weight differ too, so the hierarchy never relies on colour. -->
+        <Style x:Key="PageTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource HeadingBrush}" />
+            <Setter Property="Margin" Value="0,0,0,6" />
+        </Style>
+        <Style x:Key="TitleText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="SectionText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource HeadingBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="SettingLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Foreground" Value="{DynamicResource LabelBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="FieldLabel" TargetType="TextBlock" BasedOn="{StaticResource SettingLabel}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style x:Key="Secondary" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+        <Style x:Key="Caption" TargetType="TextBlock" BasedOn="{StaticResource Secondary}">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+        </Style>
+
+        <!-- Double ring (text colour outside, card colour inside) stays visible on every background. -->
+        <Style x:Key="FocusRing">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid Margin="-3">
+                            <Rectangle Stroke="{DynamicResource TextFillColorPrimaryBrush}" StrokeThickness="2" RadiusX="7" RadiusY="7" />
+                            <Rectangle Margin="2" Stroke="{DynamicResource CardBackgroundFillColorDefaultBrush}" StrokeThickness="1" RadiusX="5" RadiusY="5" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Action buttons: one colour per intent (Themes.RoleNames), always with an icon and a label. Hover draws a thicker
+             outline in the label colour and pressing darkens the face, so state never relies on a faint tint. Disabled
+             buttons turn grey with a dashed outline, and their tooltip still explains them. -->
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="MinHeight" Value="30" />
+            <Setter Property="Padding" Value="12,3" />
+            <Setter Property="Margin" Value="0,0,6,6" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}" />
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+            <Setter Property="ToolTipService.ShowDuration" Value="30000" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle x:Name="Face" RadiusX="5" RadiusY="5" StrokeThickness="1.5"
+                                       Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" />
+                            <Rectangle x:Name="Overlay" RadiusX="5" RadiusY="5" Fill="Transparent" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                              RecognizesAccessKey="True" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Face" Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <Setter TargetName="Face" Property="StrokeThickness" Value="2.5" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Overlay" Property="Fill" Value="#40000000" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Face" Property="Fill" Value="{DynamicResource DisabledFillBrush}" />
+                                <Setter TargetName="Face" Property="Stroke" Value="{DynamicResource DisabledTextBrush}" />
+                                <Setter TargetName="Face" Property="StrokeDashArray" Value="3 2" />
+                                <Setter Property="Foreground" Value="{DynamicResource DisabledTextBrush}" />
+                                <Setter Property="Cursor" Value="Arrow" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Starts a check or a test: the one strong accent on each screen. -->
+        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource OnPrimaryBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBorderBrush}" />
+        </Style>
+        <!-- Runs a diagnostic or produces a file: outlined, so it never competes with the primary action. -->
+        <Style x:Key="ToolButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource OnToolBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ToolBorderBrush}" />
+        </Style>
+        <!-- Changes a Windows setting after an administrator prompt; always shown with the shield icon. -->
+        <Style x:Key="AdminButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="{DynamicResource AdminBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource OnAdminBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AdminBorderBrush}" />
+        </Style>
+        <!-- Marks a lag moment; the same colour as the lag markers it draws on the chart. -->
+        <Style x:Key="MarkButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="{DynamicResource MarkBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource OnMarkBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource MarkBorderBrush}" />
+        </Style>
+        <Style x:Key="StopButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="{DynamicResource DangerBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource OnDangerBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource DangerBorderBrush}" />
+        </Style>
+        <Style x:Key="AdviceButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="{DynamicResource AdviceBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource OnAdviceBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AdviceBorderBrush}" />
+        </Style>
+        <!-- Dismisses or cancels: outlined and neutral. -->
+        <Style x:Key="NeutralButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource OnNeutralBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource NeutralBorderBrush}" />
+        </Style>
+        <!-- Opens a Windows Settings page: link colour, underlined label and an "opens elsewhere" icon, no fill. -->
+        <Style x:Key="LinkButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource LinkBrush}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Padding" Value="6,3" />
+        </Style>
+
+        <!-- Toggle switch (checkbox semantics). Thumb position and a check mark show state, not colour alone. -->
+        <Style x:Key="ToggleSwitch" TargetType="CheckBox">
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}" />
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid Width="40" Height="20" Background="Transparent">
+                            <Border x:Name="Track" CornerRadius="10" BorderThickness="1.5" Background="Transparent"
+                                    BorderBrush="{DynamicResource TextFillColorSecondaryBrush}" />
+                            <Grid x:Name="Thumb" Width="12" Height="12" HorizontalAlignment="Left" Margin="4,0,0,0">
+                                <Ellipse x:Name="ThumbFill" Fill="{DynamicResource TextFillColorSecondaryBrush}" />
+                                <TextBlock x:Name="Tick" Style="{StaticResource Glyph}" Text="&#xE73E;" FontSize="7" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource PrimaryBrush}" Visibility="Collapsed" />
+                            </Grid>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Track" Property="BorderThickness" Value="2.5" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Track" Property="Background" Value="{DynamicResource PrimaryBrush}" />
+                                <Setter TargetName="Track" Property="BorderBrush" Value="{DynamicResource PrimaryBorderBrush}" />
+                                <Setter TargetName="ThumbFill" Property="Fill" Value="{DynamicResource OnPrimaryBrush}" />
+                                <Setter TargetName="Thumb" Property="HorizontalAlignment" Value="Right" />
+                                <Setter TargetName="Thumb" Property="Margin" Value="0,0,4,0" />
+                                <Setter TargetName="Tick" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Track" Property="Background" Value="{DynamicResource DisabledFillBrush}" />
+                                <Setter TargetName="Track" Property="BorderBrush" Value="{DynamicResource DisabledTextBrush}" />
+                                <Setter TargetName="ThumbFill" Property="Fill" Value="{DynamicResource DisabledTextBrush}" />
+                                <Setter TargetName="Tick" Property="Foreground" Value="{DynamicResource DisabledFillBrush}" />
+                                <Setter Property="Cursor" Value="Arrow" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Windows 11 settings pattern: title and description left, control right. A dependent setting (one that works only
+             when the setting above it is on) is indented under it. -->
+        <Style x:Key="SettingsSection" TargetType="TextBlock" BasedOn="{StaticResource SectionText}">
+            <Setter Property="Margin" Value="0,10,0,4" />
+        </Style>
+        <Style x:Key="SettingsCard" TargetType="Border" BasedOn="{StaticResource Card}">
+            <Setter Property="Padding" Value="12,6" />
+            <Setter Property="Margin" Value="0,0,0,3" />
+            <Setter Property="MinHeight" Value="46" />
+        </Style>
+        <Style x:Key="SettingsSubCard" TargetType="Border" BasedOn="{StaticResource SettingsCard}">
+            <Setter Property="Margin" Value="28,0,0,3" />
+        </Style>
+        <Style x:Key="SettingsCombo" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="Width" Value="200" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="DisplayMemberPath" Value="Label" />
+            <Setter Property="SelectedValuePath" Value="Value" />
+        </Style>
+
+        <!-- Symptom chip: each symptom has its own colour (tint when idle, filled when chosen), plus an icon, a label and a
+             check mark when chosen, so the choice never relies on colour alone. The tooltip explains when to pick it. -->
+        <Style x:Key="Chip" TargetType="ListBoxItem">
+            <Setter Property="Margin" Value="0,0,6,6" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}" />
+            <Setter Property="AutomationProperties.Name" Value="{Binding Label}" />
+            <Setter Property="AutomationProperties.HelpText" Value="{Binding Help}" />
+            <Setter Property="ToolTip" Value="{Binding Help}" />
+            <Setter Property="ToolTipService.ShowsToolTipOnKeyboardFocus" Value="True" />
+            <Setter Property="ToolTipService.ShowDuration" Value="30000" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            <Setter Property="Background" Value="{DynamicResource ChipGamingTintBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ChipGamingBorderBrush}" />
+            <Setter Property="Tag" Value="{DynamicResource ChipGamingFillBrush}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Bd" CornerRadius="14" Padding="10,3" MinHeight="28" BorderThickness="1.5"
+                                BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="Icon" Style="{StaticResource Glyph}" Text="{Binding Glyph}" Margin="0,0,6,0" Foreground="{TemplateBinding Foreground}" />
+                                <TextBlock x:Name="Label" Text="{Binding Label}" FontSize="13" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" />
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="BorderThickness" Value="2.5" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <Setter TargetName="Icon" Property="Text" Value="&#xE73E;" />
+                                <Setter TargetName="Icon" Property="Foreground" Value="{DynamicResource ChipSelectedTextBrush}" />
+                                <Setter TargetName="Label" Property="Foreground" Value="{DynamicResource ChipSelectedTextBrush}" />
+                                <Setter TargetName="Label" Property="FontWeight" Value="SemiBold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Key}" Value="Symptom_Video">
+                    <Setter Property="Background" Value="{DynamicResource ChipVideoTintBrush}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ChipVideoBorderBrush}" />
+                    <Setter Property="Tag" Value="{DynamicResource ChipVideoFillBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Key}" Value="Symptom_Calls">
+                    <Setter Property="Background" Value="{DynamicResource ChipCallsTintBrush}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ChipCallsBorderBrush}" />
+                    <Setter Property="Tag" Value="{DynamicResource ChipCallsFillBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Key}" Value="Symptom_Disconnects">
+                    <Setter Property="Background" Value="{DynamicResource ChipDisconnectsTintBrush}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ChipDisconnectsBorderBrush}" />
+                    <Setter Property="Tag" Value="{DynamicResource ChipDisconnectsFillBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Application.Resources>
+</Application>

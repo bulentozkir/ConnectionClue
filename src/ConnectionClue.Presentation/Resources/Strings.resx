@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Action_QuickCheck" xml:space="preserve"><value>Quick check</value><comment>Button. Starts a 2-minute test of this PC&#x27;s connection.</comment></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>Capture longer</value><comment>Button. Starts a 15, 30 or 60-minute test.</comment></data>
+  <data name="Action_Marker" xml:space="preserve"><value>It lagged just now</value><comment>Button and hotkey label. The user presses it right after noticing lag. Casual tone.</comment></data>
+  <data name="Action_Stop" xml:space="preserve"><value>Stop</value><comment>Button. Ends the running test early; results are kept.</comment></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>Export report</value><comment>Button. Saves a readable report file.</comment></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>Gaming lag</value><comment>Symptom choice.</comment></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>Buffering video</value><comment>Symptom choice: video keeps pausing to load.</comment></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>Choppy calls</value><comment>Symptom choice: voice or video calls break up.</comment></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>Disconnections</value><comment>Symptom choice: the connection drops.</comment></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>Capture started.</value><comment>Screen-reader announcement.</comment></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>Marker recorded.</value><comment>Screen-reader announcement after the marker button or hotkey.</comment></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>Start a capture first.</value><comment>Shown when the marker is used while no test runs.</comment></data>
+  <data name="Capture_MinutesLeft.one" xml:space="preserve"><value>{0} minute left</value><comment>Plural (CLDR one). {0} = whole minutes remaining.</comment></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>{0} minutes left</value><comment>Plural (CLDR other). {0} = whole minutes remaining.</comment></data>
+  <data name="Lane_Local" xml:space="preserve"><value>Home network</value><comment>Capture lane name: this PC&#x27;s link and the router (gateway).</comment></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>Internet</value><comment>Capture lane name: reachability beyond the router.</comment></data>
+  <data name="Lane_Services" xml:space="preserve"><value>Web services</value><comment>Capture lane name: name lookups and secure web checks.</comment></data>
+  <data name="Status_Responding" xml:space="preserve"><value>Responding</value><comment>Lane status: checks are answered.</comment></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>Not responding</value><comment>Lane status: checks get no answer. Neutral wording, no blame.</comment></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>Waiting</value><comment>Lane status: no result yet.</comment></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Language</value><comment>Label for the UI language picker.</comment></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>What's happening?</value><comment>Heading above the symptom choices.</comment></data>
+  <data name="Home_Title" xml:space="preserve"><value>Check your connection</value><comment>Page title.</comment></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue tests this PC's path to the internet and shows where problems happen.</value><comment>Intro sentence under the title. Keep the product name untranslated.</comment></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>This PC</value><comment>First node of the path view.</comment></data>
+  <data name="Action_Settings" xml:space="preserve"><value>Settings</value><comment>Button that opens settings.</comment></data>
+  <data name="Action_Help" xml:space="preserve"><value>Help</value><comment>Toolbar button that opens the user guide.</comment></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>The app restarts in the selected language.</value><comment>Hint under the language picker.</comment></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>Everything is responding so far.</value><comment>Status line while every check answers. Preliminary, not a verdict.</comment></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>No response from {0} right now.</value><comment>Status line; {0} = path step name (singular or plural, any gender). Keep the sentence neutral and blame-free.</comment></data>
+  <data name="Chart_Title" xml:space="preserve"><value>Delay over time</value><comment>Title of the live delay chart.</comment></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>No answer</value><comment>Chart legend entry for unanswered checks (drawn as ×).</comment></data>
+  <data name="Background_Enable" xml:space="preserve"><value>Check regularly in the background</value><comment>Settings checkbox and tray menu item.</comment></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>Check regularly on mobile networks</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Off by default. When on, regular connectivity checks also run on mobile networks: cellular connections and connections Windows marks as metered, such as phone hotspots. Background checks never run speed tests.</value><comment>Explains the mobile opt-in.</comment></data>
+  <data name="Diagnostics_Heading" xml:space="preserve"><value>Network diagnostics</value></data>
+  <data name="Diagnostics_TraceTitle" xml:space="preserve"><value>Route hops</value></data>
+  <data name="Diagnostics_TraceHelp" xml:space="preserve"><value>Traces one route to Cloudflare's 1.1.1.1 address with three small pings per hop. A hop's reply loss and round-trip-time increase are clues, not proof of forwarding loss or an ISP fault; intermediate routers may not reply.</value></data>
+  <data name="Diagnostics_TraceButton" xml:space="preserve"><value>Trace route</value></data>
+  <data name="Diagnostics_DnsTitle" xml:space="preserve"><value>DNS speed comparison</value></data>
+  <data name="Diagnostics_DnsHelp" xml:space="preserve"><value>Compares lookups of example.com through your current DNS server and through Cloudflare, Google and Quad9. These public services receive your public IP. Nothing changes unless you choose to switch.</value><comment>DNS card help.</comment></data>
+  <data name="Diagnostics_DnsButton" xml:space="preserve"><value>Compare DNS</value></data>
+  <data name="Diagnostics_OpenSettings" xml:space="preserve"><value>Open network settings</value></data>
+  <data name="Diagnostics_OpenSettingsHelp" xml:space="preserve"><value>Opens Windows network settings so you can review or change DNS yourself.</value></data>
+  <data name="Diagnostics_WifiTitle" xml:space="preserve"><value>Nearby Wi-Fi channels</value></data>
+  <data name="Diagnostics_WifiHelp" xml:space="preserve"><value>Scans only when you press the button. Shows how crowded nearby channels are, the channel this PC uses, and the least crowded channel per band; no network names or device identifiers. Windows may ask for location access.</value><comment>Wi-Fi card help.</comment></data>
+  <data name="Diagnostics_WifiButton" xml:space="preserve"><value>Scan Wi-Fi channels</value></data>
+  <data name="Diagnostics_Running" xml:space="preserve"><value>Running diagnostic…</value></data>
+  <data name="Diagnostics_NoResults" xml:space="preserve"><value>No results were returned.</value></data>
+  <data name="Diagnostics_Disconnected" xml:space="preserve"><value>No network connection. Connect before running this diagnostic.</value></data>
+  <data name="Diagnostics_TimedOut" xml:space="preserve"><value>The diagnostic timed out. Try again when the network is responsive.</value></data>
+  <data name="Diagnostics_TraceRow" xml:space="preserve"><value>Hop {0}: {1}</value><comment>{0} = hop number, {1} = details joined by ' · '.</comment></data>
+  <data name="Diagnostics_TraceReplies" xml:space="preserve"><value>{0}/{1} replies</value></data>
+  <data name="Diagnostics_TraceIncrease" xml:space="preserve"><value>RTT up {0} ms</value></data>
+  <data name="Diagnostics_DnsRow" xml:space="preserve"><value>{0} ({1}): {2} median · {3}/3 replies · {4}</value></data>
+  <data name="Diagnostics_WifiRow" xml:space="preserve"><value>{0} GHz, channel {1}: {2} nearby networks{3}</value></data>
+  <data name="Diagnostics_Recommended" xml:space="preserve"><value> · least crowded option observed</value></data>
+  <data name="Diagnostics_WifiNoAdapter" xml:space="preserve"><value>No Wi-Fi adapter was found.</value></data>
+  <data name="Diagnostics_WifiNoNetworks" xml:space="preserve"><value>No nearby networks were reported.</value></data>
+  <data name="Diagnostics_WifiPermission" xml:space="preserve"><value>Windows blocked the Wi-Fi scan. Turn on location access, including Let desktop apps access your location, then scan again. ConnectionClue doesn't use your location.</value><comment>Wi-Fi scan denied.</comment></data>
+  <data name="Diagnostics_WifiFailed" xml:space="preserve"><value>Windows could not scan Wi-Fi channels.</value></data>
+  <data name="Diagnostics_SettingsFailed" xml:space="preserve"><value>Windows network settings could not be opened.</value></data>
+  <data name="Diagnostics_StatusReached" xml:space="preserve"><value>Destination reached</value></data>
+  <data name="Diagnostics_StatusResponded" xml:space="preserve"><value>Router replied</value></data>
+  <data name="Diagnostics_StatusNoReply" xml:space="preserve"><value>No reply</value></data>
+  <data name="Diagnostics_StatusTimedOut" xml:space="preserve"><value>Timed out</value></data>
+  <data name="Diagnostics_StatusPermission" xml:space="preserve"><value>Permission denied</value></data>
+  <data name="Diagnostics_StatusUnsupported" xml:space="preserve"><value>Unavailable</value></data>
+  <data name="Diagnostics_StatusFailed" xml:space="preserve"><value>Request failed</value></data>
+  <data name="SupportReport_Title" xml:space="preserve"><value>ConnectionClue support report</value></data>
+  <data name="SupportReport_Heading" xml:space="preserve"><value>Report for your provider</value></data>
+  <data name="SupportReport_Help" xml:space="preserve"><value>Exports the last check's findings with local times, its measurements and a sampled timeline. IP addresses, network and adapter names, SSIDs, DNS names and raw packets are left out. HTML is self-contained; for PDF, Microsoft Print to PDF is preselected in the print dialog. Review the file before sharing.</value><comment>Report card help.</comment></data>
+  <data name="SupportReport_ExportHtml" xml:space="preserve"><value>Export HTML</value></data>
+  <data name="SupportReport_PrintPdf" xml:space="preserve"><value>Print or save as PDF</value></data>
+  <data name="SupportReport_HtmlSaved" xml:space="preserve"><value>HTML report saved.</value></data>
+  <data name="SupportReport_ExportFailed" xml:space="preserve"><value>Could not save the report. Choose a writable location and try again.</value></data>
+  <data name="SupportReport_PrintSent" xml:space="preserve"><value>Report sent to the selected printer. Choose Microsoft Print to PDF to save a PDF.</value></data>
+  <data name="SupportReport_PrintFailed" xml:space="preserve"><value>Could not print the report. Check the selected printer and try again.</value></data>
+  <data name="SupportReport_NoSummary" xml:space="preserve"><value>No conclusive diagnosis was produced by this check.</value></data>
+  <data name="SupportReport_FindingsHeading" xml:space="preserve"><value>Findings</value></data>
+  <data name="SupportReport_TimelineHeading" xml:space="preserve"><value>Sampled timeline</value></data>
+  <data name="SupportReport_StepHeader" xml:space="preserve"><value>Test step</value></data>
+  <data name="SupportReport_TimeHeader" xml:space="preserve"><value>Time from start</value></data>
+  <data name="SupportReport_ObservationHeader" xml:space="preserve"><value>Observation</value></data>
+  <data name="SupportReport_NoResponse" xml:space="preserve"><value>No response</value></data>
+  <data name="SupportReport_OmittedSamples" xml:space="preserve"><value>{0}: {1} timeline samples omitted by display downsampling.</value></data>
+  <data name="SupportReport_PrivacyNote" xml:space="preserve"><value>This report contains sampled measurements and the finding summary only. It does not establish continuous uptime or prove provider fault.</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>Check every</value><comment>Label before the interval picker (e.g. &#x27;15 minutes&#x27;).</comment></data>
+  <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} minute</value><comment>Plural (CLDR one). {0} = minutes.</comment></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} minutes</value><comment>Plural (CLDR other). {0} = minutes.</comment></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>Warn if internet delay is above</value><comment>Label before a value such as &#x27;100 ms&#x27;.</comment></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>Warn if unanswered checks are above</value><comment>Label before a percentage.</comment></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>Warn if delay varies by more than</value><comment>Label before a value such as &#x27;30 ms&#x27;.</comment></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue stays in the notification area and warns you about problems. It runs only while the app is open.</value><comment>Explains background checks. Keep the product name untranslated.</comment></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Open ConnectionClue</value><comment>Tray menu item.</comment></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Exit</value><comment>Tray menu item that quits the app.</comment></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue keeps checking in the background.</value><comment>Notification shown the first time the window hides to the tray.</comment></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>Connection problem</value><comment>Notification title: checks failed.</comment></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>Performance below your limits</value><comment>Notification title: a user-set limit was exceeded.</comment></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>Back to normal</value><comment>Notification title after a problem clears.</comment></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>No problems found.</value><comment>Result of a check with no issue. Must not claim the network is healthy.</comment></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>Not enough data to judge.</value><comment>Result when a check was too short.</comment></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>The connection between this PC and your router was interrupted.</value><comment>Finding sentence. Neutral, no blame.</comment></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>The internet stopped responding for about {0} s.</value><comment>Finding sentence; {0} = seconds.</comment></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>Websites could not be reached.</value><comment>Finding sentence.</comment></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>{0} of internet checks went unanswered (limit {1}).</value><comment>Finding sentence; {0} and {1} are formatted percentages.</comment></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>Internet delay was {0} ms (limit {1} ms).</value><comment>Finding sentence; {0}, {1} = milliseconds.</comment></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>Internet delay varied by {0} ms (limit {1} ms).</value><comment>Finding sentence; {0}, {1} = milliseconds.</comment></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>Most of it is between this PC and your router, often Wi-Fi.</value><comment>Localization hint appended to a finding. A hint, not a certainty.</comment></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>It appears to be beyond your router.</value><comment>Localization hint appended to a finding. No blame.</comment></data>
+  <data name="Last_Check" xml:space="preserve"><value>Last check: {0}</value><comment>{0} = time and short result.</comment></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>Median {0} · p95 {1} · Variation {2} · No answer {3}</value><comment>Chart row statistics; {0}-{2} are delays, {3} = unanswered/sent. Keep &#x27;p95&#x27;.</comment></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>Above your limit ({0} ms)</value><comment>Chart legend; {0} = the user&#x27;s delay limit in ms.</comment></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>Recommendations</value><comment>Button and card title; shown only when a check found issues.</comment></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>Dismiss</value><comment>Button that clears the saved recommendations.</comment></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>Based on the check at {0}</value><comment>Top line of the recommendations; {0} = date and time of the check.</comment></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>Conditions may have changed since then. Run a quick check to confirm.</value><comment>Shown when recommendations come from an earlier check.</comment></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>What to try: {0}</value><comment>Notification line; {0} = list of action titles.</comment></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>Improve Wi-Fi reception</value><comment>Action title.</comment></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>Move closer to the router, remove obstacles between them, or switch to the 5 GHz network if you have one.</value><comment>Action how-to.</comment></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>Try a network cable</value><comment>Action title.</comment></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>Connect this PC to the router with an Ethernet cable, then run a quick check to compare.</value><comment>Action how-to.</comment></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>Check the network cable</value><comment>Action title.</comment></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>Reseat the cable at both ends, or try another cable or router port.</value><comment>Action how-to.</comment></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>Restart your router</value><comment>Action title.</comment></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>Unplug the router and modem for 30 seconds, plug them back in and wait about 2 minutes before checking again.</value><comment>Action how-to.</comment></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>Pause large uploads and downloads</value><comment>Action title.</comment></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>Cloud backups, video uploads, game downloads and streaming on other devices can slow the whole connection.</value><comment>Action how-to.</comment></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>Try without VPN</value><comment>Action title.</comment></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>If you use a VPN, disconnect it briefly and check again, if you are allowed to.</value><comment>Action how-to. Respect workplace rules.</comment></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>Contact your internet provider</value><comment>Action title.</comment></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>If it keeps happening after restarting the router, share these results with your provider.</value><comment>Action how-to. No blame.</comment></data>
+  <data name="Capture_SecondsLeft.one" xml:space="preserve"><value>{0} second left</value><comment>Plural (CLDR one). {0} = whole seconds remaining.</comment></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>{0} seconds left</value><comment>Plural (CLDR other). {0} = whole seconds remaining.</comment></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>Quick check length</value><comment>Label for the quick check length field.</comment></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>seconds</value><comment>Unit after a number field; must not depend on the number (use an abbreviation if needed).</comment></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>Between {0} and {1} seconds.</value><comment>Allowed range; {0} and {1} are numbers of seconds.</comment></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>Checking your connection…</value><comment>Status title while a check runs.</comment></data>
+  <data name="Nav_Check" xml:space="preserve"><value>Check</value><comment>Navigation item and page title for the check page.</comment></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>Checks</value><comment>Settings section heading.</comment></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>Alerts</value><comment>Settings section heading.</comment></data>
+  <data name="Status_Slow" xml:space="preserve"><value>Slow</value><comment>Path step status after a check: answering, but above the user&#x27;s limits.</comment></data>
+  <data name="Metric_Download" xml:space="preserve"><value>Download</value><comment>Metric tile label.</comment></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>Upload</value><comment>Metric tile label.</comment></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>Latency</value><comment>Metric tile label (idle internet latency).</comment></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>Variation</value><comment>Metric tile label; probe RTT variation, not VoIP jitter.</comment></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>Under load: {0}</value><comment>Latency during the speed test; {0} = &quot;↓ 58 ms · ↑ 120 ms&quot;.</comment></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>Not measured</value><comment>Speed tile detail when the speed test did not run.</comment></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>Skipped on a metered connection</value><comment>Speed tile detail on metered connections.</comment></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>Could not measure</value><comment>Speed tile detail when the transfer failed.</comment></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>Measuring download speed…</value><comment>Status title during the download phase.</comment></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>Measuring upload speed…</value><comment>Status title during the upload phase.</comment></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Measure download and upload speed</value><comment>Settings toggle.</comment></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Adds about 16 seconds to quick checks and can use up to 300 MB. Never runs in background checks or on metered connections.</value><comment>Explains data use of the speed test.</comment></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>Fix the issues found</value><comment>Recommendations page heading above numbered fixes for detected issues.</comment></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>Best practices for this PC</value><comment>Recommendations page heading above configuration advice for this PC.</comment></data>
+  <data name="Advice_Important" xml:space="preserve"><value>Important</value><comment>Level label on a best-practice card.</comment></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>Suggestion</value><comment>Level label on a best-practice card.</comment></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>No connection issues were found. These settings could still make your connection faster or more reliable.</value><comment>Shown on the recommendations page when the check found no issues but some settings could be improved.</comment></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>Worth checking: {0}</value><comment>Status line and notification; {0} = best-practice title.</comment></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>Latency rises by {0} ms under load</value><comment>Replaces the old title. {0} = extra milliseconds.</comment></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>Downloads and uploads delay everything else (bufferbloat). Turn on Smart Queue Management (SQM) or QoS in your router, if it has it.</value><comment>Best-practice how-to. SQM and QoS are router feature names.</comment></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>Weak Wi-Fi signal ({0} of 5 bars)</value><comment>{0} = signal bars out of 5.</comment></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>Move closer to the router, remove obstacles, or add a mesh access point. A cable gives the most stable connection.</value><comment>Best-practice how-to.</comment></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>TCP receive window auto-tuning is limited</value><comment>Best-practice title.</comment></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>This caps download speed. In a terminal opened as administrator, run: netsh int tcp set global autotuninglevel=normal</value><comment>Keep the command exactly as written (not translated).</comment></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>Cable link runs at only {0} Mbps</value><comment>{0} = link speed in Mbps.</comment></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Gigabit needs a Cat5e or better cable and a gigabit port. Try another cable or router port.</value><comment>Best-practice how-to. Cat5e is a cable category name.</comment></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>Slow Wi-Fi link ({0} Mbps)</value><comment>{0} = Wi-Fi link speed in Mbps.</comment></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>Connect to the 5 GHz or 6 GHz network if your router has one, and keep the router in an open, central spot.</value><comment>Best-practice how-to.</comment></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>Windows may turn off the network adapter to save power</value><comment>Best-practice title.</comment></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>In Device Manager, open your network adapter. On the Power Management tab, if shown, clear “Allow the computer to turn off this device to save power”.</value><comment>Use the Windows Device Manager wording of the target language for the tab and check box names.</comment></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet is on</value><comment>Energy-Efficient Ethernet is a driver setting name.</comment></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>It can add delay spikes. In Device Manager, open your Ethernet adapter and, on the Advanced tab, set Energy-Efficient Ethernet to Off.</value><comment>Use the Windows Device Manager wording of the target language for the tab name.</comment></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>Power saving may slow your connection</value><comment>Best-practice title.</comment></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>Energy saver and battery power saving slow down Wi-Fi. Plug in your PC, or in Settings &gt; System &gt; Power &amp; battery, turn off Energy saver and set Power mode to Balanced.</value><comment>Use the Windows 11 Settings wording of the target language for the page and setting names.</comment></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>Name lookups are slow ({0} ms)</value><comment>{0} = milliseconds.</comment></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>Websites take longer to start loading. Restart your router, or in Settings &gt; Network &amp; internet, open your connection properties and edit DNS server assignment.</value><comment>Use the Windows 11 Settings wording of the target language for the page and setting names.</comment></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>Network driver is from {0}</value><comment>{0} = month and year, already localized.</comment></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>Older drivers can cause drops and slow speeds. Get the latest driver from your PC or adapter maker, or check Windows Update &gt; Advanced options &gt; Optional updates.</value><comment>Use the Windows 11 Settings wording of the target language for the page names.</comment></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>This connection is set as metered</value><comment>Best-practice title.</comment></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows delays updates and some apps sync less. If your data is unlimited, turn off Metered connection in the network properties.</value><comment>Use the Windows 11 Settings wording of the target language for the setting name.</comment></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>A proxy server is in use</value><comment>Best-practice title.</comment></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>Traffic goes through another server, which can slow or block sites. If you or your organization did not set it up, turn it off in Settings &gt; Network &amp; internet &gt; Proxy.</value><comment>Use the Windows 11 Settings wording of the target language for the page names.</comment></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 is turned off</value><comment>Best-practice title.</comment></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>Some apps and Windows features rely on IPv6, and Microsoft does not recommend turning it off. Turn it back on in the network adapter properties, or ask your IT admin.</value><comment>Best-practice how-to.</comment></data>
+  <data name="Marker_Help" xml:space="preserve"><value>Press this the moment you notice lag, a freeze or a dropped call during the check. A flag marks that moment on the chart, so you can see what your connection was doing then.</value><comment>Tooltip and screen-reader help for the &quot;It lagged just now&quot; button, shown only during a check.</comment></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>Your lag marks: {0}</value><comment>Chart legend; {0} = list of times in seconds, for example 12 s, 31 s.</comment></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>Open Settings</value><comment>Link on a recommendation that opens the matching Windows Settings page.</comment></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>Open Device Manager</value><comment>Link that opens Windows Device Manager.</comment></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>Open Power Options</value><comment>Link that opens Control Panel Power Options.</comment></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>Open Task Manager</value><comment>Link that opens Windows Task Manager.</comment></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>Open router page</value><comment>Link that opens the home router admin page in the browser.</comment></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>Copy command</value><comment>Link that copies a command to the clipboard.</comment></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>Copy summary for your provider</value><comment>Link that copies a text summary of the check, to give to the internet provider.</comment></data>
+  <data name="Status_Copied" xml:space="preserve"><value>Copied to the clipboard.</value><comment>Shown after text was copied to the clipboard.</comment></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>Other apps used the connection during the check (↓ {0} · ↑ {1} Mbps)</value><comment>{0} = download Mbps, {1} = upload Mbps used by other apps on this PC during the check.</comment></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>Downloads, cloud sync and updates on this PC compete with games and calls, and make results look worse. Pause them, then check again. Task Manager shows which apps use the network.</value><comment>Best-practice how-to.</comment></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>USB power saving can disconnect your USB network adapter</value><comment>Best-practice title.</comment></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>In Power Options, choose Change plan settings &gt; Change advanced power settings &gt; USB settings, and set USB selective suspend setting to Disabled.</value><comment>Use the Windows Power Options wording of the target language for the page and setting names.</comment></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>Checked, no change needed: {0}</value><comment>{0} = list of checked areas, for example Wi-Fi signal, proxy, IPv6.</comment></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>Wi-Fi signal</value><comment>Item in the &quot;Checked, no change needed&quot; list. Lower case unless the language capitalizes nouns.</comment></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>link speed</value><comment>Item in the checked list (network adapter link speed).</comment></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>network driver</value><comment>Item in the checked list.</comment></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>adapter power management</value><comment>Item in the checked list (adapter power management setting).</comment></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>USB power saving</value><comment>Item in the checked list.</comment></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value><comment>Item in the checked list. Energy-Efficient Ethernet is a driver setting name.</comment></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>TCP auto-tuning</value><comment>Item in the checked list (TCP receive window auto-tuning).</comment></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>power saving</value><comment>Item in the checked list.</comment></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>name lookups (DNS)</value><comment>Item in the checked list.</comment></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>latency under load</value><comment>Item in the checked list.</comment></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>other traffic on this PC</value><comment>Item in the checked list (traffic from other apps on this PC).</comment></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>proxy</value><comment>Item in the checked list.</comment></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value><comment>Item in the checked list.</comment></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>metered connection</value><comment>Item in the checked list.</comment></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value><comment>Item in the checked list.</comment></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>Downloads fill your connection's queue. In your router's settings, turn on SQM, Smart Queue or Adaptive QoS and set the download limit to about {1} Mbps (90% of your measured speed).</value><comment>{1} = suggested router download limit in Mbps. SQM, Smart Queue, Adaptive QoS are router feature names.</comment></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>Uploads fill your connection's queue. Pause cloud backup and sync while gaming or on calls, or turn on SQM, Smart Queue or Adaptive QoS in your router with an upload limit of about {1} Mbps (90% of your measured speed).</value><comment>{1} = suggested router upload limit in Mbps.</comment></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>OneDrive was syncing during the check ({3} MB)</value><comment>{3} = megabytes.</comment></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>Pause it while gaming or on calls: select the OneDrive cloud icon in the taskbar corner, then Settings &gt; Pause syncing &gt; 2 hours. It resumes by itself.</value><comment>Use the OneDrive app wording of the target language.</comment></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>{2} was syncing during the check ({3} MB)</value><comment>{2} = app name, {3} = megabytes.</comment></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>Pause it while gaming or on calls: select its icon in the taskbar corner and choose Pause.</value><comment>Cloud storage app such as Dropbox or Google Drive.</comment></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>{2} was downloading during the check ({3} MB)</value><comment>{2} = game launcher name, {3} = megabytes.</comment></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>A game or update is downloading. In {2}, open Downloads and pause them while you play.</value><comment>{2} = game launcher name.</comment></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>{2} used {3} MB during the check</value><comment>{2} = browser name, {3} = megabytes.</comment></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>A download, or a video or streaming tab, is using the connection. In {2}, press Ctrl+J to pause downloads, and close tabs you don't need.</value><comment>{2} = browser name. Ctrl+J opens the downloads list.</comment></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>Windows services used {3} MB during the check</value><comment>{3} = megabytes.</comment></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update or Delivery Optimization is transferring data. Limit their bandwidth in Delivery Optimization &gt; Advanced options.</value><comment>Use the Windows 11 Settings wording for Delivery Optimization.</comment></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>{2} used {3} MB during the check</value><comment>{2} = app name, {3} = megabytes.</comment></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>Close {2}, or pause what it is doing, while gaming or on calls. Task Manager &gt; Processes, sorted by Network, shows it live.</value><comment>{2} = app name. Use the Task Manager wording of the target language.</comment></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>Also active: {0} ({1} MB).</value><comment>{0} = second app name, {1} = its megabytes.</comment></data>
+  <data name="App_Windows" xml:space="preserve"><value>Windows services</value><comment>Name used for Windows system services in traffic advice.</comment></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>Weak Wi-Fi signal on “{2}” ({0} of 5 bars)</value><comment>{2} = Wi-Fi network name, {0} = signal bars.</comment></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>{3} links at only {1} Mbps from here. Bring this PC and the router into the same room or line of sight, keep the router out of cabinets, or use a cable for gaming and calls.</value><comment>{3} = adapter name, {1} = link speed in Mbps.</comment></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>“{2}” links at only {0} Mbps</value><comment>{2} = Wi-Fi network name, {0} = link speed in Mbps.</comment></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>That usually means the 2.4 GHz band or a distant router. If your router also has a 5 GHz network (often named “{2}-5G”), connect to it in Settings &gt; Network &amp; internet &gt; Wi-Fi.</value><comment>{2} = Wi-Fi network name. Use the Windows 11 Settings wording.</comment></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>Your {3} supports {4}, so {0} Mbps means it is on the 2.4 GHz band or far from the router. Connect to your router's 5 GHz or 6 GHz network (often named “{2}-5G”) in Settings &gt; Network &amp; internet &gt; Wi-Fi.</value><comment>{3} = adapter name, {4} = Wi-Fi standard such as Wi-Fi 6E, {0} = Mbps, {2} = network name.</comment></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>Your {3} is an older {4} adapter. A Wi-Fi 6 USB adapter or a network cable would be much faster.</value><comment>{3} = adapter name, {4} = Wi-Fi standard such as Wi-Fi 4.</comment></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} runs at only {0} Mbps</value><comment>{2} = Ethernet adapter name, {0} = Mbps.</comment></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>Gigabit needs all eight wires. Replace the cable with a Cat5e or Cat6 one and try another router port; if it stays at {0} Mbps, the port or a switch in between is limited.</value><comment>{0} = Mbps. Cat5e and Cat6 are cable categories.</comment></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>Windows can turn off {2} to save power</value><comment>{2} = adapter name.</comment></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>In Device Manager, open Network adapters &gt; {2} &gt; Power Management and clear “Allow the computer to turn off this device to save power”.</value><comment>{2} = adapter name. Use the Device Manager wording of the target language for the tab and check box.</comment></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>USB power saving can disconnect {2}</value><comment>{2} = USB network adapter name.</comment></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>In Power Options, choose Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting, and set Plugged in to Disabled.</value><comment>Use the Power Options wording of the target language.</comment></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>In Power Options, choose Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting, and set On battery to Disabled.</value><comment>Use the Power Options wording of the target language.</comment></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>Energy-Efficient Ethernet is on for {2}</value><comment>{2} = Ethernet adapter name. Energy-Efficient Ethernet is a driver setting name.</comment></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>It can add delay spikes. In Device Manager, open Network adapters &gt; {2} &gt; Advanced, select Energy-Efficient Ethernet (or Green Ethernet) and set it to Disabled.</value><comment>{2} = adapter name. Use the Device Manager wording for the Advanced tab.</comment></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>Energy saver is on</value><comment>Use the Windows 11 name of Energy saver.</comment></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>It limits Wi-Fi and background activity. Turn it off in Settings &gt; System &gt; Power &amp; battery &gt; Energy saver, or plug in your PC.</value><comment>Use the Windows 11 Settings wording.</comment></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>Power mode is set to Best power efficiency</value><comment>Use the Windows 11 name of the power mode.</comment></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>It slows Wi-Fi to save battery. In Settings &gt; System &gt; Power &amp; battery, set Power mode to Balanced or Best performance.</value><comment>Use the Windows 11 Settings wording.</comment></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>Wi-Fi power saving is set to {2} on battery</value><comment>{2} = power saving level name.</comment></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>In Power Options, choose Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode, and set On battery to Maximum Performance.</value><comment>Use the Power Options wording of the target language.</comment></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>Wi-Fi power saving is set to {2} while plugged in</value><comment>{2} = power saving level name.</comment></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>In Power Options, choose Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode, and set Plugged in to Maximum Performance.</value><comment>Use the Power Options wording of the target language.</comment></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>Low Power Saving</value><comment>Power Options value name (Wireless Adapter Settings).</comment></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>Medium Power Saving</value><comment>Power Options value name (Wireless Adapter Settings).</comment></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>Maximum Power Saving</value><comment>Power Options value name (Wireless Adapter Settings).</comment></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>Name lookups through {2} are slow ({0} ms)</value><comment>{2} = DNS server address, {0} = milliseconds.</comment></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>Your PC uses the router ({2}) for DNS, and it answers slowly. Restart the router; if lookups stay slow, set a public DNS server such as 1.1.1.1 or 8.8.8.8 under DNS server assignment in your connection's properties.</value><comment>{2} = router address. Keep 1.1.1.1 and 8.8.8.8 as they are.</comment></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>The DNS server {2} answers slowly. Set a faster one, such as 1.1.1.1 or 8.8.8.8, under DNS server assignment in your connection's properties.</value><comment>{2} = DNS server address.</comment></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>The {2} driver is from {0} (version {3})</value><comment>{2} = adapter name, {0} = month and year, {3} = driver version.</comment></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>Get the newest driver from your PC maker's support page, or check Windows Update &gt; Advanced options &gt; Optional updates.</value><comment>Use the Windows 11 Settings wording.</comment></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>Intel publishes newer drivers for this adapter. Install them with Intel Driver &amp; Support Assistant.</value><comment>Intel Driver &amp; Support Assistant is a product name.</comment></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>“{2}” is set as a metered connection</value><comment>{2} = network name.</comment></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>On it, Windows delays updates and some apps sync less. If your data plan is unlimited, turn off Metered connection in the properties of “{2}”.</value><comment>{2} = network name.</comment></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>Web traffic goes through the proxy {2}</value><comment>{2} = proxy address such as 127.0.0.1:8888.</comment></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} is a program on this PC, such as a debugging tool, ad blocker or security app. Close it, or turn the proxy off in Settings &gt; Network &amp; internet &gt; Proxy.</value><comment>{2} = proxy address on this PC.</comment></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>If you or your organization did not set it up, turn it off in Settings &gt; Network &amp; internet &gt; Proxy.</value><comment>Use the Windows 11 Settings wording.</comment></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>A VPN is routing your traffic</value><comment>Best-practice title when the VPN name is unknown.</comment></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>A VPN adds a detour to every packet. For gaming and calls, disconnect it, or exclude the game or call app in its split tunneling settings.</value><comment>Split tunneling is a VPN feature name.</comment></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} is routing your traffic</value><comment>{2} = VPN adapter name.</comment></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>Receive window auto-tuning is set to “{2}”</value><comment>{2} = netsh level name such as disabled; keep it untranslated.</comment></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>That caps download speed on fast connections. In Terminal (Admin), run: netsh int tcp set global autotuninglevel=normal</value><comment>Keep the command exactly as written. Terminal (Admin) is the Windows 11 menu name.</comment></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>IPv6 is turned off for the whole PC</value><comment>Best-practice title.</comment></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>The registry value DisabledComponents is {2}, often set by a tweak tool. Microsoft recommends 0x20 (prefer IPv4) instead: ask your admin to change it, then restart.</value><comment>{2} = hexadecimal value such as 0xFF. Keep DisabledComponents and 0x20 as they are.</comment></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>IPv6 is turned off on {2}</value><comment>{2} = adapter name.</comment></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>In Network Connections, open {2} &gt; Properties and select Internet Protocol Version 6 (TCP/IPv6).</value><comment>{2} = adapter name. Use the Network Connections wording of the target language.</comment></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>Open download page</value><comment>Link that opens the driver maker&#x27;s download page.</comment></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>Open Network Connections</value><comment>Link that opens Control Panel Network Connections.</comment></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>On this PC, {0} used {1} MB during the check. Pause it first, then check again.</value><comment>{0} = app name, {1} = megabytes.</comment></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>This PC was quiet during the check, so look at other devices at home: consoles downloading updates, TVs streaming, phones backing up photos, or cameras uploading video.</value><comment>Shown when this PC itself had almost no traffic.</comment></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>Unplug the router ({0}) for 30 seconds, plug it back in, and run a quick check once its lights are steady.</value><comment>{0} = router IP address.</comment></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>Tell your provider what the check found: “{0}” Copy summary gives them the details.</value><comment>{0} = what the check found, as a sentence.</comment></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>No network connection</value><comment>Status headline when the PC has no network at all.</comment></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>Connect to Wi-Fi or plug in a network cable. Checks won't run until this PC is connected.</value><comment>Shown under the headline when the PC has no network at all; no check runs.</comment></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>Check recommendations with an online AI</value><comment>Settings toggle title.</comment></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>Before advice is shown, only generic text—not check results, device names, local addresses or measurements—is sent to public AI services. They still see your public IP and normal HTTPS metadata. Results are remembered for 30 days.</value><comment>Settings toggle description. Disclose that providers see normal HTTPS metadata, including the public IP.</comment></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>Checking the recommendations with an online AI…</value><comment>Shown while the recommendations are being checked online, before they appear.</comment></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>Checked by an online AI ({0}).</value><comment>{0} = names of the AI services that answered.</comment></data>
+  <data name="Review_Partial" xml:space="preserve"><value>Some recommendations could not be checked by an online AI.</value><comment>Shown when only some recommendations could be checked.</comment></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>The online AI check was not available, so these recommendations are shown unchecked.</value><comment>Shown when no AI service answered (for example while offline).</comment></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>Some advice was held back because two online AI reviewers flagged it as incorrect.</value><comment>Shown when advice was hidden after two AI reviewers rejected it.</comment></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>AI-checked</value><comment>Small label on a recommendation card that an online AI confirmed.</comment></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>Appearance</value><comment>Settings section heading.</comment></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>Theme</value><comment>Settings label for the colour theme selector.</comment></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>Every theme meets WCAG 2.2 AA contrast for text, buttons and labels; the high-contrast themes meet AAA.</value><comment>Settings description under the theme selector. WCAG is a standard name.</comment></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>Dark</value><comment>Theme name.</comment></data>
+  <data name="Theme_Light" xml:space="preserve"><value>Light</value><comment>Theme name.</comment></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>High contrast dark</value><comment>Theme name (white text on black).</comment></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>High contrast light</value><comment>Theme name (black text on white).</comment></data>
+  <data name="Theme_System" xml:space="preserve"><value>Use Windows setting</value><comment>Theme option that follows the Windows light/dark setting.</comment></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Windows high contrast is on, so ConnectionClue uses your Windows contrast colors.</value><comment>Shown when Windows high contrast mode is on.</comment></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>Download speed: how fast data reaches this PC from the internet, measured by downloading test data for 8 seconds. Higher is better; video streaming needs about 5 to 25 Mbps.</value><comment>Tooltip for the Download tile. Mbps is a unit.</comment></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>Upload speed: how fast this PC sends data to the internet, measured for 8 seconds. Higher is better; video calls and cloud backups depend on it.</value><comment>Tooltip for the Upload tile.</comment></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>Latency: how long a message takes to reach an internet server and come back, in milliseconds. Lower is better; under 50 ms feels instant in games and calls. “Under load” shows it while downloading and uploading.</value><comment>Tooltip for the Latency tile. ms is a unit; keep the quoted label consistent with the translation of “Under load”.</comment></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>Variation (jitter): how much the latency changes from one moment to the next. Lower is better; above 30 ms, calls and games start to stutter.</value><comment>Tooltip for the Variation tile. Jitter is the technical term.</comment></data>
+  <data name="Chart_Help" xml:space="preserve"><value>Each bar is one test; its height is the delay in milliseconds (scale on the left, time along the bottom). Lower is better. Bars in the “Above your limit” color exceed your limit, and hatched bars got no answer. Point at a bar to see its value.</value><comment>Tooltip for the “Delay over time” chart. Keep “Above your limit” consistent with its legend translation.</comment></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>Home network: how long your router takes to answer this PC. It shows problems with Wi-Fi or cables inside your home.</value><comment>Tooltip for the “Home network” chart row and path step.</comment></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>Internet: how long it takes to connect to a server on the internet. It shows problems with your internet provider.</value><comment>Tooltip for the “Internet” chart row and path step.</comment></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>Web services: how long it takes to look up a web address and load a web page. It shows slow name lookups or websites.</value><comment>Tooltip for the “Web services” chart row and path step.</comment></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>Choose this if games lag, freeze or rubber-band. Advice then focuses on latency, variation and stability.</value><comment>Tooltip for the “Gaming lag” symptom button.</comment></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>Choose this if videos pause to buffer or drop in quality. Advice then focuses on download speed and name lookups.</value><comment>Tooltip for the “Buffering video” symptom button.</comment></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>Choose this if voice or video calls break up or freeze. Advice then focuses on latency, variation and upload speed.</value><comment>Tooltip for the “Choppy calls” symptom button.</comment></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Choose this if the connection drops completely now and then. Advice then focuses on Wi-Fi signal, power saving and adapters.</value><comment>Tooltip for the “Disconnections” symptom button.</comment></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value><comment>Tooltip on one chart bar; {0} = seconds into the check, {1} = milliseconds.</comment></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: no answer</value><comment>Tooltip on a chart bar without an answer; {0} = seconds into the check.</comment></data>
+  <data name="Nav_Insights" xml:space="preserve"><value>Insights</value><comment>Navigation destination for check history and diagnostic tools.</comment></data>
+  <data name="History_Heading" xml:space="preserve"><value>Connection history</value><comment>Heading for saved sampled check history.</comment></data>
+  <data name="History_Summary" xml:space="preserve"><value>Saved check samples: {0}. Latest: {1}.</value><comment>History summary; {0} = sample count, {1} = localized date and time.</comment></data>
+  <data name="History_NoSamples" xml:space="preserve"><value>No checks are saved yet. Run a quick check or enable background checks.</value><comment>Empty state for the history page.</comment></data>
+  <data name="History_SamplingLimit" xml:space="preserve"><value>These are sampled checks, not continuous monitoring. Gaps between checks are unobserved; problems can start and end between samples.</value><comment>Important limit shown with sampled history.</comment></data>
+  <data name="History_NoProblems" xml:space="preserve"><value>No sampled checks reported a connection problem.</value><comment>History finding when there are no problem checks.</comment></data>
+  <data name="History_WorstHours" xml:space="preserve"><value>Most sampled problems by local time: {0}. Counts show problem checks over total checks, not downtime.</value><comment>Worst-hour summary; {0} = times and observed/total sample counts.</comment></data>
+  <data name="History_DailyHeading" xml:space="preserve"><value>Daily summary (last 30 days)</value><comment>History table heading.</comment></data>
+  <data name="History_RecentHeading" xml:space="preserve"><value>Recent checks (up to 50)</value><comment>Recent history list heading.</comment></data>
+  <data name="History_ColumnDay" xml:space="preserve"><value>Day</value><comment>History table column.</comment></data>
+  <data name="History_ColumnChecks" xml:space="preserve"><value>Checks</value><comment>History table column.</comment></data>
+  <data name="History_ColumnSpeed" xml:space="preserve"><value>Average speed / plan</value><comment>History table column.</comment></data>
+  <data name="History_NotEnoughData" xml:space="preserve"><value>Not enough data</value><comment>Rate when no conclusive samples exist.</comment></data>
+  <data name="History_Speeds" xml:space="preserve"><value>Average: download {0} Mbps; upload {1} Mbps</value><comment>Daily trend; {0} and {1} are measured average speeds or an em dash.</comment></data>
+  <data name="History_PlanComparison" xml:space="preserve"><value>Plan comparison: download {0}; upload {1}</value><comment>Percentages of the speeds the user entered; an em dash means no measurements.</comment></data>
+  <data name="History_DayAccessible" xml:space="preserve"><value>{0}. {1} checks. Quality score: {2}. {3}. {4}.</value><comment>{0} = date, {1} = checks, {2} = History_QualityValue, {3} = speeds, {4} = plan comparison.</comment></data>
+  <data name="History_Checks" xml:space="preserve"><value>{0}</value><comment>Number of checks in one daily row.</comment></data>
+  <data name="History_RowMetrics" xml:space="preserve"><value>Latency {0} ms, download {1} Mbps, upload {2} Mbps</value><comment>Accessible metrics for one saved check; em dash means unavailable.</comment></data>
+  <data name="Bufferbloat_NotMeasured" xml:space="preserve"><value>Bufferbloat grade: not measured. Run a quick check with the speed test enabled.</value><comment>Shown when there are no latency-under-load measurements.</comment></data>
+  <data name="Bufferbloat_Summary" xml:space="preserve"><value>Bufferbloat grade {0}; latency rose {1} ms under load.</value><comment>{0} = A–F grade, {1} = increase in median latency during download or upload.</comment></data>
+  <data name="Bufferbloat_Help" xml:space="preserve"><value>Grade uses the increase in median latency under download or upload: A ≤5, B ≤30, C ≤60, D ≤100, E ≤200, F &gt;200 ms. It is a sample, not an ISP score.</value><comment>Tooltip and screen-reader help for the bufferbloat grade.</comment></data>
+  <data name="Settings_Startup" xml:space="preserve"><value>Start with Windows</value><comment>Settings toggle.</comment></data>
+  <data name="Settings_StartupHint" xml:space="preserve"><value>Launches ConnectionClue when you sign in. MSI installs start minimized; Microsoft Store installs are started by Windows. Requires background checks to be on.</value><comment>Startup setting help; behavior depends on the installation type.</comment></data>
+  <data name="Startup_Enabled" xml:space="preserve"><value>Startup preference updated.</value><comment>Live status after enabling or disabling startup.</comment></data>
+  <data name="Startup_NotEnabled" xml:space="preserve"><value>Windows did not enable startup. Check Settings &gt; Apps &gt; Startup.</value><comment>Live status when Windows denies startup registration.</comment></data>
+  <data name="Startup_Failed" xml:space="preserve"><value>Could not update startup. Check the Windows startup settings and try again.</value><comment>Live error status.</comment></data>
+  <data name="Settings_PlanSpeed" xml:space="preserve"><value>Your plan speed</value><comment>Plan-speed inputs for trend comparison.</comment></data>
+  <data name="Settings_PlanSpeedHint" xml:space="preserve"><value>Optional. Enter the download and upload speeds in your internet plan. Comparisons use your measured averages; this app does not know your provider's promised speed.</value><comment>Explains the optional user-entered plan speed.</comment></data>
+  <data name="Settings_PlanDownload" xml:space="preserve"><value>Plan download</value><comment>Optional plan download speed input.</comment></data>
+  <data name="Settings_PlanUpload" xml:space="preserve"><value>Plan upload</value><comment>Optional plan upload speed input.</comment></data>
+  <data name="Settings_InvalidPlanSpeed" xml:space="preserve"><value>Enter a number greater than 0 and no more than 1,000,000 Mbps, or leave both fields blank.</value><comment>Validation error for plan speed entries.</comment></data>
+  <data name="Settings_Shortcuts" xml:space="preserve"><value>Keyboard shortcuts</value><comment>Settings section heading.</comment></data>
+  <data name="Settings_ShortcutCheck" xml:space="preserve"><value>F5 — run a quick check</value><comment>Keyboard shortcut help.</comment></data>
+  <data name="Settings_ShortcutMarker" xml:space="preserve"><value>Ctrl+L — mark a lag moment during a running check</value><comment>Keyboard shortcut help.</comment></data>
+  <data name="Settings_SectionUpdates" xml:space="preserve"><value>Updates</value><comment>Settings section heading.</comment></data>
+  <data name="Update_CheckButton" xml:space="preserve"><value>Check for updates</value><comment>Runs a user-initiated check of the official release feed.</comment></data>
+  <data name="Update_Help" xml:space="preserve"><value>Checks the public ConnectionClue release page only when you press the button; no device details are sent. Microsoft Store installs update automatically through Windows. If you installed with winget, run: winget upgrade ConnectionClue.ConnectionClue (or winget upgrade --all). Other installs need your approval.</value><comment>Update section help.</comment></data>
+  <data name="Update_Checking" xml:space="preserve"><value>Checking the official release feed…</value><comment>Live status while checking.</comment></data>
+  <data name="Update_Current" xml:space="preserve"><value>Version {0} is current.</value><comment>{0} = installed version.</comment></data>
+  <data name="Update_Available" xml:space="preserve"><value>Version {0} is available. Install it from the official release page, or run: winget upgrade ConnectionClue.ConnectionClue</value><comment>{0} = version.</comment></data>
+  <data name="Update_StoreManaged" xml:space="preserve"><value>Version {0} is available. Check Microsoft Store for an update; Windows manages Store package updates.</value><comment>{0} = latest version.</comment></data>
+  <data name="Update_Failed" xml:space="preserve"><value>Could not check for updates. Check your connection and try again.</value><comment>Live status after a failed update request.</comment></data>
+  <data name="Capture_LongLength" xml:space="preserve"><value>Long capture duration</value><comment>Duration selector for continuous foreground recording.</comment></data>
+  <data name="Capture_LongHelp" xml:space="preserve"><value>Continuously samples this PC's network path for the selected duration. It does not run the bandwidth test or save raw samples; only a brief, anonymous summary is kept in local history. Stop at any time. Keep the app open.</value><comment>Explains long capture, resource, privacy, and evidence limits.</comment></data>
+  <data name="Settings_Targets" xml:space="preserve"><value>Optional symptom-specific targets</value><comment>Settings section for per-symptom host and port values.</comment></data>
+  <data name="Settings_TargetsHint" xml:space="preserve"><value>Optional host:port for each symptom, such as your game's server. It is tested together with the built-in services when you run Quick Check or Test services. A TCP handshake checks reachability, not game latency, call quality or video playback.</value><comment>Explains the optional per-symptom targets.</comment></data>
+  <data name="Target_Heading" xml:space="preserve"><value>Services for this symptom</value><comment>Insights card heading.</comment></data>
+  <data name="Target_Help" xml:space="preserve"><value>Measures how long a TCP connection to real services for the selected symptom takes: game platforms for gaming lag, Teams, Zoom and Meet for calls, streaming services for video. Quick Check runs it automatically after the check. No application data is sent, and it can't measure a game's UDP traffic, call quality or a video's bitrate.</value><comment>Explains the service test.</comment></data>
+  <data name="Target_Endpoint" xml:space="preserve"><value>Your own server (optional)</value><comment>Label of the optional host:port box.</comment></data>
+  <data name="Target_EndpointHelp" xml:space="preserve"><value>Optional host:port tested together with the built-in services, such as your game's server. Many game servers use UDP, which this TCP-only test can't measure.</value><comment>Tooltip and help text of the host:port box.</comment></data>
+  <data name="Target_TestButton" xml:space="preserve"><value>Test services</value><comment>Button.</comment></data>
+  <data name="Target_Disconnected" xml:space="preserve"><value>No network connection. Connect to a network before testing a target.</value><comment>Shown when the user tries a target test while disconnected.</comment></data>
+  <data name="Target_Invalid" xml:space="preserve"><value>Enter a valid host:port, such as teams.microsoft.com:443.</value><comment>Validation for the symptom target input.</comment></data>
+  <data name="Verdict_LinkWifi" xml:space="preserve"><value>Wi-Fi link</value><comment>Subject of Verdict_R01.</comment></data>
+  <data name="Verdict_LinkCable" xml:space="preserve"><value>Network cable link</value><comment>Subject of Verdict_R01.</comment></data>
+  <data name="Verdict_LinkOther" xml:space="preserve"><value>Network link</value><comment>Subject of Verdict_R01 when the medium is unknown.</comment></data>
+  <data name="Verdict_DownFor" xml:space="preserve"><value>down for {0}</value><comment>{0} = duration such as '8 s'.</comment></data>
+  <data name="Verdict_DownUntilEnd" xml:space="preserve"><value>still down when the check ended</value><comment>Replaces Verdict_DownFor when the problem had not ended.</comment></data>
+  <data name="Verdict_R01" xml:space="preserve"><value>{0} dropped at {1} ({2}).</value><comment>R01. {0} = Verdict_Link*, {1} = local clock time, {2} = Verdict_DownFor or Verdict_DownUntilEnd.</comment></data>
+  <data name="Verdict_R02" xml:space="preserve"><value>Your router doesn't answer pings, so ConnectionClue can't tell whether a problem is inside your home network or beyond it.</value><comment>R02.</comment></data>
+  <data name="Verdict_R03" xml:space="preserve"><value>Your home network stopped passing traffic at {0} ({1}): your router and the internet both stopped answering while the link stayed connected.</value><comment>R03. {0} = time, {1} = duration phrase.</comment></data>
+  <data name="Verdict_R04Beyond" xml:space="preserve"><value>The internet stopped answering at {0} ({1}) while your router kept answering, so the problem is beyond your router: at your internet provider or farther.</value><comment>R04 with the router responding. {0} = time, {1} = duration phrase.</comment></data>
+  <data name="Verdict_R04" xml:space="preserve"><value>The internet stopped answering at {0} ({1}). Your router didn't answer at the time either, so where it stopped is unknown.</value><comment>R04 without router evidence. {0} = time, {1} = duration phrase.</comment></data>
+  <data name="Verdict_R05" xml:space="preserve"><value>Name lookup (DNS) failed at {0} ({1}) while direct connections kept working, so your DNS server is the likely cause. Compare DNS servers in Insights.</value><comment>R05. {0} = time, {1} = Verdict_DnsTimeout or Verdict_DnsError.</comment></data>
+  <data name="Verdict_DnsTimeout" xml:space="preserve"><value>no answer</value><comment>Kind of DNS failure.</comment></data>
+  <data name="Verdict_DnsError" xml:space="preserve"><value>the DNS server returned an error</value><comment>Kind of DNS failure.</comment></data>
+  <data name="Verdict_R07" xml:space="preserve"><value>The secure web check failed at {0}: {1}.</value><comment>R07. {0} = time, {1} = Verdict_Web* category.</comment></data>
+  <data name="Verdict_WebTls" xml:space="preserve"><value>the secure connection (TLS) was rejected, for example by a certificate problem or filtering software</value><comment>R07 category.</comment></data>
+  <data name="Verdict_WebProxy" xml:space="preserve"><value>a proxy asked for a sign-in</value><comment>R07 category.</comment></data>
+  <data name="Verdict_WebRedirect" xml:space="preserve"><value>the request was redirected, for example to a network sign-in page</value><comment>R07 category.</comment></data>
+  <data name="Verdict_WebUnexpected" xml:space="preserve"><value>the reply was not what the site normally sends, for example because of filtering</value><comment>R07 category.</comment></data>
+  <data name="Verdict_R08" xml:space="preserve"><value>Delay starts between this PC and your router: at {0}, router replies rose to {1} (usually {2}) along with internet delay.</value><comment>R08. {0} = time, {1} = peak router delay, {2} = usual router delay.</comment></data>
+  <data name="Verdict_R08Sustained" xml:space="preserve"><value>Delay starts between this PC and your router: router replies averaged {0} during the check.</value><comment>R08 when delay stayed high. {0} = router delay.</comment></data>
+  <data name="Verdict_WifiContext" xml:space="preserve"><value>On Wi-Fi, this usually means distance, walls or interference.</value><comment>Appended to R08 on Wi-Fi.</comment></data>
+  <data name="Verdict_R09" xml:space="preserve"><value>Delay starts beyond your router, so it's your internet provider or farther: at {0}, internet delay rose to {1} (usually {2}) while your router stayed near {3}.</value><comment>R09. {0} = time, {1} = peak, {2} = usual internet delay, {3} = router delay.</comment></data>
+  <data name="Verdict_R09Sustained" xml:space="preserve"><value>Delay starts beyond your router, so it's your internet provider or farther: internet delay averaged {0} while your router stayed near {1}.</value><comment>R09 when delay stayed high. {0} = internet delay, {1} = router delay.</comment></data>
+  <data name="Verdict_UploadContext" xml:space="preserve"><value>If someone at home is uploading or streaming, check the bufferbloat grade first.</value><comment>Appended to R09.</comment></data>
+  <data name="Verdict_R10" xml:space="preserve"><value>No problem observed during this check: the measurements stayed within your limits.</value><comment>R10. Must not claim the network is healthy in general.</comment></data>
+  <data name="Verdict_R10Marks" xml:space="preserve"><value>No problem observed around your lag marks: the measurements stayed within your limits. The lag may come from the game or app, or from its servers.</value><comment>R10 with lag marks.</comment></data>
+  <data name="Verdict_R11" xml:space="preserve"><value>Can't conclude: {0}. Next: {1}.</value><comment>R11. {0} = what is missing, {1} = next safe step.</comment></data>
+  <data name="Verdict_MissingFewSamples" xml:space="preserve"><value>too few measurements, because the check ended early</value><comment>R11 missing evidence.</comment></data>
+  <data name="Verdict_NextFewSamples" xml:space="preserve"><value>run a full check</value><comment>R11 next step.</comment></data>
+  <data name="Verdict_MissingTunnel" xml:space="preserve"><value>a VPN hides the path to your router and provider</value><comment>R11 missing evidence.</comment></data>
+  <data name="Verdict_NextTunnel" xml:space="preserve"><value>disconnect the VPN if you're allowed to, then check again</value><comment>R11 next step.</comment></data>
+  <data name="Verdict_Repeated" xml:space="preserve"><value>Seen {0} times during the check.</value><comment>{0} = count, always 2 or more.</comment></data>
+  <data name="Verdict_AtMark" xml:space="preserve"><value>At your lag mark: {0}</value><comment>Prefix for a verdict that matches a lag mark; {0} = the verdict sentence.</comment></data>
+  <data name="SupportReport_Measurements" xml:space="preserve"><value>Measurements: download {0}, upload {1}, latency {2}, variation {3}. {4}</value><comment>{0}-{3} = formatted values or a dash, {4} = bufferbloat summary sentence.</comment></data>
+  <data name="Service_Custom" xml:space="preserve"><value>Your server</value><comment>Name shown for the user's own host:port.</comment></data>
+  <data name="Service_Testing" xml:space="preserve"><value>Testing services for {0}…</value><comment>{0} = symptom label, such as 'Gaming lag'.</comment></data>
+  <data name="Service_Summary" xml:space="preserve"><value>{0}: {1} of {2} services connected. Slowest: {3} ({4} to connect).</value><comment>{0} = symptom, {1} = connected count, {2} = total, {3} = service name, {4} = time such as '45 ms'.</comment></data>
+  <data name="Service_SummaryNone" xml:space="preserve"><value>{0}: none of the {1} services could be reached, which points to a wider connection problem or filtering.</value><comment>{0} = symptom, {1} = total.</comment></data>
+  <data name="Service_TimedOutAll" xml:space="preserve"><value>{0}: the service test took too long and was stopped.</value><comment>{0} = symptom.</comment></data>
+  <data name="Service_Connected" xml:space="preserve"><value>{0} to connect</value><comment>{0} = median connect time such as '24 ms'.</comment></data>
+  <data name="Service_TimedOut" xml:space="preserve"><value>timed out</value><comment>Service result.</comment></data>
+  <data name="Service_Refused" xml:space="preserve"><value>refused the connection</value><comment>Service result.</comment></data>
+  <data name="Service_NameLookupFailed" xml:space="preserve"><value>name lookup failed</value><comment>Service result.</comment></data>
+  <data name="Service_Unreachable" xml:space="preserve"><value>could not connect</value><comment>Service result.</comment></data>
+  <data name="Diagnostics_TraceDelay" xml:space="preserve"><value>Hop {0} ({1}) adds the most delay: +{2} ms, and the delay lasts to the destination.</value><comment>{0} = hop, {1} = address, {2} = increase.</comment></data>
+  <data name="Diagnostics_TraceWhereRouter" xml:space="preserve"><value>Hop 1 is usually your router, so the delay starts between this PC and the router, often Wi-Fi.</value><comment>Where the delay is.</comment></data>
+  <data name="Diagnostics_TraceWherePrivate" xml:space="preserve"><value>Its private address suggests your home network or your provider's access network.</value><comment>Where the delay is.</comment></data>
+  <data name="Diagnostics_TraceWherePublic" xml:space="preserve"><value>It is likely in your provider's network or beyond.</value><comment>Where the delay is.</comment></data>
+  <data name="Diagnostics_TraceNoDelay" xml:space="preserve"><value>No hop adds lasting delay: every lasting increase is under {0} ms.</value><comment>{0} = threshold in ms.</comment></data>
+  <data name="Diagnostics_TraceLoss" xml:space="preserve"><value>Replies are lost from hop {0} through the destination, which suggests real loss starting there.</value><comment>{0} = hop number.</comment></data>
+  <data name="Diagnostics_DnsCurrent" xml:space="preserve"><value>Your current DNS</value><comment>Row name for this PC's own resolver.</comment></data>
+  <data name="Diagnostics_DnsCurrentNamed" xml:space="preserve"><value>{0} (your current DNS)</value><comment>{0} = public provider this PC already uses.</comment></data>
+  <data name="Diagnostics_DnsFaster" xml:space="preserve"><value>{0} answered fastest ({1}), clearly faster than your current DNS.</value><comment>{0} = provider, {1} = time.</comment></data>
+  <data name="Diagnostics_DnsFastest" xml:space="preserve"><value>{0} answered fastest ({1}). Your current DNS could not be measured.</value><comment>{0} = provider, {1} = time.</comment></data>
+  <data name="Diagnostics_DnsKeepCurrent" xml:space="preserve"><value>Your current DNS is about as fast as the public services, so there is no need to switch.</value><comment>Comparison verdict.</comment></data>
+  <data name="Diagnostics_UseDns" xml:space="preserve"><value>Use {0} DNS</value><comment>Button; {0} = provider such as Cloudflare.</comment></data>
+  <data name="Diagnostics_UseFastestDns" xml:space="preserve"><value>Use fastest DNS</value><comment>Button before a comparison found a clearly faster service.</comment></data>
+  <data name="Diagnostics_UseDnsHelp" xml:space="preserve"><value>Switches the active network adapter to the fastest public DNS service found by the comparison. Windows asks for administrator approval first, and Restore automatic DNS undoes it. Don't switch on work or school networks, or with a VPN that needs its own DNS.</value><comment>Tooltip and help text.</comment></data>
+  <data name="Diagnostics_RestoreDns" xml:space="preserve"><value>Restore automatic DNS</value><comment>Button.</comment></data>
+  <data name="Diagnostics_RestoreDnsHelp" xml:space="preserve"><value>Returns the active network adapter to the DNS server your network provides automatically. Windows asks for administrator approval first.</value><comment>Tooltip and help text.</comment></data>
+  <data name="Diagnostics_DnsSwitched" xml:space="preserve"><value>This PC now uses {0} DNS on the active network adapter. To undo it, select Restore automatic DNS.</value><comment>{0} = provider.</comment></data>
+  <data name="Diagnostics_DnsRestored" xml:space="preserve"><value>DNS is automatic again: this PC uses the DNS server your network provides.</value><comment>After restoring.</comment></data>
+  <data name="Diagnostics_DnsSwitchCancelled" xml:space="preserve"><value>DNS was not changed: the administrator prompt was cancelled.</value><comment>UAC declined.</comment></data>
+  <data name="Diagnostics_DnsSwitchFailed" xml:space="preserve"><value>Windows could not change DNS. You can change it in Windows network settings instead.</value><comment>Switch failed.</comment></data>
+  <data name="Diagnostics_DnsNoAdapter" xml:space="preserve"><value>No active network adapter was found, so DNS was not changed.</value><comment>No default route.</comment></data>
+  <data name="Diagnostics_WifiConnected" xml:space="preserve"><value>This PC uses channel {1} ({0} GHz), where {2} networks are visible, including yours.</value><comment>{0} = band, {1} = channel, {2} = count.</comment></data>
+  <data name="Diagnostics_WifiChangeChannel" xml:space="preserve"><value>Channel {0} ({1} GHz) is less crowded, with {2} networks. In your router's wireless settings, choose it or set the channel to Auto.</value><comment>{0} = channel, {1} = band, {2} = count.</comment></data>
+  <data name="Diagnostics_WifiBandAdvice" xml:space="preserve"><value>5 GHz and 6 GHz are faster and usually less crowded than 2.4 GHz, but reach less far. If your router offers them, connect to that band.</value><comment>Band advice when on 2.4 GHz.</comment></data>
+  <data name="Diagnostics_WifiBest" xml:space="preserve"><value>Least crowded: {0}.</value><comment>{0} = list of Diagnostics_WifiChannel.</comment></data>
+  <data name="Diagnostics_WifiChannel" xml:space="preserve"><value>channel {0} ({1} GHz)</value><comment>{0} = channel, {1} = band.</comment></data>
+  <data name="Diagnostics_WifiYours" xml:space="preserve"><value> · your network</value><comment>Appended to a channel row; keep the leading separator.</comment></data>
+  <data name="History_ColumnQuality" xml:space="preserve"><value>Quality score</value><comment>Daily table column; the score is 0 to 100.</comment></data>
+  <data name="History_QualityHelp" xml:space="preserve"><value>Daily quality score from 0 to 100: each conclusive check scores 100 with no issue, 50 when slower than your limits, and 0 with a connection problem, and the day's score is their average. The percentage is the share of checks with no issue. Time between checks is unobserved.</value><comment>Tooltip and help text.</comment></data>
+  <data name="History_QualityValue" xml:space="preserve"><value>{0}/100 ({1} without issues)</value><comment>{0} = score, {1} = percentage of checks with no issue.</comment></data>
+  <data name="Jump_QuickCheckHelp" xml:space="preserve"><value>Run a Quick Check now</value><comment>Taskbar jump list task description.</comment></data>
+  <data name="Diagnostics_OpenLocation" xml:space="preserve"><value>Open location settings</value><comment>Button shown when the Wi-Fi scan was denied.</comment></data>
+  <data name="Diagnostics_OpenLocationHelp" xml:space="preserve"><value>Opens Windows location settings. Windows requires location access before any app can scan nearby Wi-Fi networks; ConnectionClue doesn't use your location.</value><comment>Tooltip and help text.</comment></data>
+  <data name="Verdict_MissingNoRouterView" xml:space="preserve"><value>your router didn't answer pings at the time, so where the delay starts is unknown</value><comment>R11 missing evidence.</comment></data>
+  <data name="Verdict_NextNoRouterView" xml:space="preserve"><value>trace the route hops in Insights to see which hop adds the delay</value><comment>R11 next step.</comment></data>
+</root>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>Bincike cikin sauri</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>Bincike mai tsawo</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>Ya yi jinkiri yanzu</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>Tsaya</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>Fitar da rahoto</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>Jinkiri a wasanni</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>Bidiyo na tsayawa</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>Kira mai katsewa</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>Katsewar haɗi</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>An fara bincike.</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>An adana alama.</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>Fara bincike tukuna.</value></data>
+  <data name="Capture_MinutesLeft.one" xml:space="preserve"><value>Saura minti {0}</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>Saura mintuna {0}</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>Hanyar sadarwa ta gida</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>Intanet</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>Ayyukan yanar gizo</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>Yana amsawa</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>Ba ya amsawa</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>Ana jira</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Harshe</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>Me ke faruwa?</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>Duba haɗin ku</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue yana gwada hanyar wannan kwamfuta zuwa intanet kuma yana nuna inda matsala take.</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>Wannan kwamfuta</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>Saituna</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>Taimako</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>Manhajar za ta sake farawa da harshen da aka zaɓa.</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>Zuwa yanzu komai yana amsawa.</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>Babu amsa daga {0} a yanzu.</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>Jinkiri a tsawon lokaci</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>Babu amsa</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>Yi bincike akai-akai a bango</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>Yi bincike akai-akai ta hanyar sadarwar wayar hannu</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>A kashe shi ne ta tsohuwa. Idan an kunna, ana yin gwajin haɗi akai-akai ta cibiyar sadarwar wayar hannu. Gwajin bango ba ya auna saurin intanet.</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>Yi bincike kowane</value></data>
+  <data name="Duration_Minutes.one" xml:space="preserve"><value>minti {0}</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>mintuna {0}</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>Gargaɗe ni idan jinkirin intanet ya wuce</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>Gargaɗe ni idan binciken da ba a amsa ba ya wuce</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>Gargaɗe ni idan jinkiri ya canza fiye da</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue yana zama a yankin sanarwa kuma yana gargaɗin ka game da matsaloli. Yana aiki ne kawai lokacin da manhajar ke buɗe.</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Buɗe ConnectionClue</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Fita</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue zai ci gaba da bincike a bango.</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>Matsalar haɗi</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>Aiki ya gaza iyakokinka</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>Ya dawo daidai</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>Ba a sami matsala ba.</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>Babu isassun bayanai don yanke hukunci.</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>Haɗin tsakanin wannan kwamfuta da router ɗinka ya katse.</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>Intanet ya daina amsawa na kusan daƙiƙa {0}.</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>Ba a iya isa gidajen yanar gizo ba.</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>Kashi {0} na binciken intanet ba a amsa ba (iyaka {1}).</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>Jinkirin intanet ya kai {0} ms (iyaka {1} ms).</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>Jinkirin intanet ya canza da {0} ms (iyaka {1} ms).</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>Mafi yawansa yana tsakanin wannan kwamfuta da router ɗinka, galibi Wi-Fi.</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>Yana kama da yana bayan router ɗinka.</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>Bincike na ƙarshe: {0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>Tsakiya {0} · p95 {1} · Canji {2} · Babu amsa {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>Sama da iyakarka ({0} ms)</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>Shawarwari</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>Watsar</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>Bisa ga binciken {0}</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>Yanayi na iya canzawa tun lokacin. Yi bincike cikin sauri don tabbatarwa.</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>Abin da za ka gwada: {0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>Inganta karɓar Wi-Fi</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>Matsa kusa da router, cire abubuwan da ke tsakani, ko canza zuwa cibiyar sadarwa ta 5 GHz idan kana da ita.</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>Gwada wayar sadarwa</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>Haɗa wannan kwamfuta da router da wayar Ethernet, sannan ka yi bincike cikin sauri don kwatantawa.</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>Duba wayar sadarwa</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>Sake saka wayar a ƙarshenta biyu, ko gwada wata waya ko wata tashar router.</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>Sake kunna router ɗinka</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>Cire router da modem daga wuta na daƙiƙa 30, sake saka su, sannan ka jira kamar mintuna 2 kafin sake bincike.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>Dakatar da manyan lodawa da saukarwa</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>Ajiyar bayanai a gajimare, loda bidiyo, saukar da wasanni da kallon bidiyo kai tsaye a wasu na'urori na iya rage saurin dukkan haɗin.</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>Gwada ba tare da VPN ba</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>Idan kana amfani da VPN kuma an ba ka izini, katse shi na ɗan lokaci sannan ka sake bincike.</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>Tuntuɓi mai ba ka sabis ɗin intanet</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>Idan ya ci gaba da faruwa bayan sake kunna router, raba waɗannan sakamako da mai ba ka sabis.</value></data>
+  <data name="Capture_SecondsLeft.one" xml:space="preserve"><value>Saura daƙiƙa {0}</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>Saura daƙiƙa {0}</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>Tsawon bincike cikin sauri</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>daƙiƙa</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>Tsakanin daƙiƙa {0} zuwa {1}.</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>Ana duba haɗin ku…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>Bincike</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>Bincike</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>Gargaɗi</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>A hankali</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>Saukarwa</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>Lodawa</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>Jinkiri</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>Canji</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>Lokacin nauyi: {0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>Ba a auna ba</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>An tsallake a kan haɗin da ake auna amfaninsa</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>Ba a iya auna ba</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>Ana auna saurin saukarwa…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>Ana auna saurin lodawa…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Auna saurin saukarwa da lodawa</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Yana ƙara kusan daƙiƙa 16 ga bincike cikin sauri kuma yana iya amfani da har zuwa 300 MB. Ba ya aiki a binciken bango ko a kan haɗin da ake auna amfaninsa.</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>Gyara matsalolin da aka samu</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>Mafi kyawun hanyoyi ga wannan kwamfuta</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>Muhimmi</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>Shawara</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>Ba a sami matsalar haɗi ba. Waɗannan saituna za su iya sa haɗinka ya fi sauri ko abin dogaro.</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>Ya dace a duba: {0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>Jinkiri yana ƙaruwa da {0} ms lokacin nauyi</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>Saukarwa da lodawa suna jinkirta komai (bufferbloat). Kunna Smart Queue Management (SQM) ko QoS a router idan yana da shi.</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>Sigina Wi-Fi mai rauni (sandi {0} cikin 5)</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>Matsa kusa da router, cire shinge, ko ƙara mesh access point. Waya ce ke ba da haɗi mafi kwanciyar hankali.</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>TCP receive window auto-tuning an iyakance</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>Wannan yana iyakance saurin saukarwa. A terminal da aka buɗe a matsayin mai gudanarwa, gudanar da: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>Haɗin waya yana aiki da {0} Mbps kawai</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Gigabit na buƙatar wayar Cat5e ko mafi kyau da tashar gigabit. Gwada wata waya ko tashar router.</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>Haɗin Wi-Fi a hankali ({0} Mbps)</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>Haɗa zuwa cibiyar sadarwar 5 GHz ko 6 GHz idan router ɗinka yana da ita, kuma ajiye router a fili, a tsakiyar wuri.</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>Windows na iya kashe adaftar cibiyar sadarwa don tanadin wuta</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>A cikin Device Manager, buɗe adaftar cibiyar sadarwarka. A shafin Power Management, idan ya bayyana, cire alamar “Allow the computer to turn off this device to save power”.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet yana kunne</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>Yana iya ƙara tsalle-tsallen jinkiri. A cikin Device Manager, buɗe adaftar Ethernet ɗinka, sannan a shafin Advanced, saita Energy-Efficient Ethernet zuwa Off.</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>Tanadin wuta na iya rage saurin haɗinka</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>Energy saver da tanadin batir suna rage saurin Wi-Fi. Toshe kwamfutar, ko a Settings &gt; System &gt; Power &amp; battery, kashe Energy saver sannan saita Power mode zuwa Balanced.</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>Neman suna yana a hankali ({0} ms)</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>Shafukan yanar gizo suna ɗaukar lokaci kafin su fara lodawa. Sake kunna router, ko a Settings &gt; Network &amp; internet, buɗe properties na haɗinka ka gyara DNS server assignment.</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>Direban cibiyar sadarwa daga {0} yake</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>Tsofaffin direbobi na iya jawo katsewa da ƙarancin sauri. Samu sabon direba daga mai ƙera PC ko adaftar, ko duba Windows Update &gt; Advanced options &gt; Optional updates.</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>An saita wannan haɗin a matsayin wanda ake auna amfani</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows yana jinkirta sabuntawa kuma wasu manhajoji suna daidaitawa ƙasa. Idan bayananka ba su da iyaka, kashe Metered connection a properties na cibiyar sadarwa.</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>Ana amfani da uwar garken proxy</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>Hanya yana bi ta wata uwar garke, wanda zai iya rage ko toshe shafuka. Idan ba kai ko ƙungiyarka ka saita shi ba, kashe shi a Settings &gt; Network &amp; internet &gt; Proxy.</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 yana kashe</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>Wasu manhajoji da fasalolin Windows suna dogaro da IPv6, kuma Microsoft ba ta ba da shawarar kashe shi ba. Sake kunna shi a properties na adaftar cibiyar sadarwa, ko tambayi admin IT ɗinka.</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>Danna wannan da zarar ka lura da jinkiri, daskarewa ko katsewar kira yayin bincike. Tuta za ta nuna wannan lokaci a jadawali, don ka ga abin da haɗinka yake yi a lokacin.</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>Alamomin jinkirinka: {0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>Buɗe Settings</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>Buɗe Device Manager</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>Buɗe Power Options</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>Buɗe Task Manager</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>Buɗe shafin router</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>Kwafi umarni</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>Kwafi taƙaitaccen bayani don mai ba ka sabis</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>An kwafa zuwa allo.</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>Wasu manhajoji sun yi amfani da haɗin yayin bincike (↓ {0} · ↑ {1} Mbps)</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>Saukarwa, daidaita gajimare da sabuntawa a wannan kwamfuta suna gogayya da wasanni da kira, kuma suna sa sakamako ya fi muni. Dakatar da su, sannan ka sake bincike. Task Manager yana nuna manhajojin da ke amfani da cibiyar sadarwa.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>Tanadin wutar USB na iya katse adaftar cibiyar sadarwar USB ɗinka</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>A cikin Power Options, zaɓi Change plan settings &gt; Change advanced power settings &gt; USB settings, sannan saita USB selective suspend setting zuwa Disabled.</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>An duba, babu buƙatar canji: {0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>siginar Wi-Fi</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>saurin haɗi</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>direban cibiyar sadarwa</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>sarrafa wutar adafta</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>tanadin wutar USB</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>TCP auto-tuning</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>tanadin wuta</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>neman suna (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>jinkiri lokacin nauyi</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>wani zirga-zirga a wannan kwamfuta</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>proxy</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>haɗin da ake auna amfani</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>Saukarwa suna cika layin jiran haɗinka. A saitunan router ɗinka, kunna SQM, Smart Queue ko Adaptive QoS kuma saita iyakar saukarwa kusan {1} Mbps (90% na saurin da aka auna).</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>Lodawa suna cika layin jiran haɗinka. Dakatar da madadin girgije da daidaitawa yayin wasa ko kira, ko kunna SQM, Smart Queue ko Adaptive QoS a router tare da iyakar lodawa kusan {1} Mbps (90% na saurin da aka auna).</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>OneDrive yana daidaitawa yayin binciken ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>Dakatar da shi yayin wasa ko kira: zaɓi gunkin girgijen OneDrive a kusurwar taskbar, sannan Settings &gt; Pause syncing &gt; 2 hours. Zai ci gaba da kansa.</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>{2} yana daidaitawa yayin binciken ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>Dakatar da shi yayin wasa ko kira: zaɓi gunkinsa a kusurwar taskbar kuma zaɓi Pause.</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>{2} yana saukarwa yayin binciken ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>Ana saukar da wasa ko sabuntawa. A cikin {2}, buɗe Downloads kuma dakatar da su yayin da kake wasa.</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>{2} ya yi amfani da {3} MB yayin binciken</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>Wani saukewa, ko shafin bidiyo ko yawo, yana amfani da haɗin. A cikin {2}, danna Ctrl+J don dakatar da saukarwa, kuma rufe shafukan da ba ka buƙata.</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>Windows services sun yi amfani da {3} MB yayin binciken</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update ko Delivery Optimization na canja bayanai. Iyakance bandwidth ɗinsu a Delivery Optimization &gt; Advanced options.</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>{2} ya yi amfani da {3} MB yayin binciken</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>Rufe {2}, ko dakatar da abin da yake yi, yayin wasa ko kira. Task Manager &gt; Processes, idan an tsara ta Network, yana nuna shi kai tsaye.</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>Har ila yau yana aiki: {0} ({1} MB).</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>Windows services</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>Sigina Wi-Fi mai rauni a kan “{2}” (sandi {0} cikin 5)</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>{3} yana haɗawa da {1} Mbps kawai daga nan. Kawo wannan PC da router ɗin daki ɗaya ko inda suke ganin juna, kada a saka router a cikin kabad, ko yi amfani da kebul don wasa da kira.</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>“{2}” yana haɗawa da {0} Mbps kawai</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>Yawanci wannan na nufin band 2.4 GHz ko router mai nisa. Idan router ɗinka yana da hanyar sadarwa 5 GHz ma (sau da yawa ana kiranta “{2}-5G”), haɗa da ita a Settings &gt; Network &amp; internet &gt; Wi-Fi.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>{3} ɗinka na goyon bayan {4}, don haka {0} Mbps na nufin yana kan band 2.4 GHz ko yana nesa da router. Haɗa da hanyar sadarwar 5 GHz ko 6 GHz ta router ɗinka (sau da yawa ana kiranta “{2}-5G”) a Settings &gt; Network &amp; internet &gt; Wi-Fi.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>{3} ɗinka tsohon adapter {4} ne. Adapter USB na Wi-Fi 6 ko kebul na cibiyar sadarwa zai fi sauri sosai.</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} yana aiki da {0} Mbps kawai</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>Gigabit na buƙatar wayoyi takwas duka. Sauya kebul ɗin da Cat5e ko Cat6 kuma gwada wani tashar router; idan ya ci gaba da {0} Mbps, tashar ko switch a tsakiya yana da iyaka.</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>Windows na iya kashe {2} don adana wuta</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>A Device Manager, buɗe Network adapters &gt; {2} &gt; Power Management sannan cire zaɓin “Allow the computer to turn off this device to save power”.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>Adana wutar USB na iya cire haɗin {2}</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>A Power Options, zaɓi Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting, sannan saita Plugged in zuwa Disabled.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>A Power Options, zaɓi Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting, sannan saita On battery zuwa Disabled.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>Energy-Efficient Ethernet yana kunne don {2}</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>Yana iya ƙara tsalle-tsallen jinkiri. A Device Manager, buɗe Network adapters &gt; {2} &gt; Advanced, zaɓi Energy-Efficient Ethernet (ko Green Ethernet) sannan saita shi zuwa Disabled.</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>Energy saver yana kunne</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>Yana iyakance Wi-Fi da ayyukan bango. Kashe shi a Settings &gt; System &gt; Power &amp; battery &gt; Energy saver, ko saka PC ɗinka a wuta.</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>An saita Power mode zuwa Best power efficiency</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>Yana rage saurin Wi-Fi don adana baturi. A Settings &gt; System &gt; Power &amp; battery, saita Power mode zuwa Balanced ko Best performance.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>Adana wutar Wi-Fi an saita shi zuwa {2} a kan baturi</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>A Power Options, zaɓi Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode, sannan saita On battery zuwa Maximum Performance.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>Adana wutar Wi-Fi an saita shi zuwa {2} lokacin da aka saka wuta</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>A Power Options, zaɓi Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode, sannan saita Plugged in zuwa Maximum Performance.</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>Ƙaramin adana wuta</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>Matsakaicin adana wuta</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>Mafi girman adana wuta</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>Neman suna ta {2} yana jinkiri ({0} ms)</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>PC ɗinka yana amfani da router ({2}) don DNS, kuma yana amsawa a hankali. Sake kunna router; idan neman suna ya ci gaba da jinkiri, saita uwar garken DNS na jama’a kamar 1.1.1.1 ko 8.8.8.8 a ƙarƙashin DNS server assignment a properties na haɗinka.</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>Uwar garken DNS {2} tana amsawa a hankali. Saita wadda ta fi sauri, kamar 1.1.1.1 ko 8.8.8.8, a ƙarƙashin DNS server assignment a properties na haɗinka.</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>Driver na {2} daga {0} ne (siga {3})</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>Samo sabon driver daga shafin tallafin mai ƙera PC ɗinka, ko duba Windows Update &gt; Advanced options &gt; Optional updates.</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>Intel na fitar da sabbin drivers don wannan adapter. Shigar da su da Intel Driver &amp; Support Assistant.</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>An saita “{2}” a matsayin metered connection</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>A kansa, Windows yana jinkirta sabuntawa kuma wasu manhajoji suna daidaitawa ƙasa. Idan tsarin bayananka ba shi da iyaka, kashe Metered connection a properties na “{2}”.</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>Harkar yanar gizo na wucewa ta proxy {2}</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} wani shiri ne a kan wannan PC, kamar kayan aikin debugging, ad blocker ko manhajar tsaro. Rufe shi, ko kashe proxy a Settings &gt; Network &amp; internet &gt; Proxy.</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>Idan kai ko ƙungiyarka ba ku saita shi ba, kashe shi a Settings &gt; Network &amp; internet &gt; Proxy.</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>VPN na bi da zirga-zirgarka</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>VPN yana ƙara karkata ga kowane fakiti. Don wasa da kira, cire haɗinsa, ko ware wasan ko manhajar kira a saitunan split tunneling ɗinsa.</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} na bi da zirga-zirgarka</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>An saita Receive window auto-tuning zuwa “{2}”</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>Wannan yana iyakance saurin saukarwa a haɗin masu sauri. A Terminal (Admin), gudanar da: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>An kashe IPv6 ga dukan PC</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>Ƙimar rajista DisabledComponents ita ce {2}, sau da yawa kayan tweak tool ne ke saita ta. Microsoft na ba da shawarar 0x20 (fi son IPv4) maimakon haka: tambayi admin ɗinka ya canza ta, sannan sake kunnawa.</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>An kashe IPv6 a kan {2}</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>A Network Connections, buɗe {2} &gt; Properties kuma zaɓi Internet Protocol Version 6 (TCP/IPv6).</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>Buɗe shafin saukarwa</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>Buɗe Network Connections</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>A wannan PC, {0} ya yi amfani da {1} MB yayin binciken. Dakatar da shi da farko, sannan sake dubawa.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>Wannan PC ya yi shiru yayin binciken, don haka duba wasu na’urori a gida: consoles da ke saukar da sabuntawa, TV da ke yawo, wayoyi da ke madadin hotuna, ko kyamarori da ke loda bidiyo.</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>Cire router ({0}) daga wuta na dakika 30, sake saka shi, sannan gudanar da bincike cikin sauri da zarar fitilunsa sun tsaya.</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>Faɗa wa mai ba da sabis abin da binciken ya gano: “{0}” Copy summary yana ba su cikakkun bayanai.</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>Babu haɗin sadarwa</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>Haɗa da Wi-Fi ko saka wayar sadarwa. Ba za a yi bincike ba har sai wannan kwamfuta ta haɗu.</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>Duba shawarwari da AI na kan layi</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>Kafin a nuna shawara, ana aika rubutun ta na gaba ɗaya kaɗai zuwa ayyukan AI na jama’a kyauta (LLM7.io, Pollinations), ba a taɓa aika sunaye, adireshi ko ma’aunai daga wannan PC ba. Ana riƙe sakamako na kwanaki 30.</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>Ana duba shawarwari da AI na kan layi…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>AI na kan layi ya duba ({0}).</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>Ba a iya duba wasu shawarwari da AI na kan layi ba.</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>Binciken AI na kan layi bai samu ba, don haka ana nuna waɗannan shawarwari ba tare da dubawa ba.</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>An riƙe wasu shawarwari saboda masu bita AI na kan layi biyu sun nuna su a matsayin ba daidai ba.</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>AI ya duba</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>Bayyanarwa</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>Jigo</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>Kowane jigo yana cika bambancin WCAG 2.2 AA don rubutu, maɓallai da alamomi; jigogin babban bambanci suna cika AAA.</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>Duhu</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>Haske</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>Babban bambanci duhu</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>Babban bambanci haske</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>Yi amfani da saitin Windows</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Windows high contrast yana kunne, don haka ConnectionClue yana amfani da launukan bambanci na Windows ɗinka.</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>Saurin saukarwa: yadda bayanai ke isa wannan PC daga intanet da sauri, ana auna shi ta saukar da bayanan gwaji na dakika 8. Mafi girma ya fi kyau; yawo bidiyo yana buƙatar kusan 5 zuwa 25 Mbps.</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>Saurin lodawa: yadda wannan PC ke aika bayanai zuwa intanet da sauri, ana auna shi na dakika 8. Mafi girma ya fi kyau; kiran bidiyo da madadin girgije suna dogara da shi.</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>Jinkiri: lokacin da saƙo yake ɗauka don isa uwar garken intanet ya dawo, a millisecond. Ƙasa ya fi kyau; ƙasa da 50 ms yana ji nan take a wasanni da kira. “Lokacin nauyi” yana nuna shi yayin saukarwa da lodawa.</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>Sauyi (jitter): yadda jinkiri ke canzawa daga wannan lokaci zuwa na gaba. Ƙasa ya fi kyau; sama da 30 ms, kira da wasanni suna fara yankewa.</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>Kowane sanda gwaji ɗaya ne; tsayinsa shi ne jinkiri a millisecond (ma’auni a hagu, lokaci a ƙasa). Ƙasa ya fi kyau. Sanduna a launin “Sama da iyakarka” sun wuce iyakarka, kuma sanduna masu layi-layi ba su sami amsa ba. Nuna sanda don ganin ƙimarsa.</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>Hanyar sadarwa ta gida: lokacin da router ɗinka yake ɗauka don amsa wannan PC. Yana nuna matsaloli da Wi-Fi ko kebul a cikin gidanka.</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>Intanet: lokacin da yake ɗauka don haɗawa da uwar garke a intanet. Yana nuna matsaloli da mai ba ka intanet.</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>Ayyukan yanar gizo: lokacin da yake ɗauka don nemo adireshin yanar gizo da loda shafin yanar gizo. Yana nuna jinkirin neman suna ko shafukan yanar gizo.</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>Zaɓi wannan idan wasanni suna jinkiri, daskarewa ko rubber-band. Shawara sai ta mayar da hankali kan jinkiri, sauyi da kwanciyar hankali.</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>Zaɓi wannan idan bidiyo suna tsayawa don buffering ko ingancinsu yana raguwa. Shawara sai ta mayar da hankali kan saurin saukarwa da neman suna.</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>Zaɓi wannan idan kiran murya ko bidiyo suna yankewa ko daskarewa. Shawara sai ta mayar da hankali kan jinkiri, sauyi da saurin lodawa.</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Zaɓi wannan idan haɗin yana katsewa gaba ɗaya lokaci-lokaci. Shawara sai ta mayar da hankali kan siginar Wi-Fi, adana wuta da adapters.</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: babu amsa</value></data>
+</root>

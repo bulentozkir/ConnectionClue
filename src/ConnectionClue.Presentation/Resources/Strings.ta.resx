@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>விரைவுச் சோதனை</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>நீண்ட சோதனை</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>இப்போதுதான் லேக் ஆனது</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>நிறுத்து</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>அறிக்கையை ஏற்றுமதி செய்</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>கேமிங்கில் லேக்</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>வீடியோ பஃபரிங்</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>அழைப்புகளில் இடையூறு</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>இணைப்புத் துண்டிப்புகள்</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>சோதனை தொடங்கியது.</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>குறி பதிவுசெய்யப்பட்டது.</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>முதலில் ஒரு சோதனையைத் தொடங்கவும்.</value></data>
+  <data name="Capture_MinutesLeft.one" xml:space="preserve"><value>{0} நிமிடம் மீதமுள்ளது</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>{0} நிமிடங்கள் மீதமுள்ளன</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>வீட்டு நெட்வொர்க்</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>இணையம்</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>இணையச் சேவைகள்</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>பதிலளிக்கிறது</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>பதிலளிக்கவில்லை</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>காத்திருக்கிறது</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>மொழி</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>என்ன பிரச்சினை?</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>உங்கள் இணைப்பைச் சரிபார்க்கவும்</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>ConnectionClue இந்த கணினியிலிருந்து இணையம் வரையிலான பாதையைச் சோதித்து, சிக்கல் எங்கே உள்ளது என்பதைக் காட்டுகிறது.</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>இந்தக் கணினி</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>அமைப்புகள்</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>உதவி</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>பயன்பாடு தேர்ந்தெடுத்த மொழியில் மீண்டும் தொடங்கும்.</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>இதுவரை அனைத்தும் பதிலளிக்கின்றன.</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>{0} தற்போது பதிலளிக்கவில்லை.</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>காலப்போக்கில் தாமதம்</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>பதில் இல்லை</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>பின்னணியில் தொடர்ந்து சரிபார்க்கவும்</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>மொபைல் நெட்வொர்க்கில் தொடர்ந்து சரிபார்க்கவும்</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>இயல்பாக முடக்கப்பட்டுள்ளது. இயக்கினால், மொபைல் நெட்வொர்க்கிலும் வழக்கமான இணைப்புச் சோதனைகள் நடைபெறும். பின்னணி சோதனைகள் வேகச் சோதனைகளை இயக்காது.</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>சரிபார்ப்பு இடைவெளி</value></data>
+  <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} நிமிடம்</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} நிமிடங்கள்</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>இணையத் தாமதம் இதைவிட அதிகமானால் எச்சரிக்கவும்</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>பதிலில்லாத சோதனைகள் இதைவிட அதிகமானால் எச்சரிக்கவும்</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>தாமத ஏற்ற இறக்கம் இதைவிட அதிகமானால் எச்சரிக்கவும்</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>ConnectionClue அறிவிப்புப் பகுதியில் இருந்து, சிக்கல்கள் குறித்து உங்களை எச்சரிக்கும். பயன்பாடு திறந்திருக்கும்போது மட்டுமே இயங்கும்.</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>ConnectionClue-ஐத் திற</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>வெளியேறு</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>ConnectionClue பின்னணியில் தொடர்ந்து சரிபார்க்கும்.</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>இணைப்புச் சிக்கல்</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>செயல்திறன் உங்கள் வரம்புகளுக்குக் கீழ் உள்ளது</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>இயல்பு நிலைக்குத் திரும்பியது</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>சிக்கல்கள் எதுவும் கண்டறியப்படவில்லை.</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>மதிப்பிட போதுமான தரவு இல்லை.</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>இந்தக் கணினிக்கும் உங்கள் ரூட்டருக்கும் இடையிலான இணைப்பு துண்டிக்கப்பட்டது.</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>இணையம் சுமார் {0} வினாடிகள் பதிலளிக்கவில்லை.</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>இணையதளங்களை அணுக முடியவில்லை.</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>{0} இணையச் சோதனைகளுக்குப் பதில் கிடைக்கவில்லை (வரம்பு {1}).</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>இணையத் தாமதம் {0} ms (வரம்பு {1} ms).</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>இணையத் தாமதம் {0} ms ஏற்ற இறக்கம் கண்டது (வரம்பு {1} ms).</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>இதில் பெரும்பகுதி இந்தக் கணினிக்கும் உங்கள் ரூட்டருக்கும் இடையே உள்ளது, பெரும்பாலும் Wi-Fi.</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>இது உங்கள் ரூட்டருக்கு அப்பால் இருப்பதாகத் தெரிகிறது.</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>கடைசிச் சோதனை: {0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>இடைநிலை {0} · p95 {1} · ஏற்ற இறக்கம் {2} · பதில் இல்லை {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>உங்கள் வரம்புக்கு மேல் ({0} ms)</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>பரிந்துரைகள்</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>நிராகரி</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>{0} சோதனையின் அடிப்படையில்</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>அதன் பிறகு நிலைமை மாறியிருக்கலாம். உறுதிசெய்ய விரைவுச் சோதனையை இயக்கவும்.</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>முயற்சிக்கலாம்: {0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>Wi-Fi சிக்னலை மேம்படுத்தவும்</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>ரூட்டருக்கு அருகில் செல்லவும், இடையிலுள்ள தடைகளை அகற்றவும், அல்லது இருந்தால் 5 GHz நெட்வொர்க்கிற்கு மாறவும்.</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>நெட்வொர்க் கேபிளை முயற்சிக்கவும்</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>இந்தக் கணினியை ஈதர்நெட் கேபிள் மூலம் ரூட்டருடன் இணைத்து, ஒப்பிட விரைவுச் சோதனையை இயக்கவும்.</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>நெட்வொர்க் கேபிளைச் சரிபார்க்கவும்</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>கேபிளை இரு முனைகளிலும் மீண்டும் சரியாகப் பொருத்தவும், அல்லது வேறு கேபிள் அல்லது ரூட்டர் போர்ட்டை முயற்சிக்கவும்.</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>உங்கள் ரூட்டரை மறுதொடக்கம் செய்யவும்</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>ரூட்டரையும் மோடத்தையும் 30 வினாடிகள் மின்சாரத்திலிருந்து துண்டித்து, மீண்டும் இணைத்து, மீண்டும் சரிபார்க்கும் முன் சுமார் 2 நிமிடங்கள் காத்திருக்கவும்.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>பெரிய பதிவேற்றங்கள், பதிவிறக்கங்களை இடைநிறுத்தவும்</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>பிற சாதனங்களில் உள்ள கிளவுட் காப்புப்பிரதிகள், வீடியோ பதிவேற்றங்கள், கேம் பதிவிறக்கங்கள், ஸ்ட்ரீமிங் ஆகியவை முழு இணைப்பையும் மெதுவாக்கலாம்.</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>VPN இல்லாமல் முயற்சிக்கவும்</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>நீங்கள் VPN பயன்படுத்தினால், அனுமதி இருந்தால், சிறிது நேரம் அதைத் துண்டித்து மீண்டும் சரிபார்க்கவும்.</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>உங்கள் இணைய வழங்குநரைத் தொடர்புகொள்ளவும்</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>ரூட்டரை மறுதொடக்கம் செய்த பிறகும் இது தொடர்ந்தால், இந்த முடிவுகளை உங்கள் வழங்குநருடன் பகிரவும்.</value></data>
+  <data name="Capture_SecondsLeft.one" xml:space="preserve"><value>{0} வினாடி மீதமுள்ளது</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>{0} வினாடிகள் மீதமுள்ளன</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>விரைவுச் சோதனையின் கால அளவு</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>வினாடிகள்</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>{0} முதல் {1} வினாடிகள் வரை.</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>உங்கள் இணைப்பு சரிபார்க்கப்படுகிறது…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>சோதனை</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>சோதனைகள்</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>எச்சரிக்கைகள்</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>மெதுவாக</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>பதிவிறக்கம்</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>பதிவேற்றம்</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>தாமதம்</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>ஏற்ற இறக்கம்</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>சுமையின்போது: {0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>அளவிடப்படவில்லை</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>அளவிடப்பட்ட இணைப்பில் தவிர்க்கப்பட்டது</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>அளவிட முடியவில்லை</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>பதிவிறக்க வேகம் அளவிடப்படுகிறது…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>பதிவேற்ற வேகம் அளவிடப்படுகிறது…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>பதிவிறக்க, பதிவேற்ற வேகத்தை அளவிடவும்</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>விரைவுச் சோதனைக்குச் சுமார் 16 வினாடிகள் கூடும்; 300 MB வரை பயன்படுத்தலாம். பின்னணிச் சோதனைகளிலோ அளவிடப்பட்ட இணைப்புகளிலோ ஒருபோதும் இயங்காது.</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>கண்டறிந்த சிக்கல்களைச் சரிசெய்யவும்</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>இந்தக் கணினிக்கான சிறந்த நடைமுறைகள்</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>முக்கியம்</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>பரிந்துரை</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>இணைப்புச் சிக்கல்கள் எதுவும் கண்டறியப்படவில்லை. இந்த அமைப்புகள் உங்கள் இணைப்பை இன்னும் வேகமாக அல்லது நம்பகமாக்கலாம்.</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>சரிபார்க்கத் தகுந்தது: {0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>சுமையின்போது தாமதம் {0} ms அதிகரிக்கிறது</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>பதிவிறக்கங்களும் பதிவேற்றங்களும் மற்ற அனைத்தையும் தாமதப்படுத்தும் (bufferbloat). உங்கள் ரூட்டரில் இருந்தால் Smart Queue Management (SQM) அல்லது QoS-ஐ இயக்கவும்.</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>பலவீனமான Wi-Fi சிக்னல் (5 பட்டைகளில் {0})</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>ரூட்டருக்கு அருகில் செல்லவும், தடைகளை அகற்றவும், அல்லது mesh access point ஒன்றைச் சேர்க்கவும். கேபிள் மிக நிலையான இணைப்பை வழங்கும்.</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>TCP பெறும் சாளர auto-tuning கட்டுப்படுத்தப்பட்டுள்ளது</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>இது பதிவிறக்க வேகத்தை வரம்பிடும். நிர்வாகியாகத் திறந்த டெர்மினலில் இயக்கவும்: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>கேபிள் இணைப்பு {0} Mbps மட்டுமே இயங்குகிறது</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>Gigabit-க்கு Cat5e அல்லது அதற்கும் மேல் தரமான கேபிளும் gigabit போர்ட்டும் தேவை. வேறு கேபிள் அல்லது ரூட்டர் போர்ட்டை முயற்சிக்கவும்.</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>மெதுவான Wi-Fi இணைப்பு ({0} Mbps)</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>உங்கள் ரூட்டரில் இருந்தால் 5 GHz அல்லது 6 GHz நெட்வொர்க்கில் இணையவும்; ரூட்டரை திறந்த, மையமான இடத்தில் வைக்கவும்.</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>மின்சாரத்தைச் சேமிக்க Windows நெட்வொர்க் அடாப்டரை அணைக்கலாம்</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>Device Manager-இல் உங்கள் நெட்வொர்க் அடாப்டரைத் திறக்கவும். Power Management தாவலில், காட்டப்பட்டால், “Allow the computer to turn off this device to save power” தேர்வை நீக்கவும்.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet இயக்கத்தில் உள்ளது</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>இது தாமத உயர்வுகளை ஏற்படுத்தலாம். Device Manager-இல் உங்கள் Ethernet அடாப்டரைத் திறந்து, Advanced தாவலில் Energy-Efficient Ethernet-ஐ Off ஆக அமைக்கவும்.</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>மின்சாரச் சேமிப்பு உங்கள் இணைப்பை மெதுவாக்கலாம்</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>Energy saver மற்றும் battery power saving Wi-Fi-ஐ மெதுவாக்கும். PC-ஐ மின்சாரத்தில் இணைக்கவும், அல்லது Settings &gt; System &gt; Power &amp; battery-இல் Energy saver-ஐ அணைத்து Power mode-ஐ Balanced ஆக அமைக்கவும்.</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>பெயர் தேடல்கள் மெதுவாக உள்ளன ({0} ms)</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>இணையதளங்கள் ஏற்றத் தொடங்க அதிக நேரம் எடுக்கின்றன. ரூட்டரை மறுதொடக்கம் செய்யவும், அல்லது Settings &gt; Network &amp; internet-இல் உங்கள் இணைப்பு properties-ஐத் திறந்து DNS server assignment-ஐத் திருத்தவும்.</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>நெட்வொர்க் இயக்கி {0} இலிருந்து உள்ளது</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>பழைய இயக்கிகள் துண்டிப்புகளையும் மெதுவான வேகத்தையும் ஏற்படுத்தலாம். உங்கள் PC அல்லது அடாப்டர் தயாரிப்பாளரிடமிருந்து சமீபத்திய இயக்கியைப் பெறவும், அல்லது Windows Update &gt; Advanced options &gt; Optional updates-ஐச் சரிபார்க்கவும்.</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>இந்த இணைப்பு அளவிடப்பட்டதாக அமைக்கப்பட்டுள்ளது</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>Windows புதுப்பிப்புகளைத் தாமதப்படுத்தும்; சில பயன்பாடுகள் குறைவாக ஒத்திசைக்கும். உங்கள் தரவு வரம்பற்றதாக இருந்தால், நெட்வொர்க் properties-இல் Metered connection-ஐ அணைக்கவும்.</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>Proxy சேவையகம் பயன்படுத்தப்படுகிறது</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>போக்குவரத்து மற்றொரு சேவையகம் வழியாகச் செல்கிறது; இது தளங்களை மெதுவாக்கலாம் அல்லது தடுக்கலாம். நீங்கள் அல்லது உங்கள் நிறுவனம் அமைக்கவில்லை என்றால், Settings &gt; Network &amp; internet &gt; Proxy-இல் அதை அணைக்கவும்.</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 அணைக்கப்பட்டுள்ளது</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>சில பயன்பாடுகளும் Windows அம்சங்களும் IPv6-ஐச் சார்ந்துள்ளன; Microsoft அதை அணைக்க பரிந்துரைக்கவில்லை. நெட்வொர்க் அடாப்டர் properties-இல் மீண்டும் இயக்கவும், அல்லது உங்கள் IT admin-ஐக் கேட்கவும்.</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>சோதனையின் போது லேக், உறைதல் அல்லது அழைப்பு துண்டிப்பு தெரிந்த உடனே இதை அழுத்தவும். அந்த தருணம் விளக்கப்படத்தில் குறியிடப்படும்; அப்போது உங்கள் இணைப்பு என்ன செய்தது என்பதைப் பார்க்கலாம்.</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>உங்கள் லேக் குறிகள்: {0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>அமைப்புகளைத் திறக்கவும்</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>Device Manager-ஐத் திறக்கவும்</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>Power Options-ஐத் திறக்கவும்</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>Task Manager-ஐத் திறக்கவும்</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>ரூட்டர் பக்கத்தைத் திறக்கவும்</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>கட்டளையை நகலெடுக்கவும்</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>உங்கள் வழங்குநருக்கான சுருக்கத்தை நகலெடுக்கவும்</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது.</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>சோதனையின் போது பிற பயன்பாடுகள் இணைப்பைப் பயன்படுத்தின (↓ {0} · ↑ {1} Mbps)</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>இந்த PC-இல் உள்ள பதிவிறக்கங்கள், கிளவுட் ஒத்திசைவு மற்றும் புதுப்பிப்புகள் கேம்களும் அழைப்புகளும் பயன்படுத்தும் இணைப்புடன் போட்டியிட்டு, முடிவுகளை மோசமாகக் காட்டும். அவற்றை இடைநிறுத்தி மீண்டும் சரிபார்க்கவும். Task Manager எந்த பயன்பாடுகள் நெட்வொர்க்கைப் பயன்படுத்துகின்றன என்பதைக் காட்டும்.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>USB மின்சாரச் சேமிப்பு உங்கள் USB நெட்வொர்க் அடாப்டரை துண்டிக்கலாம்</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>Power Options-இல் Change plan settings &gt; Change advanced power settings &gt; USB settings என்பதைத் தேர்ந்து, USB selective suspend setting-ஐ Disabled ஆக அமைக்கவும்.</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>சரிபார்க்கப்பட்டது, மாற்றம் தேவையில்லை: {0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>Wi-Fi சிக்னல்</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>இணைப்பு வேகம்</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>நெட்வொர்க் இயக்கி</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>அடாப்டர் மின்சார மேலாண்மை</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>USB மின்சாரச் சேமிப்பு</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>TCP auto-tuning</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>மின்சாரச் சேமிப்பு</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>பெயர் தேடல்கள் (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>சுமையின்போது தாமதம்</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>இந்த PC-இல் பிற போக்குவரத்து</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>Proxy</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>அளவிடப்பட்ட இணைப்பு</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>பதிவிறக்கங்கள் உங்கள் இணைப்பின் வரிசையை நிரப்புகின்றன. உங்கள் ரூட்டர் அமைப்புகளில் SQM, Smart Queue அல்லது Adaptive QoS-ஐ இயக்கி, பதிவிறக்க வரம்பை சுமார் {1} Mbps ஆக அமைக்கவும் (அளவிட்ட வேகத்தின் 90%).</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>பதிவேற்றங்கள் உங்கள் இணைப்பின் வரிசையை நிரப்புகின்றன. கேமிங் அல்லது அழைப்புகளின்போது கிளவுட் காப்புப் பிரதியும் ஒத்திசைப்பும் இடைநிறுத்தவும், அல்லது உங்கள் ரூட்டரில் SQM, Smart Queue அல்லது Adaptive QoS-ஐ இயக்கி பதிவேற்ற வரம்பை சுமார் {1} Mbps ஆக அமைக்கவும் (அளவிட்ட வேகத்தின் 90%).</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>சோதனையின்போது OneDrive ஒத்திசைத்துக் கொண்டிருந்தது ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>கேமிங் அல்லது அழைப்புகளின்போது இதை இடைநிறுத்தவும்: பணிப்பட்டி மூலையில் உள்ள OneDrive மேக ஐகானைத் தேர்ந்தெடுத்து, Settings &gt; Pause syncing &gt; 2 hours என்பதைத் தேர்ந்தெடுக்கவும். அது தானாக மீண்டும் தொடங்கும்.</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>சோதனையின்போது {2} ஒத்திசைத்துக் கொண்டிருந்தது ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>கேமிங் அல்லது அழைப்புகளின்போது இதை இடைநிறுத்தவும்: பணிப்பட்டி மூலையில் உள்ள அதன் ஐகானைத் தேர்ந்தெடுத்து Pause என்பதைத் தேர்ந்தெடுக்கவும்.</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>சோதனையின்போது {2} பதிவிறக்கிக் கொண்டிருந்தது ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>ஒரு கேம் அல்லது புதுப்பிப்பு பதிவிறங்குகிறது. {2}-இல் Downloads-ஐத் திறந்து, விளையாடும்போது அவற்றை இடைநிறுத்தவும்.</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>சோதனையின்போது {2} {3} MB பயன்படுத்தியது</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>ஒரு பதிவிறக்கம், அல்லது வீடியோ/ஸ்ட்ரீமிங் தாவல், இணைப்பைப் பயன்படுத்துகிறது. {2}-இல் பதிவிறக்கங்களை இடைநிறுத்த Ctrl+J அழுத்தி, தேவையில்லாத தாவல்களை மூடவும்.</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>சோதனையின்போது Windows services {3} MB பயன்படுத்தின</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>Windows Update அல்லது Delivery Optimization தரவை மாற்றுகிறது. Delivery Optimization &gt; Advanced options-இல் அவற்றின் அலைவரிசையை வரம்பிடவும்.</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>சோதனையின்போது {2} {3} MB பயன்படுத்தியது</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>கேமிங் அல்லது அழைப்புகளின்போது {2}-ஐ மூடவும், அல்லது அது செய்வதை இடைநிறுத்தவும். Task Manager &gt; Processes-இல் Network அடிப்படையில் வரிசைப்படுத்தினால், அது நேரடியாகத் தெரியும்.</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>மேலும் செயலில் உள்ளது: {0} ({1} MB).</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>Windows services</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>“{2}” இல் Wi-Fi சிக்னல் பலவீனமாக உள்ளது (5 பட்டைகளில் {0})</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>இங்கிருந்து {3} வெறும் {1} Mbps-ல் மட்டுமே இணைகிறது. இந்த PC-யையும் ரூட்டரையும் ஒரே அறையில் அல்லது நேரடியாகக் காணும் இடத்தில் வைக்கவும், ரூட்டரை அலமாரிகளுக்கு வெளியே வைக்கவும், அல்லது கேமிங் மற்றும் அழைப்புகளுக்கு கேபிளைப் பயன்படுத்தவும்.</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>“{2}” வெறும் {0} Mbps-ல் மட்டுமே இணைகிறது</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>இதன் பொருள் வழக்கமாக 2.4 GHz அலைவரிசை அல்லது தூரத்தில் உள்ள ரூட்டர். உங்கள் ரூட்டரில் 5 GHz நெட்வொர்க் இருந்தால் (அடிக்கடி “{2}-5G” எனப் பெயரிடப்படும்), Settings &gt; Network &amp; internet &gt; Wi-Fi-இல் அதனுடன் இணைக்கவும்.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>உங்கள் {3} {4}-ஐ ஆதரிக்கிறது, ஆகவே {0} Mbps என்றால் அது 2.4 GHz அலைவரிசையில் இருக்கிறது அல்லது ரூட்டரிலிருந்து தூரமாக உள்ளது. Settings &gt; Network &amp; internet &gt; Wi-Fi-இல் உங்கள் ரூட்டரின் 5 GHz அல்லது 6 GHz நெட்வொர்க்குடன் (அடிக்கடி “{2}-5G” எனப் பெயரிடப்படும்) இணைக்கவும்.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>உங்கள் {3} பழைய {4} அடாப்டர். Wi-Fi 6 USB அடாப்டர் அல்லது நெட்வொர்க் கேபிள் மிகவும் வேகமாக இருக்கும்.</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>{2} வெறும் {0} Mbps-ல் மட்டுமே இயங்குகிறது</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>Gigabit-க்கு எட்டு வயர்களும் தேவை. கேபிளை Cat5e அல்லது Cat6 கேபிளால் மாற்றி, வேறு ரூட்டர் போர்ட்டை முயற்சிக்கவும்; அது {0} Mbps-லேயே இருந்தால், போர்ட் அல்லது இடையில் உள்ள சுவிட்ச் வரம்புடையது.</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>மின்சாரத்தைச் சேமிக்க Windows {2}-ஐ அணைக்கலாம்</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>Device Manager-இல் Network adapters &gt; {2} &gt; Power Management-ஐத் திறந்து “Allow the computer to turn off this device to save power” தேர்வை நீக்கவும்.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>USB மின்சாரச் சேமிப்பு {2} இணைப்பைத் துண்டிக்கலாம்</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>Power Options-இல் Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting என்பதைத் தேர்ந்தெடுத்து, Plugged in-ஐ Disabled ஆக அமைக்கவும்.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>Power Options-இல் Change plan settings &gt; Change advanced power settings &gt; USB settings &gt; USB selective suspend setting என்பதைத் தேர்ந்தெடுத்து, On battery-ஐ Disabled ஆக அமைக்கவும்.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>{2}-க்கு Energy-Efficient Ethernet இயக்கப்பட்டுள்ளது</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>இது தாமத உயர்வுகளை ஏற்படுத்தலாம். Device Manager-இல் Network adapters &gt; {2} &gt; Advanced-ஐத் திறந்து, Energy-Efficient Ethernet (அல்லது Green Ethernet) தேர்ந்தெடுத்து Disabled ஆக அமைக்கவும்.</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>Energy saver இயக்கத்தில் உள்ளது</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>இது Wi-Fi மற்றும் பின்னணி செயல்பாட்டை வரம்பிடும். Settings &gt; System &gt; Power &amp; battery &gt; Energy saver-இல் இதை அணைக்கவும், அல்லது உங்கள் PC-யை மின்சாரத்தில் இணைக்கவும்.</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>Power mode Best power efficiency என அமைக்கப்பட்டுள்ளது</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>பேட்டரியைச் சேமிக்க இது Wi-Fi-ஐ மெதுவாக்கும். Settings &gt; System &gt; Power &amp; battery-இல் Power mode-ஐ Balanced அல்லது Best performance ஆக அமைக்கவும்.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>பேட்டரியில் Wi-Fi மின்சாரச் சேமிப்பு {2} என அமைக்கப்பட்டுள்ளது</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>Power Options-இல் Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode என்பதைத் தேர்ந்தெடுத்து, On battery-ஐ Maximum Performance ஆக அமைக்கவும்.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>மின்சாரத்தில் இணைக்கப்பட்டிருக்கும்போது Wi-Fi மின்சாரச் சேமிப்பு {2} என அமைக்கப்பட்டுள்ளது</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>Power Options-இல் Change plan settings &gt; Change advanced power settings &gt; Wireless Adapter Settings &gt; Power Saving Mode என்பதைத் தேர்ந்தெடுத்து, Plugged in-ஐ Maximum Performance ஆக அமைக்கவும்.</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>குறைந்த மின்சாரச் சேமிப்பு</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>நடுத்தர மின்சாரச் சேமிப்பு</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>அதிகபட்ச மின்சாரச் சேமிப்பு</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>{2} வழியாக பெயர் தேடல்கள் மெதுவாக உள்ளன ({0} ms)</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>உங்கள் PC DNS-க்கு ரூட்டரை ({2}) பயன்படுத்துகிறது, அது மெதுவாகப் பதிலளிக்கிறது. ரூட்டரை மறுதொடக்கம் செய்யவும்; தேடல்கள் இன்னும் மெதுவாக இருந்தால், உங்கள் இணைப்பின் properties-இல் DNS server assignment கீழ் 1.1.1.1 அல்லது 8.8.8.8 போன்ற பொது DNS சேவையகத்தை அமைக்கவும்.</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>DNS சேவையகம் {2} மெதுவாகப் பதிலளிக்கிறது. உங்கள் இணைப்பின் properties-இல் DNS server assignment கீழ் 1.1.1.1 அல்லது 8.8.8.8 போன்ற வேகமான ஒன்றை அமைக்கவும்.</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>{2} இயக்கி {0} இலிருந்தது (பதிப்பு {3})</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>உங்கள் PC தயாரிப்பாளரின் ஆதரவு பக்கத்திலிருந்து புதிய இயக்கியைப் பெறவும், அல்லது Windows Update &gt; Advanced options &gt; Optional updates பார்க்கவும்.</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>இந்த அடாப்டருக்காக Intel புதிய இயக்கிகளை வெளியிடுகிறது. அவற்றை Intel Driver &amp; Support Assistant மூலம் நிறுவவும்.</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>“{2}” metered connection ஆக அமைக்கப்பட்டுள்ளது</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>இதில் Windows புதுப்பிப்புகளைத் தாமதப்படுத்தும்; சில பயன்பாடுகள் குறைவாக ஒத்திசைக்கும். உங்கள் தரவு திட்டம் வரம்பற்றதாக இருந்தால், “{2}” properties-இல் Metered connection-ஐ அணைக்கவும்.</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>இணைய போக்குவரத்து proxy {2} வழியாக செல்கிறது</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} இந்த PC-இல் உள்ள நிரல், உதாரணமாக debugging tool, ad blocker அல்லது security app. அதை மூடவும், அல்லது Settings &gt; Network &amp; internet &gt; Proxy-இல் proxy-ஐ அணைக்கவும்.</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>நீங்கள் அல்லது உங்கள் நிறுவனம் அதை அமைக்கவில்லை என்றால், Settings &gt; Network &amp; internet &gt; Proxy-இல் அதை அணைக்கவும்.</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>VPN உங்கள் போக்குவரத்தை வழிமாற்றுகிறது</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>VPN ஒவ்வொரு packet-க்கும் ஒரு சுற்றுப்பாதையைச் சேர்க்கிறது. கேமிங் மற்றும் அழைப்புகளுக்கு, அதை துண்டிக்கவும், அல்லது அதன் split tunneling அமைப்புகளில் கேம் அல்லது அழைப்பு பயன்பாட்டை விலக்கவும்.</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>{2} உங்கள் போக்குவரத்தை வழிமாற்றுகிறது</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>Receive window auto-tuning “{2}” என அமைக்கப்பட்டுள்ளது</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>இது வேகமான இணைப்புகளில் பதிவிறக்க வேகத்தை வரம்பிடும். Terminal (Admin)-இல் இயக்கவும்: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>முழு PC-க்கும் IPv6 அணைக்கப்பட்டுள்ளது</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>Registry மதிப்பு DisabledComponents {2} ஆக உள்ளது; இது பெரும்பாலும் tweak tool மூலம் அமைக்கப்படுகிறது. Microsoft அதற்கு பதிலாக 0x20 (IPv4-க்கு முன்னுரிமை) பரிந்துரைக்கிறது: உங்கள் admin-ஐ மாற்றச் சொல்லி, பிறகு மறுதொடக்கம் செய்யவும்.</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>{2} இல் IPv6 அணைக்கப்பட்டுள்ளது</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>Network Connections-இல் {2} &gt; Properties-ஐத் திறந்து Internet Protocol Version 6 (TCP/IPv6)-ஐத் தேர்ந்தெடுக்கவும்.</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>பதிவிறக்கப் பக்கத்தைத் திற</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>Network Connections-ஐத் திற</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>இந்த PC-இல், சோதனையின்போது {0} {1} MB பயன்படுத்தியது. முதலில் அதை இடைநிறுத்தி, பிறகு மீண்டும் சரிபார்க்கவும்.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>சோதனையின்போது இந்த PC அமைதியாக இருந்தது, எனவே வீட்டிலுள்ள பிற சாதனங்களைப் பாருங்கள்: புதுப்பிப்புகளைப் பதிவிறக்கும் கன்சோல்கள், ஸ்ட்ரீம் செய்யும் TVகள், புகைப்படங்களை காப்புப் பிரதியாக்கும் தொலைபேசிகள் அல்லது வீடியோ பதிவேற்றும் கேமராக்கள்.</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>ரூட்டரை ({0}) 30 விநாடிகள் மின்சாரத்திலிருந்து கழற்றி, மீண்டும் இணைத்து, அதன் விளக்குகள் நிலையாகியதும் விரைவுச் சோதனை இயக்கவும்.</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>சோதனையில் கண்டறிந்ததை உங்கள் வழங்குநரிடம் சொல்லுங்கள்: “{0}” Copy summary அவர்களுக்கு விவரங்களைத் தரும்.</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>நெட்வொர்க் இணைப்பு இல்லை</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>Wi-Fi உடன் இணைக்கவும் அல்லது நெட்வொர்க் கேபிளைச் செருகவும். இந்த PC இணைக்கப்படும் வரை சோதனைகள் இயங்காது.</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>ஆன்லைன் AI மூலம் பரிந்துரைகளைச் சரிபார்க்கவும்</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>ஆலோசனை காட்டப்படுவதற்கு முன், அதன் பொதுவான உரை மட்டும் இலவச பொது AI சேவைகளுக்கு (LLM7.io, Pollinations) அனுப்பப்படும்; இந்த PC-இலிருந்து பெயர்கள், முகவரிகள் அல்லது அளவீடுகள் ஒருபோதும் அனுப்பப்படாது. முடிவுகள் 30 நாட்கள் நினைவில் வைக்கப்படும்.</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>ஆன்லைன் AI மூலம் பரிந்துரைகள் சரிபார்க்கப்படுகின்றன…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>ஆன்லைன் AI சரிபார்த்தது ({0}).</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>சில பரிந்துரைகளை ஆன்லைன் AI மூலம் சரிபார்க்க முடியவில்லை.</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>ஆன்லைன் AI சரிபார்ப்பு கிடைக்கவில்லை, எனவே இந்தப் பரிந்துரைகள் சரிபார்க்கப்படாமல் காட்டப்படுகின்றன.</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>இரண்டு ஆன்லைன் AI மதிப்பாய்வாளர்கள் தவறானது எனக் குறித்ததால் சில ஆலோசனைகள் தடுக்கப்பட்டன.</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>AI சரிபார்த்தது</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>தோற்றம்</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>தீம்</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>ஒவ்வொரு தீமும் உரை, பொத்தான்கள் மற்றும் லேபிள்களுக்கு WCAG 2.2 AA மாறுபாட்டை பூர்த்தி செய்கிறது; அதிக மாறுபாடு தீம்கள் AAA-ஐ பூர்த்தி செய்கின்றன.</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>இருண்ட</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>வெளிர்</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>அதிக மாறுபாடு இருண்ட</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>அதிக மாறுபாடு வெளிர்</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>Windows அமைப்பைப் பயன்படுத்து</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>Windows high contrast இயக்கத்தில் உள்ளது, எனவே ConnectionClue உங்கள் Windows contrast colors-ஐப் பயன்படுத்துகிறது.</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>பதிவிறக்க வேகம்: இணையத்திலிருந்து இந்த PC-க்கு தரவு எவ்வளவு வேகமாக வருகிறது; 8 விநாடிகள் சோதனைத் தரவைப் பதிவிறக்கி அளவிடப்படுகிறது. அதிகமாக இருப்பது சிறந்தது; வீடியோ ஸ்ட்ரீமிங்கிற்கு சுமார் 5 முதல் 25 Mbps தேவை.</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>பதிவேற்ற வேகம்: இந்த PC இணையத்துக்கு தரவை எவ்வளவு வேகமாக அனுப்புகிறது; 8 விநாடிகள் அளவிடப்படுகிறது. அதிகமாக இருப்பது சிறந்தது; வீடியோ அழைப்புகளும் கிளவுட் காப்புப் பிரதிகளும் இதைப் பொறுத்தது.</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>தாமதம்: ஒரு செய்தி இணைய சேவையகத்தை அடைந்து திரும்ப வர எவ்வளவு நேரம் எடுக்கிறது, மில்லிவிநாடிகளில். குறைவாக இருப்பது சிறந்தது; 50 ms-க்கு குறைவாக இருந்தால் கேம்களிலும் அழைப்புகளிலும் உடனடி உணர்வு தரும். “சுமையின்போது” பதிவிறக்கம் மற்றும் பதிவேற்றம் நடக்கும்போது இதைக் காட்டும்.</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>மாறுபாடு (jitter): தாமதம் ஒரு தருணத்திலிருந்து அடுத்த தருணத்திற்கு எவ்வளவு மாறுகிறது. குறைவாக இருப்பது சிறந்தது; 30 ms-க்கு மேல் அழைப்புகளும் கேம்களும் தடுமாறத் தொடங்கும்.</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>ஒவ்வொரு பட்டையும் ஒரு சோதனை; அதன் உயரம் மில்லிவிநாடிகளில் தாமதம் (அளவுகோல் இடப்புறம், நேரம் கீழே). குறைவாக இருப்பது சிறந்தது. “உங்கள் வரம்புக்கு மேல்” நிறத்தில் உள்ள பட்டைகள் உங்கள் வரம்பை மீறுகின்றன; கோடிட்ட பட்டைகளுக்கு பதில் கிடைக்கவில்லை. மதிப்பைக் காண பட்டையைச் சுட்டிக்காட்டவும்.</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>வீட்டு நெட்வொர்க்: உங்கள் ரூட்டர் இந்த PC-க்கு பதிலளிக்க எவ்வளவு நேரம் எடுக்கிறது. இது உங்கள் வீட்டுக்குள் உள்ள Wi-Fi அல்லது கேபிள் பிரச்சனைகளைக் காட்டுகிறது.</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>இணையம்: இணையத்தில் உள்ள சேவையகத்துடன் இணைக்க எவ்வளவு நேரம் ஆகிறது. இது உங்கள் இணைய வழங்குநரின் பிரச்சனைகளைக் காட்டுகிறது.</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>இணையச் சேவைகள்: இணைய முகவரியைத் தேடி, இணையப் பக்கத்தை ஏற்ற எவ்வளவு நேரம் ஆகிறது. இது மெதுவான பெயர் தேடல்கள் அல்லது இணையதளங்களைக் காட்டுகிறது.</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>கேம்களில் லேக், உறைதல் அல்லது rubber-band இருந்தால் இதைத் தேர்ந்தெடுக்கவும். அதன் பிறகு ஆலோசனை தாமதம், மாறுபாடு மற்றும் நிலைத்தன்மையில் கவனம் செலுத்தும்.</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>வீடியோக்கள் பஃபர் செய்ய இடைநிறுத்தப்பட்டாலோ தரம் குறைந்தாலோ இதைத் தேர்ந்தெடுக்கவும். அதன் பிறகு ஆலோசனை பதிவிறக்க வேகம் மற்றும் பெயர் தேடல்களில் கவனம் செலுத்தும்.</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>குரல் அல்லது வீடியோ அழைப்புகள் இடையூறாகவோ உறைந்துவிடவோ செய்தால் இதைத் தேர்ந்தெடுக்கவும். அதன் பிறகு ஆலோசனை தாமதம், மாறுபாடு மற்றும் பதிவேற்ற வேகத்தில் கவனம் செலுத்தும்.</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>இணைப்பு அவ்வப்போது முழுவதும் துண்டிக்கப்பட்டால் இதைத் தேர்ந்தெடுக்கவும். அதன் பிறகு ஆலோசனை Wi-Fi சிக்னல், மின்சாரச் சேமிப்பு மற்றும் அடாப்டர்களில் கவனம் செலுத்தும்.</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: பதில் இல்லை</value></data>
+</root>

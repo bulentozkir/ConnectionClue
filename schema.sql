@@ -124,16 +124,16 @@ CREATE TABLE CoverageGap (
 ) STRICT;
 CREATE INDEX IX_CoverageGap_Session ON CoverageGap(SessionId, StartUs);
 
--- Capability state transitions. StreamKey = 'targetId|kind|family' for stream-level entries, '' otherwise.
+-- Capability state transitions. StreamKey = 'targetId|kind|family' (IcmpResponse), target id (Target), '' otherwise.
 CREATE TABLE SessionCapability (
   SessionId TEXT NOT NULL REFERENCES Session(Id) ON DELETE CASCADE,
-  Capability TEXT NOT NULL CHECK (Capability IN ('IcmpResponse','WlanEvents','WlanDetails','Hotkey')),
+  Capability TEXT NOT NULL CHECK (Capability IN ('IcmpResponse','Target','WlanEvents','WlanDetails','Hotkey')),
   StreamKey TEXT NOT NULL DEFAULT '',
   SinceUs INTEGER NOT NULL CHECK (SinceUs >= 0),
   State TEXT NOT NULL CHECK (State IN ('Available','Unavailable','Denied','Unsupported','Unknown')),
   Reason TEXT NOT NULL DEFAULT '' CHECK (length(Reason) <= 64),
   PRIMARY KEY (SessionId, Capability, StreamKey, SinceUs),
-  CHECK ((Capability = 'IcmpResponse') = (StreamKey <> ''))
+  CHECK ((Capability IN ('IcmpResponse','Target')) = (StreamKey <> ''))
 ) STRICT, WITHOUT ROWID;
 
 CREATE TABLE SymptomMarker (

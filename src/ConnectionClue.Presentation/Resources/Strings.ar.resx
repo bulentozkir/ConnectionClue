@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Machine-drafted seed translation: requires professional in-country review before release. -->
+  <data name="Action_QuickCheck" xml:space="preserve"><value>فحص سريع</value></data>
+  <data name="Action_CaptureLonger" xml:space="preserve"><value>فحص مطوّل</value></data>
+  <data name="Action_Marker" xml:space="preserve"><value>حدث تأخير للتو</value></data>
+  <data name="Action_Stop" xml:space="preserve"><value>إيقاف</value></data>
+  <data name="Action_ExportReport" xml:space="preserve"><value>تصدير التقرير</value></data>
+  <data name="Symptom_Gaming" xml:space="preserve"><value>تأخير في الألعاب</value></data>
+  <data name="Symptom_Video" xml:space="preserve"><value>تقطّع الفيديو</value></data>
+  <data name="Symptom_Calls" xml:space="preserve"><value>تقطّع المكالمات</value></data>
+  <data name="Symptom_Disconnects" xml:space="preserve"><value>انقطاع الاتصال</value></data>
+  <data name="Announce_CaptureStarted" xml:space="preserve"><value>بدأ الفحص.</value></data>
+  <data name="Announce_MarkerRecorded" xml:space="preserve"><value>تم تسجيل العلامة.</value></data>
+  <data name="Error_StartCaptureFirst" xml:space="preserve"><value>ابدأ الفحص أولاً.</value></data>
+  <data name="Capture_MinutesLeft.zero" xml:space="preserve"><value>لا دقائق متبقية</value></data>
+  <data name="Capture_MinutesLeft.one" xml:space="preserve"><value>دقيقة واحدة متبقية</value></data>
+  <data name="Capture_MinutesLeft.two" xml:space="preserve"><value>دقيقتان متبقيتان</value></data>
+  <data name="Capture_MinutesLeft.few" xml:space="preserve"><value>{0} دقائق متبقية</value></data>
+  <data name="Capture_MinutesLeft.many" xml:space="preserve"><value>{0} دقيقة متبقية</value></data>
+  <data name="Capture_MinutesLeft.other" xml:space="preserve"><value>{0} دقيقة متبقية</value></data>
+  <data name="Lane_Local" xml:space="preserve"><value>الشبكة المنزلية</value></data>
+  <data name="Lane_Internet" xml:space="preserve"><value>الإنترنت</value></data>
+  <data name="Lane_Services" xml:space="preserve"><value>خدمات الويب</value></data>
+  <data name="Status_Responding" xml:space="preserve"><value>يستجيب</value></data>
+  <data name="Status_NotResponding" xml:space="preserve"><value>لا يستجيب</value></data>
+  <data name="Status_Waiting" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>اللغة</value></data>
+  <data name="Home_SymptomQuestion" xml:space="preserve"><value>ما المشكلة؟</value></data>
+  <data name="Home_Title" xml:space="preserve"><value>افحص اتصالك</value></data>
+  <data name="Home_Subtitle" xml:space="preserve"><value>يختبر ConnectionClue المسار من هذا الكمبيوتر إلى الإنترنت ويوضح أين تحدث المشكلات.</value></data>
+  <data name="Node_ThisPc" xml:space="preserve"><value>هذا الكمبيوتر</value></data>
+  <data name="Action_Settings" xml:space="preserve"><value>الإعدادات</value></data>
+  <data name="Action_Help" xml:space="preserve"><value>مساعدة</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>يُعاد تشغيل التطبيق باللغة المحددة.</value></data>
+  <data name="Summary_AllGood" xml:space="preserve"><value>كل شيء يستجيب حتى الآن.</value></data>
+  <data name="Summary_Problem" xml:space="preserve"><value>لا يوجد رد من {0} حاليًا.</value></data>
+  <data name="Chart_Title" xml:space="preserve"><value>التأخير عبر الوقت</value></data>
+  <data name="Chart_NoAnswer" xml:space="preserve"><value>لا رد</value></data>
+  <data name="Background_Enable" xml:space="preserve"><value>الفحص بانتظام في الخلفية</value></data>
+  <data name="Background_MobileEnable" xml:space="preserve"><value>التحقق بانتظام عبر شبكات الهاتف المحمول</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>متوقف افتراضيًا. عند تفعيله، تُجرى فحوصات الاتصال الدورية أيضًا عبر شبكة الهاتف المحمول. لا تتضمن الفحوصات في الخلفية اختبار السرعة.</value></data>
+  <data name="Settings_Interval" xml:space="preserve"><value>الفحص كل</value></data>
+  <data name="Duration_Minutes.zero" xml:space="preserve"><value>{0} دقيقة</value></data>
+  <data name="Duration_Minutes.one" xml:space="preserve"><value>دقيقة واحدة</value></data>
+  <data name="Duration_Minutes.two" xml:space="preserve"><value>دقيقتان</value></data>
+  <data name="Duration_Minutes.few" xml:space="preserve"><value>{0} دقائق</value></data>
+  <data name="Duration_Minutes.many" xml:space="preserve"><value>{0} دقيقة</value></data>
+  <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} دقيقة</value></data>
+  <data name="Settings_DelayLimit" xml:space="preserve"><value>التنبيه إذا تجاوز تأخير الإنترنت</value></data>
+  <data name="Settings_LossLimit" xml:space="preserve"><value>التنبيه إذا تجاوزت الفحوصات دون رد</value></data>
+  <data name="Settings_VariationLimit" xml:space="preserve"><value>التنبيه إذا تذبذب التأخير بأكثر من</value></data>
+  <data name="Settings_BackgroundHint" xml:space="preserve"><value>يبقى ConnectionClue في منطقة الإعلامات وينبّهك إلى المشكلات. يعمل فقط أثناء فتح التطبيق.</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>فتح ConnectionClue</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>خروج</value></data>
+  <data name="Tray_Hidden" xml:space="preserve"><value>يواصل ConnectionClue الفحص في الخلفية.</value></data>
+  <data name="Alert_Problem" xml:space="preserve"><value>مشكلة في الاتصال</value></data>
+  <data name="Alert_Slow" xml:space="preserve"><value>الأداء أقل من الحدود التي حددتها</value></data>
+  <data name="Alert_Recovered" xml:space="preserve"><value>عاد الوضع إلى طبيعته</value></data>
+  <data name="Health_NoIssue" xml:space="preserve"><value>لم يتم العثور على مشكلات.</value></data>
+  <data name="Health_Inconclusive" xml:space="preserve"><value>لا توجد بيانات كافية للحكم.</value></data>
+  <data name="Issue_LocalInterrupted" xml:space="preserve"><value>انقطع الاتصال بين هذا الكمبيوتر والموجّه.</value></data>
+  <data name="Issue_InternetInterrupted" xml:space="preserve"><value>توقف الإنترنت عن الاستجابة لمدة {0} ث تقريبًا.</value></data>
+  <data name="Issue_WebFailing" xml:space="preserve"><value>تعذّر الوصول إلى مواقع الويب.</value></data>
+  <data name="Issue_Loss" xml:space="preserve"><value>لم يُرد على {0} من فحوصات الإنترنت (الحد {1}).</value></data>
+  <data name="Issue_Delay" xml:space="preserve"><value>بلغ تأخير الإنترنت {0} ms (الحد {1} ms).</value></data>
+  <data name="Issue_Variation" xml:space="preserve"><value>تذبذب تأخير الإنترنت بمقدار {0} ms (الحد {1} ms).</value></data>
+  <data name="Issue_WhereLocal" xml:space="preserve"><value>معظمه بين هذا الكمبيوتر والموجّه، وغالبًا بسبب Wi-Fi.</value></data>
+  <data name="Issue_WhereUpstream" xml:space="preserve"><value>يبدو أنه خارج نطاق الموجّه.</value></data>
+  <data name="Last_Check" xml:space="preserve"><value>آخر فحص: {0}</value></data>
+  <data name="Stats_Summary" xml:space="preserve"><value>الوسيط {0} · p95 {1} · التذبذب {2} · دون رد {3}</value></data>
+  <data name="Chart_AboveLimit" xml:space="preserve"><value>أعلى من الحد ({0} ms)</value></data>
+  <data name="Action_Recommendations" xml:space="preserve"><value>التوصيات</value></data>
+  <data name="Action_Dismiss" xml:space="preserve"><value>تجاهل</value></data>
+  <data name="Recommend_BasedOn" xml:space="preserve"><value>استنادًا إلى فحص {0}</value></data>
+  <data name="Recommend_Stale" xml:space="preserve"><value>ربما تغيّرت الظروف منذ ذلك الحين. شغّل فحصًا سريعًا للتأكد.</value></data>
+  <data name="Recommend_TryPrefix" xml:space="preserve"><value>ما يمكنك تجربته: {0}</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Title" xml:space="preserve"><value>حسّن استقبال Wi-Fi</value></data>
+  <data name="Remedy_ImproveWifiPlacement_Detail" xml:space="preserve"><value>اقترب من الموجّه، وأزل العوائق بينكما، أو انتقل إلى شبكة 5 GHz إن توفرت.</value></data>
+  <data name="Remedy_RetestOnEthernet_Title" xml:space="preserve"><value>جرّب كبل شبكة</value></data>
+  <data name="Remedy_RetestOnEthernet_Detail" xml:space="preserve"><value>وصّل هذا الكمبيوتر بالموجّه بكبل Ethernet، ثم شغّل فحصًا سريعًا للمقارنة.</value></data>
+  <data name="Remedy_CheckCable_Title" xml:space="preserve"><value>افحص كبل الشبكة</value></data>
+  <data name="Remedy_CheckCable_Detail" xml:space="preserve"><value>أعد توصيل الكبل من الطرفين، أو جرّب كبلًا آخر أو منفذًا آخر في الموجّه.</value></data>
+  <data name="Remedy_RestartRouter_Title" xml:space="preserve"><value>أعد تشغيل الموجّه</value></data>
+  <data name="Remedy_RestartRouter_Detail" xml:space="preserve"><value>افصل الموجّه والمودم لمدة 30 ثانية، ثم أعد توصيلهما وانتظر نحو دقيقتين قبل الفحص مجددًا.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Title" xml:space="preserve"><value>أوقف مؤقتًا عمليات الرفع والتنزيل الكبيرة</value></data>
+  <data name="Remedy_PauseHouseholdUploads_Detail" xml:space="preserve"><value>قد تؤدي النسخ الاحتياطية السحابية ورفع الفيديو وتنزيل الألعاب والبث على الأجهزة الأخرى إلى إبطاء الاتصال بأكمله.</value></data>
+  <data name="Remedy_DisconnectVpn_Title" xml:space="preserve"><value>جرّب بدون VPN</value></data>
+  <data name="Remedy_DisconnectVpn_Detail" xml:space="preserve"><value>إذا كنت تستخدم VPN وكان ذلك مسموحًا، فافصله قليلًا ثم افحص مرة أخرى.</value></data>
+  <data name="Remedy_ContactIsp_Title" xml:space="preserve"><value>اتصل بمزوّد خدمة الإنترنت</value></data>
+  <data name="Remedy_ContactIsp_Detail" xml:space="preserve"><value>إذا استمرت المشكلة بعد إعادة تشغيل الموجّه، فشارك هذه النتائج مع مزوّد الخدمة.</value></data>
+  <data name="Capture_SecondsLeft.zero" xml:space="preserve"><value>لا ثوانٍ متبقية</value></data>
+  <data name="Capture_SecondsLeft.one" xml:space="preserve"><value>ثانية واحدة متبقية</value></data>
+  <data name="Capture_SecondsLeft.two" xml:space="preserve"><value>ثانيتان متبقيتان</value></data>
+  <data name="Capture_SecondsLeft.few" xml:space="preserve"><value>{0} ثوانٍ متبقية</value></data>
+  <data name="Capture_SecondsLeft.many" xml:space="preserve"><value>{0} ثانية متبقية</value></data>
+  <data name="Capture_SecondsLeft.other" xml:space="preserve"><value>{0} ثانية متبقية</value></data>
+  <data name="Settings_CheckLength" xml:space="preserve"><value>مدة الفحص السريع</value></data>
+  <data name="Unit_Seconds" xml:space="preserve"><value>ثانية</value></data>
+  <data name="Settings_CheckLengthHint" xml:space="preserve"><value>بين {0} و{1} ثانية.</value></data>
+  <data name="Hero_Checking" xml:space="preserve"><value>جارٍ فحص اتصالك…</value></data>
+  <data name="Nav_Check" xml:space="preserve"><value>الفحص</value></data>
+  <data name="Settings_SectionChecks" xml:space="preserve"><value>الفحوصات</value></data>
+  <data name="Settings_SectionAlerts" xml:space="preserve"><value>التنبيهات</value></data>
+  <data name="Status_Slow" xml:space="preserve"><value>بطيء</value></data>
+  <data name="Metric_Download" xml:space="preserve"><value>التنزيل</value></data>
+  <data name="Metric_Upload" xml:space="preserve"><value>الرفع</value></data>
+  <data name="Metric_Latency" xml:space="preserve"><value>زمن الاستجابة</value></data>
+  <data name="Metric_Variation" xml:space="preserve"><value>التذبذب</value></data>
+  <data name="Metric_UnderLoad" xml:space="preserve"><value>تحت الحمل: {0}</value></data>
+  <data name="Speed_NotMeasured" xml:space="preserve"><value>لم يُقَس</value></data>
+  <data name="Speed_Metered" xml:space="preserve"><value>تم التخطي على اتصال محدود</value></data>
+  <data name="Speed_Failed" xml:space="preserve"><value>تعذّر القياس</value></data>
+  <data name="Hero_SpeedDownload" xml:space="preserve"><value>جارٍ قياس سرعة التنزيل…</value></data>
+  <data name="Hero_SpeedUpload" xml:space="preserve"><value>جارٍ قياس سرعة الرفع…</value></data>
+  <data name="Settings_MeasureSpeed" xml:space="preserve"><value>قياس سرعة التنزيل والرفع</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>يضيف نحو 16 ثانية إلى الفحص السريع وقد يستهلك حتى 300 MB. لا يعمل أبدًا في الفحوصات الخلفية أو على الاتصالات المحدودة.</value></data>
+  <data name="Section_Fixes" xml:space="preserve"><value>أصلح المشكلات التي تم العثور عليها</value></data>
+  <data name="Section_BestPractices" xml:space="preserve"><value>أفضل الممارسات لهذا الكمبيوتر</value></data>
+  <data name="Advice_Important" xml:space="preserve"><value>مهم</value></data>
+  <data name="Advice_Suggestion" xml:space="preserve"><value>اقتراح</value></data>
+  <data name="Recommend_HealthyNote" xml:space="preserve"><value>لم يتم العثور على مشكلات في الاتصال. قد تجعل هذه الإعدادات اتصالك أسرع أو أكثر موثوقية.</value></data>
+  <data name="Recommend_CheckPrefix" xml:space="preserve"><value>يستحق الفحص: {0}</value></data>
+  <data name="Advice_LatencyUnderLoad_Title" xml:space="preserve"><value>يزداد زمن الاستجابة بمقدار {0} ms تحت الحمل</value></data>
+  <data name="Advice_LatencyUnderLoad_Detail" xml:space="preserve"><value>تؤخر عمليات التنزيل والرفع كل شيء آخر (bufferbloat). شغّل Smart Queue Management (SQM) أو QoS في الموجّه إذا كان يدعمه.</value></data>
+  <data name="Advice_WeakWifiSignal_Title" xml:space="preserve"><value>إشارة Wi-Fi ضعيفة ({0} من 5 أشرطة)</value></data>
+  <data name="Advice_WeakWifiSignal_Detail" xml:space="preserve"><value>اقترب من الموجّه، وأزل العوائق، أو أضف نقطة وصول شبكية. يوفر الكبل الاتصال الأكثر ثباتًا.</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Title" xml:space="preserve"><value>الضبط التلقائي لنافذة استقبال TCP محدود</value></data>
+  <data name="Advice_TcpAutoTuningLimited_Detail" xml:space="preserve"><value>يحد هذا من سرعة التنزيل. في طرفية مفتوحة كمسؤول، شغّل: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_EthernetLinkSlow_Title" xml:space="preserve"><value>يعمل ارتباط الكبل بسرعة {0} Mbps فقط</value></data>
+  <data name="Advice_EthernetLinkSlow_Detail" xml:space="preserve"><value>تحتاج سرعة Gigabit إلى كبل Cat5e أو أفضل ومنفذ gigabit. جرّب كبلًا آخر أو منفذًا آخر في الموجّه.</value></data>
+  <data name="Advice_WifiLinkSlow_Title" xml:space="preserve"><value>ارتباط Wi-Fi بطيء ({0} Mbps)</value></data>
+  <data name="Advice_WifiLinkSlow_Detail" xml:space="preserve"><value>اتصل بشبكة 5 GHz أو 6 GHz إذا كان الموجّه يدعمها، وضع الموجّه في مكان مفتوح ومركزي.</value></data>
+  <data name="Advice_AdapterPowerSaving_Title" xml:space="preserve"><value>قد يوقف Windows محول الشبكة لتوفير الطاقة</value></data>
+  <data name="Advice_AdapterPowerSaving_Detail" xml:space="preserve"><value>في إدارة الأجهزة، افتح محول الشبكة. في علامة التبويب إدارة الطاقة، إذا ظهرت، فأزل تحديد “السماح للكمبيوتر بإيقاف تشغيل هذا الجهاز لتوفير الطاقة”.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Title" xml:space="preserve"><value>Energy-Efficient Ethernet قيد التشغيل</value></data>
+  <data name="Advice_EnergyEfficientEthernet_Detail" xml:space="preserve"><value>قد يضيف ارتفاعات مفاجئة في التأخير. في إدارة الأجهزة، افتح محول Ethernet، ومن علامة التبويب خيارات متقدمة، اضبط Energy-Efficient Ethernet على إيقاف.</value></data>
+  <data name="Advice_PowerSaving_Title" xml:space="preserve"><value>قد يؤدي توفير الطاقة إلى إبطاء اتصالك</value></data>
+  <data name="Advice_PowerSaving_Detail" xml:space="preserve"><value>يبطئ موفر الطاقة وتوفير طاقة البطارية Wi-Fi. وصّل الكمبيوتر بالطاقة، أو في الإعدادات &gt; النظام &gt; الطاقة والبطارية، أوقف موفر الطاقة واضبط وضع الطاقة على متوازن.</value></data>
+  <data name="Advice_SlowDns_Title" xml:space="preserve"><value>عمليات البحث عن الأسماء بطيئة ({0} ms)</value></data>
+  <data name="Advice_SlowDns_Detail" xml:space="preserve"><value>تستغرق مواقع الويب وقتًا أطول لبدء التحميل. أعد تشغيل الموجّه، أو في الإعدادات &gt; الشبكة والإنترنت، افتح خصائص الاتصال وعدّل تعيين خادم DNS.</value></data>
+  <data name="Advice_OldNetworkDriver_Title" xml:space="preserve"><value>برنامج تشغيل الشبكة من {0}</value></data>
+  <data name="Advice_OldNetworkDriver_Detail" xml:space="preserve"><value>قد تتسبب برامج التشغيل القديمة في انقطاعات وسرعات بطيئة. احصل على أحدث برنامج تشغيل من صانع الكمبيوتر أو المحول، أو افحص Windows Update &gt; الخيارات المتقدمة &gt; التحديثات الاختيارية.</value></data>
+  <data name="Advice_MeteredConnection_Title" xml:space="preserve"><value>تم تعيين هذا الاتصال كاتصال محدود</value></data>
+  <data name="Advice_MeteredConnection_Detail" xml:space="preserve"><value>يؤخر Windows التحديثات وتقل مزامنة بعض التطبيقات. إذا كانت بياناتك غير محدودة، فأوقف الاتصال المحدود في خصائص الشبكة.</value></data>
+  <data name="Advice_ProxyConfigured_Title" xml:space="preserve"><value>يتم استخدام خادم وكيل</value></data>
+  <data name="Advice_ProxyConfigured_Detail" xml:space="preserve"><value>تمر حركة البيانات عبر خادم آخر، وقد يبطئ المواقع أو يحظرها. إذا لم تقم أنت أو مؤسستك بإعداده، فأوقفه في الإعدادات &gt; الشبكة والإنترنت &gt; الوكيل.</value></data>
+  <data name="Advice_Ipv6Disabled_Title" xml:space="preserve"><value>IPv6 متوقف عن التشغيل</value></data>
+  <data name="Advice_Ipv6Disabled_Detail" xml:space="preserve"><value>تعتمد بعض التطبيقات وميزات Windows على IPv6، ولا توصي Microsoft بإيقافه. أعد تشغيله في خصائص محول الشبكة، أو اسأل مسؤول تكنولوجيا المعلومات.</value></data>
+  <data name="Marker_Help" xml:space="preserve"><value>اضغط هذا فور ملاحظة تأخير أو تجمّد أو انقطاع مكالمة أثناء الفحص. تضع علامة ذلك الوقت على المخطط، لتعرف ما كان يفعله اتصالك حينها.</value></data>
+  <data name="Chart_Markers" xml:space="preserve"><value>علامات التأخير لديك: {0}</value></data>
+  <data name="Action_OpenSettings" xml:space="preserve"><value>فتح الإعدادات</value></data>
+  <data name="Action_OpenDeviceManager" xml:space="preserve"><value>فتح إدارة الأجهزة</value></data>
+  <data name="Action_OpenPowerOptions" xml:space="preserve"><value>فتح خيارات الطاقة</value></data>
+  <data name="Action_OpenTaskManager" xml:space="preserve"><value>فتح مدير المهام</value></data>
+  <data name="Action_OpenRouter" xml:space="preserve"><value>فتح صفحة الموجّه</value></data>
+  <data name="Action_CopyCommand" xml:space="preserve"><value>نسخ الأمر</value></data>
+  <data name="Action_CopySummary" xml:space="preserve"><value>نسخ الملخص لمزوّد الخدمة</value></data>
+  <data name="Status_Copied" xml:space="preserve"><value>تم النسخ إلى الحافظة.</value></data>
+  <data name="Advice_OtherTraffic_Title" xml:space="preserve"><value>استخدمت تطبيقات أخرى الاتصال أثناء الفحص (↓ {0} · ↑ {1} Mbps)</value></data>
+  <data name="Advice_OtherTraffic_Detail" xml:space="preserve"><value>تتنافس التنزيلات والمزامنة السحابية والتحديثات على هذا الكمبيوتر مع الألعاب والمكالمات، وتجعل النتائج تبدو أسوأ. أوقفها مؤقتًا ثم افحص مرة أخرى. يعرض مدير المهام التطبيقات التي تستخدم الشبكة.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Title" xml:space="preserve"><value>قد يؤدي توفير طاقة USB إلى فصل محول شبكة USB</value></data>
+  <data name="Advice_UsbSelectiveSuspend_Detail" xml:space="preserve"><value>في خيارات الطاقة، اختر تغيير إعدادات المخطط &gt; تغيير إعدادات الطاقة المتقدمة &gt; إعدادات USB، واضبط إعداد التعليق الانتقائي لـ USB على معطل.</value></data>
+  <data name="Checked_Ok" xml:space="preserve"><value>تم الفحص، لا حاجة إلى تغيير: {0}</value></data>
+  <data name="Area_WifiSignal" xml:space="preserve"><value>إشارة Wi-Fi</value></data>
+  <data name="Area_LinkSpeed" xml:space="preserve"><value>سرعة الارتباط</value></data>
+  <data name="Area_NetworkDriver" xml:space="preserve"><value>برنامج تشغيل الشبكة</value></data>
+  <data name="Area_AdapterPower" xml:space="preserve"><value>إدارة طاقة المحول</value></data>
+  <data name="Area_UsbPower" xml:space="preserve"><value>توفير طاقة USB</value></data>
+  <data name="Area_EnergyEfficientEthernet" xml:space="preserve"><value>Energy-Efficient Ethernet</value></data>
+  <data name="Area_TcpTuning" xml:space="preserve"><value>الضبط التلقائي لـ TCP</value></data>
+  <data name="Area_PowerSaving" xml:space="preserve"><value>توفير الطاقة</value></data>
+  <data name="Area_NameLookups" xml:space="preserve"><value>عمليات البحث عن الأسماء (DNS)</value></data>
+  <data name="Area_LatencyUnderLoad" xml:space="preserve"><value>زمن الاستجابة تحت الحمل</value></data>
+  <data name="Area_OtherTraffic" xml:space="preserve"><value>حركة بيانات أخرى على هذا الكمبيوتر</value></data>
+  <data name="Area_Proxy" xml:space="preserve"><value>الوكيل</value></data>
+  <data name="Area_Vpn" xml:space="preserve"><value>VPN</value></data>
+  <data name="Area_MeteredConnection" xml:space="preserve"><value>اتصال محدود</value></data>
+  <data name="Area_Ipv6" xml:space="preserve"><value>IPv6</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailDownload" xml:space="preserve"><value>تملأ التنزيلات قائمة انتظار اتصالك. في إعدادات الموجّه، شغّل SQM أو Smart Queue أو Adaptive QoS واضبط حد التنزيل على نحو {1} Mbps (90% من السرعة المقاسة).</value></data>
+  <data name="Advice_LatencyUnderLoad_DetailUpload" xml:space="preserve"><value>تملأ عمليات الرفع قائمة انتظار اتصالك. أوقف النسخ الاحتياطي والمزامنة السحابية مؤقتًا أثناء اللعب أو المكالمات، أو شغّل SQM أو Smart Queue أو Adaptive QoS في الموجّه مع حد رفع يقارب {1} Mbps (90% من السرعة المقاسة).</value></data>
+  <data name="Advice_OtherTraffic_TitleOneDrive" xml:space="preserve"><value>كان OneDrive يجري مزامنة أثناء الفحص ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailOneDrive" xml:space="preserve"><value>أوقفه مؤقتًا أثناء اللعب أو المكالمات: حدد أيقونة سحابة OneDrive في زاوية شريط المهام، ثم الإعدادات &gt; إيقاف المزامنة مؤقتًا &gt; ساعتان. يستأنف من تلقاء نفسه.</value></data>
+  <data name="Advice_OtherTraffic_TitleSync" xml:space="preserve"><value>كان {2} يجري مزامنة أثناء الفحص ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailSync" xml:space="preserve"><value>أوقفه مؤقتًا أثناء اللعب أو المكالمات: حدد أيقونته في زاوية شريط المهام واختر إيقاف مؤقت.</value></data>
+  <data name="Advice_OtherTraffic_TitleGame" xml:space="preserve"><value>كان {2} ينزّل أثناء الفحص ({3} MB)</value></data>
+  <data name="Advice_OtherTraffic_DetailGame" xml:space="preserve"><value>يتم تنزيل لعبة أو تحديث. في {2}، افتح التنزيلات وأوقفها مؤقتًا أثناء اللعب.</value></data>
+  <data name="Advice_OtherTraffic_TitleBrowser" xml:space="preserve"><value>استخدم {2} مقدار {3} MB أثناء الفحص</value></data>
+  <data name="Advice_OtherTraffic_DetailBrowser" xml:space="preserve"><value>هناك تنزيل أو فيديو أو علامة تبويب بث تستخدم الاتصال. في {2}، اضغط Ctrl+J لإيقاف التنزيلات مؤقتًا، وأغلق علامات التبويب التي لا تحتاج إليها.</value></data>
+  <data name="Advice_OtherTraffic_TitleWindows" xml:space="preserve"><value>استخدمت خدمات Windows مقدار {3} MB أثناء الفحص</value></data>
+  <data name="Advice_OtherTraffic_DetailWindows" xml:space="preserve"><value>ينقل Windows Update أو تحسين التسليم بيانات. حدّد النطاق الترددي من تحسين التسليم &gt; الخيارات المتقدمة.</value></data>
+  <data name="Advice_OtherTraffic_TitleApp" xml:space="preserve"><value>استخدم {2} مقدار {3} MB أثناء الفحص</value></data>
+  <data name="Advice_OtherTraffic_DetailApp" xml:space="preserve"><value>أغلق {2}، أو أوقف ما يفعله مؤقتًا، أثناء اللعب أو المكالمات. يعرضه مدير المهام &gt; العمليات، مرتبة حسب الشبكة، مباشرة.</value></data>
+  <data name="Advice_OtherTraffic_Also" xml:space="preserve"><value>نشط أيضًا: {0} ({1} MB).</value></data>
+  <data name="App_Windows" xml:space="preserve"><value>خدمات Windows</value></data>
+  <data name="Advice_WeakWifiSignal_TitleNamed" xml:space="preserve"><value>إشارة Wi-Fi ضعيفة على “{2}” ({0} من 5 أشرطة)</value></data>
+  <data name="Advice_WeakWifiSignal_DetailNamed" xml:space="preserve"><value>يرتبط {3} بسرعة {1} Mbps فقط من هنا. اجعل هذا الكمبيوتر والموجّه في الغرفة نفسها أو على خط رؤية مباشر، وأبق الموجّه خارج الخزائن، أو استخدم كبلًا للألعاب والمكالمات.</value></data>
+  <data name="Advice_WifiLinkSlow_TitleNamed" xml:space="preserve"><value>يرتبط “{2}” بسرعة {0} Mbps فقط</value></data>
+  <data name="Advice_WifiLinkSlow_DetailNamed" xml:space="preserve"><value>يعني ذلك عادة نطاق 2.4 GHz أو موجّهًا بعيدًا. إذا كان لدى الموجّه شبكة 5 GHz أيضًا (غالبًا باسم “{2}-5G”)، فاتصل بها من الإعدادات &gt; الشبكة والإنترنت &gt; Wi-Fi.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailCapable" xml:space="preserve"><value>يدعم {3} لديك {4}، لذا فإن {0} Mbps يعني أنه على نطاق 2.4 GHz أو بعيد عن الموجّه. اتصل بشبكة 5 GHz أو 6 GHz في الموجّه (غالبًا باسم “{2}-5G”) من الإعدادات &gt; الشبكة والإنترنت &gt; Wi-Fi.</value></data>
+  <data name="Advice_WifiLinkSlow_DetailLegacy" xml:space="preserve"><value>إن {3} لديك محول {4} أقدم. سيكون محول USB Wi-Fi 6 أو كبل شبكة أسرع بكثير.</value></data>
+  <data name="Advice_EthernetLinkSlow_TitleNamed" xml:space="preserve"><value>يعمل {2} بسرعة {0} Mbps فقط</value></data>
+  <data name="Advice_EthernetLinkSlow_DetailNamed" xml:space="preserve"><value>تحتاج سرعة Gigabit إلى الأسلاك الثمانية كلها. استبدل الكبل بآخر Cat5e أو Cat6 وجرّب منفذًا آخر في الموجّه؛ إذا بقي عند {0} Mbps، فالمنفذ أو محول الشبكة بينهما محدود.</value></data>
+  <data name="Advice_AdapterPowerSaving_TitleNamed" xml:space="preserve"><value>يمكن أن يوقف Windows ‏{2} لتوفير الطاقة</value></data>
+  <data name="Advice_AdapterPowerSaving_DetailNamed" xml:space="preserve"><value>في إدارة الأجهزة، افتح محولات الشبكة &gt; {2} &gt; إدارة الطاقة وأزل تحديد “السماح للكمبيوتر بإيقاف تشغيل هذا الجهاز لتوفير الطاقة”.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_TitleNamed" xml:space="preserve"><value>قد يؤدي توفير طاقة USB إلى فصل {2}</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailPlugged" xml:space="preserve"><value>في خيارات الطاقة، اختر تغيير إعدادات المخطط &gt; تغيير إعدادات الطاقة المتقدمة &gt; إعدادات USB &gt; إعداد التعليق الانتقائي لـ USB، واضبط متصل بالكهرباء على معطل.</value></data>
+  <data name="Advice_UsbSelectiveSuspend_DetailBattery" xml:space="preserve"><value>في خيارات الطاقة، اختر تغيير إعدادات المخطط &gt; تغيير إعدادات الطاقة المتقدمة &gt; إعدادات USB &gt; إعداد التعليق الانتقائي لـ USB، واضبط على البطارية على معطل.</value></data>
+  <data name="Advice_EnergyEfficientEthernet_TitleNamed" xml:space="preserve"><value>Energy-Efficient Ethernet قيد التشغيل لـ {2}</value></data>
+  <data name="Advice_EnergyEfficientEthernet_DetailNamed" xml:space="preserve"><value>قد يضيف ارتفاعات مفاجئة في التأخير. في إدارة الأجهزة، افتح محولات الشبكة &gt; {2} &gt; خيارات متقدمة، وحدد Energy-Efficient Ethernet (أو Green Ethernet) واضبطه على معطل.</value></data>
+  <data name="Advice_PowerSaving_TitleEnergySaver" xml:space="preserve"><value>موفر الطاقة قيد التشغيل</value></data>
+  <data name="Advice_PowerSaving_DetailEnergySaver" xml:space="preserve"><value>يحد من Wi-Fi والنشاط في الخلفية. أوقفه من الإعدادات &gt; النظام &gt; الطاقة والبطارية &gt; موفر الطاقة، أو وصّل الكمبيوتر بالطاقة.</value></data>
+  <data name="Advice_PowerSaving_TitleEfficiency" xml:space="preserve"><value>تم ضبط وضع الطاقة على أفضل كفاءة للطاقة</value></data>
+  <data name="Advice_PowerSaving_DetailEfficiency" xml:space="preserve"><value>يبطئ Wi-Fi لتوفير البطارية. في الإعدادات &gt; النظام &gt; الطاقة والبطارية، اضبط وضع الطاقة على متوازن أو أفضل أداء.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiBattery" xml:space="preserve"><value>تم ضبط توفير طاقة Wi-Fi على {2} عند استخدام البطارية</value></data>
+  <data name="Advice_PowerSaving_DetailWifiBattery" xml:space="preserve"><value>في خيارات الطاقة، اختر تغيير إعدادات المخطط &gt; تغيير إعدادات الطاقة المتقدمة &gt; إعدادات المحول اللاسلكي &gt; وضع توفير الطاقة، واضبط على البطارية على أقصى أداء.</value></data>
+  <data name="Advice_PowerSaving_TitleWifiPlugged" xml:space="preserve"><value>تم ضبط توفير طاقة Wi-Fi على {2} عند التوصيل بالكهرباء</value></data>
+  <data name="Advice_PowerSaving_DetailWifiPlugged" xml:space="preserve"><value>في خيارات الطاقة، اختر تغيير إعدادات المخطط &gt; تغيير إعدادات الطاقة المتقدمة &gt; إعدادات المحول اللاسلكي &gt; وضع توفير الطاقة، واضبط متصل بالكهرباء على أقصى أداء.</value></data>
+  <data name="WifiPower_1" xml:space="preserve"><value>توفير طاقة منخفض</value></data>
+  <data name="WifiPower_2" xml:space="preserve"><value>توفير طاقة متوسط</value></data>
+  <data name="WifiPower_3" xml:space="preserve"><value>توفير طاقة أقصى</value></data>
+  <data name="Advice_SlowDns_TitleNamed" xml:space="preserve"><value>عمليات البحث عن الأسماء عبر {2} بطيئة ({0} ms)</value></data>
+  <data name="Advice_SlowDns_DetailRouter" xml:space="preserve"><value>يستخدم الكمبيوتر الموجّه ({2}) لـ DNS، وهو يرد ببطء. أعد تشغيل الموجّه؛ إذا بقيت عمليات البحث بطيئة، فاضبط خادم DNS عامًا مثل 1.1.1.1 أو 8.8.8.8 ضمن تعيين خادم DNS في خصائص اتصالك.</value></data>
+  <data name="Advice_SlowDns_DetailOther" xml:space="preserve"><value>يرد خادم DNS ‏{2} ببطء. اضبط خادمًا أسرع، مثل 1.1.1.1 أو 8.8.8.8، ضمن تعيين خادم DNS في خصائص اتصالك.</value></data>
+  <data name="Advice_OldNetworkDriver_TitleNamed" xml:space="preserve"><value>برنامج تشغيل {2} من {0} (الإصدار {3})</value></data>
+  <data name="Advice_OldNetworkDriver_DetailNamed" xml:space="preserve"><value>احصل على أحدث برنامج تشغيل من صفحة دعم صانع الكمبيوتر، أو افحص Windows Update &gt; الخيارات المتقدمة &gt; التحديثات الاختيارية.</value></data>
+  <data name="Advice_OldNetworkDriver_DetailIntel" xml:space="preserve"><value>تنشر Intel برامج تشغيل أحدث لهذا المحول. ثبّتها باستخدام Intel Driver &amp; Support Assistant.</value></data>
+  <data name="Advice_MeteredConnection_TitleNamed" xml:space="preserve"><value>تم تعيين “{2}” كاتصال محدود</value></data>
+  <data name="Advice_MeteredConnection_DetailNamed" xml:space="preserve"><value>على هذا الاتصال، يؤخر Windows التحديثات وتقل مزامنة بعض التطبيقات. إذا كانت خطة بياناتك غير محدودة، فأوقف الاتصال المحدود في خصائص “{2}”.</value></data>
+  <data name="Advice_ProxyConfigured_TitleNamed" xml:space="preserve"><value>تمر حركة بيانات الويب عبر الوكيل {2}</value></data>
+  <data name="Advice_ProxyConfigured_DetailLocal" xml:space="preserve"><value>{2} برنامج على هذا الكمبيوتر، مثل أداة تصحيح أو مانع إعلانات أو تطبيق أمان. أغلقه، أو أوقف الوكيل من الإعدادات &gt; الشبكة والإنترنت &gt; الوكيل.</value></data>
+  <data name="Advice_ProxyConfigured_DetailRemote" xml:space="preserve"><value>إذا لم تقم أنت أو مؤسستك بإعداده، فأوقفه من الإعدادات &gt; الشبكة والإنترنت &gt; الوكيل.</value></data>
+  <data name="Advice_VpnActive_Title" xml:space="preserve"><value>توجّه VPN حركة بياناتك</value></data>
+  <data name="Advice_VpnActive_Detail" xml:space="preserve"><value>تضيف VPN مسارًا جانبيًا لكل حزمة. للألعاب والمكالمات، افصلها، أو استثنِ تطبيق اللعبة أو المكالمات في إعدادات split tunneling الخاصة بها.</value></data>
+  <data name="Advice_VpnActive_TitleNamed" xml:space="preserve"><value>يوجّه {2} حركة بياناتك</value></data>
+  <data name="Advice_TcpAutoTuningLimited_TitleNamed" xml:space="preserve"><value>تم ضبط الضبط التلقائي لنافذة الاستقبال على “{2}”</value></data>
+  <data name="Advice_TcpAutoTuningLimited_DetailNamed" xml:space="preserve"><value>يحد ذلك من سرعة التنزيل على الاتصالات السريعة. في Terminal (Admin)، شغّل: netsh int tcp set global autotuninglevel=normal</value></data>
+  <data name="Advice_Ipv6Disabled_TitleRegistry" xml:space="preserve"><value>تم إيقاف IPv6 للكمبيوتر بالكامل</value></data>
+  <data name="Advice_Ipv6Disabled_DetailRegistry" xml:space="preserve"><value>قيمة السجل DisabledComponents هي {2}، وغالبًا ما تضبطها أداة تعديل. توصي Microsoft باستخدام 0x20 (تفضيل IPv4) بدلًا من ذلك: اطلب من المسؤول تغييرها، ثم أعد التشغيل.</value></data>
+  <data name="Advice_Ipv6Disabled_TitleAdapter" xml:space="preserve"><value>تم إيقاف IPv6 على {2}</value></data>
+  <data name="Advice_Ipv6Disabled_DetailAdapter" xml:space="preserve"><value>في اتصالات الشبكة، افتح {2} &gt; الخصائص وحدد Internet Protocol Version 6 (TCP/IPv6).</value></data>
+  <data name="Action_OpenDownloadPage" xml:space="preserve"><value>فتح صفحة التنزيل</value></data>
+  <data name="Action_OpenNetworkConnections" xml:space="preserve"><value>فتح اتصالات الشبكة</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailThisPc" xml:space="preserve"><value>على هذا الكمبيوتر، استخدم {0} مقدار {1} MB أثناء الفحص. أوقفه مؤقتًا أولًا، ثم افحص مرة أخرى.</value></data>
+  <data name="Remedy_PauseHouseholdUploads_DetailOtherDevices" xml:space="preserve"><value>كان هذا الكمبيوتر هادئًا أثناء الفحص، لذا انظر إلى الأجهزة الأخرى في المنزل: أجهزة ألعاب تنزّل تحديثات، أو تلفزيونات تبث، أو هواتف تنسخ الصور احتياطيًا، أو كاميرات ترفع فيديو.</value></data>
+  <data name="Remedy_RestartRouter_DetailNamed" xml:space="preserve"><value>افصل الموجّه ({0}) لمدة 30 ثانية، ثم أعد توصيله، وشغّل فحصًا سريعًا عندما تثبت أضواؤه.</value></data>
+  <data name="Remedy_ContactIsp_DetailNamed" xml:space="preserve"><value>أخبر مزوّد الخدمة بما وجده الفحص: “{0}” يوفر نسخ الملخص التفاصيل لهم.</value></data>
+  <data name="Hero_Disconnected" xml:space="preserve"><value>لا يوجد اتصال بالشبكة</value></data>
+  <data name="Summary_Disconnected" xml:space="preserve"><value>اتصل بشبكة Wi-Fi أو وصّل كبل شبكة. لن تُجرى أي فحوص حتى يتصل هذا الكمبيوتر بالشبكة.</value></data>
+  <data name="Settings_AiReview" xml:space="preserve"><value>فحص التوصيات باستخدام ذكاء اصطناعي عبر الإنترنت</value></data>
+  <data name="Settings_AiReviewHint" xml:space="preserve"><value>قبل عرض النصيحة، يُرسل نصها العام فقط إلى خدمات ذكاء اصطناعي عامة مجانية (LLM7.io، Pollinations)، ولا تُرسل أبدًا الأسماء أو العناوين أو القياسات من هذا الكمبيوتر. تُحفظ النتائج لمدة 30 يومًا.</value></data>
+  <data name="Review_InProgress" xml:space="preserve"><value>جارٍ فحص التوصيات باستخدام ذكاء اصطناعي عبر الإنترنت…</value></data>
+  <data name="Review_AllChecked" xml:space="preserve"><value>تم الفحص بواسطة ذكاء اصطناعي عبر الإنترنت ({0}).</value></data>
+  <data name="Review_Partial" xml:space="preserve"><value>تعذّر فحص بعض التوصيات بواسطة ذكاء اصطناعي عبر الإنترنت.</value></data>
+  <data name="Review_Unavailable" xml:space="preserve"><value>لم يكن فحص الذكاء الاصطناعي عبر الإنترنت متاحًا، لذلك تظهر هذه التوصيات بدون فحص.</value></data>
+  <data name="Review_HeldBack" xml:space="preserve"><value>تم حجب بعض النصائح لأن مراجعين اثنين من الذكاء الاصطناعي عبر الإنترنت وضعا عليها علامة غير صحيحة.</value></data>
+  <data name="Advice_AiChecked" xml:space="preserve"><value>تم فحصه بالذكاء الاصطناعي</value></data>
+  <data name="Settings_SectionAppearance" xml:space="preserve"><value>المظهر</value></data>
+  <data name="Settings_Theme" xml:space="preserve"><value>السمة</value></data>
+  <data name="Settings_ThemeHint" xml:space="preserve"><value>تلبي كل سمة تباين WCAG 2.2 AA للنص والأزرار والتسميات؛ وتلبي سمات التباين العالي AAA.</value></data>
+  <data name="Theme_Dark" xml:space="preserve"><value>داكن</value></data>
+  <data name="Theme_Light" xml:space="preserve"><value>فاتح</value></data>
+  <data name="Theme_HighContrastDark" xml:space="preserve"><value>تباين عالٍ داكن</value></data>
+  <data name="Theme_HighContrastLight" xml:space="preserve"><value>تباين عالٍ فاتح</value></data>
+  <data name="Theme_System" xml:space="preserve"><value>استخدام إعداد Windows</value></data>
+  <data name="Settings_ThemeWindowsHc" xml:space="preserve"><value>التباين العالي في Windows قيد التشغيل، لذلك يستخدم ConnectionClue ألوان التباين في Windows لديك.</value></data>
+  <data name="Metric_Download_Help" xml:space="preserve"><value>سرعة التنزيل: مدى سرعة وصول البيانات إلى هذا الكمبيوتر من الإنترنت، وتُقاس بتنزيل بيانات اختبار لمدة 8 ثوانٍ. الأعلى أفضل؛ يحتاج بث الفيديو إلى نحو 5 إلى 25 Mbps.</value></data>
+  <data name="Metric_Upload_Help" xml:space="preserve"><value>سرعة الرفع: مدى سرعة إرسال هذا الكمبيوتر للبيانات إلى الإنترنت، وتُقاس لمدة 8 ثوانٍ. الأعلى أفضل؛ تعتمد عليها مكالمات الفيديو والنسخ الاحتياطي السحابي.</value></data>
+  <data name="Metric_Latency_Help" xml:space="preserve"><value>زمن الاستجابة: الوقت الذي تستغرقه رسالة للوصول إلى خادم على الإنترنت والعودة، بالمللي ثانية. الأقل أفضل؛ أقل من 50 ms يبدو فوريًا في الألعاب والمكالمات. يعرض “تحت الحمل” ذلك أثناء التنزيل والرفع.</value></data>
+  <data name="Metric_Variation_Help" xml:space="preserve"><value>التذبذب (jitter): مقدار تغيّر زمن الاستجابة من لحظة إلى التالية. الأقل أفضل؛ فوق 30 ms تبدأ المكالمات والألعاب في التقطّع.</value></data>
+  <data name="Chart_Help" xml:space="preserve"><value>كل شريط هو اختبار؛ وارتفاعه هو التأخير بالمللي ثانية (المقياس على اليسار، والوقت في الأسفل). الأقل أفضل. تتجاوز الأشرطة بلون “أعلى من الحد” حدك، والأشرطة المخططة لم تحصل على إجابة. أشر إلى شريط لرؤية قيمته.</value></data>
+  <data name="Lane_Local_Help" xml:space="preserve"><value>الشبكة المنزلية: كم يستغرق الموجّه للرد على هذا الكمبيوتر. تعرض مشكلات Wi-Fi أو الكبلات داخل منزلك.</value></data>
+  <data name="Lane_Internet_Help" xml:space="preserve"><value>الإنترنت: كم يستغرق الاتصال بخادم على الإنترنت. يعرض مشكلات مزوّد خدمة الإنترنت لديك.</value></data>
+  <data name="Lane_Services_Help" xml:space="preserve"><value>خدمات الويب: كم يستغرق البحث عن عنوان ويب وتحميل صفحة ويب. تعرض بطء عمليات البحث عن الأسماء أو مواقع الويب.</value></data>
+  <data name="Symptom_Gaming_Help" xml:space="preserve"><value>اختر هذا إذا كانت الألعاب تتأخر أو تتجمّد أو يحدث فيها ارتداد. ستركّز النصائح بعدها على زمن الاستجابة والتذبذب والثبات.</value></data>
+  <data name="Symptom_Video_Help" xml:space="preserve"><value>اختر هذا إذا توقفت مقاطع الفيديو للتخزين المؤقت أو انخفضت جودتها. ستركّز النصائح بعدها على سرعة التنزيل وعمليات البحث عن الأسماء.</value></data>
+  <data name="Symptom_Calls_Help" xml:space="preserve"><value>اختر هذا إذا كانت المكالمات الصوتية أو مكالمات الفيديو تتقطّع أو تتجمّد. ستركّز النصائح بعدها على زمن الاستجابة والتذبذب وسرعة الرفع.</value></data>
+  <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>اختر هذا إذا كان الاتصال ينقطع تمامًا من وقت لآخر. ستركّز النصائح بعدها على إشارة Wi-Fi وتوفير الطاقة والمحولات.</value></data>
+  <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
+  <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: لا إجابة</value></data>
+</root>

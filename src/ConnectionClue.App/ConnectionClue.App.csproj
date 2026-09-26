@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.26100.0</SupportedOSPlatformVersion>
+    <UseWPF>true</UseWPF>
+    <!-- WinForms only for the notification-area icon (NotifyIcon); WPF has none. -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>ConnectionClue</AssemblyName>
+    <Product>ConnectionClue</Product>
+    <AssemblyTitle>ConnectionClue</AssemblyTitle>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Ship framework resources only for the 20 UI languages. -->
+    <SatelliteResourceLanguages>en;zh-Hans;zh-Hant;hi;es;ar;fr;bn;pt;ru;id;ur;de;ja;mr;vi;te;ha;tr;ta</SatelliteResourceLanguages>
+    <ApplicationIcon>Assets\ConnectionClue.ico</ApplicationIcon>
+    <!-- WPF0001: Fluent ThemeMode is marked experimental. -->
+    <NoWarn>$(NoWarn);WPF0001</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\helpme.md" LogicalName="ConnectionClue.App.helpme.md" />
+    <Resource Include="Assets\*.ico" />
+    <Resource Include="Assets\*.png" />
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+    <ProjectReference Include="..\ConnectionClue.Presentation\ConnectionClue.Presentation.csproj" />
+    <ProjectReference Include="..\ConnectionClue.Windows\ConnectionClue.Windows.csproj" />
+  </ItemGroup>
+</Project>
