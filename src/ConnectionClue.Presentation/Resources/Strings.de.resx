@@ -270,4 +270,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Wählen Sie dies aus, wenn die Verbindung hin und wieder vollständig abbricht. Die Empfehlungen konzentrieren sich dann auf WLAN-Signal, Energiesparen und Adapter.</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: keine Antwort</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>oder</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>Netzwerk</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>Voreinstellungen</value></data>
 </root>

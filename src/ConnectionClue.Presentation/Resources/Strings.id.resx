@@ -267,4 +267,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Pilih ini jika koneksi sesekali terputus sepenuhnya. Saran kemudian berfokus pada sinyal Wi-Fi, penghemat daya, dan adaptor.</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} d: {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} d: tidak ada jawaban</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>atau</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>Jaringan</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>Preferensi</value></data>
 </root>

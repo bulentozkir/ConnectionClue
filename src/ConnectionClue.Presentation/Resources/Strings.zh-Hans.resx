@@ -267,4 +267,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>如果连接不时完全中断，请选择此项。之后建议会重点关注 Wi-Fi 信号、省电和适配器。</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} s：{1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s：无应答</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>或</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>网络</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>偏好设置</value></data>
 </root>

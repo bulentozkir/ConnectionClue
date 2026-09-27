@@ -27,9 +27,9 @@ public sealed partial class MainViewModel
         ? string.Format(_ui, _l.Get("Diagnostics_UseDns", _ui), fastest.Provider)
         : _l.Get("Diagnostics_UseFastestDns", _ui);
 
-    private string L(string key) => _l.Get(key, _ui);
+    private string Loc(string key) => _l.Get(key, _ui);
 
-    private string F(string key, params object?[] args) => string.Format(_ui, _l.Get(key, _ui), args);
+    private string LocFormat(string key, params object?[] args) => string.Format(_ui, _l.Get(key, _ui), args);
 
     [RelayCommand(CanExecute = nameof(CanRunNetworkTool))]
     private async Task TraceRouteAsync()
@@ -37,18 +37,18 @@ public sealed partial class MainViewModel
         if (_networkDiagnostics is null) return;
         if (!NetworkAvailableForTool())
         {
-            TraceRouteText = L("Diagnostics_Disconnected");
+            TraceRouteText = Loc("Diagnostics_Disconnected");
             return;
         }
         IsRunningNetworkTool = true;
-        TraceRouteText = L("Diagnostics_Running");
+        TraceRouteText = Loc("Diagnostics_Running");
         try
         {
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
             var hops = await _networkDiagnostics.TraceRouteAsync(timeout.Token);
             if (hops.Count == 0)
             {
-                TraceRouteText = L("Diagnostics_NoResults");
+                TraceRouteText = Loc("Diagnostics_NoResults");
                 return;
             }
             string summary = TraceSummaryText(hops);
@@ -57,7 +57,7 @@ public sealed partial class MainViewModel
         }
         catch (OperationCanceledException)
         {
-            TraceRouteText = L("Diagnostics_TimedOut");
+            TraceRouteText = Loc("Diagnostics_TimedOut");
         }
         finally
         {
@@ -71,11 +71,11 @@ public sealed partial class MainViewModel
         var s = DiagnosticsAnalysis.Summarize(hops);
         var f = CultureInfo.CurrentCulture;
         string text = s.DelayHop is not { } hop
-            ? F("Diagnostics_TraceNoDelay", DiagnosticsAnalysis.NotableIncreaseMs.ToString("0", f))
-            : F("Diagnostics_TraceDelay", hop, s.DelayAddress ?? "—", s.DelayIncreaseMs!.Value.ToString("0", f)) + " "
-              + L(hop == 1 ? "Diagnostics_TraceWhereRouter"
+            ? LocFormat("Diagnostics_TraceNoDelay", DiagnosticsAnalysis.NotableIncreaseMs.ToString("0", f))
+            : LocFormat("Diagnostics_TraceDelay", hop, s.DelayAddress ?? "—", s.DelayIncreaseMs!.Value.ToString("0", f)) + " "
+              + Loc(hop == 1 ? "Diagnostics_TraceWhereRouter"
                   : DiagnosticsAnalysis.IsPrivate(s.DelayAddress) ? "Diagnostics_TraceWherePrivate" : "Diagnostics_TraceWherePublic");
-        return s.LossFromHop is { } loss ? text + " " + F("Diagnostics_TraceLoss", loss) : text;
+        return s.LossFromHop is { } loss ? text + " " + LocFormat("Diagnostics_TraceLoss", loss) : text;
     }
 
     private string TraceRow(TraceHop h)
@@ -85,11 +85,11 @@ public sealed partial class MainViewModel
         [
             h.Address ?? "—",
             h.MedianRoundTripMilliseconds is { } ms ? ms.ToString("0.#", f) + " ms" : null,
-            F("Diagnostics_TraceReplies", h.Replies, h.Probes),
-            h.IncreaseFromPreviousHopMilliseconds is { } up and >= 0.5 ? F("Diagnostics_TraceIncrease", up.ToString("0.#", f)) : null,
+            LocFormat("Diagnostics_TraceReplies", h.Replies, h.Probes),
+            h.IncreaseFromPreviousHopMilliseconds is { } up and >= 0.5 ? LocFormat("Diagnostics_TraceIncrease", up.ToString("0.#", f)) : null,
             ToolStatus(h.Status),
         ];
-        return F("Diagnostics_TraceRow", h.Hop, string.Join(" · ", parts.Where(p => p is not null)));
+        return LocFormat("Diagnostics_TraceRow", h.Hop, string.Join(" · ", parts.Where(p => p is not null)));
     }
 
     [RelayCommand(CanExecute = nameof(CanRunNetworkTool))]
@@ -98,11 +98,11 @@ public sealed partial class MainViewModel
         if (_networkDiagnostics is null) return;
         if (!NetworkAvailableForTool())
         {
-            DnsComparisonText = L("Diagnostics_Disconnected");
+            DnsComparisonText = Loc("Diagnostics_Disconnected");
             return;
         }
         IsRunningNetworkTool = true;
-        DnsComparisonText = L("Diagnostics_Running");
+        DnsComparisonText = Loc("Diagnostics_Running");
         DnsStatus = "";
         try
         {
@@ -113,16 +113,16 @@ public sealed partial class MainViewModel
             OnPropertyChanged(nameof(SwitchDnsLabel));
             bool currentMeasured = results.Any(r => r.IsCurrent && r.MedianMilliseconds is not null);
             string verdict = _dnsChoice.Fastest is { } fastest
-                ? F(currentMeasured ? "Diagnostics_DnsFaster" : "Diagnostics_DnsFastest", fastest.Provider, MsText(fastest.MedianMilliseconds))
-                : _dnsChoice.KeepCurrent ? L("Diagnostics_DnsKeepCurrent") : L("Diagnostics_NoResults");
-            DnsComparisonText = string.Join(Environment.NewLine, [verdict, .. results.Select(r => F("Diagnostics_DnsRow",
-                !r.IsCurrent ? r.Provider : r.Provider.Length > 0 ? F("Diagnostics_DnsCurrentNamed", r.Provider) : L("Diagnostics_DnsCurrent"),
+                ? LocFormat(currentMeasured ? "Diagnostics_DnsFaster" : "Diagnostics_DnsFastest", fastest.Provider, MsText(fastest.MedianMilliseconds))
+                : _dnsChoice.KeepCurrent ? Loc("Diagnostics_DnsKeepCurrent") : Loc("Diagnostics_NoResults");
+            DnsComparisonText = string.Join(Environment.NewLine, [verdict, .. results.Select(r => LocFormat("Diagnostics_DnsRow",
+                !r.IsCurrent ? r.Provider : r.Provider.Length > 0 ? LocFormat("Diagnostics_DnsCurrentNamed", r.Provider) : Loc("Diagnostics_DnsCurrent"),
                 r.Server, MsText(r.MedianMilliseconds), r.SuccessfulQueries, ToolStatus(r.Status)))]);
             Emit(verdict, AnnouncementKind.FindingReady);
         }
         catch (OperationCanceledException)
         {
-            DnsComparisonText = L("Diagnostics_TimedOut");
+            DnsComparisonText = Loc("Diagnostics_TimedOut");
         }
         finally
         {
@@ -152,11 +152,11 @@ public sealed partial class MainViewModel
             var result = await _networkDiagnostics.SetDnsAsync(provider, timeout.Token);
             DnsStatus = result switch
             {
-                DnsSwitchResult.Switched => F("Diagnostics_DnsSwitched", provider),
-                DnsSwitchResult.Restored => L("Diagnostics_DnsRestored"),
-                DnsSwitchResult.Cancelled => L("Diagnostics_DnsSwitchCancelled"),
-                DnsSwitchResult.NoAdapter => L("Diagnostics_DnsNoAdapter"),
-                _ => L("Diagnostics_DnsSwitchFailed"),
+                DnsSwitchResult.Switched => LocFormat("Diagnostics_DnsSwitched", provider),
+                DnsSwitchResult.Restored => Loc("Diagnostics_DnsRestored"),
+                DnsSwitchResult.Cancelled => Loc("Diagnostics_DnsSwitchCancelled"),
+                DnsSwitchResult.NoAdapter => Loc("Diagnostics_DnsNoAdapter"),
+                _ => Loc("Diagnostics_DnsSwitchFailed"),
             };
             bool changed = result is DnsSwitchResult.Switched or DnsSwitchResult.Restored;
             if (changed)
@@ -168,7 +168,7 @@ public sealed partial class MainViewModel
         }
         catch (OperationCanceledException)
         {
-            DnsStatus = L("Diagnostics_DnsSwitchFailed");
+            DnsStatus = Loc("Diagnostics_DnsSwitchFailed");
             Emit(DnsStatus, AnnouncementKind.Error);
         }
         finally
@@ -183,11 +183,11 @@ public sealed partial class MainViewModel
         if (_networkDiagnostics is null) return;
         if (!NetworkAvailableForTool())
         {
-            WifiAnalysisText = L("Diagnostics_Disconnected");
+            WifiAnalysisText = Loc("Diagnostics_Disconnected");
             return;
         }
         IsRunningNetworkTool = true;
-        WifiAnalysisText = L("Diagnostics_Running");
+        WifiAnalysisText = Loc("Diagnostics_Running");
         try
         {
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(20));
@@ -196,19 +196,19 @@ public sealed partial class MainViewModel
             var advice = result.Status == WifiScanStatus.Success ? WifiAdviceLines(result.Channels).ToList() : [];
             WifiAnalysisText = result.Status switch
             {
-                WifiScanStatus.NoAdapter => L("Diagnostics_WifiNoAdapter"),
-                WifiScanStatus.NoNetworks => L("Diagnostics_WifiNoNetworks"),
-                WifiScanStatus.PermissionDenied => L("Diagnostics_WifiPermission"),
-                WifiScanStatus.Failed => L("Diagnostics_WifiFailed"),
-                _ when result.Channels.Count == 0 => L("Diagnostics_NoResults"),
-                _ => string.Join(Environment.NewLine, [.. advice, .. result.Channels.Select(c => F("Diagnostics_WifiRow", c.Band, c.Channel,
-                    c.NearbyNetworks, (c.Recommended ? L("Diagnostics_Recommended") : "") + (c.Connected ? L("Diagnostics_WifiYours") : "")))]),
+                WifiScanStatus.NoAdapter => Loc("Diagnostics_WifiNoAdapter"),
+                WifiScanStatus.NoNetworks => Loc("Diagnostics_WifiNoNetworks"),
+                WifiScanStatus.PermissionDenied => Loc("Diagnostics_WifiPermission"),
+                WifiScanStatus.Failed => Loc("Diagnostics_WifiFailed"),
+                _ when result.Channels.Count == 0 => Loc("Diagnostics_NoResults"),
+                _ => string.Join(Environment.NewLine, [.. advice, .. result.Channels.Select(c => LocFormat("Diagnostics_WifiRow", c.Band, c.Channel,
+                    c.NearbyNetworks, (c.Recommended ? Loc("Diagnostics_Recommended") : "") + (c.Connected ? Loc("Diagnostics_WifiYours") : "")))]),
             };
             if (advice.Count > 0) Emit(string.Join(" ", advice), AnnouncementKind.FindingReady);
         }
         catch (OperationCanceledException)
         {
-            WifiAnalysisText = L("Diagnostics_TimedOut");
+            WifiAnalysisText = Loc("Diagnostics_TimedOut");
         }
         finally
         {
@@ -220,10 +220,10 @@ public sealed partial class MainViewModel
     private IEnumerable<string> WifiAdviceLines(IReadOnlyList<WifiChannelSummary> channels)
     {
         var advice = DiagnosticsAnalysis.AdviseWifi(channels);
-        if (advice.Connected is { } connected) yield return F("Diagnostics_WifiConnected", connected.Band, connected.Channel, connected.NearbyNetworks);
-        if (advice.BetterChannel is { } better) yield return F("Diagnostics_WifiChangeChannel", better.Channel, better.Band, better.NearbyNetworks);
-        if (advice.FasterBandNearby && advice.Connected?.Band == "2.4") yield return L("Diagnostics_WifiBandAdvice");
-        if (advice.Best.Count > 0) yield return F("Diagnostics_WifiBest", JoinList(advice.Best.Select(b => F("Diagnostics_WifiChannel", b.Channel, b.Band))));
+        if (advice.Connected is { } connected) yield return LocFormat("Diagnostics_WifiConnected", connected.Band, connected.Channel, connected.NearbyNetworks);
+        if (advice.BetterChannel is { } better) yield return LocFormat("Diagnostics_WifiChangeChannel", better.Channel, better.Band, better.NearbyNetworks);
+        if (advice.FasterBandNearby && advice.Connected?.Band == "2.4") yield return Loc("Diagnostics_WifiBandAdvice");
+        if (advice.Best.Count > 0) yield return LocFormat("Diagnostics_WifiBest", JoinList(advice.Best.Select(b => LocFormat("Diagnostics_WifiChannel", b.Channel, b.Band))));
     }
 
     [RelayCommand]
@@ -233,11 +233,11 @@ public sealed partial class MainViewModel
         try { _networkDiagnostics.OpenNetworkSettings(); }
         catch (System.ComponentModel.Win32Exception)
         {
-            DnsStatus = L("Diagnostics_SettingsFailed");
+            DnsStatus = Loc("Diagnostics_SettingsFailed");
         }
     }
 
-    private string ToolStatus(NetworkToolStatus status) => L(status switch
+    private string ToolStatus(NetworkToolStatus status) => Loc(status switch
     {
         NetworkToolStatus.Success => "Diagnostics_StatusReached",
         NetworkToolStatus.Responded => "Diagnostics_StatusResponded",

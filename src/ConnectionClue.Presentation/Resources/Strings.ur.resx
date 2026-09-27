@@ -270,4 +270,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>اگر کنکشن کبھی کبھار مکمل طور پر منقطع ہو جائے تو اسے منتخب کریں۔ پھر مشورہ Wi-Fi سگنل، پاور سیونگ اور اڈاپٹرز پر توجہ دیتا ہے۔</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: کوئی جواب نہیں</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>یا</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>نیٹ ورک</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>ترجیحات</value></data>
 </root>

@@ -19,7 +19,7 @@ public sealed partial class MainViewModel
     [ObservableProperty]
     public partial IReadOnlyList<ServiceResultItem> ServiceResults { get; set; } = [];
 
-    /// <summary>One-sentence outcome of the latest service test (status card and Insights); empty before a test.</summary>
+    /// <summary>One-sentence outcome of the latest service test (Recommendations and Insights); empty before a test.</summary>
     [ObservableProperty]
     public partial string ServiceSummary { get; set; } = "";
 
@@ -30,6 +30,13 @@ public sealed partial class MainViewModel
     public string ServiceNames => JoinList(SymptomServices.For(SelectedSymptomValue).Select(s => s.Name));
 
     private bool CanTestServices() => _serviceTargetProbe is not null && !IsRunning && !IsDisconnected && !IsTestingTarget;
+
+    /// <summary>The "What's happening?" radio group: exactly one choice is always selected.</summary>
+    [RelayCommand]
+    private void SelectSymptom(SymptomOption? option)
+    {
+        if (option is not null) SelectedSymptom = option;
+    }
 
     [RelayCommand(CanExecute = nameof(CanTestServices))]
     private Task TestServicesAsync() => RunServiceTestAsync();
@@ -46,11 +53,17 @@ public sealed partial class MainViewModel
             return;
         }
         string label = SelectedSymptom?.Label ?? "";
-        var services = SymptomServices.For(SelectedSymptomValue).ToList();
+        var symptom = SelectedSymptomValue;
+        var services = SymptomServices.For(symptom).ToList();
         bool invalidCustom = false;
         if (!string.IsNullOrWhiteSpace(FocusedTarget))
         {
-            if (ServiceTargetParser.TryParse(FocusedTarget, out var custom) && custom is not null) services.Add(new(_l.Get("Service_Custom", _ui), custom));
+            if (ServiceTargetParser.TryParse(FocusedTarget, out var custom) && custom is not null)
+            {
+                // The default target keeps its service name; anything the user typed is "Your server".
+                var preset = SymptomServices.DefaultTarget(symptom);
+                services.Add(new(preset.Target == custom ? preset.Name : _l.Get("Service_Custom", _ui), custom));
+            }
             else invalidCustom = true;
         }
         IsTestingTarget = true;

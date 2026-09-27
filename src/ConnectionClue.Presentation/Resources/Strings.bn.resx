@@ -270,4 +270,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>সংযোগ মাঝে মাঝে পুরোপুরি কেটে গেলে এটি বেছে নিন। এরপর পরামর্শ Wi-Fi সিগন্যাল, পাওয়ার সেভিং ও অ্যাডাপ্টারে ফোকাস করবে।</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: কোনো উত্তর নেই</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>অথবা</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>নেটওয়ার্ক</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>পছন্দসমূহ</value></data>
 </root>

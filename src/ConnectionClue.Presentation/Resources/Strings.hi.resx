@@ -270,4 +270,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>अगर कनेक्शन समय-समय पर पूरी तरह टूटता है, तो इसे चुनें। फिर सलाह Wi-Fi सिग्नल, पावर सेविंग और एडॉप्टर पर केंद्रित होती है।</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: कोई उत्तर नहीं</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>या</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>नेटवर्क</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>प्राथमिकताएँ</value></data>
 </root>

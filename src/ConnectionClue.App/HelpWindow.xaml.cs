@@ -29,7 +29,7 @@ public partial class HelpWindow : Window
         return reader.ReadToEnd();
     }
 
-    private static IEnumerable<Block> ParseMarkdown(string markdown)
+    private static List<Block> ParseMarkdown(string markdown)
     {
         var blocks = new List<Block>();
         var paragraph = new StringBuilder();
@@ -65,6 +65,7 @@ public partial class HelpWindow : Window
                     FontWeight = FontWeights.SemiBold,
                     Margin = headingLevel == 1 ? new Thickness(0, 0, 0, 12) : new Thickness(0, 16, 0, 6),
                 };
+                heading.SetResourceReference(TextElement.ForegroundProperty, "HeadingBrush");
                 blocks.Add(heading);
                 continue;
             }
@@ -97,14 +98,21 @@ public partial class HelpWindow : Window
         return blocks;
     }
 
-    /// <summary>**bold** and `code`, the only inline markup the guide uses; anything else stays literal.</summary>
+    /// <summary>
+    /// **bold** and `code`, the only inline markup the guide uses; anything else stays literal. Bold names a control, so it
+    /// takes the label colour, as labels do everywhere in the app.
+    /// </summary>
     private static IEnumerable<Inline> Inlines(string text)
     {
         foreach (string part in System.Text.RegularExpressions.Regex.Split(text, @"(\*\*[^*]+\*\*|`[^`]+`)"))
         {
             if (part.Length == 0) continue;
             if (part.Length > 4 && part.StartsWith("**", StringComparison.Ordinal) && part.EndsWith("**", StringComparison.Ordinal))
-                yield return new Bold(new Run(part[2..^2]));
+            {
+                var name = new Bold(new Run(part[2..^2]));
+                name.SetResourceReference(TextElement.ForegroundProperty, "LabelBrush");
+                yield return name;
+            }
             else if (part.Length > 2 && part[0] == '`' && part[^1] == '`')
                 yield return new Run(part[1..^1]) { FontFamily = new System.Windows.Media.FontFamily("Cascadia Mono, Consolas") };
             else

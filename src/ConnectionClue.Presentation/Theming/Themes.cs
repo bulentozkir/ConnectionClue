@@ -130,7 +130,7 @@ public static class Themes
         Roles: new Dictionary<string, Swatch>
         {
             ["Primary"] = Filled("#1AEBFF", "#000000"),
-            ["Tool"] = Outlined("#000000", "#1AEBFF", "#1AEBFF"),
+            ["Tool"] = Outlined("#000000", "#3FF23F", "#3FF23F"),
             ["Admin"] = Filled("#FFB366", "#000000"),
             ["Mark"] = Filled("#D6B4FD", "#000000"),
             ["Danger"] = Filled("#FF8C8C", "#000000"),

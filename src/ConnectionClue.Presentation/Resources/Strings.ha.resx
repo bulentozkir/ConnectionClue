@@ -270,4 +270,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Zaɓi wannan idan haɗin yana katsewa gaba ɗaya lokaci-lokaci. Shawara sai ta mayar da hankali kan siginar Wi-Fi, adana wuta da adapters.</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: babu amsa</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>ko</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>Hanyar sadarwa</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>Zaɓuɓɓuka</value></data>
 </root>

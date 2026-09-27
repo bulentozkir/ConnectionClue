@@ -267,4 +267,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Chọn mục này nếu kết nối thỉnh thoảng bị mất hoàn toàn. Lời khuyên sau đó tập trung vào tín hiệu Wi-Fi, tiết kiệm điện và bộ điều hợp.</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: không có phản hồi</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>hoặc</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>Mạng</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>Tùy chọn</value></data>
 </root>

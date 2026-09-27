@@ -101,7 +101,7 @@ internal sealed unsafe class DnsOperation
             if (refs == 0) return;
         } while (Interlocked.CompareExchange(ref _refs, refs + 1, refs) != refs);
 
-        if (Volatile.Read(ref _completed) == 0) DnsCancelQuery(CancelHandle); // completion reports ERROR_CANCELLED
+        if (Volatile.Read(ref _completed) == 0) _ = DnsCancelQuery(CancelHandle); // completion reports ERROR_CANCELLED
         Release();
     }
 

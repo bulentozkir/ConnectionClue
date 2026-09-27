@@ -267,4 +267,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>接続がときどき完全に切断される場合はこれを選びます。アドバイスは Wi-Fi 信号、省電力、アダプターを中心に表示されます。</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} 秒: {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} 秒: 応答なし</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>または</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>ネットワーク</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>環境設定</value></data>
 </root>

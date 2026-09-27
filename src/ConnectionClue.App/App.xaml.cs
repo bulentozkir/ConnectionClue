@@ -33,14 +33,18 @@ public partial class App : Application
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
-        _singleInstance = SingleInstanceGate.Acquire(e.Args.Contains("--start"), out bool activatedExisting);
-        if (_singleInstance is null)
+        // A visual check (--snapshot) only renders the window to a file and exits: it never hands off to a running copy.
+        if (Arg(e.Args, "--snapshot") is null)
         {
-            if (!activatedExisting)
-                MessageBox.Show("ConnectionClue is already running, but Windows could not activate its window. Use its notification-area icon to open it.",
-                    "ConnectionClue", MessageBoxButton.OK, MessageBoxImage.Information);
-            Shutdown();
-            return;
+            _singleInstance = SingleInstanceGate.Acquire(e.Args.Contains("--start"), out bool activatedExisting);
+            if (_singleInstance is null)
+            {
+                if (!activatedExisting)
+                    MessageBox.Show("ConnectionClue is already running, but Windows could not activate its window. Use its notification-area icon to open it.",
+                        "ConnectionClue", MessageBoxButton.OK, MessageBoxImage.Information);
+                Shutdown();
+                return;
+            }
         }
         _offline = e.Args.Contains("--offline");
         var saved = SettingsStore.Load();
@@ -60,6 +64,13 @@ public partial class App : Application
         {
             WindowsHighContrast = ThemeManager.WindowsHighContrast,
         };
+        // New install, or settings from before version 2: fill empty targets once (a later clear is kept), and move the old
+        // 1-hour Capture longer default to the new 15-minute one.
+        if (saved.SettingsVersion < AppSettings.CurrentVersion)
+        {
+            settings.ApplyDefaultTargets();
+            if (saved.LongCaptureMinutes == 60) settings.LongCaptureMinutes = SettingsViewModel.DefaultLongCaptureMinutes;
+        }
         settings.PropertyChanged += (_, a) =>
         {
             if (a.PropertyName == nameof(SettingsViewModel.Theme)) ThemeManager.Apply(this, settings.Theme);
@@ -79,7 +90,7 @@ public partial class App : Application
         var updateChecker = new ReleaseUpdateChecker(UpdateHttp, typeof(App).Assembly.GetName().Version ?? new Version(1, 0, 0));
         _vm = new MainViewModel(l, ui, TimeProvider.System, StartSessionAsync, new AccessibilityPreferences(), settings, new ResultStore(), new Shell(),
             IsConnected, reviewer, new CheckHistoryStore(), updateChecker, StartupManager.IsStoreManaged(), new TcpServiceTargetProbe(),
-            ConnectionCost.IsMobileNetwork, new NetworkDiagnostics(), new SupportReportExporter());
+            ConnectionCost.IsMobileNetwork, new NetworkDiagnostics(), new SupportReportExporter(), new ResultsExporter(() => _window.ResultVisuals));
         _window = new MainWindow(_vm, ui);
         _tray = new TrayIcon(l.Get("Tray_Open"), l.Get("Action_QuickCheck"), l.Get("Background_Enable"), l.Get("Tray_Exit"),
             ui.TextInfo.IsRightToLeft);
@@ -116,12 +127,15 @@ public partial class App : Application
             HideToTray();
         };
 
-        _singleInstance.ActivationRequested += (_, quickCheck) => Dispatcher.BeginInvoke(() =>
+        if (_singleInstance is not null)
         {
-            ShowWindow();
-            if (quickCheck && _vm.QuickCheckCommand.CanExecute(null)) _vm.QuickCheckCommand.Execute(null);
-        });
-        _singleInstance.Listen();
+            _singleInstance.ActivationRequested += (_, quickCheck) => Dispatcher.BeginInvoke(() =>
+            {
+                ShowWindow();
+                if (quickCheck && _vm.QuickCheckCommand.CanExecute(null)) _vm.QuickCheckCommand.Execute(null);
+            });
+            _singleInstance.Listen();
+        }
         _window.Show();
         SetJumpList();
         if (e.Args.Contains("--startup") && settings.BackgroundEnabled)
@@ -233,7 +247,7 @@ public partial class App : Application
         SettingsStore.Save(new AppSettings(_language, s.BackgroundEnabled, s.IntervalMinutes, s.DelayLimitMs,
             s.LossLimitPercent, s.VariationLimitMs, s.CheckSeconds, s.MeasureSpeed, s.AiReview, s.Theme,
             s.StartWithWindows, s.PlanDownloadMbps, s.PlanUploadMbps, s.GamingTarget, s.VideoTarget, s.CallsTarget, s.DisconnectTarget,
-            s.LongCaptureMinutes, s.BackgroundOnMobileEnabled));
+            s.LongCaptureMinutes, s.BackgroundOnMobileEnabled, AppSettings.CurrentVersion));
     }
 
     private async Task ApplyStartupSettingAsync(SettingsViewModel settings)
@@ -327,7 +341,7 @@ public partial class App : Application
 
     private static SystemFacts ToFacts(SystemSnapshot s, CheckContext context)
     {
-        string? dns = s.DnsServers?.FirstOrDefault();
+        string? dns = s.DnsServers is { Count: > 0 } servers ? servers[0] : null;
         return new(
             s.Medium is null ? null : new AdapterFacts(context.Medium, s.LinkMbps, s.DriverDate, s.PowerOffAllowed, s.EnergyEfficientEthernet,
                 s.SignalBars, s.IsUsb, s.UsbSelectiveSuspend, s.AdapterName, s.DriverVersion, s.DriverProvider),

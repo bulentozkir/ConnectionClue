@@ -31,6 +31,9 @@ internal sealed class NetworkDiagnostics : INetworkDiagnostics
 
     private const int ErrorCancelled = 1223; // the user declined the administrator prompt
 
+    /// <summary>The only 2.4 GHz channels that do not overlap each other.</summary>
+    private static readonly int[] NonOverlapping24GhzChannels = [1, 6, 11];
+
     public async Task<IReadOnlyList<TraceHop>> TraceRouteAsync(CancellationToken cancellationToken)
     {
         var destination = IPAddress.Parse("1.1.1.1");
@@ -186,7 +189,7 @@ internal sealed class NetworkDiagnostics : INetworkDiagnostics
                 var counts = band.GroupBy(c => c.Channel).ToDictionary(g => g.Key, g => g.Count());
                 int recommended = band.Key switch
                 {
-                    "2.4" => new[] { 1, 6, 11 }.OrderBy(candidate => OverlapScore(observations, candidate)).ThenBy(c => c).First(),
+                    "2.4" => NonOverlapping24GhzChannels.OrderBy(candidate => OverlapScore(observations, candidate)).ThenBy(c => c).First(),
                     "5" => QuietestFiveGhzBlock(counts),
                     _ => counts.OrderBy(pair => pair.Value).ThenBy(pair => pair.Key).First().Key,
                 };

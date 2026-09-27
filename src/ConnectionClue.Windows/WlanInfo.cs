@@ -36,7 +36,7 @@ public static unsafe class WlanInfo
         }
         finally
         {
-            PInvoke.WlanCloseHandle(client, null);
+            _ = PInvoke.WlanCloseHandle(client, null);
         }
     }
 }

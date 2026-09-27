@@ -273,4 +273,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Elige esto si la conexión se corta por completo de vez en cuando. Los consejos se centrarán en señal Wi-Fi, ahorro de energía y adaptadores.</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} s: {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s: sin respuesta</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>o</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>Red</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>Preferencias</value></data>
 </root>

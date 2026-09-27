@@ -17,19 +17,20 @@ public sealed class SettingsFeatureTests
         Assert.Equal(0, settings.PlanDownloadMbps);
         Assert.Equal(0, settings.PlanUploadMbps);
         Assert.Equal("", settings.GamingTarget);
-        Assert.Equal([60, 120, 240, 480], settings.LongCaptureLengths.Select(c => c.Value));
-        Assert.Equal(["1 h", "2 h", "4 h", "8 h"], settings.LongCaptureLengths.Select(c => c.Label));
-        Assert.Equal(SettingsViewModel.DefaultLongCaptureMinutes, settings.LongCaptureMinutes);
+        Assert.Equal([15, 30, 45, 60, 120, 240, 480], settings.LongCaptureLengths.Select(c => c.Value));
+        Assert.Equal(["15 min", "30 min", "45 min", "1 h", "2 h", "4 h", "8 h"], settings.LongCaptureLengths.Select(c => c.Label));
+        Assert.Equal(15, settings.LongCaptureMinutes);
     }
 
     [Fact]
-    public void Long_capture_duration_uses_hour_choices_and_rejects_legacy_values()
+    public void Long_capture_duration_offers_minutes_and_hours_and_rejects_unknown_values()
     {
         var culture = CultureInfo.GetCultureInfo("en-US");
         var settings = new SettingsViewModel(Localizer.Default, culture, longCaptureMinutes: 240);
-        var legacy = new SettingsViewModel(Localizer.Default, culture, longCaptureMinutes: 15);
+        var legacy = new SettingsViewModel(Localizer.Default, culture, longCaptureMinutes: 90);
 
         Assert.Equal(240, settings.LongCaptureMinutes);
+        Assert.Equal(45, new SettingsViewModel(Localizer.Default, culture, longCaptureMinutes: 45).LongCaptureMinutes);
         Assert.Equal(SettingsViewModel.DefaultLongCaptureMinutes, legacy.LongCaptureMinutes);
     }
 
@@ -81,6 +82,42 @@ public sealed class SettingsFeatureTests
         Assert.Equal("video.example:443", settings.TargetFor(Symptom.Video));
         Assert.Equal("call.example:443", settings.TargetFor(Symptom.Calls));
         Assert.Equal("router.example:443", settings.TargetFor(Symptom.Disconnects));
+    }
+
+    [Fact]
+    public void Default_targets_fill_only_empty_symptoms_with_real_services()
+    {
+        var settings = NewSettings();
+        settings.SetTarget(Symptom.Gaming, "game.example:3074");
+        settings.ApplyDefaultTargets();
+
+        Assert.Equal("game.example:3074", settings.TargetFor(Symptom.Gaming)); // the user's own server is kept
+        Assert.Equal("www.primevideo.com:443", settings.TargetFor(Symptom.Video));
+        Assert.Equal("discord.com:443", settings.TargetFor(Symptom.Calls));
+        Assert.Equal("www.microsoft.com:443", settings.TargetFor(Symptom.Disconnects));
+        Assert.All(Enum.GetValues<Symptom>(), symptom =>
+        {
+            var preset = ConnectionClue.Presentation.Diagnostics.SymptomServices.DefaultTarget(symptom);
+            Assert.True(ConnectionClue.Presentation.Diagnostics.ServiceTargetParser.TryParse(
+                ConnectionClue.Presentation.Diagnostics.SymptomServices.DefaultTargetText(symptom), out var parsed));
+            Assert.Equal(preset.Target, parsed);
+            // A default adds a service; it never repeats a built-in one.
+            Assert.DoesNotContain(ConnectionClue.Presentation.Diagnostics.SymptomServices.For(symptom), s => s.Target.Host == preset.Target.Host);
+        });
+    }
+
+    [Fact]
+    public void Check_length_hint_states_the_real_duration_with_and_without_the_speed_test()
+    {
+        var settings = NewSettings();
+        settings.CheckSecondsText = "10";
+        Assert.Equal("Measures delay for 10 seconds, then runs the speed test: about 26 seconds in all. The services for your symptom are tested right after.",
+            settings.CheckTotalHint);
+        var changed = new List<string?>();
+        settings.PropertyChanged += (_, e) => changed.Add(e.PropertyName);
+        settings.MeasureSpeed = false;
+        Assert.Contains(nameof(SettingsViewModel.CheckTotalHint), changed);
+        Assert.Equal("Measures delay for 10 seconds. The services for your symptom are tested right after.", settings.CheckTotalHint);
     }
 
     private static SettingsViewModel NewSettings()

@@ -6,7 +6,7 @@ namespace ConnectionClue.App;
 
 /// <summary>
 /// One process per interactive user session; later launches request activation through local events: plain activation,
-/// or activation plus a Quick Check (the taskbar jump list's "Quick check" task starts a second copy with --start).
+/// or activation plus a quick check (the taskbar jump list's "Quick check" task starts a second copy with --start).
 /// </summary>
 internal sealed class SingleInstanceGate : IDisposable
 {
@@ -18,7 +18,7 @@ internal sealed class SingleInstanceGate : IDisposable
     private SingleInstanceGate(Mutex mutex, EventWaitHandle activate, EventWaitHandle check) =>
         (_mutex, _activate, _check) = (mutex, activate, check);
 
-    /// <summary>Raised on a thread-pool thread; the argument is true when the later launch asked for a Quick Check.</summary>
+    /// <summary>Raised on a thread-pool thread; the argument is true when the later launch asked for a quick check.</summary>
     public event EventHandler<bool>? ActivationRequested;
 
     public static SingleInstanceGate? Acquire(bool quickCheck, out bool activatedExisting)

@@ -273,4 +273,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Choisissez ceci si la connexion se coupe complètement de temps en temps. Les conseils se concentreront sur le signal Wi-Fi, l’économie d’énergie et les cartes.</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} s : {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} s : aucune réponse</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>ou</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>Réseau</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>Préférences</value></data>
 </root>

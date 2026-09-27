@@ -83,7 +83,9 @@
             <Setter Property="FontSize" Value="13" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}" />
+            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(AutomationProperties.HelpText)}" />
             <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+            <Setter Property="ToolTipService.ShowsToolTipOnKeyboardFocus" Value="True" />
             <Setter Property="ToolTipService.ShowDuration" Value="30000" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -139,7 +141,8 @@
             <Setter Property="Foreground" Value="{DynamicResource OnMarkBrush}" />
             <Setter Property="BorderBrush" Value="{DynamicResource MarkBorderBrush}" />
         </Style>
-        <Style x:Key="StopButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+        <!-- Stops a check, or confirms deleting data. -->
+        <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
             <Setter Property="Background" Value="{DynamicResource DangerBrush}" />
             <Setter Property="Foreground" Value="{DynamicResource OnDangerBrush}" />
             <Setter Property="BorderBrush" Value="{DynamicResource DangerBorderBrush}" />
@@ -167,7 +170,10 @@
         <Style x:Key="ToggleSwitch" TargetType="CheckBox">
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}" />
+            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(AutomationProperties.HelpText)}" />
             <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+            <Setter Property="ToolTipService.ShowsToolTipOnKeyboardFocus" Value="True" />
+            <Setter Property="ToolTipService.ShowDuration" Value="30000" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
@@ -218,71 +224,59 @@
         <Style x:Key="SettingsSubCard" TargetType="Border" BasedOn="{StaticResource SettingsCard}">
             <Setter Property="Margin" Value="28,0,0,3" />
         </Style>
-        <Style x:Key="SettingsCombo" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-            <Setter Property="Width" Value="200" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="DisplayMemberPath" Value="Label" />
-            <Setter Property="SelectedValuePath" Value="Value" />
-        </Style>
-
-        <!-- Symptom chip: each symptom has its own colour (tint when idle, filled when chosen), plus an icon, a label and a
-             check mark when chosen, so the choice never relies on colour alone. The tooltip explains when to pick it. -->
-        <Style x:Key="Chip" TargetType="ListBoxItem">
-            <Setter Property="Margin" Value="0,0,6,6" />
-            <Setter Property="Cursor" Value="Hand" />
+        <Style x:Key="SettingsTab" TargetType="TabItem">
+            <Setter Property="MinHeight" Value="36" />
+            <Setter Property="Margin" Value="0,0,6,0" />
+            <Setter Property="Padding" Value="14,7" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}" />
-            <Setter Property="AutomationProperties.Name" Value="{Binding Label}" />
-            <Setter Property="AutomationProperties.HelpText" Value="{Binding Help}" />
-            <Setter Property="ToolTip" Value="{Binding Help}" />
+            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(AutomationProperties.HelpText)}" />
             <Setter Property="ToolTipService.ShowsToolTipOnKeyboardFocus" Value="True" />
             <Setter Property="ToolTipService.ShowDuration" Value="30000" />
-            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
-            <Setter Property="Background" Value="{DynamicResource ChipGamingTintBrush}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource ChipGamingBorderBrush}" />
-            <Setter Property="Tag" Value="{DynamicResource ChipGamingFillBrush}" />
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border x:Name="Bd" CornerRadius="14" Padding="10,3" MinHeight="28" BorderThickness="1.5"
-                                BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="Icon" Style="{StaticResource Glyph}" Text="{Binding Glyph}" Margin="0,0,6,0" Foreground="{TemplateBinding Foreground}" />
-                                <TextBlock x:Name="Label" Text="{Binding Label}" FontSize="13" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" />
-                            </StackPanel>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="TabFace" CornerRadius="6" BorderThickness="1.5"
+                                Padding="{TemplateBinding Padding}"
+                                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}">
+                            <Grid>
+                                <ContentPresenter x:Name="TabHeader" ContentSource="Header" RecognizesAccessKey="True"
+                                                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  TextElement.Foreground="{TemplateBinding Foreground}" />
+                                <Border x:Name="SelectedTabMark" Height="3" Width="20" CornerRadius="1.5"
+                                        VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-5"
+                                        Background="{DynamicResource OnPrimaryBrush}" Visibility="Collapsed" />
+                            </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="BorderThickness" Value="2.5" />
+                                <Setter TargetName="TabFace" Property="BorderBrush" Value="{DynamicResource TextFillColorPrimaryBrush}" />
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
-                                <Setter TargetName="Bd" Property="BorderBrush" Value="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
-                                <Setter TargetName="Icon" Property="Text" Value="&#xE73E;" />
-                                <Setter TargetName="Icon" Property="Foreground" Value="{DynamicResource ChipSelectedTextBrush}" />
-                                <Setter TargetName="Label" Property="Foreground" Value="{DynamicResource ChipSelectedTextBrush}" />
-                                <Setter TargetName="Label" Property="FontWeight" Value="SemiBold" />
+                                <Setter TargetName="TabFace" Property="Background" Value="{DynamicResource PrimaryBrush}" />
+                                <Setter TargetName="TabFace" Property="BorderBrush" Value="{DynamicResource PrimaryBorderBrush}" />
+                                <Setter TargetName="TabHeader" Property="TextElement.Foreground" Value="{DynamicResource OnPrimaryBrush}" />
+                                <Setter TargetName="SelectedTabMark" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="TabFace" Property="Background" Value="{DynamicResource DisabledFillBrush}" />
+                                <Setter TargetName="TabFace" Property="BorderBrush" Value="{DynamicResource DisabledTextBrush}" />
+                                <Setter TargetName="TabHeader" Property="TextElement.Foreground" Value="{DynamicResource DisabledTextBrush}" />
+                                <Setter TargetName="SelectedTabMark" Property="Background" Value="{DynamicResource DisabledTextBrush}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Key}" Value="Symptom_Video">
-                    <Setter Property="Background" Value="{DynamicResource ChipVideoTintBrush}" />
-                    <Setter Property="BorderBrush" Value="{DynamicResource ChipVideoBorderBrush}" />
-                    <Setter Property="Tag" Value="{DynamicResource ChipVideoFillBrush}" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Key}" Value="Symptom_Calls">
-                    <Setter Property="Background" Value="{DynamicResource ChipCallsTintBrush}" />
-                    <Setter Property="BorderBrush" Value="{DynamicResource ChipCallsBorderBrush}" />
-                    <Setter Property="Tag" Value="{DynamicResource ChipCallsFillBrush}" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Key}" Value="Symptom_Disconnects">
-                    <Setter Property="Background" Value="{DynamicResource ChipDisconnectsTintBrush}" />
-                    <Setter Property="BorderBrush" Value="{DynamicResource ChipDisconnectsBorderBrush}" />
-                    <Setter Property="Tag" Value="{DynamicResource ChipDisconnectsFillBrush}" />
-                </DataTrigger>
-            </Style.Triggers>
+        </Style>
+        <Style x:Key="SettingsCombo" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="Width" Value="200" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="DisplayMemberPath" Value="Label" />
+            <Setter Property="SelectedValuePath" Value="Value" />
         </Style>
     </Application.Resources>
 </Application>

@@ -1,3 +1,4 @@
+using System.Globalization;
 using ConnectionClue.Analysis;
 using ConnectionClue.Presentation.History;
 
@@ -10,7 +11,7 @@ public sealed class CheckHistoryTests
     [Fact]
     public void Retention_is_sorted_bounded_and_excludes_future_entries()
     {
-        var now = DateTimeOffset.Parse("2026-09-26T00:00:00Z");
+        var now = DateTimeOffset.Parse("2026-09-26T00:00:00Z", CultureInfo.InvariantCulture);
         var entries = Enumerable.Range(0, CheckHistoryAnalytics.MaxEntries + 5)
             .Select(i => new CheckHistoryEntry(now.AddMinutes(-i), HealthLevel.NoIssue, null, null, 5, null, null, null))
             .Append(new(now.AddDays(-31), HealthLevel.NoIssue, null, null, 5, null, null, null))
@@ -26,7 +27,7 @@ public sealed class CheckHistoryTests
     [Fact]
     public void Daily_trends_use_conclusive_sample_rate_and_explicit_plan_inputs()
     {
-        var day = DateTimeOffset.Parse("2026-09-26T10:00:00Z");
+        var day = DateTimeOffset.Parse("2026-09-26T10:00:00Z", CultureInfo.InvariantCulture);
         CheckHistoryEntry Entry(int hour, HealthLevel level, double? down, double? up) =>
             new(day.AddHours(hour - 10), level, down, up, 20, 3, null, null);
         CheckHistoryEntry[] rows =
@@ -51,7 +52,7 @@ public sealed class CheckHistoryTests
     [Fact]
     public void Worst_hours_are_local_time_and_only_rank_observed_problem_checks()
     {
-        var time = DateTimeOffset.Parse("2026-09-26T15:00:00Z");
+        var time = DateTimeOffset.Parse("2026-09-26T15:00:00Z", CultureInfo.InvariantCulture);
         var rows = new[]
         {
             new CheckHistoryEntry(time, HealthLevel.Degraded, null, null, 120, null, null, null),

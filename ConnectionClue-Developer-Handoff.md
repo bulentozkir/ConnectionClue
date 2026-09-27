@@ -41,7 +41,7 @@ Workflow: **symptom → capture → finding → one change → compare → expor
 
 ## 3. Target architecture and project layout
 
-The layout below is the intended decomposition, not a current-file inventory. The 1.0.2 preview stores settings, the last recommendation result, review verdicts, and sampled history in atomic per-user JSON files; `schema.sql` is validated separately and is not yet the runtime evidence store. See §19 for the implemented project map.
+The layout below is the intended decomposition, not a current-file inventory. The 1.0.5 preview stores settings, the last recommendation result, review verdicts, and sampled history in atomic per-user JSON files; `schema.sql` is validated separately and is not yet the runtime evidence store. See §19 for the implemented project map.
 
 ```text
 ConnectionClue.slnx            dotnet-buildable projects (packaging excluded, §17)
@@ -506,11 +506,12 @@ Preview mapping (`NextActionPlanner`). The most severe issue comes first, local 
 **Views:**
 
 - **Check:** a top band with the 380 px status card on the left and, on the right, the metric tiles (Download, Upload, Latency with its under-load detail, Variation; each a rounded tile in its own theme colour with an icon, and a tooltip that explains the metric) above the path, whose card stretches so both bottoms line up. The details chart spans the full width below and takes the remaining height. Speed tiles show live Mbps during the phase, then the result and MB used, or why the test was skipped (not measured, metered connection, could not measure).
-  - **Status panel:** a badge whose icon and colour change together (idle, checking, no problems, below limits, problem, not enough data),   a headline, the findings, and "What to try: …" after a check with issues, then "Worth checking: …" for the top Important best practice. After every check it also lists what was checked and found fine ("Checked, no change needed: …").
-    - **Actions:** Quick check, plus Recommendations only when issues or best practices exist; during a check, Stop and the marker. Below them the symptom chips, and the last-check time.
+  - **Status panel:** a badge whose icon and colour change together (idle, checking, no problems, below limits, problem, not enough data), the headline, findings and check controls. Detailed "What to try" and "Worth checking" text, verified checks, bufferbloat and service-test summaries belong on Recommendations, not Home.
+    - **Actions:** Quick check, plus Recommendations only when issues or best practices exist, then adjacent Export (PDF) and Export (MHTML) buttons after a quick check or longer capture. Both use `ResultsExportData` and the same visual capture. PDF uses Microsoft Print to PDF; MHTML is an offline multipart/related archive with UTF-8 HTML and PNG parts, HTML-encoded result text, captions and measurement tables. Long-capture tables are capped at 1,000 rows per step with an omission note. Exports are serialized, report success/cancellation/errors on the Check page, and prevent a new check from replacing their data. During a check: Stop and the marker. A divider labelled "or" separates Capture longer and its length (15, 30 or 45 minutes, or 1, 2, 4 or 8 hours; 15 minutes by default); both hide during a check. Below them the "What's happening?" radio group (one choice always selected; arrow keys select) and the last-check time.
   - **Path:** This PC → Home network → Internet → Web services. During a check each step shows its latest sample. After it, each step shows the evaluated verdict (Responding, Slow, Not responding) and its median, so the path never contradicts the headline. Connectors are solid, long-dashed, short-dashed or dotted according to status.
   - **Details:** small multiples, one row per step, each with its own scale, so ICMP, TCP RTT and HTTPS cold fetch never share an axis. Each check is a column; unanswered checks are full-height hatched columns; values above the user's delay limit use a second colour and sit under a dashed limit line; values beyond the scale (95th percentile) get a ▲ cap. The time axis adapts to the check length. Each row header shows median · p95 · variation · no answer, and the row's UIA name carries the same text. A value grid (0, ¼, ½, ¾ and the scale top, labelled in ms; the top is chosen so every step is a round whole number, e.g. 60/120/180/240) and a time grid at the axis steps make bars comparable. Tooltips explain the chart and each row (also the UIA help text), and pointing at a bar shows its time and value.
 - **Recommendations:** the first line always shows the date and time of the check that produced them, with Quick check and Dismiss beside it. When they come from an earlier app session or are older than 10 minutes, a note follows: conditions may have changed, run a quick check to confirm.
+  - The reviewed "What to try" / "Worth checking" summary wraps in full above the detailed cards, including after restoring a saved result. Bufferbloat and service-test summaries appear only when they describe the same check; live details from a new check are never attached to older saved advice. These details remain available to exports and notifications.
   - Below that come two sections, in reading order:
     - **Fix the issues found:** the findings and numbered fixes (`NextActionPlanner`).
     - **Best practices for this PC:** `ConfigurationAdvisor` cards. Each card has an Important (warning icon) or Suggestion (lightbulb) badge, and the level is spelled out, so neither colour nor icon carries it alone. Each card's how-to names the exact Settings or Device Manager path.
@@ -520,20 +521,19 @@ Preview mapping (`NextActionPlanner`). The most severe issue comes first, local 
     - Measured at 960×740 with 3 fixes and 6 best practices: English, German and Turkish don't scroll. Tamil, the longest language, scrolls about 5%, and fits when maximized.
     - The page scrolls rather than truncating text (WCAG reflow).
   - This page opens automatically at startup when a saved result exists, and whenever the window is reopened from the tray or a notification.
-  - After a manual check with issues, the check page shows the findings and "What to try" plus the Recommendations button; it does not navigate away.
+  - After a manual check with issues, the check page shows the findings and Recommendations button, without the long advisory text; it does not navigate away.
 - **Compare:** baseline, action (Completed/Skipped/Failed/NotPossible), follow-up, cards.
 - **History:** delete and export.
-- **Settings:** Windows 11 settings pattern: a title and description on the left and the control on the right, grouped as Checks (quick check length 10–600 s, default 30; speed test; online AI review; background toggle switch; interval), Alerts (the three limits), Appearance (theme) and Language. Still to come: capabilities/privacy, accessibility (announcement verbosity, marker allowance), endpoints, retention, hotkey, data path.
+- **Settings:** three compact two-column tabs: Checks (quick check length, speed test, background interval, mobile override and Windows startup); Network (alert limits, plan speeds and symptom targets); Preferences (theme, language, keyboard shortcuts, online advice review and history clearing). The update-check section is removed. The 18 editable preferences retain their original bindings; long target explanations move to field tooltips and UI Automation help, while a short summary stays visible. Check timing uses the full card width. Normal layouts need no scrolling; per-tab scrolling remains an accessibility fallback for enlarged text. Symptom targets start with a default service per symptom (Riot Games, Prime Video, Discord, Microsoft); `AppSettings.SettingsVersion` fills them only in files written before defaults existed, so a cleared box stays empty. Still to come: capabilities/privacy, accessibility (announcement verbosity, marker allowance), endpoints, retention, hotkey, data path.
+- **Insights:** connection history and the daily summary first, then services for the chosen symptom, the network tools (route hops, DNS comparison and switch, Wi-Fi channels), the report for your provider and the recent checks.
 
-**Themes (Settings > Appearance):** Dark (default), Light, High contrast dark, High contrast light, and Use Windows setting. A theme applies at once, without a restart.
-- Start (Quick check): blue #0063B1, white text, 6.1:1.
-- Stop: red #C42B1C, 5.7:1.
-- Mark lag: amber #FFB900 with black text, 12:1.
-- Recommendations: purple #744DA9, 6.2:1.
-- Dismiss: slate #4A5568, 7.5:1.
-- Status colours: green #0F7B0F (5.4:1) and grey #6B6B6B (5.3:1).
-- In any one view the buttons differ in both hue and luminance (amber is the only light one). Focus shows a double ring, visible on any background.
-- In high-contrast themes every role switches to the system Highlight/HighlightText colours (`ActionPalette`, updated live).
+**Themes (Settings > Appearance):** Dark (default), Light, High contrast dark, High contrast light, and Use Windows setting. A theme applies at once, without a restart. The design tokens live in `Themes.cs`; each has one meaning everywhere and is contrast-tested in every theme (`ThemeContrastTests`).
+- Text roles: headings (dark: gold #FFD479), labels that name a setting, field or column (dark: lavender #D0C4FF), body text, supporting text, and underlined links (dark: cyan #99EBFF). The four differ in every theme; size and weight differ too.
+- Action roles, each with an icon and a label: Primary starts a check or test (dark: azure #60CDFF, black text); Tool runs a diagnostic or makes a file (teal outline); Admin changes a Windows setting after a UAC prompt (amber, shield icon); Mark records a lag moment in the chart's lag-marker colour; Stop (red); Advice opens recommendations (purple); Neutral dismisses (grey outline); Link opens a Windows Settings page (underlined, "opens elsewhere" icon). Dark uses light fills with black text so buttons stand out from dark cards; Light uses dark fills with white text.
+- States: hover thickens the outline in the label colour, pressing darkens the face, and a disabled button turns grey with a dashed outline (still at least 3:1) and keeps its tooltip. Focus shows a double ring, visible on any background.
+- Action, navigation and switch styles reuse UI Automation help text for detailed hover and keyboard-focus tooltips. Page-level help describes the operation, timing or impact rather than repeating the button label.
+- Status colours (badges and path lines): Success, Warning, Danger and Muted.
+- With Windows high contrast on, every token maps to the user's system colours (`ThemeManager`, updated live).
 
 **Behaviour:**
 
@@ -546,7 +546,7 @@ Preview mapping (`NextActionPlanner`). The most severe issue comes first, local 
   - Outside a capture: "Start a capture first".
   - Timestamped at input, acknowledged at enqueue.
 - **Timeline:** latency distributions, failures, link events, markers, grey unobserved intervals. Never interpolate across gaps.
-- Recommendations are instructions; the app never changes network settings.
+- Recommendations are instructions; the app changes no network setting except the DNS switch, and only when the user selects it and approves the Windows prompt.
 
 ### Accessibility (release gate)
 
@@ -748,7 +748,7 @@ Target: WCAG 2.2 AA, applied to desktop software through EN 301 549 clause 11. I
 dotnet build ConnectionClue.slnx -c Release
 dotnet test --solution ConnectionClue.slnx -c Release
 pwsh tools/generate-icons.ps1
-pwsh tools/build-release.ps1 -Version 1.0.2  # → releases/1.0.2/ (git-ignored; publish via GitHub Releases)
+pwsh tools/build-release.ps1 -Version 1.0.5  # → releases/1.0.5/ (git-ignored; publish via GitHub Releases)
 ```
 
 - Run `python tools/validate_schema.py` for the SQLite schema checks. WiX 5 is pinned in `dotnet-tools.json` and restored by the release script.
@@ -764,14 +764,17 @@ pwsh tools/build-release.ps1 -Version 1.0.2  # → releases/1.0.2/ (git-ignored;
 - **Signing:**
   - Without `-CertificateThumbprint`, the script signs with a self-signed test certificate `CN=ConnectionClue Test`. It creates it once in `Cert:\CurrentUser\My` and exports the public `ConnectionClue-test-signing.cer`. Test-signed packages install only where that certificate is trusted, in Trusted People (LocalMachine) for MSIX.
   - **Release:** use a real code-signing certificate for the MSI. For the Store, pass the Partner Center identity (`-IdentityName`, `-Publisher`, `-PublisherDisplayName`) and upload the bundle; the Store re-signs it.
-- **Verification:** 1.0.2 (current; `Directory.Build.props` Version) was built on Windows 11 25H2 x64.
-  - Signatures present on all three packages (they chain to the untrusted test root until `ConnectionClue-test-signing.cer` is trusted).
-  - Bundle holds x64 and arm64, each with identity 1.0.2.0 and MinVersion 10.0.26100.0; makeappx validated the manifests.
-  - x64 MSI extracted with an administrative install (432 files, file version 1.0.2), and the extracted app launched maximized. The payload was checked for the new features and all 20 languages; `SHA256SUMS.txt` matches.
+- **Verification:** 1.0.5 was built with the release pipeline; all 430 tests passed in Release configuration.
+  - Compact Settings was rendered in all 20 UI languages: 63 tab/window layouts fit without scrolling (960×740 across languages, plus 900×600 in English). History confirmation also fits at 900×600 in the four palettes; actual tab-header contrast meets 4.5:1, or 7:1 in high-contrast themes.
+  - All three packages contain signatures matching the bundled self-signed test certificate. Windows trust was not changed; production signing and clean-install validation remain release requirements.
+  - Bundle holds x64 and arm64 with identity 1.0.5.0; makeappx validated the manifests. Both MSI databases report ProductVersion 1.0.5 and the expected architecture.
+  - Administrative extraction of the x64 MSI produced 415 files, with executable version 1.0.5.0. Its embedded Help matches `helpme.md` byte-for-byte. The packaged MHTML stylesheet contains the 18-pixel default size, regular width and weight, 1.75 line height and expanded table spacing. English plus 19 satellite resource assemblies were verified. No app was installed and no user settings were modified during this verification.
+  - The extracted compiled XAML contains all three Settings tabs and the contrast-safe tab-header template, and contains no `CheckForUpdatesCommand` binding.
+  - winget validated the generated manifests; MSI hashes and product codes match them. Every entry in `SHA256SUMS.txt` matches the release files.
   - ICE validation (`wix msi validate`) needs an elevated shell, so it is a release-checklist step.
 - **Size:** bundle 149 MB, but the Store delivers only the matching architecture (~74 MB). MSIs are 55–60 MB. The biggest cut would be replacing WinForms `NotifyIcon` with a Shell_NotifyIcon wrapper, which removes the WinForms runtime.
 - **Record** the verified packaging and signing commands in docs/release-checklist.md.
-- **Status:** WP1, WP2 (probe/network slice), WP5, WP6 (probes) and WP7 are implemented and tested (§19). A preview App, the health evaluator, the configuration advisor, the background scheduler and 1.0.2 packages also exist. The preview also has a verdict evaluator for R01–R05 and R07–R11 (`VerdictEvaluator`, with link evidence from `InterfaceMonitor` and `WlanMonitor` during each check), the provider report (HTML and print-to-PDF, local times), per-symptom service targets, a hop view summary, a DNS comparison with a consented switch, a Wi-Fi channel analyzer, a daily quality score, the taskbar jump list and winget manifests. Still to do: Capture/storage, R06 (needs a second independent operator), evidence levels and full §12 marker windows, the remaining views, and manifest loading.
+- **Status:** WP1, WP2 (probe/network slice), WP5, WP6 (probes) and WP7 are implemented and tested (§19). A preview App, the health evaluator, the configuration advisor, the background scheduler and 1.0.5 packages also exist. The preview also has a verdict evaluator for R01–R05 and R07–R11 (`VerdictEvaluator`, with link evidence from `InterfaceMonitor` and `WlanMonitor` during each check), the provider report (HTML and print-to-PDF, local times), per-symptom service targets, a hop view summary, a DNS comparison with a consented switch, a Wi-Fi channel analyzer, a daily quality score, the taskbar jump list and winget manifests. Still to do: Capture/storage, R06 (needs a second independent operator), evidence levels and full §12 marker windows, the remaining views, and manifest loading.
 
 ## 18. Release blockers and done
 

@@ -276,4 +276,7 @@
   <data name="Symptom_Disconnects_Help" xml:space="preserve"><value>Выберите это, если подключение время от времени полностью разрывается. Советы будут сосредоточены на сигнале Wi-Fi, энергосбережении и адаптерах.</value></data>
   <data name="Chart_BarValue" xml:space="preserve"><value>{0} с: {1} ms</value></data>
   <data name="Chart_BarNoAnswer" xml:space="preserve"><value>{0} с: нет ответа</value></data>
+  <data name="Home_Or" xml:space="preserve"><value>или</value></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>Сеть</value></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>Предпочтения</value></data>
 </root>

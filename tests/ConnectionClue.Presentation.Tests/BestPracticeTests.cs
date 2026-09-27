@@ -186,6 +186,8 @@ public sealed class BestPracticeTests : IDisposable
         Assert.Equal([AdvisoryCode.WeakWifiSignal, AdvisoryCode.SlowDns], store.Value.Advisories!.Select(a => a.Code));
         Assert.True(vm is { HasRecommendations: true, HasBestPractices: true, HasFixes: false, RecommendationCount: 2 });
         Assert.Equal("Worth checking: Weak Wi-Fi signal (1 of 5 bars)", vm.TryPreview);
+        Assert.Equal(vm.TryPreview, vm.RecommendationSummary);
+        Assert.True(vm.HasRecommendationCheckDetails);
         Assert.Equal((true, "Important"), (vm.BestPractices[0].Important, vm.BestPractices[0].Level));
         Assert.Equal("Name lookups are slow (400 ms)", vm.BestPractices[1].Title);
         Assert.StartsWith("No connection issues were found.", vm.RecommendationFindings);
@@ -193,6 +195,53 @@ public sealed class BestPracticeTests : IDisposable
             vm.RecommendationBlocks.Select(b => b.GetType()));
         Assert.Equal("Checked, no change needed: link speed, power saving, proxy, VPN, metered connection, IPv6", vm.CheckedOkText);
         Assert.False(((FindingsNote)vm.RecommendationBlocks[0]).Warning);
+    }
+
+    [Fact]
+    public void Restored_recommendations_include_the_summary_without_unrelated_live_details()
+    {
+        var saved = new SavedResult(_time.GetUtcNow(), new HealthReport(HealthLevel.NoIssue, []), new CheckContext(), [],
+            [new Advisory(AdvisoryCode.LatencyUnderLoad, AdvisoryLevel.Important, 220)], [CheckArea.LinkSpeed]);
+        using var vm = Vm(new Store(saved));
+
+        Assert.Equal("Worth checking: Latency rises by 220 ms under load", vm.RecommendationSummary);
+        Assert.Single(vm.BestPractices);
+        Assert.Contains(vm.RecommendationBlocks, b => b is CheckedNote);
+        Assert.False(vm.HasRecommendationCheckDetails);
+        vm.DismissRecommendationsCommand.Execute(null);
+        Assert.Empty(vm.RecommendationSummary);
+        Assert.False(vm.HasRecommendationCheckDetails);
+    }
+
+    [Fact]
+    public void Rejected_important_advice_is_not_exposed_in_the_recommendations_summary()
+    {
+        var saved = new SavedResult(_time.GetUtcNow(), new HealthReport(HealthLevel.NoIssue, []), new CheckContext(), [],
+            [new Advisory(AdvisoryCode.LatencyUnderLoad, AdvisoryLevel.Important, 220)]);
+        using var vm = Vm(new Store(saved), reviewer: new FakeReviewer(_ => false));
+
+        Assert.Empty(vm.RecommendationSummary);
+        Assert.Empty(vm.BestPractices);
+    }
+
+    [Fact]
+    public async Task A_new_check_does_not_mix_its_live_details_with_older_recommendations()
+    {
+        using var vm = Vm(new Store(null), Probes(new SystemFacts(new AdapterFacts(ConnectionMedium.WiFi, 400, SignalBars: 1))));
+        await Run(vm);
+        string summary = vm.RecommendationSummary;
+        vm.ServiceSummary = "Previous service test";
+        vm.ServiceResults = [new("Previous", "example.com:443", "Connected", true)];
+
+        var check = vm.RunCheckAsync(measureSpeed: false);
+        Assert.False(vm.HasRecommendationCheckDetails);
+        Assert.Empty(vm.ServiceSummary);
+        Assert.Empty(vm.ServiceResults);
+        vm.StopCommand.Execute(null);
+        await check;
+
+        Assert.Equal(summary, vm.RecommendationSummary);
+        Assert.False(vm.HasRecommendationCheckDetails); // The short, inconclusive check kept the older recommendations.
     }
 
     [Fact]
@@ -306,6 +355,7 @@ public sealed class BestPracticeTests : IDisposable
         Assert.Equal(["OneDrive was syncing during the check (13.8 MB)", "Weak Wi-Fi signal on “yavas” (2 of 5 bars)"], vm.BestPractices.Select(b => b.Title));
         Assert.All(vm.BestPractices, b => Assert.True(b.Checked));
         Assert.All(vm.Recommendations, r => Assert.True(r.Checked));
+        Assert.DoesNotContain("Name lookups", vm.RecommendationSummary, StringComparison.Ordinal);
         Assert.Equal(5, vm.RecommendationCount);
         Assert.Equal("Checked by an online AI (Fake). Some advice was held back because two online AI reviewers flagged it as incorrect.", vm.ReviewStatus);
         Assert.False(vm.IsReviewing);

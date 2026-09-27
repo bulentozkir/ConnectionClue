@@ -50,6 +50,21 @@ public static class SymptomServices
         ],
     };
 
+    /// <summary>
+    /// The target each symptom's box starts with in Settings: a popular service besides the built-in ones (Riot Games for
+    /// gaming, Discord for calls, Prime Video for video, Microsoft for disconnections). Users can replace or clear it.
+    /// </summary>
+    public static NamedServiceTarget DefaultTarget(ConnectionClue.Analysis.Symptom symptom) => symptom switch
+    {
+        ConnectionClue.Analysis.Symptom.Gaming => new("Riot Games", new("auth.riotgames.com", 443)),
+        ConnectionClue.Analysis.Symptom.Calls => new("Discord", new("discord.com", 443)),
+        ConnectionClue.Analysis.Symptom.Video => new("Prime Video", new("www.primevideo.com", 443)),
+        _ => new("Microsoft", new("www.microsoft.com", 443)),
+    };
+
+    public static string DefaultTargetText(ConnectionClue.Analysis.Symptom symptom) =>
+        DefaultTarget(symptom).Target is var t ? $"{t.Host}:{t.Port}" : "";
+
     /// <summary>Tests all services in parallel, a few attempts each; a failed name lookup is not retried.</summary>
     public static async Task<IReadOnlyList<ServiceTestResult>> TestAsync(IServiceTargetProbe probe,
         IReadOnlyList<NamedServiceTarget> services, CancellationToken cancellationToken, int attempts = 3) =>

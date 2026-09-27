@@ -299,11 +299,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         SettingsViewModel settings, IResultStore results, IShell? shell = null, Func<bool>? isConnected = null,
         IAdviceReviewer? reviewer = null, ICheckHistoryStore? historyStore = null, IUpdateChecker? updateChecker = null,
         bool storeManagedUpdates = false, IServiceTargetProbe? serviceTargetProbe = null, Func<bool>? isMobileNetwork = null,
-        INetworkDiagnostics? networkDiagnostics = null, ISupportReportExporter? reportExporter = null)
+        INetworkDiagnostics? networkDiagnostics = null, ISupportReportExporter? reportExporter = null, IResultsExporter? resultsExporter = null)
     {
         (_l, _ui, _time, _startSession, _results, _shell, _isConnected, _reviewer) = (l, ui, time, startSession, results, shell, isConnected, reviewer);
         (_updateChecker, _storeManagedUpdates, _serviceTargetProbe) = (updateChecker, storeManagedUpdates, serviceTargetProbe);
-        (_isMobileNetwork, _networkDiagnostics, _reportExporter) = (isMobileNetwork, networkDiagnostics, reportExporter);
+        (_isMobileNetwork, _networkDiagnostics, _reportExporter, _resultsExporter) = (isMobileNetwork, networkDiagnostics, reportExporter, resultsExporter);
         _historyStore = historyStore;
         Settings = settings;
         IsMobileNetwork = _isMobileNetwork?.Invoke() ?? false;
@@ -392,11 +392,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [ObservableProperty]
     public partial string CurrentLanguage { get; set; }
 
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanChangeLanguage), nameof(ShowRecommendationsButton), nameof(CanExportSupportReport))]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanChangeLanguage), nameof(ShowRecommendationsButton), nameof(CanExportSupportReport), nameof(ShowExportResults), nameof(CanExportResults), nameof(HasRecommendationCheckDetails))]
     [NotifyCanExecuteChangedFor(nameof(QuickCheckCommand), nameof(LongCaptureCommand), nameof(StopCommand), nameof(TestServicesCommand),
         nameof(TraceRouteCommand), nameof(ComparePublicDnsCommand), nameof(ScanWifiCommand),
         nameof(SwitchToFastestDnsCommand), nameof(RestoreAutomaticDnsCommand),
-        nameof(ExportHtmlReportCommand), nameof(PrintPdfReportCommand))]
+        nameof(ExportHtmlReportCommand), nameof(PrintPdfReportCommand), nameof(ExportResultsCommand), nameof(ExportMhtmlCommand))]
     public partial bool IsRunning { get; set; }
 
     [ObservableProperty]
@@ -417,16 +417,24 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [ObservableProperty]
     public partial string HeroTitle { get; set; }
 
-    /// <summary>"What to try: …" after a check that found issues; empty otherwise.</summary>
+    /// <summary>Latest check's action summary for notifications and exports, not the Home page.</summary>
     [ObservableProperty]
     public partial string TryPreview { get; set; }
+
+    /// <summary>Reviewed action and advisory summary for the saved result shown on Recommendations.</summary>
+    [ObservableProperty]
+    public partial string RecommendationSummary { get; set; } = "";
+
+    /// <summary>Live details belong here only when they describe the same check as the saved recommendations.</summary>
+    public bool HasRecommendationCheckDetails => !IsRunning && !IsReviewing && !_savedFromPreviousSession
+        && _saved is { } saved && ReferenceEquals(saved.Report, _lastReport);
 
     /// <summary>Windows reports no network at all: checks are not started, and the status and tray show a warning.</summary>
     [ObservableProperty, NotifyCanExecuteChangedFor(nameof(TestServicesCommand), nameof(TraceRouteCommand),
         nameof(ComparePublicDnsCommand), nameof(ScanWifiCommand), nameof(SwitchToFastestDnsCommand))]
     public partial bool IsDisconnected { get; set; }
 
-    /// <summary>Windows currently identifies the active Internet connection as cellular/WWAN.</summary>
+    /// <summary>The connection is mobile: cellular (WWAN), or metered such as a phone hotspot (ConnectionCost.IsMobileNetwork).</summary>
     [ObservableProperty]
     public partial bool IsMobileNetwork { get; set; }
 
@@ -449,7 +457,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     public partial string RecommendationStatus { get; set; }
 
     /// <summary>The online AI review of the recommendations is running; the cards appear when it finishes.</summary>
-    [ObservableProperty]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasRecommendationCheckDetails))]
     public partial bool IsReviewing { get; set; }
 
     /// <summary>What the online AI review concluded ("Checked by …", unavailable, or advice held back); empty when off.</summary>
@@ -662,7 +670,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [RelayCommand]
     private void DismissRecommendations() => ClearSaved();
 
-    private bool CanStart() => !IsRunning;
+    private bool CanStart() => !IsRunning && !IsExportingResults;
 
     private bool CanRunNetworkTool() =>
         _networkDiagnostics is not null && !IsDisconnected && !IsRunning && !IsRunningNetworkTool;
@@ -720,22 +728,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         const int maxPoints = 1000;
         var series = Lanes.Select(lane =>
         {
-            var samples = lane.Samples;
-            int stride = Math.Max(1, (int)Math.Ceiling(samples.Count / (double)maxPoints));
-            var points = new List<SupportReportPoint>(Math.Min(samples.Count, maxPoints));
-            for (int start = 0; start < samples.Count; start += stride)
-            {
-                int end = Math.Min(samples.Count, start + stride);
-                var selected = samples[end - 1];
-                for (int i = start; i < end; i++)
-                {
-                    if (samples[i].Answered) continue;
-                    selected = samples[i];
-                    break;
-                }
-                points.Add(new(selected.Seconds, selected.Milliseconds));
-            }
-            return new SupportReportSeries(lane.Name, points, samples.Count - points.Count);
+            var points = Downsample(lane.Samples, maxPoints);
+            return new SupportReportSeries(lane.Name, [.. points.Select(p => new SupportReportPoint(p.Seconds, p.Milliseconds))],
+                lane.Samples.Count - points.Count);
         }).ToArray();
 
         return new SupportReportData(_ui.Name, _l.Get("SupportReport_Title", _ui),
@@ -751,15 +746,14 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [RelayCommand(CanExecute = nameof(CanStart))]
     private async Task QuickCheckAsync()
     {
-        if (IsRunning) return; // a forwarded request (jump list, tray) can arrive while a check runs
+        if (!CanStart()) return; // A forwarded request must not interrupt a check or an export.
         Page = AppPage.Check; // watch the check where it runs
         if (_isConnected?.Invoke() == false)
         {
             ShowDisconnected(announce: true); // the user asked, so always say why nothing starts
             return;
         }
-        (ServiceResults, ServiceSummary) = ([], "");
-        await RunCheckAsync(Settings.MeasureSpeed);
+        await RunCheckAsync(Settings.MeasureSpeed, null, CheckKind.Quick);
         // Then the real services behind the chosen symptom, after the check so they never share the link with its measurements.
         if (!_checkStopped && !IsDisconnected && _serviceTargetProbe is not null) await RunServiceTestAsync();
     }
@@ -768,7 +762,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private Task LongCaptureAsync()
     {
         Page = AppPage.Check;
-        return RunCheckAsync(measureSpeed: false, checkSeconds: Settings.LongCaptureMinutes * 60);
+        return RunCheckAsync(false, Settings.LongCaptureMinutes * 60, CheckKind.Long);
     }
 
     /// <summary>Called on every network change. Without any network the status shows a warning and checks stay off;
@@ -830,9 +824,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// Runs one check: a latency phase, then (manual checks only) download and upload phases while latency probes
     /// keep running, which yields latency under load. Returns at once when another check is already running.
     /// </summary>
-    public async Task RunCheckAsync(bool measureSpeed, int? checkSeconds = null)
+    public Task RunCheckAsync(bool measureSpeed, int? checkSeconds = null) => RunCheckAsync(measureSpeed, checkSeconds, CheckKind.Background);
+
+    private async Task RunCheckAsync(bool measureSpeed, int? checkSeconds, CheckKind kind)
     {
-        if (IsRunning) return;
+        if (!CanStart()) return;
         // No network at all: nothing to measure. Background ticks skip quietly (the warning is already visible).
         if (_isConnected?.Invoke() == false)
         {
@@ -841,6 +837,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
         IsDisconnected = false;
         IsRunning = true;
+        (ServiceResults, ServiceSummary) = ([], "");
         Message = "";
         Summary = _l.Get("Announce_CaptureStarted", _ui);
         (Hero, HeroTitle, TryPreview) = (HeroState.Running, _l.Get("Hero_Checking", _ui), "");
@@ -849,7 +846,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         (_downloadWindow, _uploadWindow) = (null, null);
         _dnsMs.Clear();
         ResetEvidence();
-        _checkStopped = false;
+        (_checkStopped, _currentKind) = (false, kind);
         (_downloadMbps, _uploadMbps, _loadedDownMs, _loadedUpMs, _checkStartedUtc) = (null, null, null, null, _time.GetUtcNow());
         (Markers, MarkersText, CheckedOkText, _otherTraffic) = ([], "", "", null);
         _start = _time.GetTimestamp(); // markers pressed while the session starts land at 0 s
@@ -1027,6 +1024,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             ? _l.Get("Bufferbloat_NotMeasured", _ui)
             : string.Format(_ui, _l.Get("Bufferbloat_Summary", _ui), bufferbloat.Grade, bufferbloat.IncreaseMs.ToString("0", CultureInfo.CurrentCulture));
         var checkedAt = _time.GetUtcNow();
+        RememberForExport(report);
         _lastCheckedAtUtc = checkedAt;
         UpdateReportAvailability();
         RecordHistory(new CheckHistoryEntry(checkedAt, report.Level, _downloadMbps, _uploadMbps, idleMs,
@@ -1067,13 +1065,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             ClearSaved();
         }
-        var important = shownAdvice.Where(a => a.Level == AdvisoryLevel.Important).Take(1).Select(AdviceTitle).ToList();
-        // One line each, so "What to try" and "Worth checking" never run together.
-        TryPreview = string.Join("\n", new[]
-        {
-            shownActions.Count == 0 ? "" : string.Format(_ui, _l.Get("Recommend_TryPrefix", _ui), JoinList(shownActions.Select(a => ActionTitle(a)))),
-            important.Count == 0 ? "" : string.Format(_ui, _l.Get("Recommend_CheckPrefix", _ui), JoinList(important)),
-        }.Where(s => s.Length > 0));
+        TryPreview = AdviceSummary(shownActions, shownAdvice);
         Emit(TryPreview.Length == 0 ? Summary : Summary + " " + TryPreview, AnnouncementKind.FindingReady);
 
         // The shell decides whether to show it (not while the window is in the foreground).
@@ -1136,6 +1128,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             : string.Format(culture, _l.Get("History_WorstHours", _ui),
                 string.Join(", ", worst.Take(3).Select(h =>
                     $"{TimeOnly.MinValue.AddHours(h.Hour).ToString("t", _ui)} ({h.ProblemChecks}/{h.Checks})")));
+        OnPropertyChanged(nameof(HistoryCountText));
+        ClearHistoryCommand.NotifyCanExecuteChanged();
 
         string Format(double? value) => value is { } v ? v.ToString("0.##", culture) : "—";
         string FormatPercent(double? value) => value is { } v ? v.ToString("0", culture) + "%" : "—";
@@ -1181,6 +1175,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         var checkedAt = TimeZoneInfo.ConvertTime(saved.CheckedAtUtc, _time.LocalTimeZone);
         RecommendationTime = string.Format(_ui, _l.Get("Recommend_BasedOn", _ui), checkedAt.ToString("g", CultureInfo.CurrentCulture));
         RecommendationStatus = "";
+        RecommendationSummary = "";
         IReadOnlyDictionary<string, ReviewVerdict>? verdicts = null;
         if (_reviewer is not null && Settings.AiReview)
         {
@@ -1214,6 +1209,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private void UpdateReportAvailability()
     {
         OnPropertyChanged(nameof(CanExportSupportReport));
+        OnPropertyChanged(nameof(HasRecommendationCheckDetails));
         ExportHtmlReportCommand.NotifyCanExecuteChanged();
         PrintPdfReportCommand.NotifyCanExecuteChanged();
     }
@@ -1247,6 +1243,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             shownAdvice.Add(a);
         }
         (Recommendations, BestPractices, _shownActions, _shownAdvice) = (fixes, advice, shownActions, shownAdvice);
+        RecommendationSummary = AdviceSummary(shownActions, shownAdvice);
         (HasFixes, HasBestPractices) = (Recommendations.Count > 0, BestPractices.Count > 0);
         var told = VerdictSentences(saved.Verdicts?.Where(v => v.Rule != RuleId.R10).ToList(), saved.StartedAtUtc, saved.Context.Medium);
         string measured = saved.Report.Issues.Count > 0 ? Describe(saved.Report)
@@ -1263,6 +1260,16 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         RecommendationCount = Recommendations.Count + BestPractices.Count;
         HasRecommendations = RecommendationCount > 0;
         ReviewStatus = verdicts is null ? "" : ReviewSummary(RecommendationCount, fixes.Count(f => f.Checked) + advice.Count(a => a.Checked), heldBack, used);
+    }
+
+    private string AdviceSummary(IReadOnlyList<ActionCode> actions, IReadOnlyList<Advisory> advice)
+    {
+        var important = advice.Where(a => a.Level == AdvisoryLevel.Important).Take(1).Select(AdviceTitle).ToList();
+        return string.Join("\n", new[]
+        {
+            actions.Count == 0 ? "" : string.Format(_ui, _l.Get("Recommend_TryPrefix", _ui), JoinList(actions.Select(a => ActionTitle(a)))),
+            important.Count == 0 ? "" : string.Format(_ui, _l.Get("Recommend_CheckPrefix", _ui), JoinList(important)),
+        }.Where(s => s.Length > 0));
     }
 
     private string ReviewSummary(int shown, int confirmed, int heldBack, List<ReviewVerdict> used)
@@ -1293,6 +1300,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     {
         _results.Clear();
         _saved = null;
+        RecommendationSummary = "";
+        OnPropertyChanged(nameof(HasRecommendationCheckDetails));
         (HasRecommendations, HasFixes, HasBestPractices, RecommendationsStale, RecommendationCount) = (false, false, false, false, 0);
         (Recommendations, BestPractices, RecommendationBlocks, RecommendationStatus) = ([], [], [], "");
         (ReviewStatus, IsReviewing, _shownActions, _shownAdvice) = ("", false, [], []);

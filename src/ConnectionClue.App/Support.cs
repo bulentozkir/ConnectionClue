@@ -42,7 +42,20 @@ public sealed class EnumIs : IValueConverter
         value is true && parameter is string name ? Enum.Parse(targetType, name) : Binding.DoNothing;
 }
 
-/// <summary>User settings, stored as plain JSON in the per-user app data folder (not encrypted, by design).</summary>
+/// <summary>True when both values are the same item: a radio button's own item and the selected one.</summary>
+public sealed class SameItem : IMultiValueConverter
+{
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) =>
+        values.Length == 2 && Equals(values[0], values[1]);
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
+}
+
+/// <summary>
+/// User settings, stored as plain JSON in the per-user app data folder (not encrypted, by design). SettingsVersion tells
+/// files written before a new default existed (0 when missing) from later ones, where an empty value is the user's choice.
+/// </summary>
 internal sealed record AppSettings(
     string? Language = null,
     bool BackgroundEnabled = true,
@@ -62,7 +75,12 @@ internal sealed record AppSettings(
     string CallsTarget = "",
     string DisconnectTarget = "",
     int LongCaptureMinutes = SettingsViewModel.DefaultLongCaptureMinutes,
-    bool BackgroundOnMobileEnabled = false);
+    bool BackgroundOnMobileEnabled = false,
+    int SettingsVersion = 0)
+{
+    /// <summary>2: symptom targets have defaults, and Capture longer defaults to 15 minutes instead of 1 hour.</summary>
+    public const int CurrentVersion = 2;
+}
 
 internal static class AppData
 {

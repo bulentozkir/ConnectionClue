@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="Action_QuickCheck" xml:space="preserve"><value>Quick check</value><comment>Button. Starts a 2-minute test of this PC&#x27;s connection.</comment></data>
+  <data name="Action_QuickCheck" xml:space="preserve"><value>Quick check</value><comment>Button. Starts a check of this PC&#x27;s connection (30 seconds by default, set in Settings).</comment></data>
   <data name="Action_CaptureLonger" xml:space="preserve"><value>Capture longer</value><comment>Button. Starts a 15, 30 or 60-minute test.</comment></data>
   <data name="Action_Marker" xml:space="preserve"><value>It lagged just now</value><comment>Button and hotkey label. The user presses it right after noticing lag. Casual tone.</comment></data>
   <data name="Action_Stop" xml:space="preserve"><value>Stop</value><comment>Button. Ends the running test early; results are kept.</comment></data>
@@ -366,11 +366,11 @@
   <data name="Capture_LongLength" xml:space="preserve"><value>Long capture duration</value><comment>Duration selector for continuous foreground recording.</comment></data>
   <data name="Capture_LongHelp" xml:space="preserve"><value>Continuously samples this PC's network path for the selected duration. It does not run the bandwidth test or save raw samples; only a brief, anonymous summary is kept in local history. Stop at any time. Keep the app open.</value><comment>Explains long capture, resource, privacy, and evidence limits.</comment></data>
   <data name="Settings_Targets" xml:space="preserve"><value>Optional symptom-specific targets</value><comment>Settings section for per-symptom host and port values.</comment></data>
-  <data name="Settings_TargetsHint" xml:space="preserve"><value>Optional host:port for each symptom, such as your game's server. It is tested together with the built-in services when you run Quick Check or Test services. A TCP handshake checks reachability, not game latency, call quality or video playback.</value><comment>Explains the optional per-symptom targets.</comment></data>
+  <data name="Settings_TargetsHint" xml:space="preserve"><value>Each symptom starts with a popular service: Riot Games for gaming, Prime Video for video, Discord for calls and Microsoft for disconnections. Replace it with your own server, such as your game's, or clear it to test only the built-in services. It is tested with them when you select Quick check or Test services. A TCP handshake checks reachability, not game latency, call quality or video playback.</value><comment>Explains the per-symptom targets.</comment></data>
   <data name="Target_Heading" xml:space="preserve"><value>Services for this symptom</value><comment>Insights card heading.</comment></data>
-  <data name="Target_Help" xml:space="preserve"><value>Measures how long a TCP connection to real services for the selected symptom takes: game platforms for gaming lag, Teams, Zoom and Meet for calls, streaming services for video. Quick Check runs it automatically after the check. No application data is sent, and it can't measure a game's UDP traffic, call quality or a video's bitrate.</value><comment>Explains the service test.</comment></data>
-  <data name="Target_Endpoint" xml:space="preserve"><value>Your own server (optional)</value><comment>Label of the optional host:port box.</comment></data>
-  <data name="Target_EndpointHelp" xml:space="preserve"><value>Optional host:port tested together with the built-in services, such as your game's server. Many game servers use UDP, which this TCP-only test can't measure.</value><comment>Tooltip and help text of the host:port box.</comment></data>
+  <data name="Target_Help" xml:space="preserve"><value>Measures how long a TCP connection to real services for the selected symptom takes: game platforms for gaming lag, Teams, Zoom and Meet for calls, streaming services for video. Quick check runs it automatically after the check. No application data is sent, and it can't measure a game's UDP traffic, call quality or a video's bitrate.</value><comment>Explains the service test.</comment></data>
+  <data name="Target_Endpoint" xml:space="preserve"><value>Extra service to test (host:port)</value><comment>Label of the per-symptom host:port box.</comment></data>
+  <data name="Target_EndpointHelp" xml:space="preserve"><value>A host:port tested together with the built-in services. It starts with a popular service for the symptom; replace it with your own server, such as your game's, or clear it. Many game servers use UDP, which this TCP-only test can't measure.</value><comment>Tooltip and help text.</comment></data>
   <data name="Target_TestButton" xml:space="preserve"><value>Test services</value><comment>Button.</comment></data>
   <data name="Target_Disconnected" xml:space="preserve"><value>No network connection. Connect to a network before testing a target.</value><comment>Shown when the user tries a target test while disconnected.</comment></data>
   <data name="Target_Invalid" xml:space="preserve"><value>Enter a valid host:port, such as teams.microsoft.com:443.</value><comment>Validation for the symptom target input.</comment></data>
@@ -448,9 +448,73 @@
   <data name="History_ColumnQuality" xml:space="preserve"><value>Quality score</value><comment>Daily table column; the score is 0 to 100.</comment></data>
   <data name="History_QualityHelp" xml:space="preserve"><value>Daily quality score from 0 to 100: each conclusive check scores 100 with no issue, 50 when slower than your limits, and 0 with a connection problem, and the day's score is their average. The percentage is the share of checks with no issue. Time between checks is unobserved.</value><comment>Tooltip and help text.</comment></data>
   <data name="History_QualityValue" xml:space="preserve"><value>{0}/100 ({1} without issues)</value><comment>{0} = score, {1} = percentage of checks with no issue.</comment></data>
-  <data name="Jump_QuickCheckHelp" xml:space="preserve"><value>Run a Quick Check now</value><comment>Taskbar jump list task description.</comment></data>
+  <data name="Jump_QuickCheckHelp" xml:space="preserve"><value>Run a quick check now</value><comment>Taskbar jump list task description.</comment></data>
   <data name="Diagnostics_OpenLocation" xml:space="preserve"><value>Open location settings</value><comment>Button shown when the Wi-Fi scan was denied.</comment></data>
   <data name="Diagnostics_OpenLocationHelp" xml:space="preserve"><value>Opens Windows location settings. Windows requires location access before any app can scan nearby Wi-Fi networks; ConnectionClue doesn't use your location.</value><comment>Tooltip and help text.</comment></data>
   <data name="Verdict_MissingNoRouterView" xml:space="preserve"><value>your router didn't answer pings at the time, so where the delay starts is unknown</value><comment>R11 missing evidence.</comment></data>
   <data name="Verdict_NextNoRouterView" xml:space="preserve"><value>trace the route hops in Insights to see which hop adds the delay</value><comment>R11 next step.</comment></data>
+  <data name="Settings_CheckTotalSpeed" xml:space="preserve"><value>Measures delay for {0} seconds, then runs the speed test: about {1} seconds in all. The services for your symptom are tested right after.</value><comment>{0} = delay phase seconds, {1} = total seconds with the speed test.</comment></data>
+  <data name="Settings_CheckTotal" xml:space="preserve"><value>Measures delay for {0} seconds. The services for your symptom are tested right after.</value><comment>{0} = seconds.</comment></data>
+  <data name="Home_Or" xml:space="preserve"><value>or</value><comment>Divider label between Quick check and Capture longer: two alternative ways to check.</comment></data>
+  <data name="History_SettingsSection" xml:space="preserve"><value>Insights history</value><comment>Settings section heading.</comment></data>
+  <data name="History_ClearHelp" xml:space="preserve"><value>Saved check summaries: {0}. They stay on this PC for up to 30 days and feed Insights. Clearing them can't be undone; recommendations and settings are kept.</value><comment>{0} = count.</comment></data>
+  <data name="History_ClearButton" xml:space="preserve"><value>Clear Insights history</value><comment>Button; asks for confirmation.</comment></data>
+  <data name="History_ClearConfirm" xml:space="preserve"><value>Clear all saved check summaries ({0})? This can't be undone.</value><comment>{0} = count.</comment></data>
+  <data name="History_ClearConfirmButton" xml:space="preserve"><value>Clear history</value><comment>Confirm button.</comment></data>
+  <data name="History_ClearCancel" xml:space="preserve"><value>Cancel</value><comment>Button.</comment></data>
+  <data name="History_Cleared" xml:space="preserve"><value>Insights history cleared.</value><comment>Status.</comment></data>
+  <data name="Export_Button" xml:space="preserve"><value>Export (PDF)</value><comment>PDF export button after a quick check or a longer capture.</comment></data>
+  <data name="Export_Help" xml:space="preserve"><value>Export the completed quick check or longer capture as a multi-page PDF, including results, recommendations, measurement tables and the displayed charts. Microsoft Print to PDF must be installed; Windows asks where to save the file. Review the contents before sharing.</value><comment>Hover and screen-reader help for PDF export.</comment></data>
+  <data name="Export_Title" xml:space="preserve"><value>ConnectionClue check results</value><comment>PDF title.</comment></data>
+  <data name="Export_KindQuick" xml:space="preserve"><value>Quick check</value><comment>Kind of check.</comment></data>
+  <data name="Export_KindLong" xml:space="preserve"><value>Longer capture ({0})</value><comment>{0} = length such as '1 h'.</comment></data>
+  <data name="Export_KindBackground" xml:space="preserve"><value>Background check</value><comment>Kind of check.</comment></data>
+  <data name="Export_SectionResult" xml:space="preserve"><value>Result</value><comment>PDF section.</comment></data>
+  <data name="Export_SectionFindings" xml:space="preserve"><value>Findings</value><comment>PDF section.</comment></data>
+  <data name="Export_SectionMeasurements" xml:space="preserve"><value>Measurements</value><comment>PDF section.</comment></data>
+  <data name="Export_SectionPath" xml:space="preserve"><value>Path steps</value><comment>PDF section.</comment></data>
+  <data name="Export_SectionServices" xml:space="preserve"><value>Services for your symptom</value><comment>PDF section.</comment></data>
+  <data name="Export_SectionDetails" xml:space="preserve"><value>Check details</value><comment>PDF section.</comment></data>
+  <data name="Export_DetailKind" xml:space="preserve"><value>Check: {0}</value><comment>{0} = kind of check.</comment></data>
+  <data name="Export_DetailStarted" xml:space="preserve"><value>Started: {0}</value><comment>{0} = local date and time.</comment></data>
+  <data name="Export_DetailLength" xml:space="preserve"><value>Delay measured for {0} seconds</value><comment>{0} = seconds.</comment></data>
+  <data name="Export_DetailSpeedOn" xml:space="preserve"><value>Download and upload speed were measured.</value></data>
+  <data name="Export_DetailSpeedOff" xml:space="preserve"><value>Speed was not measured.</value></data>
+  <data name="Export_DetailLimits" xml:space="preserve"><value>Your limits: delay {0} ms, unanswered checks {1}%, variation {2} ms</value><comment>{0}-{2} = the user's limits.</comment></data>
+  <data name="Export_DetailConnection" xml:space="preserve"><value>Connection: {0}</value><comment>{0} = Export_Medium*.</comment></data>
+  <data name="Export_MediumWiFi" xml:space="preserve"><value>Wi-Fi</value></data>
+  <data name="Export_MediumEthernet" xml:space="preserve"><value>Ethernet</value></data>
+  <data name="Export_MediumUnknown" xml:space="preserve"><value>not identified</value></data>
+  <data name="Export_DetailVpn" xml:space="preserve"><value>A VPN was active, which hides the path to the router and provider.</value></data>
+  <data name="Export_DetailMetered" xml:space="preserve"><value>The connection was metered, so the speed test was skipped.</value></data>
+  <data name="Export_SamplesHeading" xml:space="preserve"><value>Every measurement</value><comment>PDF table heading.</comment></data>
+  <data name="Export_SamplesOmitted" xml:space="preserve"><value>{0} measurements are not listed: each step lists at most {1}, evenly spread. An unanswered check is preferred within each sampled interval; not every measurement is included.</value><comment>{0} = omitted count, {1} = maximum per step.</comment></data>
+  <data name="Export_VisualsHeading" xml:space="preserve"><value>What the Check page showed</value><comment>PDF heading above the screenshots.</comment></data>
+  <data name="Export_VisualCheckPage" xml:space="preserve"><value>The Check page when the file was made: status, measurements, path and the delay chart.</value><comment>Caption and text alternative of the first image.</comment></data>
+  <data name="Export_VisualChart" xml:space="preserve"><value>The delay chart at full width. Each column is one measurement; hatched columns got no answer; flags mark your lag moments.</value><comment>Caption and text alternative of the second image.</comment></data>
+  <data name="Export_Footer" xml:space="preserve"><value>These results describe this check only. The images show the screen when the file was made.</value><comment>PDF footer.</comment></data>
+  <data name="Export_Sent" xml:space="preserve"><value>Sent to Microsoft Print to PDF. Choose where to save the file when Windows asks.</value><comment>Status.</comment></data>
+  <data name="Export_Cancelled" xml:space="preserve"><value>The export was canceled.</value><comment>Status.</comment></data>
+  <data name="Export_NoPdfPrinter" xml:space="preserve"><value>Microsoft Print to PDF isn't available. Turn it on in Windows Features, then try again.</value><comment>Status.</comment></data>
+  <data name="Export_Failed" xml:space="preserve"><value>The PDF could not be created. Try again.</value><comment>Status.</comment></data>
+  <data name="Export_MhtmlButton" xml:space="preserve"><value>Export (MHTML)</value><comment>Single-file web archive export button beside Export (PDF).</comment></data>
+  <data name="Export_MhtmlHelp" xml:space="preserve"><value>Save this check's results, recommendations, measurement tables and displayed charts in one MHTML web archive. Choose where to save it, then open it offline in Microsoft Edge or another MHTML-compatible browser. No printer or internet connection is needed. Review the contents before sharing.</value><comment>Hover and screen-reader help for MHTML export.</comment></data>
+  <data name="Export_MhtmlFilter" xml:space="preserve"><value>MHTML web archive (*.mhtml)|*.mhtml</value><comment>Save dialog filter. Keep *.mhtml and the separator | unchanged.</comment></data>
+  <data name="Export_MhtmlSaved" xml:space="preserve"><value>MHTML archive saved. Open it in Microsoft Edge or another MHTML-compatible browser.</value><comment>Shown only after the archive has been written successfully.</comment></data>
+  <data name="Export_MhtmlFailed" xml:space="preserve"><value>The MHTML archive could not be saved. Check the selected folder's permissions and available space, then try again.</value><comment>Export error.</comment></data>
+  <data name="ButtonHelp_QuickCheck" xml:space="preserve"><value>Start a quick check of this PC's connection (F5). The configured length measures baseline delay; optional download and upload tests add about 16 seconds, followed by tests of services for the selected symptom. Wait for the current check or export to finish before starting another.</value><comment>Quick check button help.</comment></data>
+  <data name="ButtonHelp_Recommendations" xml:space="preserve"><value>Open the saved findings, full Worth checking advice and suggested fixes. This page explains the evidence and steps to try, and shows when the recommendations were produced.</value><comment>Recommendations navigation and button help.</comment></data>
+  <data name="ButtonHelp_Stop" xml:space="preserve"><value>Stop the current quick check or longer capture and keep the measurements already collected. An early stop may leave too little evidence for a conclusion.</value><comment>Stop button help.</comment></data>
+  <data name="ButtonHelp_Check" xml:space="preserve"><value>Show the current connection result, measurements, path and charts. Choose Quick check or Capture longer to start measuring; opening this page does not start a test.</value><comment>Check navigation help.</comment></data>
+  <data name="ButtonHelp_Insights" xml:space="preserve"><value>Explore saved check history, daily quality and speed trends, service tests, route hops, DNS comparison and Wi-Fi channels. Run a diagnostic only when you choose its button.</value><comment>Insights navigation help.</comment></data>
+  <data name="ButtonHelp_Settings" xml:space="preserve"><value>Adjust check length, speed testing, background and mobile checks, alert limits, theme, language and service targets. You can also clear Insights history here. Changes are saved for this Windows user.</value><comment>Settings navigation help.</comment></data>
+  <data name="ButtonHelp_Help" xml:space="preserve"><value>Open the built-in guide to checks, findings, charts, exports and privacy, including keyboard shortcuts and accessibility features. The guide is available without an internet connection.</value><comment>Help toolbar button help.</comment></data>
+  <data name="ButtonHelp_Dismiss" xml:space="preserve"><value>Clear the saved recommendations and return to the Check page. Your settings and Insights history are kept; a later check may produce new recommendations.</value><comment>Dismiss recommendations button help.</comment></data>
+  <data name="ButtonHelp_CancelClearHistory" xml:space="preserve"><value>Cancel clearing Insights history. All saved check summaries and trends are kept.</value><comment>Cancel history deletion button help.</comment></data>
+  <data name="Settings_TabNetwork" xml:space="preserve"><value>Network</value><comment>Settings tab for alert limits, plan speeds and symptom targets.</comment></data>
+  <data name="Settings_TabPreferences" xml:space="preserve"><value>Preferences</value><comment>Settings tab for theme, language, advice review and history.</comment></data>
+  <data name="ButtonHelp_SettingsChecks" xml:space="preserve"><value>Configure quick checks and scheduled checks, including mobile networks and starting with Windows.</value></data>
+  <data name="ButtonHelp_SettingsNetwork" xml:space="preserve"><value>Set alert limits, the speeds in your internet plan and an extra service target for each symptom.</value></data>
+  <data name="ButtonHelp_SettingsPreferences" xml:space="preserve"><value>Choose a theme or language, manage online advice review and clear Insights history.</value></data>
+  <data name="Settings_TargetsCompactHint" xml:space="preserve"><value>One extra host:port per symptom. Clear a field to use only built-in services. Hover or focus a field for details.</value></data>
 </root>

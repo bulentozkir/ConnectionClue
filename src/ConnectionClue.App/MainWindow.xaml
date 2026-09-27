@@ -15,6 +15,77 @@
         <app:BoolToVisibility x:Key="Hidden" Invert="True" />
         <app:TextToVisibility x:Key="HasText" />
         <app:EnumIs x:Key="EnumIs" />
+        <app:SameItem x:Key="SameItem" />
+
+        <!-- A "What's happening?" choice (radio semantics): each symptom has its own colour (tint when not chosen, filled when
+             chosen), its icon, and a radio circle whose dot marks the choice, so the choice never relies on colour. The
+             tooltip, also shown on keyboard focus, explains when to pick it. Arrow keys select, as in any Windows radio group. -->
+        <Style x:Key="SymptomRadio" TargetType="RadioButton">
+            <EventSetter Event="GotKeyboardFocus" Handler="SymptomRadio_GotKeyboardFocus" />
+            <Setter Property="GroupName" Value="Symptom" />
+            <Setter Property="Margin" Value="0,0,6,6" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}" />
+            <Setter Property="AutomationProperties.Name" Value="{Binding Label}" />
+            <Setter Property="AutomationProperties.HelpText" Value="{Binding Help}" />
+            <Setter Property="ToolTip" Value="{Binding Help}" />
+            <Setter Property="ToolTipService.ShowsToolTipOnKeyboardFocus" Value="True" />
+            <Setter Property="ToolTipService.ShowDuration" Value="30000" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            <Setter Property="Background" Value="{DynamicResource ChipGamingTintBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ChipGamingBorderBrush}" />
+            <Setter Property="Tag" Value="{DynamicResource ChipGamingFillBrush}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="Bd" CornerRadius="14" Padding="7,3,10,3" MinHeight="28" BorderThickness="1.5"
+                                BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Width="16" Height="16" Margin="0,0,6,0" VerticalAlignment="Center">
+                                    <Ellipse x:Name="Ring" Stroke="{TemplateBinding Foreground}" StrokeThickness="1.5" />
+                                    <Ellipse x:Name="Dot" Width="8" Height="8" Fill="{DynamicResource ChipSelectedTextBrush}" Visibility="Collapsed" />
+                                </Grid>
+                                <TextBlock x:Name="Icon" Style="{StaticResource Glyph}" Text="{Binding Glyph}" Margin="0,0,6,0"
+                                           Foreground="{TemplateBinding Foreground}" />
+                                <TextBlock x:Name="Label" Text="{Binding Label}" FontSize="13" VerticalAlignment="Center"
+                                           Foreground="{TemplateBinding Foreground}" />
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="BorderThickness" Value="2.5" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <Setter TargetName="Ring" Property="Stroke" Value="{DynamicResource ChipSelectedTextBrush}" />
+                                <Setter TargetName="Dot" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="Icon" Property="Foreground" Value="{DynamicResource ChipSelectedTextBrush}" />
+                                <Setter TargetName="Label" Property="Foreground" Value="{DynamicResource ChipSelectedTextBrush}" />
+                                <Setter TargetName="Label" Property="FontWeight" Value="SemiBold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Key}" Value="Symptom_Video">
+                    <Setter Property="Background" Value="{DynamicResource ChipVideoTintBrush}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ChipVideoBorderBrush}" />
+                    <Setter Property="Tag" Value="{DynamicResource ChipVideoFillBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Key}" Value="Symptom_Calls">
+                    <Setter Property="Background" Value="{DynamicResource ChipCallsTintBrush}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ChipCallsBorderBrush}" />
+                    <Setter Property="Tag" Value="{DynamicResource ChipCallsFillBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Key}" Value="Symptom_Disconnects">
+                    <Setter Property="Background" Value="{DynamicResource ChipDisconnectsTintBrush}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ChipDisconnectsBorderBrush}" />
+                    <Setter Property="Tag" Value="{DynamicResource ChipDisconnectsFillBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
 
         <!-- Top navigation tab: icon + label, with an underline when selected (the text also turns semibold). -->
         <Style x:Key="NavItem" TargetType="RadioButton">
@@ -25,6 +96,9 @@
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="GroupName" Value="Nav" />
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}" />
+            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(AutomationProperties.HelpText)}" />
+            <Setter Property="ToolTipService.ShowsToolTipOnKeyboardFocus" Value="True" />
+            <Setter Property="ToolTipService.ShowDuration" Value="30000" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
@@ -47,6 +121,37 @@
                                 <Setter TargetName="Bd" Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
                                 <Setter TargetName="Pill" Property="Visibility" Value="Visible" />
                                 <Setter Property="FontWeight" Value="SemiBold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Top navigation action (Help): same look as a tab, without a selected state. -->
+        <Style x:Key="NavButton" TargetType="Button">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            <Setter Property="MinHeight" Value="34" />
+            <Setter Property="Margin" Value="0,0,4,0" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}" />
+            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(AutomationProperties.HelpText)}" />
+            <Setter Property="ToolTipService.ShowsToolTipOnKeyboardFocus" Value="True" />
+            <Setter Property="ToolTipService.ShowDuration" Value="30000" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" CornerRadius="5" Background="Transparent" Padding="10,0">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Style="{StaticResource Glyph}" FontSize="15"
+                                           Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <ContentPresenter VerticalAlignment="Center" Margin="8,0,0,0" />
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -174,7 +279,6 @@
             </DataTemplate.Triggers>
         </DataTemplate>
 
-        <!-- Chart row: header on top, strip stretches to share the card height equally with the other rows. -->
         <!-- Chart row: header on top (tooltip explains the row), value labels beside the grid, bars with a hover value. -->
         <DataTemplate x:Key="Row" DataType="{x:Type vm:LaneViewModel}">
             <c:AccessibleGroup Margin="0,4,0,0" AutomationProperties.Name="{Binding ChartText}" AutomationProperties.HelpText="{Binding Help}"
@@ -224,17 +328,19 @@
                 </StackPanel>
                 <RadioButton DockPanel.Dock="Right" Style="{StaticResource NavItem}" Tag="&#xE713;"
                              Content="{Binding [Action_Settings]}" AutomationProperties.Name="{Binding [Action_Settings]}"
+                             AutomationProperties.HelpText="{Binding [ButtonHelp_Settings]}"
                              IsChecked="{Binding Page, Converter={StaticResource EnumIs}, ConverterParameter=Settings}" />
-                <Button DockPanel.Dock="Right" MinHeight="34" Margin="0,0,4,0" Padding="10,0"
-                        Background="Transparent" BorderThickness="0" Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-                        FocusVisualStyle="{StaticResource FocusRing}" Content="{Binding [Action_Help]}"
-                        AutomationProperties.Name="{Binding [Action_Help]}" Click="HelpButton_Click" />
+                <Button DockPanel.Dock="Right" Style="{StaticResource NavButton}" Tag="&#xE897;" Content="{Binding [Action_Help]}"
+                        AutomationProperties.Name="{Binding [Action_Help]}" AutomationProperties.HelpText="{Binding [ButtonHelp_Help]}"
+                        Click="HelpButton_Click" />
                 <RadioButton DockPanel.Dock="Left" Style="{StaticResource NavItem}" Tag="&#xE9D9;"
                              Content="{Binding [Nav_Check]}" AutomationProperties.Name="{Binding [Nav_Check]}"
+                             AutomationProperties.HelpText="{Binding [ButtonHelp_Check]}"
                              IsChecked="{Binding Page, Converter={StaticResource EnumIs}, ConverterParameter=Check}" />
                 <!-- Only when the latest check found issues or missing best practices. -->
                 <RadioButton DockPanel.Dock="Left" Style="{StaticResource NavItem}" Tag="&#xE82F;"
                              AutomationProperties.Name="{Binding [Action_Recommendations]}"
+                             AutomationProperties.HelpText="{Binding [ButtonHelp_Recommendations]}"
                              IsChecked="{Binding Page, Converter={StaticResource EnumIs}, ConverterParameter=Recommendations}"
                              Visibility="{Binding HasRecommendations, Converter={StaticResource Shown}}">
                     <StackPanel Orientation="Horizontal">
@@ -247,6 +353,7 @@
                 </RadioButton>
                 <RadioButton DockPanel.Dock="Left" Style="{StaticResource NavItem}" Tag="&#xE9D2;"
                              Content="{Binding [Nav_Insights]}" AutomationProperties.Name="{Binding [Nav_Insights]}"
+                             AutomationProperties.HelpText="{Binding [ButtonHelp_Insights]}"
                              IsChecked="{Binding Page, Converter={StaticResource EnumIs}, ConverterParameter=Insights}" />
             </DockPanel>
         </Border>
@@ -260,7 +367,7 @@
                        Visibility="{Binding IsCheckPage, Converter={StaticResource Hidden}}" />
 
             <!-- CHECK: status and evidence side by side on top, the chart across the full width below; no page scrolling -->
-            <Grid Grid.Row="1" Visibility="{Binding IsCheckPage, Converter={StaticResource Shown}}">
+            <Grid x:Name="CheckPage" Grid.Row="1" Visibility="{Binding IsCheckPage, Converter={StaticResource Shown}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -284,21 +391,6 @@
                                            Visibility="{Binding Summary, Converter={StaticResource HasText}}" />
                             </StackPanel>
                         </DockPanel>
-                        <TextBlock Text="{Binding TryPreview}" FontSize="13" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,6,0,0"
-                                   Visibility="{Binding TryPreview, Converter={StaticResource HasText}}" />
-                        <!-- One line; the full list is in the tooltip, the UIA name and the recommendations. -->
-                        <TextBlock Text="{Binding CheckedOkText}" Style="{StaticResource Caption}" FontSize="12" Margin="0,3,0,0"
-                                   TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" ToolTip="{Binding CheckedOkText}"
-                                   AutomationProperties.Name="{Binding CheckedOkText}"
-                                   Visibility="{Binding CheckedOkText, Converter={StaticResource HasText}}" />
-                        <TextBlock Text="{Binding BufferbloatText}" Style="{StaticResource Caption}" Margin="0,3,0,0"
-                                   ToolTip="{Binding [Bufferbloat_Help]}" ToolTipService.ShowDuration="30000"
-                                   AutomationProperties.Name="{Binding BufferbloatText}"
-                                   AutomationProperties.HelpText="{Binding [Bufferbloat_Help]}" />
-                        <TextBlock Text="{Binding ServiceSummary}" Style="{StaticResource Caption}" Margin="0,3,0,0" TextWrapping="Wrap"
-                                   ToolTip="{Binding [Target_Help]}" ToolTipService.ShowDuration="30000"
-                                   AutomationProperties.Name="{Binding ServiceSummary}" AutomationProperties.HelpText="{Binding [Target_Help]}"
-                                   Visibility="{Binding ServiceSummary, Converter={StaticResource HasText}}" />
                         <StackPanel Margin="0,6,0,0" Visibility="{Binding IsRunning, Converter={StaticResource Shown}}">
                             <ProgressBar Value="{Binding Progress, Mode=OneWay}" Maximum="1" Height="4" AutomationProperties.Name="{Binding TimeLeft}" />
                             <TextBlock Text="{Binding TimeLeft}" Style="{StaticResource Caption}" Margin="0,3,0,0" />
@@ -306,6 +398,7 @@
                         <WrapPanel Margin="0,8,0,0">
                             <Button Style="{StaticResource PrimaryButton}" Command="{Binding QuickCheckCommand}" IsDefault="True"
                                     AutomationProperties.Name="{Binding [Action_QuickCheck]}"
+                                    AutomationProperties.HelpText="{Binding [ButtonHelp_QuickCheck]}"
                                     Visibility="{Binding IsRunning, Converter={StaticResource Hidden}}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource Glyph}" Text="&#xE768;" />
@@ -314,20 +407,38 @@
                             </Button>
                             <Button Style="{StaticResource AdviceButton}" Command="{Binding GoToRecommendationsCommand}"
                                     AutomationProperties.Name="{Binding [Action_Recommendations]}"
+                                    AutomationProperties.HelpText="{Binding [ButtonHelp_Recommendations]}"
                                     Visibility="{Binding ShowRecommendationsButton, Converter={StaticResource Shown}}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource Glyph}" Text="&#xE82F;" />
                                     <TextBlock Text="{Binding [Action_Recommendations]}" Margin="6,0,0,0" />
                                 </StackPanel>
                             </Button>
+                            <WrapPanel Visibility="{Binding ShowExportResults, Converter={StaticResource Shown}}">
+                                <Button Style="{StaticResource ToolButton}" Command="{Binding ExportResultsCommand}"
+                                        AutomationProperties.Name="{Binding [Export_Button]}" AutomationProperties.HelpText="{Binding [Export_Help]}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE8A5;" />
+                                        <TextBlock Text="{Binding [Export_Button]}" Margin="6,0,0,0" />
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource ToolButton}" Command="{Binding ExportMhtmlCommand}"
+                                        AutomationProperties.Name="{Binding [Export_MhtmlButton]}" AutomationProperties.HelpText="{Binding [Export_MhtmlHelp]}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE8A5;" />
+                                        <TextBlock Text="{Binding [Export_MhtmlButton]}" Margin="6,0,0,0" />
+                                    </StackPanel>
+                                </Button>
+                            </WrapPanel>
                             <Button Style="{StaticResource DangerButton}" Command="{Binding StopCommand}" AutomationProperties.Name="{Binding [Action_Stop]}"
+                                    AutomationProperties.HelpText="{Binding [ButtonHelp_Stop]}"
                                     Visibility="{Binding IsRunning, Converter={StaticResource Shown}}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource Glyph}" Text="&#xE71A;" />
                                     <TextBlock Text="{Binding [Action_Stop]}" Margin="6,0,0,0" />
                                 </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource WarningButton}" Command="{Binding MarkerCommand}" AutomationProperties.Name="{Binding [Action_Marker]}"
+                            <Button Style="{StaticResource MarkButton}" Command="{Binding MarkerCommand}" AutomationProperties.Name="{Binding [Action_Marker]}"
                                     AutomationProperties.HelpText="{Binding [Marker_Help]}"
                                     ToolTipService.ShowsToolTipOnKeyboardFocus="True" ToolTipService.InitialShowDelay="300" ToolTipService.ShowDuration="30000"
                                     Visibility="{Binding IsRunning, Converter={StaticResource Shown}}">
@@ -342,36 +453,68 @@
                                 </StackPanel>
                             </Button>
                         </WrapPanel>
-                        <DockPanel Margin="0,2,0,0" LastChildFill="False">
-                            <ComboBox DockPanel.Dock="Right" Width="94" Style="{StaticResource SettingsCombo}"
+                        <TextBlock Text="{Binding ResultsExportStatus}" Style="{StaticResource Caption}" Margin="0,0,0,6"
+                                   AutomationProperties.Name="{Binding ResultsExportStatus}" AutomationProperties.LiveSetting="Polite"
+                                   Visibility="{Binding ResultsExportStatus, Converter={StaticResource HasText}}" />
+                        <!-- Two ways to check: a quick check above, or a longer capture below. -->
+                        <Grid Margin="0,0,6,6" Visibility="{Binding IsRunning, Converter={StaticResource Hidden}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Height="1" VerticalAlignment="Center" Fill="{DynamicResource ControlStrokeColorDefaultBrush}" />
+                            <TextBlock Grid.Column="1" Text="{Binding [Home_Or]}" Style="{StaticResource Caption}" Margin="10,0" />
+                            <Rectangle Grid.Column="2" Height="1" VerticalAlignment="Center" Fill="{DynamicResource ControlStrokeColorDefaultBrush}" />
+                        </Grid>
+                        <!-- The capture length sits right next to the button it configures. -->
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsRunning, Converter={StaticResource Hidden}}">
+                            <Button Style="{StaticResource ToolButton}" Command="{Binding LongCaptureCommand}"
+                                    AutomationProperties.Name="{Binding [Action_CaptureLonger]}"
+                                    AutomationProperties.HelpText="{Binding [Capture_LongHelp]}" ToolTip="{Binding [Capture_LongHelp]}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource Glyph}" Text="&#xE823;" />
+                                    <TextBlock Text="{Binding [Action_CaptureLonger]}" Margin="6,0,0,0" />
+                                </StackPanel>
+                            </Button>
+                            <ComboBox Width="94" Margin="0,0,0,6" Style="{StaticResource SettingsCombo}"
                                       ItemsSource="{Binding Settings.LongCaptureLengths}" SelectedValuePath="Value"
                                       SelectedValue="{Binding Settings.LongCaptureMinutes}"
                                       AutomationProperties.Name="{Binding [Capture_LongLength]}"
-                                      AutomationProperties.HelpText="{Binding [Capture_LongHelp]}" />
-                            <Button Style="{StaticResource NeutralButton}" Command="{Binding LongCaptureCommand}"
-                                    AutomationProperties.Name="{Binding [Action_CaptureLonger]}"
-                                    AutomationProperties.HelpText="{Binding [Capture_LongHelp]}"
-                                    ToolTip="{Binding [Capture_LongHelp]}" ToolTipService.ShowDuration="30000">
-                                <TextBlock Text="{Binding [Action_CaptureLonger]}" />
-                            </Button>
-                        </DockPanel>
+                                      AutomationProperties.HelpText="{Binding [Capture_LongHelp]}" ToolTip="{Binding [Capture_LongHelp]}" />
+                        </StackPanel>
                         <TextBlock Text="{Binding Message}" FontSize="13" TextWrapping="Wrap" Margin="0,0,0,4"
                                    Visibility="{Binding Message, Converter={StaticResource HasText}}" />
-                        <!-- The symptom picker sits in its own rounded panel; each choice has its colour, icon and tooltip. -->
+                        <!-- "What's happening?" is a radio group: exactly one choice, arrow keys move and select, Tab enters and leaves
+                             the group once. Each choice keeps its colour, icon, radio circle and tooltip. -->
                         <Border Margin="0,4,0,0" Padding="8,6,2,2" CornerRadius="8" BorderThickness="1"
                                 Background="{DynamicResource SubtleFillColorSecondaryBrush}" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
                                 Visibility="{Binding IsRunning, Converter={StaticResource Hidden}}">
                             <StackPanel>
-                                <TextBlock Text="{Binding [Home_SymptomQuestion]}" FontSize="13" FontWeight="SemiBold" AutomationProperties.HeadingLevel="Level2" />
-                                <ListBox ItemsSource="{Binding Symptoms}" SelectedItem="{Binding SelectedSymptom}" ItemContainerStyle="{StaticResource Chip}"
-                                         Background="Transparent" BorderThickness="0" Margin="0,4,0,0" Padding="0"
-                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" AutomationProperties.Name="{Binding [Home_SymptomQuestion]}">
-                                    <ListBox.ItemsPanel>
+                                <TextBlock x:Name="SymptomQuestion" Text="{Binding [Home_SymptomQuestion]}" Style="{StaticResource SettingLabel}" FontWeight="SemiBold"
+                                           AutomationProperties.HeadingLevel="Level2" />
+                                <ItemsControl ItemsSource="{Binding Symptoms}" Focusable="False" Margin="0,4,0,0"
+                                              KeyboardNavigation.TabNavigation="Once" KeyboardNavigation.DirectionalNavigation="Cycle"
+                                              AutomationProperties.LabeledBy="{Binding ElementName=SymptomQuestion}">
+                                    <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <WrapPanel />
                                         </ItemsPanelTemplate>
-                                    </ListBox.ItemsPanel>
-                                </ListBox>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type vm:SymptomOption}">
+                                            <RadioButton Style="{StaticResource SymptomRadio}"
+                                                         Command="{Binding DataContext.SelectSymptomCommand, ElementName=Root}" CommandParameter="{Binding}">
+                                                <RadioButton.IsChecked>
+                                                    <MultiBinding Converter="{StaticResource SameItem}" Mode="OneWay">
+                                                        <Binding />
+                                                        <Binding Path="DataContext.SelectedSymptom" ElementName="Root" />
+                                                    </MultiBinding>
+                                                </RadioButton.IsChecked>
+                                            </RadioButton>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </StackPanel>
                         </Border>
                         <TextBlock Text="{Binding LastCheckText}" Style="{StaticResource Caption}" Margin="0,2,0,0"
@@ -473,7 +616,7 @@
 
                 </Grid>
                 <!-- Latency over time across the full width: rows share the remaining height -->
-                <Border Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource Card}" Margin="0" Padding="12,8">
+                <Border x:Name="ChartCard" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource Card}" Margin="0" Padding="12,8">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -513,7 +656,7 @@
             </Grid>
 
             <!-- RECOMMENDATIONS: the time of the check comes first; fixes and best practices sit side by side when wide -->
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Focusable="False"
+            <ScrollViewer x:Name="RecommendationsPage" Grid.Row="1" VerticalScrollBarVisibility="Auto" Focusable="False"
                           Visibility="{Binding IsRecommendationsPage, Converter={StaticResource Shown}}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -546,13 +689,15 @@
                                                  Visibility="{Binding IsReviewing, Converter={StaticResource Shown}}" />
                                 </StackPanel>
                                 <WrapPanel Grid.Column="2" VerticalAlignment="Center" Margin="10,0,0,0">
-                                    <Button Style="{StaticResource PrimaryButton}" Command="{Binding QuickCheckCommand}" AutomationProperties.Name="{Binding [Action_QuickCheck]}">
+                                    <Button Style="{StaticResource PrimaryButton}" Command="{Binding QuickCheckCommand}" AutomationProperties.Name="{Binding [Action_QuickCheck]}"
+                                            AutomationProperties.HelpText="{Binding [ButtonHelp_QuickCheck]}">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Style="{StaticResource Glyph}" Text="&#xE768;" />
                                             <TextBlock Text="{Binding [Action_QuickCheck]}" Margin="6,0,0,0" />
                                         </StackPanel>
                                     </Button>
-                                    <Button Style="{StaticResource NeutralButton}" Command="{Binding DismissRecommendationsCommand}" AutomationProperties.Name="{Binding [Action_Dismiss]}">
+                                    <Button Style="{StaticResource NeutralButton}" Command="{Binding DismissRecommendationsCommand}" AutomationProperties.Name="{Binding [Action_Dismiss]}"
+                                            AutomationProperties.HelpText="{Binding [ButtonHelp_Dismiss]}">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Style="{StaticResource Glyph}" Text="&#xE711;" />
                                             <TextBlock Text="{Binding [Action_Dismiss]}" Margin="6,0,0,0" />
@@ -560,6 +705,29 @@
                                     </Button>
                                 </WrapPanel>
                             </Grid>
+                        </Border>
+                        <c:AccessibleGroup Margin="0,0,0,8" AutomationProperties.Name="{Binding RecommendationSummary}"
+                                           Visibility="{Binding RecommendationSummary, Converter={StaticResource HasText}}">
+                            <Border Style="{StaticResource Card}" Margin="0">
+                                <TextBlock Text="{Binding RecommendationSummary}" Style="{StaticResource SectionText}" TextWrapping="Wrap" />
+                            </Border>
+                        </c:AccessibleGroup>
+                        <Border Style="{StaticResource Card}" Visibility="{Binding HasRecommendationCheckDetails, Converter={StaticResource Shown}}">
+                            <StackPanel>
+                                <c:AccessibleGroup AutomationProperties.Name="{Binding BufferbloatText}"
+                                                   AutomationProperties.HelpText="{Binding [Bufferbloat_Help]}"
+                                                   ToolTip="{Binding [Bufferbloat_Help]}" ToolTipService.ShowDuration="30000"
+                                                   ToolTipService.ShowsToolTipOnKeyboardFocus="True">
+                                    <TextBlock Text="{Binding BufferbloatText}" Style="{StaticResource Secondary}" TextWrapping="Wrap" />
+                                </c:AccessibleGroup>
+                                <c:AccessibleGroup Margin="0,6,0,0" AutomationProperties.Name="{Binding ServiceSummary}"
+                                                   AutomationProperties.HelpText="{Binding [Target_Help]}"
+                                                   ToolTip="{Binding [Target_Help]}" ToolTipService.ShowDuration="30000"
+                                                   ToolTipService.ShowsToolTipOnKeyboardFocus="True"
+                                                   Visibility="{Binding ServiceSummary, Converter={StaticResource HasText}}">
+                                    <TextBlock Text="{Binding ServiceSummary}" Style="{StaticResource Secondary}" TextWrapping="Wrap" />
+                                </c:AccessibleGroup>
+                            </StackPanel>
                         </Border>
                         <!-- Balanced newspaper columns (FlowColumns): reading order is kept, headings stay with the next card. -->
                         <ItemsControl ItemsSource="{Binding RecommendationBlocks}" Focusable="False">
@@ -698,120 +866,6 @@
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Focusable="False"
                           Visibility="{Binding IsInsightsPage, Converter={StaticResource Shown}}">
                 <StackPanel MaxWidth="1200" HorizontalAlignment="Left">
-                    <TextBlock Text="{Binding [Diagnostics_Heading]}" Style="{StaticResource SectionText}"
-                               AutomationProperties.HeadingLevel="Level2" Margin="2,0,0,4" />
-                    <Grid Margin="0,0,0,4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="8" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="8" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Border Style="{StaticResource Card}" Padding="12,10">
-                            <StackPanel>
-                                <TextBlock Text="{Binding [Diagnostics_TraceTitle]}" FontWeight="SemiBold" />
-                                <TextBlock Text="{Binding [Diagnostics_TraceHelp]}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,3,0,6" />
-                                <Button Style="{StaticResource NeutralButton}" Command="{Binding TraceRouteCommand}"
-                                        AutomationProperties.Name="{Binding [Diagnostics_TraceButton]}"
-                                        AutomationProperties.HelpText="{Binding [Diagnostics_TraceHelp]}" ToolTip="{Binding [Diagnostics_TraceHelp]}">
-                                    <TextBlock Text="{Binding [Diagnostics_TraceButton]}" />
-                                </Button>
-                                <TextBlock Text="{Binding TraceRouteText}" Style="{StaticResource Secondary}" TextWrapping="Wrap"
-                                           Margin="0,5,0,0" AutomationProperties.LiveSetting="Polite"
-                                           AutomationProperties.Name="{Binding TraceRouteText}"
-                                           Visibility="{Binding TraceRouteText, Converter={StaticResource HasText}}" />
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Column="2" Style="{StaticResource Card}" Padding="12,10">
-                            <StackPanel>
-                                <TextBlock Text="{Binding [Diagnostics_DnsTitle]}" FontWeight="SemiBold" />
-                                <TextBlock Text="{Binding [Diagnostics_DnsHelp]}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,3,0,6" />
-                                <WrapPanel>
-                                    <Button Style="{StaticResource NeutralButton}" Command="{Binding ComparePublicDnsCommand}" Margin="0,0,6,6"
-                                            AutomationProperties.Name="{Binding [Diagnostics_DnsButton]}"
-                                            AutomationProperties.HelpText="{Binding [Diagnostics_DnsHelp]}" ToolTip="{Binding [Diagnostics_DnsHelp]}">
-                                        <TextBlock Text="{Binding [Diagnostics_DnsButton]}" />
-                                    </Button>
-                                    <Button Style="{StaticResource NeutralButton}" Command="{Binding SwitchToFastestDnsCommand}" Margin="0,0,6,6"
-                                            AutomationProperties.Name="{Binding SwitchDnsLabel}"
-                                            AutomationProperties.HelpText="{Binding [Diagnostics_UseDnsHelp]}" ToolTip="{Binding [Diagnostics_UseDnsHelp]}"
-                                            ToolTipService.ShowOnDisabled="True">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Style="{StaticResource Glyph}" Text="&#xEA18;" Margin="0,0,6,0" />
-                                            <TextBlock Text="{Binding SwitchDnsLabel}" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button Style="{StaticResource NeutralButton}" Command="{Binding RestoreAutomaticDnsCommand}" Margin="0,0,6,6"
-                                            AutomationProperties.Name="{Binding [Diagnostics_RestoreDns]}"
-                                            AutomationProperties.HelpText="{Binding [Diagnostics_RestoreDnsHelp]}" ToolTip="{Binding [Diagnostics_RestoreDnsHelp]}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Style="{StaticResource Glyph}" Text="&#xEA18;" Margin="0,0,6,0" />
-                                            <TextBlock Text="{Binding [Diagnostics_RestoreDns]}" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button Style="{StaticResource NeutralButton}" Command="{Binding OpenNetworkSettingsCommand}" Margin="0,0,6,6"
-                                            AutomationProperties.Name="{Binding [Diagnostics_OpenSettings]}"
-                                            AutomationProperties.HelpText="{Binding [Diagnostics_OpenSettingsHelp]}" ToolTip="{Binding [Diagnostics_OpenSettingsHelp]}">
-                                        <TextBlock Text="{Binding [Diagnostics_OpenSettings]}" />
-                                    </Button>
-                                </WrapPanel>
-                                <TextBlock Text="{Binding DnsStatus}" Style="{StaticResource Secondary}" TextWrapping="Wrap" FontWeight="SemiBold"
-                                           Margin="0,2,0,0" AutomationProperties.LiveSetting="Assertive" AutomationProperties.Name="{Binding DnsStatus}"
-                                           Visibility="{Binding DnsStatus, Converter={StaticResource HasText}}" />
-                                <TextBlock Text="{Binding DnsComparisonText}" Style="{StaticResource Secondary}" TextWrapping="Wrap"
-                                           Margin="0,5,0,0" AutomationProperties.LiveSetting="Polite"
-                                           AutomationProperties.Name="{Binding DnsComparisonText}"
-                                           Visibility="{Binding DnsComparisonText, Converter={StaticResource HasText}}" />
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Column="4" Style="{StaticResource Card}" Padding="12,10">
-                            <StackPanel>
-                                <TextBlock Text="{Binding [Diagnostics_WifiTitle]}" FontWeight="SemiBold" />
-                                <TextBlock Text="{Binding [Diagnostics_WifiHelp]}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,3,0,6" />
-                                <Button Style="{StaticResource NeutralButton}" Command="{Binding ScanWifiCommand}"
-                                        AutomationProperties.Name="{Binding [Diagnostics_WifiButton]}"
-                                        AutomationProperties.HelpText="{Binding [Diagnostics_WifiHelp]}" ToolTip="{Binding [Diagnostics_WifiHelp]}">
-                                    <TextBlock Text="{Binding [Diagnostics_WifiButton]}" />
-                                </Button>
-                                <Button Style="{StaticResource NeutralButton}" Command="{Binding OpenLocationSettingsCommand}" Margin="0,6,0,0"
-                                        AutomationProperties.Name="{Binding [Diagnostics_OpenLocation]}"
-                                        AutomationProperties.HelpText="{Binding [Diagnostics_OpenLocationHelp]}" ToolTip="{Binding [Diagnostics_OpenLocationHelp]}"
-                                        Visibility="{Binding WifiNeedsLocation, Converter={StaticResource Shown}}">
-                                    <TextBlock Text="{Binding [Diagnostics_OpenLocation]}" />
-                                </Button>
-                                <TextBlock Text="{Binding WifiAnalysisText}" Style="{StaticResource Secondary}" TextWrapping="Wrap"
-                                           Margin="0,5,0,0" AutomationProperties.LiveSetting="Polite"
-                                           AutomationProperties.Name="{Binding WifiAnalysisText}"
-                                           Visibility="{Binding WifiAnalysisText, Converter={StaticResource HasText}}" />
-                            </StackPanel>
-                        </Border>
-                    </Grid>
-                    <Border Style="{StaticResource Card}" Margin="0,0,0,8">
-                        <StackPanel>
-                            <TextBlock Text="{Binding [SupportReport_Heading]}" Style="{StaticResource SectionText}"
-                                       AutomationProperties.HeadingLevel="Level2" />
-                            <TextBlock Text="{Binding [SupportReport_Help]}" Style="{StaticResource Caption}"
-                                       TextWrapping="Wrap" Margin="0,3,0,6" />
-                            <WrapPanel>
-                                <Button Style="{StaticResource NeutralButton}" Command="{Binding ExportHtmlReportCommand}" Margin="0,0,6,6"
-                                        AutomationProperties.Name="{Binding [SupportReport_ExportHtml]}"
-                                        AutomationProperties.HelpText="{Binding [SupportReport_Help]}"
-                                        ToolTip="{Binding [SupportReport_Help]}" ToolTipService.ShowOnDisabled="True">
-                                    <TextBlock Text="{Binding [SupportReport_ExportHtml]}" />
-                                </Button>
-                                <Button Style="{StaticResource NeutralButton}" Command="{Binding PrintPdfReportCommand}" Margin="0,0,6,6"
-                                        AutomationProperties.Name="{Binding [SupportReport_PrintPdf]}"
-                                        AutomationProperties.HelpText="{Binding [SupportReport_Help]}"
-                                        ToolTip="{Binding [SupportReport_Help]}" ToolTipService.ShowOnDisabled="True">
-                                    <TextBlock Text="{Binding [SupportReport_PrintPdf]}" />
-                                </Button>
-                            </WrapPanel>
-                            <TextBlock Text="{Binding ReportStatus}" Style="{StaticResource Caption}" TextWrapping="Wrap"
-                                       Margin="0,4,0,0" AutomationProperties.LiveSetting="Polite"
-                                       Visibility="{Binding ReportStatus, Converter={StaticResource HasText}}" />
-                        </StackPanel>
-                    </Border>
                     <Border Style="{StaticResource Card}">
                         <StackPanel>
                             <TextBlock Text="{Binding [History_Heading]}" Style="{StaticResource SectionText}" AutomationProperties.HeadingLevel="Level2" />
@@ -833,11 +887,11 @@
                                     <ColumnDefinition Width="130" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding [History_ColumnDay]}" FontWeight="SemiBold" />
-                                <TextBlock Grid.Column="1" Text="{Binding [History_ColumnChecks]}" FontWeight="SemiBold" />
-                                <TextBlock Grid.Column="2" Text="{Binding [History_ColumnQuality]}" FontWeight="SemiBold"
+                                <TextBlock Text="{Binding [History_ColumnDay]}" Style="{StaticResource FieldLabel}" />
+                                <TextBlock Grid.Column="1" Text="{Binding [History_ColumnChecks]}" Style="{StaticResource FieldLabel}" />
+                                <TextBlock Grid.Column="2" Text="{Binding [History_ColumnQuality]}" Style="{StaticResource FieldLabel}"
                                            ToolTip="{Binding [History_QualityHelp]}" AutomationProperties.HelpText="{Binding [History_QualityHelp]}" />
-                                <TextBlock Grid.Column="3" Text="{Binding [History_ColumnSpeed]}" FontWeight="SemiBold" />
+                                <TextBlock Grid.Column="3" Text="{Binding [History_ColumnSpeed]}" Style="{StaticResource FieldLabel}" />
                             </Grid>
                             <ItemsControl ItemsSource="{Binding DailyHistoryRows}" AutomationProperties.Name="{Binding [History_DailyHeading]}">
                                 <ItemsControl.ItemTemplate>
@@ -863,42 +917,23 @@
                     </Border>
                     <Border Style="{StaticResource Card}">
                         <StackPanel>
-                            <TextBlock Text="{Binding [History_RecentHeading]}" Style="{StaticResource SectionText}" AutomationProperties.HeadingLevel="Level2" />
-                            <ItemsControl ItemsSource="{Binding HistoryRows}" AutomationProperties.Name="{Binding [History_RecentHeading]}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" Padding="0,5"
-                                                AutomationProperties.Name="{Binding AccessibleText}">
-                                            <DockPanel>
-                                                <TextBlock Text="{Binding Time}" Width="180" />
-                                                <TextBlock Text="{Binding Status}" Width="180" FontWeight="SemiBold" />
-                                                <TextBlock Text="{Binding Metrics}" TextWrapping="Wrap" />
-                                            </DockPanel>
-                                        </Border>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </StackPanel>
-                    </Border>
-                    <Border Style="{StaticResource Card}">
-                        <StackPanel>
                             <TextBlock Text="{Binding [Target_Heading]}" Style="{StaticResource SectionText}" AutomationProperties.HeadingLevel="Level2" />
                             <TextBlock Text="{Binding [Target_Help]}" Style="{StaticResource Secondary}" Margin="0,3,0,6" TextWrapping="Wrap"
                                        AutomationProperties.HelpText="{Binding [Target_Help]}" />
                             <TextBlock FontWeight="SemiBold" Margin="0,0,0,6" TextWrapping="Wrap">
                                 <Run Text="{Binding SelectedSymptom.Label, Mode=OneWay}" /><Run Text=": " /><Run Text="{Binding ServiceNames, Mode=OneWay}" />
                             </TextBlock>
-                            <TextBlock x:Name="OwnServerLabel" Text="{Binding [Target_Endpoint]}" Style="{StaticResource Caption}" Margin="0,0,0,2" />
+                            <TextBlock x:Name="OwnServerLabel" Text="{Binding [Target_Endpoint]}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
                             <DockPanel LastChildFill="False">
-                                <TextBox Width="280" MinHeight="30" VerticalContentAlignment="Center"
+                                <TextBox Width="320" MinHeight="30" VerticalContentAlignment="Center"
                                          Text="{Binding FocusedTarget, UpdateSourceTrigger=PropertyChanged}"
                                          AutomationProperties.LabeledBy="{Binding ElementName=OwnServerLabel}"
                                          AutomationProperties.HelpText="{Binding [Target_EndpointHelp]}"
                                          ToolTip="{Binding [Target_EndpointHelp]}" />
-                                <Button Style="{StaticResource PrimaryButton}" Command="{Binding TestServicesCommand}" Margin="8,0,0,0"
+                                <Button Style="{StaticResource PrimaryButton}" Command="{Binding TestServicesCommand}" Margin="8,0,0,0" VerticalAlignment="Center"
                                         AutomationProperties.Name="{Binding [Target_TestButton]}"
                                         AutomationProperties.HelpText="{Binding [Target_Help]}" ToolTip="{Binding [Target_Help]}">
-                                    <TextBlock Text="{Binding [Target_TestButton]}" />
+                                    <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource Glyph}" Text="&#xE768;" /><TextBlock Text="{Binding [Target_TestButton]}" Margin="6,0,0,0" /></StackPanel>
                                 </Button>
                             </DockPanel>
                             <TextBlock Text="{Binding ServiceSummary}" Style="{StaticResource Secondary}" Margin="0,6,0,0" FontWeight="SemiBold"
@@ -930,258 +965,816 @@
                             </ItemsControl>
                         </StackPanel>
                     </Border>
+                    <TextBlock Text="{Binding [Diagnostics_Heading]}" Style="{StaticResource SectionText}"
+                               AutomationProperties.HeadingLevel="Level2" Margin="2,0,0,4" />
+                    <Grid Margin="0,0,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="8" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="8" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Style="{StaticResource Card}" Padding="12,10">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [Diagnostics_TraceTitle]}" Style="{StaticResource SectionText}" AutomationProperties.HeadingLevel="Level3" />
+                                <TextBlock Text="{Binding [Diagnostics_TraceHelp]}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,3,0,6" />
+                                <Button Style="{StaticResource ToolButton}" Command="{Binding TraceRouteCommand}" HorizontalAlignment="Left"
+                                        AutomationProperties.Name="{Binding [Diagnostics_TraceButton]}"
+                                        AutomationProperties.HelpText="{Binding [Diagnostics_TraceHelp]}" ToolTip="{Binding [Diagnostics_TraceHelp]}">
+                                    <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource Glyph}" Text="&#xE707;" /><TextBlock Text="{Binding [Diagnostics_TraceButton]}" Margin="6,0,0,0" /></StackPanel>
+                                </Button>
+                                <TextBlock Text="{Binding TraceRouteText}" Style="{StaticResource Secondary}" TextWrapping="Wrap"
+                                           Margin="0,5,0,0" AutomationProperties.LiveSetting="Polite"
+                                           AutomationProperties.Name="{Binding TraceRouteText}"
+                                           Visibility="{Binding TraceRouteText, Converter={StaticResource HasText}}" />
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Column="2" Style="{StaticResource Card}" Padding="12,10">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [Diagnostics_DnsTitle]}" Style="{StaticResource SectionText}" AutomationProperties.HeadingLevel="Level3" />
+                                <TextBlock Text="{Binding [Diagnostics_DnsHelp]}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,3,0,6" />
+                                <WrapPanel>
+                                    <Button Style="{StaticResource ToolButton}" Command="{Binding ComparePublicDnsCommand}"
+                                            AutomationProperties.Name="{Binding [Diagnostics_DnsButton]}"
+                                            AutomationProperties.HelpText="{Binding [Diagnostics_DnsHelp]}" ToolTip="{Binding [Diagnostics_DnsHelp]}">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource Glyph}" Text="&#xE721;" /><TextBlock Text="{Binding [Diagnostics_DnsButton]}" Margin="6,0,0,0" /></StackPanel>
+                                    </Button>
+                                    <Button Style="{StaticResource AdminButton}" Command="{Binding SwitchToFastestDnsCommand}"
+                                            AutomationProperties.Name="{Binding SwitchDnsLabel}"
+                                            AutomationProperties.HelpText="{Binding [Diagnostics_UseDnsHelp]}" ToolTip="{Binding [Diagnostics_UseDnsHelp]}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource Glyph}" Text="&#xEA18;" Margin="0,0,6,0" />
+                                            <TextBlock Text="{Binding SwitchDnsLabel}" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Style="{StaticResource AdminButton}" Command="{Binding RestoreAutomaticDnsCommand}"
+                                            AutomationProperties.Name="{Binding [Diagnostics_RestoreDns]}"
+                                            AutomationProperties.HelpText="{Binding [Diagnostics_RestoreDnsHelp]}" ToolTip="{Binding [Diagnostics_RestoreDnsHelp]}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource Glyph}" Text="&#xEA18;" Margin="0,0,6,0" />
+                                            <TextBlock Text="{Binding [Diagnostics_RestoreDns]}" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Style="{StaticResource LinkButton}" Command="{Binding OpenNetworkSettingsCommand}"
+                                            AutomationProperties.Name="{Binding [Diagnostics_OpenSettings]}"
+                                            AutomationProperties.HelpText="{Binding [Diagnostics_OpenSettingsHelp]}" ToolTip="{Binding [Diagnostics_OpenSettingsHelp]}">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Text="{Binding [Diagnostics_OpenSettings]}" TextDecorations="Underline" /><TextBlock Style="{StaticResource Glyph}" Text="&#xE8A7;" Margin="6,0,0,0" /></StackPanel>
+                                    </Button>
+                                </WrapPanel>
+                                <TextBlock Text="{Binding DnsStatus}" Style="{StaticResource Secondary}" TextWrapping="Wrap" FontWeight="SemiBold"
+                                           Margin="0,2,0,0" AutomationProperties.LiveSetting="Assertive" AutomationProperties.Name="{Binding DnsStatus}"
+                                           Visibility="{Binding DnsStatus, Converter={StaticResource HasText}}" />
+                                <TextBlock Text="{Binding DnsComparisonText}" Style="{StaticResource Secondary}" TextWrapping="Wrap"
+                                           Margin="0,5,0,0" AutomationProperties.LiveSetting="Polite"
+                                           AutomationProperties.Name="{Binding DnsComparisonText}"
+                                           Visibility="{Binding DnsComparisonText, Converter={StaticResource HasText}}" />
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Column="4" Style="{StaticResource Card}" Padding="12,10">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [Diagnostics_WifiTitle]}" Style="{StaticResource SectionText}" AutomationProperties.HeadingLevel="Level3" />
+                                <TextBlock Text="{Binding [Diagnostics_WifiHelp]}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,3,0,6" />
+                                <Button Style="{StaticResource ToolButton}" Command="{Binding ScanWifiCommand}" HorizontalAlignment="Left"
+                                        AutomationProperties.Name="{Binding [Diagnostics_WifiButton]}"
+                                        AutomationProperties.HelpText="{Binding [Diagnostics_WifiHelp]}" ToolTip="{Binding [Diagnostics_WifiHelp]}">
+                                    <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource Glyph}" Text="&#xE701;" /><TextBlock Text="{Binding [Diagnostics_WifiButton]}" Margin="6,0,0,0" /></StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource LinkButton}" Command="{Binding OpenLocationSettingsCommand}" HorizontalAlignment="Left"
+                                        AutomationProperties.Name="{Binding [Diagnostics_OpenLocation]}"
+                                        AutomationProperties.HelpText="{Binding [Diagnostics_OpenLocationHelp]}" ToolTip="{Binding [Diagnostics_OpenLocationHelp]}"
+                                        Visibility="{Binding WifiNeedsLocation, Converter={StaticResource Shown}}">
+                                    <StackPanel Orientation="Horizontal"><TextBlock Text="{Binding [Diagnostics_OpenLocation]}" TextDecorations="Underline" /><TextBlock Style="{StaticResource Glyph}" Text="&#xE8A7;" Margin="6,0,0,0" /></StackPanel>
+                                </Button>
+                                <TextBlock Text="{Binding WifiAnalysisText}" Style="{StaticResource Secondary}" TextWrapping="Wrap"
+                                           Margin="0,5,0,0" AutomationProperties.LiveSetting="Polite"
+                                           AutomationProperties.Name="{Binding WifiAnalysisText}"
+                                           Visibility="{Binding WifiAnalysisText, Converter={StaticResource HasText}}" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <Border Style="{StaticResource Card}" Margin="0,0,0,8">
+                        <StackPanel>
+                            <TextBlock Text="{Binding [SupportReport_Heading]}" Style="{StaticResource SectionText}"
+                                       AutomationProperties.HeadingLevel="Level2" />
+                            <TextBlock Text="{Binding [SupportReport_Help]}" Style="{StaticResource Caption}"
+                                       TextWrapping="Wrap" Margin="0,3,0,6" />
+                            <WrapPanel>
+                                <Button Style="{StaticResource ToolButton}" Command="{Binding ExportHtmlReportCommand}"
+                                        AutomationProperties.Name="{Binding [SupportReport_ExportHtml]}"
+                                        AutomationProperties.HelpText="{Binding [SupportReport_Help]}"
+                                        ToolTip="{Binding [SupportReport_Help]}">
+                                    <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource Glyph}" Text="&#xE8A5;" /><TextBlock Text="{Binding [SupportReport_ExportHtml]}" Margin="6,0,0,0" /></StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource ToolButton}" Command="{Binding PrintPdfReportCommand}"
+                                        AutomationProperties.Name="{Binding [SupportReport_PrintPdf]}"
+                                        AutomationProperties.HelpText="{Binding [SupportReport_Help]}"
+                                        ToolTip="{Binding [SupportReport_Help]}">
+                                    <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource Glyph}" Text="&#xE749;" /><TextBlock Text="{Binding [SupportReport_PrintPdf]}" Margin="6,0,0,0" /></StackPanel>
+                                </Button>
+                            </WrapPanel>
+                            <TextBlock Text="{Binding ReportStatus}" Style="{StaticResource Caption}" TextWrapping="Wrap"
+                                       Margin="0,4,0,0" AutomationProperties.LiveSetting="Polite"
+                                       Visibility="{Binding ReportStatus, Converter={StaticResource HasText}}" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding [History_RecentHeading]}" Style="{StaticResource SectionText}" AutomationProperties.HeadingLevel="Level2" />
+                            <ItemsControl ItemsSource="{Binding HistoryRows}" AutomationProperties.Name="{Binding [History_RecentHeading]}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" Padding="0,5"
+                                                AutomationProperties.Name="{Binding AccessibleText}">
+                                            <DockPanel>
+                                                <TextBlock Text="{Binding Time}" Width="180" />
+                                                <TextBlock Text="{Binding Status}" Width="180" FontWeight="SemiBold" />
+                                                <TextBlock Text="{Binding Metrics}" TextWrapping="Wrap" />
+                                            </DockPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
             </ScrollViewer>
 
-            <!-- SETTINGS: Windows 11 settings pattern, grouped by task -->
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Focusable="False"
-                          Visibility="{Binding IsSettingsPage, Converter={StaticResource Shown}}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" MaxWidth="760" />
-                        <ColumnDefinition Width="12" />
-                        <ColumnDefinition Width="*" MaxWidth="760" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Text="{Binding [Settings_SectionChecks]}" Style="{StaticResource SettingsSection}" Margin="0,0,0,4" AutomationProperties.HeadingLevel="Level2" />
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
-                                    <TextBox x:Name="CheckSecondsBox" Width="72" MinHeight="28" VerticalContentAlignment="Center" InputScope="Number"
-                                             Text="{Binding Settings.CheckSecondsText, UpdateSourceTrigger=PropertyChanged}"
-                                             AutomationProperties.Name="{Binding [Settings_CheckLength]}"
-                                             AutomationProperties.HelpText="{Binding Settings.CheckLengthHint}" />
-                                    <TextBlock Text="{Binding [Unit_Seconds]}" FontSize="13" VerticalAlignment="Center" Margin="6,0,0,0" />
-                                </StackPanel>
-                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
-                                    <TextBlock Text="{Binding [Settings_CheckLength]}" FontSize="13" TextWrapping="Wrap" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE783;" FontSize="11" Margin="0,0,4,0"
-                                                   Foreground="{DynamicResource SystemFillColorCriticalBrush}"
-                                                   Visibility="{Binding Settings.IsCheckSecondsInvalid, Converter={StaticResource Shown}}" />
-                                        <TextBlock Text="{Binding Settings.CheckLengthHint}" AutomationProperties.LiveSetting="Assertive">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock" BasedOn="{StaticResource Caption}">
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Settings.IsCheckSecondsInvalid}" Value="True">
-                                                            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCriticalBrush}" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </StackPanel>
-                                </StackPanel>
-                            </DockPanel>
-                        </Border>
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <CheckBox DockPanel.Dock="Right" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"
-                                          IsChecked="{Binding Settings.MeasureSpeed}" AutomationProperties.Name="{Binding [Settings_MeasureSpeed]}"
-                                          AutomationProperties.HelpText="{Binding [Settings_MeasureSpeedHint]}" />
-                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
-                                    <TextBlock Text="{Binding [Settings_MeasureSpeed]}" FontSize="13" TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding [Settings_MeasureSpeedHint]}" Style="{StaticResource Caption}" />
-                                </StackPanel>
-                            </DockPanel>
-                        </Border>
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <CheckBox DockPanel.Dock="Right" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"
-                                          IsChecked="{Binding Settings.AiReview}" AutomationProperties.Name="{Binding [Settings_AiReview]}"
-                                          AutomationProperties.HelpText="{Binding [Settings_AiReviewHint]}" />
-                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
-                                    <TextBlock Text="{Binding [Settings_AiReview]}" FontSize="13" TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding [Settings_AiReviewHint]}" Style="{StaticResource Caption}" TextWrapping="Wrap" />
-                                </StackPanel>
-                            </DockPanel>
-                        </Border>
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <CheckBox DockPanel.Dock="Right" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"
-                                          IsChecked="{Binding Settings.BackgroundEnabled}" AutomationProperties.Name="{Binding [Background_Enable]}"
-                                          AutomationProperties.HelpText="{Binding [Settings_BackgroundHint]}" />
-                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
-                                    <TextBlock Text="{Binding [Background_Enable]}" FontSize="13" TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding [Settings_BackgroundHint]}" Style="{StaticResource Caption}" />
-                                </StackPanel>
-                            </DockPanel>
-                        </Border>
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <CheckBox DockPanel.Dock="Right" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"
-                                          IsChecked="{Binding Settings.BackgroundOnMobileEnabled}" IsEnabled="{Binding Settings.BackgroundEnabled}"
-                                          AutomationProperties.Name="{Binding [Background_MobileEnable]}"
-                                          AutomationProperties.HelpText="{Binding [Settings_MobileBackgroundHint]}" />
-                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
-                                    <TextBlock Text="{Binding [Background_MobileEnable]}" FontSize="13" TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding [Settings_MobileBackgroundHint]}" Style="{StaticResource Caption}" TextWrapping="Wrap" />
-                                </StackPanel>
-                            </DockPanel>
-                        </Border>
-                        <Border Style="{StaticResource SettingsCard}">
-                            <StackPanel>
-                                <DockPanel>
-                                    <CheckBox DockPanel.Dock="Right" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"
-                                              IsChecked="{Binding Settings.StartWithWindows}" IsEnabled="{Binding Settings.BackgroundEnabled}"
-                                              AutomationProperties.Name="{Binding [Settings_Startup]}"
-                                              AutomationProperties.HelpText="{Binding [Settings_StartupHint]}" />
-                                    <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
-                                        <TextBlock Text="{Binding [Settings_Startup]}" FontSize="13" TextWrapping="Wrap" />
-                                        <TextBlock Text="{Binding [Settings_StartupHint]}" Style="{StaticResource Caption}" TextWrapping="Wrap" />
-                                    </StackPanel>
-                                </DockPanel>
-                                <TextBlock Text="{Binding Settings.StartupStatus}" Style="{StaticResource Caption}" Margin="0,4,0,0"
-                                           AutomationProperties.LiveSetting="Polite"
-                                           Visibility="{Binding Settings.StartupStatus, Converter={StaticResource HasText}}" />
-                            </StackPanel>
-                        </Border>
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <ComboBox DockPanel.Dock="Right" Style="{StaticResource SettingsCombo}"
-                                          ItemsSource="{Binding Settings.Intervals}" SelectedValue="{Binding Settings.IntervalMinutes}"
-                                          IsEnabled="{Binding Settings.BackgroundEnabled}" AutomationProperties.Name="{Binding [Settings_Interval]}" />
-                                <TextBlock Text="{Binding [Settings_Interval]}" FontSize="13" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,12,0" />
-                            </DockPanel>
-                        </Border>
-                        <Border Style="{StaticResource SettingsCard}">
-                            <StackPanel>
-                                <TextBlock Text="{Binding [Settings_PlanSpeed]}" FontSize="13" FontWeight="SemiBold"
-                                           AutomationProperties.HeadingLevel="Level3" />
-                                <TextBlock Text="{Binding [Settings_PlanSpeedHint]}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,2,0,6" />
-                                <WrapPanel>
-                                    <StackPanel Margin="0,0,14,0">
-                                        <TextBlock Text="{Binding [Settings_PlanDownload]}" Style="{StaticResource Caption}" />
-                                        <DockPanel>
-                                            <TextBox x:Name="PlanDownloadBox" Width="100" MinHeight="28" VerticalContentAlignment="Center"
-                                                     Text="{Binding Settings.PlanDownloadText, UpdateSourceTrigger=PropertyChanged}"
-                                                     AutomationProperties.Name="{Binding [Settings_PlanDownload]}"
-                                                     AutomationProperties.HelpText="{Binding [Settings_PlanSpeedHint]}" />
-                                            <TextBlock Text="Mbps" Margin="5,0,0,0" VerticalAlignment="Center" />
-                                        </DockPanel>
-                                    </StackPanel>
+            <!-- Settings tabs avoid a long page; scrolling remains a fallback for enlarged text. -->
+            <TabControl
+                x:Name="SettingsTabs"
+                Grid.Row="1"
+                Visibility="{Binding IsSettingsPage, Converter={StaticResource Shown}}"
+                AutomationProperties.Name="{Binding [Action_Settings]}"
+                Padding="6"
+                BorderThickness="0"
+                Background="Transparent"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                <TabItem
+                    x:Name="CheckSettingsTab"
+                    Header="{Binding [Settings_SectionChecks]}"
+                    Style="{StaticResource SettingsTab}"
+                    AutomationProperties.Name="{Binding [Settings_SectionChecks]}"
+                    AutomationProperties.HelpText="{Binding [ButtonHelp_SettingsChecks]}">
+                    <ScrollViewer
+                        x:Name="CheckSettingsTabScroll"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Disabled"
+                        FontWeight="Normal"
+                        Focusable="False">
+                        <Grid
+                            Margin="0,8,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="12" />
+                                <ColumnDefinition
+                                    Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel
+                                Grid.Column="0">
+                                <TextBlock
+                                    Text="{Binding [Action_QuickCheck]}"
+                                    Style="{StaticResource SettingsSection}"
+                                    Margin="0,0,0,4"
+                                    AutomationProperties.HeadingLevel="Level2" />
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
                                     <StackPanel>
-                                        <TextBlock Text="{Binding [Settings_PlanUpload]}" Style="{StaticResource Caption}" />
                                         <DockPanel>
-                                            <TextBox x:Name="PlanUploadBox" Width="100" MinHeight="28" VerticalContentAlignment="Center"
-                                                     Text="{Binding Settings.PlanUploadText, UpdateSourceTrigger=PropertyChanged}"
-                                                     AutomationProperties.Name="{Binding [Settings_PlanUpload]}"
-                                                     AutomationProperties.HelpText="{Binding [Settings_PlanSpeedHint]}" />
-                                            <TextBlock Text="Mbps" Margin="5,0,0,0" VerticalAlignment="Center" />
+                                            <StackPanel
+                                                DockPanel.Dock="Right"
+                                                Orientation="Horizontal"
+                                                VerticalAlignment="Center">
+                                                <TextBox
+                                                    x:Name="CheckSecondsBox"
+                                                    MinWidth="112"
+                                                    MinHeight="28"
+                                                    VerticalContentAlignment="Center"
+                                                    InputScope="Number"
+                                                    Text="{Binding Settings.CheckSecondsText, UpdateSourceTrigger=PropertyChanged}"
+                                                    AutomationProperties.Name="{Binding [Settings_CheckLength]}"
+                                                    AutomationProperties.HelpText="{Binding Settings.CheckTotalHint}"
+                                                    ToolTip="{Binding Settings.CheckTotalHint}" />
+                                                <TextBlock
+                                                    Text="{Binding [Unit_Seconds]}"
+                                                    FontSize="13"
+                                                    VerticalAlignment="Center"
+                                                    Margin="6,0,0,0" />
+                                            </StackPanel>
+                                            <StackPanel
+                                                VerticalAlignment="Center"
+                                                Margin="0,0,12,0">
+                                                <TextBlock
+                                                    Text="{Binding [Settings_CheckLength]}"
+                                                    Style="{StaticResource SettingLabel}"
+                                                    TextWrapping="Wrap" />
+                                                <StackPanel
+                                                    Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Style="{StaticResource Glyph}"
+                                                        Text=""
+                                                        FontSize="11"
+                                                        Margin="0,0,4,0"
+                                                        Foreground="{DynamicResource SystemFillColorCriticalBrush}"
+                                                        Visibility="{Binding Settings.IsCheckSecondsInvalid, Converter={StaticResource Shown}}" />
+                                                    <TextBlock
+                                                        Text="{Binding Settings.CheckLengthHint}"
+                                                        AutomationProperties.LiveSetting="Assertive">
+                                                        <TextBlock.Style>
+                                                            <Style
+                                                                TargetType="TextBlock"
+                                                                BasedOn="{StaticResource Caption}">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger
+                                                                        Binding="{Binding Settings.IsCheckSecondsInvalid}"
+                                                                        Value="True">
+                                                                        <Setter
+                                                                            Property="Foreground"
+                                                                            Value="{DynamicResource SystemFillColorCriticalBrush}" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </StackPanel>
                                         </DockPanel>
+                                        <TextBlock
+                                            Text="{Binding Settings.CheckTotalHint}"
+                                            Style="{StaticResource Caption}"
+                                            TextWrapping="Wrap"
+                                            AutomationProperties.LiveSetting="Polite"
+                                            Margin="0,4,0,0" />
                                     </StackPanel>
-                                </WrapPanel>
-                                <TextBlock Text="{Binding [Settings_InvalidPlanSpeed]}" Foreground="{DynamicResource SystemFillColorCriticalBrush}"
-                                           Visibility="{Binding Settings.IsPlanSpeedInvalid, Converter={StaticResource Shown}}"
-                                           AutomationProperties.LiveSetting="Assertive" TextWrapping="Wrap" />
+                                </Border>
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <DockPanel>
+                                        <CheckBox
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource ToggleSwitch}"
+                                            VerticalAlignment="Center"
+                                            IsChecked="{Binding Settings.MeasureSpeed}"
+                                            AutomationProperties.Name="{Binding [Settings_MeasureSpeed]}"
+                                            AutomationProperties.HelpText="{Binding [Settings_MeasureSpeedHint]}" />
+                                        <StackPanel
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,12,0">
+                                            <TextBlock
+                                                Text="{Binding [Settings_MeasureSpeed]}"
+                                                Style="{StaticResource SettingLabel}"
+                                                TextWrapping="Wrap" />
+                                            <TextBlock
+                                                Text="{Binding [Settings_MeasureSpeedHint]}"
+                                                Style="{StaticResource Caption}" />
+                                        </StackPanel>
+                                    </DockPanel>
+                                </Border>
                             </StackPanel>
-                        </Border>
-                        <TextBlock Text="{Binding [Settings_Targets]}" Style="{StaticResource SettingsSection}" AutomationProperties.HeadingLevel="Level2" />
-                        <Border Style="{StaticResource SettingsCard}">
-                            <StackPanel>
-                                <TextBlock Text="{Binding [Settings_TargetsHint]}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,0,0,6" />
-                                <TextBlock Text="{Binding [Symptom_Gaming]}" FontWeight="SemiBold" />
-                                <TextBox MinHeight="28" VerticalContentAlignment="Center" Margin="0,2,0,5"
-                                         Text="{Binding Settings.GamingTarget, UpdateSourceTrigger=PropertyChanged}"
-                                         AutomationProperties.Name="{Binding [Symptom_Gaming]}"/>
-                                <TextBlock Text="{Binding [Symptom_Video]}" FontWeight="SemiBold" />
-                                <TextBox MinHeight="28" VerticalContentAlignment="Center" Margin="0,2,0,5"
-                                         Text="{Binding Settings.VideoTarget, UpdateSourceTrigger=PropertyChanged}"
-                                         AutomationProperties.Name="{Binding [Symptom_Video]}"/>
-                                <TextBlock Text="{Binding [Symptom_Calls]}" FontWeight="SemiBold" />
-                                <TextBox MinHeight="28" VerticalContentAlignment="Center" Margin="0,2,0,5"
-                                         Text="{Binding Settings.CallsTarget, UpdateSourceTrigger=PropertyChanged}"
-                                         AutomationProperties.Name="{Binding [Symptom_Calls]}"/>
-                                <TextBlock Text="{Binding [Symptom_Disconnects]}" FontWeight="SemiBold" />
-                                <TextBox MinHeight="28" VerticalContentAlignment="Center" Margin="0,2,0,0"
-                                         Text="{Binding Settings.DisconnectTarget, UpdateSourceTrigger=PropertyChanged}"
-                                         AutomationProperties.Name="{Binding [Symptom_Disconnects]}"/>
+                            <StackPanel
+                                Grid.Column="2">
+                                <TextBlock
+                                    Text="{Binding [Background_Enable]}"
+                                    Style="{StaticResource SettingsSection}"
+                                    Margin="0,0,0,4"
+                                    AutomationProperties.HeadingLevel="Level2" />
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <DockPanel>
+                                        <CheckBox
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource ToggleSwitch}"
+                                            VerticalAlignment="Center"
+                                            IsChecked="{Binding Settings.BackgroundEnabled}"
+                                            AutomationProperties.Name="{Binding [Background_Enable]}"
+                                            AutomationProperties.HelpText="{Binding [Settings_BackgroundHint]}" />
+                                        <StackPanel
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,12,0">
+                                            <TextBlock
+                                                Text="{Binding [Background_Enable]}"
+                                                Style="{StaticResource SettingLabel}"
+                                                TextWrapping="Wrap" />
+                                            <TextBlock
+                                                Text="{Binding [Settings_BackgroundHint]}"
+                                                Style="{StaticResource Caption}" />
+                                        </StackPanel>
+                                    </DockPanel>
+                                </Border>
+                                <Border
+                                    Style="{StaticResource SettingsSubCard}">
+                                    <DockPanel>
+                                        <ComboBox
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource SettingsCombo}"
+                                            ItemsSource="{Binding Settings.Intervals}"
+                                            SelectedValue="{Binding Settings.IntervalMinutes}"
+                                            IsEnabled="{Binding Settings.BackgroundEnabled}"
+                                            AutomationProperties.Name="{Binding [Settings_Interval]}" />
+                                        <TextBlock
+                                            Text="{Binding [Settings_Interval]}"
+                                            Style="{StaticResource SettingLabel}"
+                                            VerticalAlignment="Center"
+                                            TextWrapping="Wrap"
+                                            Margin="0,0,12,0" />
+                                    </DockPanel>
+                                </Border>
+                                <Border
+                                    Style="{StaticResource SettingsSubCard}">
+                                    <DockPanel>
+                                        <CheckBox
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource ToggleSwitch}"
+                                            VerticalAlignment="Center"
+                                            IsChecked="{Binding Settings.BackgroundOnMobileEnabled}"
+                                            IsEnabled="{Binding Settings.BackgroundEnabled}"
+                                            AutomationProperties.Name="{Binding [Background_MobileEnable]}"
+                                            AutomationProperties.HelpText="{Binding [Settings_MobileBackgroundHint]}" />
+                                        <StackPanel
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,12,0">
+                                            <TextBlock
+                                                Text="{Binding [Background_MobileEnable]}"
+                                                Style="{StaticResource SettingLabel}"
+                                                TextWrapping="Wrap" />
+                                            <TextBlock
+                                                Text="{Binding [Settings_MobileBackgroundHint]}"
+                                                Style="{StaticResource Caption}"
+                                                TextWrapping="Wrap" />
+                                        </StackPanel>
+                                    </DockPanel>
+                                </Border>
+                                <Border
+                                    Style="{StaticResource SettingsSubCard}">
+                                    <StackPanel>
+                                        <DockPanel>
+                                            <CheckBox
+                                                DockPanel.Dock="Right"
+                                                Style="{StaticResource ToggleSwitch}"
+                                                VerticalAlignment="Center"
+                                                IsChecked="{Binding Settings.StartWithWindows}"
+                                                IsEnabled="{Binding Settings.BackgroundEnabled}"
+                                                AutomationProperties.Name="{Binding [Settings_Startup]}"
+                                                AutomationProperties.HelpText="{Binding [Settings_StartupHint]}" />
+                                            <StackPanel
+                                                VerticalAlignment="Center"
+                                                Margin="0,0,12,0">
+                                                <TextBlock
+                                                    Text="{Binding [Settings_Startup]}"
+                                                    Style="{StaticResource SettingLabel}"
+                                                    TextWrapping="Wrap" />
+                                                <TextBlock
+                                                    Text="{Binding [Settings_StartupHint]}"
+                                                    Style="{StaticResource Caption}"
+                                                    TextWrapping="Wrap" />
+                                            </StackPanel>
+                                        </DockPanel>
+                                        <TextBlock
+                                            Text="{Binding Settings.StartupStatus}"
+                                            Style="{StaticResource Caption}"
+                                            Margin="0,4,0,0"
+                                            AutomationProperties.LiveSetting="Polite"
+                                            Visibility="{Binding Settings.StartupStatus, Converter={StaticResource HasText}}" />
+                                    </StackPanel>
+                                </Border>
                             </StackPanel>
-                        </Border>
-                    </StackPanel>
-                    <StackPanel Grid.Column="2">
-                        <TextBlock Text="{Binding [Settings_SectionAlerts]}" Style="{StaticResource SettingsSection}" AutomationProperties.HeadingLevel="Level2" />
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <ComboBox DockPanel.Dock="Right" Style="{StaticResource SettingsCombo}"
-                                          ItemsSource="{Binding Settings.DelayLimits}" SelectedValue="{Binding Settings.DelayLimitMs}"
-                                          AutomationProperties.Name="{Binding [Settings_DelayLimit]}" />
-                                <TextBlock Text="{Binding [Settings_DelayLimit]}" FontSize="13" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,12,0" />
-                            </DockPanel>
-                        </Border>
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <ComboBox DockPanel.Dock="Right" Style="{StaticResource SettingsCombo}"
-                                          ItemsSource="{Binding Settings.LossLimits}" SelectedValue="{Binding Settings.LossLimitPercent}"
-                                          AutomationProperties.Name="{Binding [Settings_LossLimit]}" />
-                                <TextBlock Text="{Binding [Settings_LossLimit]}" FontSize="13" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,12,0" />
-                            </DockPanel>
-                        </Border>
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <ComboBox DockPanel.Dock="Right" Style="{StaticResource SettingsCombo}"
-                                          ItemsSource="{Binding Settings.VariationLimits}" SelectedValue="{Binding Settings.VariationLimitMs}"
-                                          AutomationProperties.Name="{Binding [Settings_VariationLimit]}" />
-                                <TextBlock Text="{Binding [Settings_VariationLimit]}" FontSize="13" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,12,0" />
-                            </DockPanel>
-                        </Border>
-
-                        <TextBlock Text="{Binding [Settings_SectionAppearance]}" Style="{StaticResource SettingsSection}" AutomationProperties.HeadingLevel="Level2" />
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <ComboBox DockPanel.Dock="Right" Style="{StaticResource SettingsCombo}"
-                                          ItemsSource="{Binding Settings.Themes}" DisplayMemberPath="Label" SelectedValuePath="Value"
-                                          SelectedValue="{Binding Settings.Theme}" AutomationProperties.Name="{Binding [Settings_Theme]}"
-                                          AutomationProperties.HelpText="{Binding [Settings_ThemeHint]}" />
-                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
-                                    <TextBlock Text="{Binding [Settings_Theme]}" FontSize="13" />
-                                    <TextBlock Text="{Binding [Settings_ThemeHint]}" Style="{StaticResource Caption}" TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding [Settings_ThemeWindowsHc]}" Style="{StaticResource Caption}" TextWrapping="Wrap" FontWeight="SemiBold"
-                                               Visibility="{Binding Settings.WindowsHighContrast, Converter={StaticResource Shown}}" />
-                                </StackPanel>
-                            </DockPanel>
-                        </Border>
-
-                        <TextBlock Text="{Binding [Settings_SectionUpdates]}" Style="{StaticResource SettingsSection}" AutomationProperties.HeadingLevel="Level2" />
-                        <Border Style="{StaticResource SettingsCard}">
-                            <StackPanel>
-                                <Button Style="{StaticResource PrimaryButton}" Command="{Binding CheckForUpdatesCommand}"
-                                        AutomationProperties.Name="{Binding [Update_CheckButton]}"
-                                        AutomationProperties.HelpText="{Binding [Update_Help]}">
-                                    <TextBlock Text="{Binding [Update_CheckButton]}" />
-                                </Button>
-                                <TextBlock Text="{Binding UpdateStatus}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,4,0,0"
-                                           AutomationProperties.LiveSetting="Polite"
-                                           Visibility="{Binding UpdateStatus, Converter={StaticResource HasText}}" />
-                                <TextBlock Text="{Binding [Update_Help]}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,3,0,0" />
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem
+                    x:Name="NetworkSettingsTab"
+                    Header="{Binding [Settings_TabNetwork]}"
+                    Style="{StaticResource SettingsTab}"
+                    AutomationProperties.Name="{Binding [Settings_TabNetwork]}"
+                    AutomationProperties.HelpText="{Binding [ButtonHelp_SettingsNetwork]}">
+                    <ScrollViewer
+                        x:Name="NetworkSettingsTabScroll"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Disabled"
+                        FontWeight="Normal"
+                        Focusable="False">
+                        <Grid
+                            Margin="0,8,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="12" />
+                                <ColumnDefinition
+                                    Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel
+                                Grid.Column="0">
+                                <TextBlock
+                                    Text="{Binding [Settings_SectionAlerts]}"
+                                    Style="{StaticResource SettingsSection}"
+                                    Margin="0,0,0,4"
+                                    AutomationProperties.HeadingLevel="Level2" />
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <DockPanel>
+                                        <ComboBox
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource SettingsCombo}"
+                                            ItemsSource="{Binding Settings.DelayLimits}"
+                                            SelectedValue="{Binding Settings.DelayLimitMs}"
+                                            AutomationProperties.Name="{Binding [Settings_DelayLimit]}" />
+                                        <TextBlock
+                                            Text="{Binding [Settings_DelayLimit]}"
+                                            Style="{StaticResource SettingLabel}"
+                                            VerticalAlignment="Center"
+                                            TextWrapping="Wrap"
+                                            Margin="0,0,12,0" />
+                                    </DockPanel>
+                                </Border>
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <DockPanel>
+                                        <ComboBox
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource SettingsCombo}"
+                                            ItemsSource="{Binding Settings.LossLimits}"
+                                            SelectedValue="{Binding Settings.LossLimitPercent}"
+                                            AutomationProperties.Name="{Binding [Settings_LossLimit]}" />
+                                        <TextBlock
+                                            Text="{Binding [Settings_LossLimit]}"
+                                            Style="{StaticResource SettingLabel}"
+                                            VerticalAlignment="Center"
+                                            TextWrapping="Wrap"
+                                            Margin="0,0,12,0" />
+                                    </DockPanel>
+                                </Border>
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <DockPanel>
+                                        <ComboBox
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource SettingsCombo}"
+                                            ItemsSource="{Binding Settings.VariationLimits}"
+                                            SelectedValue="{Binding Settings.VariationLimitMs}"
+                                            AutomationProperties.Name="{Binding [Settings_VariationLimit]}" />
+                                        <TextBlock
+                                            Text="{Binding [Settings_VariationLimit]}"
+                                            Style="{StaticResource SettingLabel}"
+                                            VerticalAlignment="Center"
+                                            TextWrapping="Wrap"
+                                            Margin="0,0,12,0" />
+                                    </DockPanel>
+                                </Border>
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <StackPanel>
+                                        <TextBlock
+                                            Text="{Binding [Settings_PlanSpeed]}"
+                                            Style="{StaticResource SettingLabel}"
+                                            FontWeight="SemiBold"
+                                            AutomationProperties.HeadingLevel="Level3" />
+                                        <TextBlock
+                                            Text="{Binding [Settings_PlanSpeedHint]}"
+                                            Style="{StaticResource Caption}"
+                                            TextWrapping="Wrap"
+                                            Margin="0,2,0,6" />
+                                        <WrapPanel>
+                                            <StackPanel
+                                                Margin="0,0,14,0">
+                                                <TextBlock
+                                                    Text="{Binding [Settings_PlanDownload]}"
+                                                    Style="{StaticResource FieldLabel}" />
+                                                <DockPanel>
+                                                    <TextBox
+                                                        x:Name="PlanDownloadBox"
+                                                        MinWidth="120"
+                                                        MinHeight="28"
+                                                        VerticalContentAlignment="Center"
+                                                        Text="{Binding Settings.PlanDownloadText, UpdateSourceTrigger=PropertyChanged}"
+                                                        AutomationProperties.Name="{Binding [Settings_PlanDownload]}"
+                                                        AutomationProperties.HelpText="{Binding [Settings_PlanSpeedHint]}" />
+                                                    <TextBlock
+                                                        Text="Mbps"
+                                                        Margin="5,0,0,0"
+                                                        VerticalAlignment="Center" />
+                                                </DockPanel>
+                                            </StackPanel>
+                                            <StackPanel>
+                                                <TextBlock
+                                                    Text="{Binding [Settings_PlanUpload]}"
+                                                    Style="{StaticResource FieldLabel}" />
+                                                <DockPanel>
+                                                    <TextBox
+                                                        x:Name="PlanUploadBox"
+                                                        MinWidth="120"
+                                                        MinHeight="28"
+                                                        VerticalContentAlignment="Center"
+                                                        Text="{Binding Settings.PlanUploadText, UpdateSourceTrigger=PropertyChanged}"
+                                                        AutomationProperties.Name="{Binding [Settings_PlanUpload]}"
+                                                        AutomationProperties.HelpText="{Binding [Settings_PlanSpeedHint]}" />
+                                                    <TextBlock
+                                                        Text="Mbps"
+                                                        Margin="5,0,0,0"
+                                                        VerticalAlignment="Center" />
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </WrapPanel>
+                                        <TextBlock
+                                            Text="{Binding [Settings_InvalidPlanSpeed]}"
+                                            Foreground="{DynamicResource SystemFillColorCriticalBrush}"
+                                            Visibility="{Binding Settings.IsPlanSpeedInvalid, Converter={StaticResource Shown}}"
+                                            AutomationProperties.LiveSetting="Assertive"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Border>
                             </StackPanel>
-                        </Border>
-
-                        <TextBlock Text="{Binding [Settings_Language]}" Style="{StaticResource SettingsSection}" AutomationProperties.HeadingLevel="Level2" />
-                        <Border Style="{StaticResource SettingsCard}">
-                            <DockPanel>
-                                <ComboBox DockPanel.Dock="Right" Style="{StaticResource SettingsCombo}"
-                                          ItemsSource="{Binding Languages}" DisplayMemberPath="NativeName" SelectedValuePath="Name"
-                                          SelectedValue="{Binding CurrentLanguage}" IsEnabled="{Binding CanChangeLanguage}"
-                                          AutomationProperties.Name="{Binding [Settings_Language]}" />
-                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
-                                    <TextBlock Text="{Binding [Settings_Language]}" FontSize="13" />
-                                    <TextBlock Text="{Binding [Settings_LanguageRestart]}" Style="{StaticResource Caption}" />
-                                </StackPanel>
-                            </DockPanel>
-                        </Border>
-                        <TextBlock Text="{Binding [Settings_Shortcuts]}" Style="{StaticResource SettingsSection}" AutomationProperties.HeadingLevel="Level2" />
-                        <Border Style="{StaticResource SettingsCard}">
-                            <StackPanel>
-                                <TextBlock Text="{Binding [Settings_ShortcutCheck]}" TextWrapping="Wrap" />
-                                <TextBlock Text="{Binding [Settings_ShortcutMarker]}" TextWrapping="Wrap" Margin="0,4,0,0" />
+                            <StackPanel
+                                Grid.Column="2">
+                                <TextBlock
+                                    Text="{Binding [Settings_Targets]}"
+                                    Style="{StaticResource SettingsSection}"
+                                    Margin="0,0,0,4"
+                                    AutomationProperties.HeadingLevel="Level2" />
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <StackPanel>
+                                        <TextBlock
+                                            Text="{Binding [Settings_TargetsCompactHint]}"
+                                            Style="{StaticResource Caption}"
+                                            TextWrapping="Wrap"
+                                            Margin="0,0,0,6" />
+                                        <TextBlock
+                                            Text="{Binding [Symptom_Gaming]}"
+                                            Style="{StaticResource FieldLabel}" />
+                                        <TextBox
+                                            MinHeight="28"
+                                            VerticalContentAlignment="Center"
+                                            Margin="0,2,0,5"
+                                            Text="{Binding Settings.GamingTarget, UpdateSourceTrigger=PropertyChanged}"
+                                            AutomationProperties.Name="{Binding [Symptom_Gaming]}"
+                                            AutomationProperties.HelpText="{Binding [Settings_TargetsHint]}"
+                                            ToolTip="{Binding [Settings_TargetsHint]}"
+                                            ToolTipService.ShowsToolTipOnKeyboardFocus="True" />
+                                        <TextBlock
+                                            Text="{Binding [Symptom_Video]}"
+                                            Style="{StaticResource FieldLabel}" />
+                                        <TextBox
+                                            MinHeight="28"
+                                            VerticalContentAlignment="Center"
+                                            Margin="0,2,0,5"
+                                            Text="{Binding Settings.VideoTarget, UpdateSourceTrigger=PropertyChanged}"
+                                            AutomationProperties.Name="{Binding [Symptom_Video]}"
+                                            AutomationProperties.HelpText="{Binding [Settings_TargetsHint]}"
+                                            ToolTip="{Binding [Settings_TargetsHint]}"
+                                            ToolTipService.ShowsToolTipOnKeyboardFocus="True" />
+                                        <TextBlock
+                                            Text="{Binding [Symptom_Calls]}"
+                                            Style="{StaticResource FieldLabel}" />
+                                        <TextBox
+                                            MinHeight="28"
+                                            VerticalContentAlignment="Center"
+                                            Margin="0,2,0,5"
+                                            Text="{Binding Settings.CallsTarget, UpdateSourceTrigger=PropertyChanged}"
+                                            AutomationProperties.Name="{Binding [Symptom_Calls]}"
+                                            AutomationProperties.HelpText="{Binding [Settings_TargetsHint]}"
+                                            ToolTip="{Binding [Settings_TargetsHint]}"
+                                            ToolTipService.ShowsToolTipOnKeyboardFocus="True" />
+                                        <TextBlock
+                                            Text="{Binding [Symptom_Disconnects]}"
+                                            Style="{StaticResource FieldLabel}" />
+                                        <TextBox
+                                            MinHeight="28"
+                                            VerticalContentAlignment="Center"
+                                            Margin="0,2,0,0"
+                                            Text="{Binding Settings.DisconnectTarget, UpdateSourceTrigger=PropertyChanged}"
+                                            AutomationProperties.Name="{Binding [Symptom_Disconnects]}"
+                                            AutomationProperties.HelpText="{Binding [Settings_TargetsHint]}"
+                                            ToolTip="{Binding [Settings_TargetsHint]}"
+                                            ToolTipService.ShowsToolTipOnKeyboardFocus="True" />
+                                    </StackPanel>
+                                </Border>
                             </StackPanel>
-                        </Border>
-                        <TextBlock Text="{Binding LastCheckText}" Style="{StaticResource Caption}" Margin="0,6,0,0"
-                                   Visibility="{Binding LastCheckText, Converter={StaticResource HasText}}" />
-                    </StackPanel>
-                </Grid>
-            </ScrollViewer>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem
+                    x:Name="PreferencesSettingsTab"
+                    Header="{Binding [Settings_TabPreferences]}"
+                    Style="{StaticResource SettingsTab}"
+                    AutomationProperties.Name="{Binding [Settings_TabPreferences]}"
+                    AutomationProperties.HelpText="{Binding [ButtonHelp_SettingsPreferences]}">
+                    <ScrollViewer
+                        x:Name="PreferencesSettingsTabScroll"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Disabled"
+                        FontWeight="Normal"
+                        Focusable="False">
+                        <Grid
+                            Margin="0,8,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="12" />
+                                <ColumnDefinition
+                                    Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel
+                                Grid.Column="0">
+                                <TextBlock
+                                    Text="{Binding [Settings_SectionAppearance]}"
+                                    Style="{StaticResource SettingsSection}"
+                                    Margin="0,0,0,4"
+                                    AutomationProperties.HeadingLevel="Level2" />
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <DockPanel>
+                                        <ComboBox
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource SettingsCombo}"
+                                            ItemsSource="{Binding Settings.Themes}"
+                                            DisplayMemberPath="Label"
+                                            SelectedValuePath="Value"
+                                            SelectedValue="{Binding Settings.Theme}"
+                                            AutomationProperties.Name="{Binding [Settings_Theme]}"
+                                            AutomationProperties.HelpText="{Binding [Settings_ThemeHint]}" />
+                                        <StackPanel
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,12,0">
+                                            <TextBlock
+                                                Text="{Binding [Settings_Theme]}"
+                                                Style="{StaticResource SettingLabel}" />
+                                            <TextBlock
+                                                Text="{Binding [Settings_ThemeHint]}"
+                                                Style="{StaticResource Caption}"
+                                                TextWrapping="Wrap" />
+                                            <TextBlock
+                                                Text="{Binding [Settings_ThemeWindowsHc]}"
+                                                Style="{StaticResource Caption}"
+                                                TextWrapping="Wrap"
+                                                FontWeight="SemiBold"
+                                                Visibility="{Binding Settings.WindowsHighContrast, Converter={StaticResource Shown}}" />
+                                        </StackPanel>
+                                    </DockPanel>
+                                </Border>
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <DockPanel>
+                                        <ComboBox
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource SettingsCombo}"
+                                            ItemsSource="{Binding Languages}"
+                                            DisplayMemberPath="NativeName"
+                                            SelectedValuePath="Name"
+                                            SelectedValue="{Binding CurrentLanguage}"
+                                            IsEnabled="{Binding CanChangeLanguage}"
+                                            AutomationProperties.Name="{Binding [Settings_Language]}" />
+                                        <StackPanel
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,12,0">
+                                            <TextBlock
+                                                Text="{Binding [Settings_Language]}"
+                                                Style="{StaticResource SettingLabel}" />
+                                            <TextBlock
+                                                Text="{Binding [Settings_LanguageRestart]}"
+                                                Style="{StaticResource Caption}" />
+                                        </StackPanel>
+                                    </DockPanel>
+                                </Border>
+                                <TextBlock
+                                    Text="{Binding [Settings_Shortcuts]}"
+                                    Style="{StaticResource SettingsSection}"
+                                    Margin="0,8,0,4"
+                                    AutomationProperties.HeadingLevel="Level2" />
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <StackPanel>
+                                        <TextBlock
+                                            Text="{Binding [Settings_ShortcutCheck]}"
+                                            TextWrapping="Wrap" />
+                                        <TextBlock
+                                            Text="{Binding [Settings_ShortcutMarker]}"
+                                            TextWrapping="Wrap"
+                                            Margin="0,4,0,0" />
+                                    </StackPanel>
+                                </Border>
+                                <TextBlock
+                                    Text="{Binding LastCheckText}"
+                                    Style="{StaticResource Caption}"
+                                    Margin="0,6,0,0"
+                                    Visibility="{Binding LastCheckText, Converter={StaticResource HasText}}" />
+                            </StackPanel>
+                            <StackPanel
+                                Grid.Column="2">
+                                <TextBlock
+                                    Text="{Binding [Action_Recommendations]}"
+                                    Style="{StaticResource SettingsSection}"
+                                    Margin="0,0,0,4"
+                                    AutomationProperties.HeadingLevel="Level2" />
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <DockPanel>
+                                        <CheckBox
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource ToggleSwitch}"
+                                            VerticalAlignment="Center"
+                                            IsChecked="{Binding Settings.AiReview}"
+                                            AutomationProperties.Name="{Binding [Settings_AiReview]}"
+                                            AutomationProperties.HelpText="{Binding [Settings_AiReviewHint]}" />
+                                        <StackPanel
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,12,0">
+                                            <TextBlock
+                                                Text="{Binding [Settings_AiReview]}"
+                                                Style="{StaticResource SettingLabel}"
+                                                TextWrapping="Wrap" />
+                                            <TextBlock
+                                                Text="{Binding [Settings_AiReviewHint]}"
+                                                Style="{StaticResource Caption}"
+                                                TextWrapping="Wrap" />
+                                        </StackPanel>
+                                    </DockPanel>
+                                </Border>
+                                <TextBlock
+                                    Text="{Binding [History_SettingsSection]}"
+                                    Style="{StaticResource SettingsSection}"
+                                    Margin="0,8,0,4"
+                                    AutomationProperties.HeadingLevel="Level2" />
+                                <Border
+                                    Style="{StaticResource SettingsCard}">
+                                    <StackPanel>
+                                        <TextBlock
+                                            Text="{Binding HistoryCountText}"
+                                            Style="{StaticResource Caption}"
+                                            TextWrapping="Wrap"
+                                            Margin="0,0,0,6" />
+                                        <Button
+                                            Style="{StaticResource NeutralButton}"
+                                            Command="{Binding ClearHistoryCommand}"
+                                            HorizontalAlignment="Left"
+                                            AutomationProperties.Name="{Binding [History_ClearButton]}"
+                                            AutomationProperties.HelpText="{Binding HistoryCountText}"
+                                            ToolTip="{Binding HistoryCountText}"
+                                            Visibility="{Binding IsConfirmingClearHistory, Converter={StaticResource Hidden}}">
+                                            <StackPanel
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    Style="{StaticResource Glyph}"
+                                                    Text="" />
+                                                <TextBlock
+                                                    Text="{Binding [History_ClearButton]}"
+                                                    Margin="6,0,0,0" />
+                                            </StackPanel>
+                                        </Button>
+                                        <!-- Clearing cannot be undone, so it asks once more; the question is announced. -->
+                                        <StackPanel
+                                            Visibility="{Binding IsConfirmingClearHistory, Converter={StaticResource Shown}}">
+                                            <TextBlock
+                                                Text="{Binding ClearHistoryConfirmText}"
+                                                FontWeight="SemiBold"
+                                                TextWrapping="Wrap"
+                                                Margin="0,0,0,6"
+                                                AutomationProperties.LiveSetting="Assertive" />
+                                            <WrapPanel>
+                                                <Button
+                                                    Style="{StaticResource DangerButton}"
+                                                    Command="{Binding ConfirmClearHistoryCommand}"
+                                                    AutomationProperties.Name="{Binding [History_ClearConfirmButton]}"
+                                                    AutomationProperties.HelpText="{Binding ClearHistoryConfirmText}">
+                                                    <StackPanel
+                                                        Orientation="Horizontal">
+                                                        <TextBlock
+                                                            Style="{StaticResource Glyph}"
+                                                            Text="" />
+                                                        <TextBlock
+                                                            Text="{Binding [History_ClearConfirmButton]}"
+                                                            Margin="6,0,0,0" />
+                                                    </StackPanel>
+                                                </Button>
+                                                <Button
+                                                    Style="{StaticResource NeutralButton}"
+                                                    Command="{Binding CancelClearHistoryCommand}"
+                                                    AutomationProperties.Name="{Binding [History_ClearCancel]}"
+                                                    AutomationProperties.HelpText="{Binding [ButtonHelp_CancelClearHistory]}">
+                                                    <TextBlock
+                                                        Text="{Binding [History_ClearCancel]}" />
+                                                </Button>
+                                            </WrapPanel>
+                                        </StackPanel>
+                                        <TextBlock
+                                            Text="{Binding HistoryClearStatus}"
+                                            Style="{StaticResource Secondary}"
+                                            FontWeight="SemiBold"
+                                            AutomationProperties.LiveSetting="Polite"
+                                            Visibility="{Binding HistoryClearStatus, Converter={StaticResource HasText}}" />
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 </Window>

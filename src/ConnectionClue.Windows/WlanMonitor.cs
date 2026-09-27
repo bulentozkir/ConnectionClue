@@ -81,9 +81,9 @@ public sealed unsafe class WlanMonitor(TimeProvider time) : IDisposable
     {
         if (_client != default)
         {
-            PInvoke.WlanRegisterNotification(_client, WLAN_NOTIFICATION_SOURCES.WLAN_NOTIFICATION_SOURCE_NONE, (BOOL)1,
+            _ = PInvoke.WlanRegisterNotification(_client, WLAN_NOTIFICATION_SOURCES.WLAN_NOTIFICATION_SOURCE_NONE, (BOOL)1,
                 null, null, null, null);
-            PInvoke.WlanCloseHandle(_client, null);
+            _ = PInvoke.WlanCloseHandle(_client, null);
             _client = default;
         }
         if (_self.IsAllocated) _self.Free();

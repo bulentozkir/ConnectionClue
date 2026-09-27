@@ -50,7 +50,7 @@ public sealed partial class MainViewModel
     }
 
     /// <summary>Maps monitor notifications (TimeProvider timestamps) to link changes in seconds into the check.</summary>
-    private IReadOnlyList<LinkEvent> LinkEvents(IReadOnlyList<MonitorEvent>? events)
+    private List<LinkEvent> LinkEvents(IReadOnlyList<MonitorEvent>? events)
     {
         if (events is null) return [];
         var links = new List<LinkEvent>();
@@ -94,7 +94,9 @@ public sealed partial class MainViewModel
         string gap = _ui.TwoLetterISOLanguageName is "zh" or "ja" ? "" : " ";
         string? missing = Of(v => v.Rule == RuleId.R11);
         if (report.Issues.Count > 0) return missing is null ? Describe(report) : Describe(report) + gap + missing;
-        return Of(v => v.Rule == RuleId.R10) ?? missing ?? (report.Level == HealthLevel.NoIssue ? _l.Get("Summary_AllGood", _ui) : "");
+        // "Everything is responding so far" describes a check in progress; a finished check without a verdict adds nothing
+        // to its headline.
+        return Of(v => v.Rule == RuleId.R10) ?? missing ?? "";
     }
 
     /// <summary>One plain sentence per verdict, in verdict order, with local clock times (what a provider compares with its logs).</summary>

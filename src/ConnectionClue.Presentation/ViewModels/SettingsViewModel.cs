@@ -1,6 +1,7 @@
 using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ConnectionClue.Analysis;
+using ConnectionClue.Presentation.Diagnostics;
 using ConnectionClue.Presentation.Localization;
 
 namespace ConnectionClue.Presentation.ViewModels;
@@ -10,16 +11,21 @@ public sealed record Choice(int Value, string Label);
 /// <summary>A theme in the Settings selector.</summary>
 public sealed record ThemeChoice(ConnectionClue.Presentation.Theming.AppTheme Value, string Label);
 
-/// <summary>User preferences for background checks and alert limits. Values outside the offered choices snap to defaults.</summary>
+/// <summary>
+/// User preferences: check length and speed test, background schedule (including mobile networks and Windows startup), alert
+/// limits, online review, theme, plan speeds and per-symptom targets. Values outside the offered choices snap to defaults.
+/// </summary>
 public sealed partial class SettingsViewModel : ObservableObject
 {
     public static readonly int[] IntervalOptions = [10, 15, 30, 60, 120];
     public static readonly int[] DelayOptions = [50, 100, 150, 200, 300];
     public static readonly int[] LossOptions = [1, 2, 5, 10];
     public static readonly int[] VariationOptions = [10, 20, 30, 50];
-    public static readonly int[] LongCaptureOptions = [60, 120, 240, 480];
-    public const int DefaultLongCaptureMinutes = 60, MaxLongCaptureMinutes = 480;
+    public static readonly int[] LongCaptureOptions = [15, 30, 45, 60, 120, 240, 480];
+    public const int DefaultLongCaptureMinutes = 15, MaxLongCaptureMinutes = 480;
     public const int MinCheckSeconds = 10, MaxCheckSeconds = 600, DefaultCheckSeconds = 30;
+    private readonly Localizer _l;
+    private readonly CultureInfo _ui;
     private string _checkSecondsText;
     private string _planDownloadText = "";
     private string _planUploadText = "";
@@ -31,6 +37,7 @@ public sealed partial class SettingsViewModel : ObservableObject
         string gamingTarget = "", string videoTarget = "", string callsTarget = "", string disconnectTarget = "",
         int longCaptureMinutes = DefaultLongCaptureMinutes, bool backgroundOnMobileEnabled = false)
     {
+        (_l, _ui) = (l, ui);
         Themes = [.. Enum.GetValues<ConnectionClue.Presentation.Theming.AppTheme>().Select(t => new ThemeChoice(t, l.Get($"Theme_{t}", ui)))];
         Theme = Enum.IsDefined(theme) ? theme : ConnectionClue.Presentation.Theming.AppTheme.Dark;
         var f = CultureInfo.CurrentCulture;
@@ -38,7 +45,7 @@ public sealed partial class SettingsViewModel : ObservableObject
         DelayLimits = [.. DelayOptions.Select(v => new Choice(v, string.Format(f, "{0} ms", v)))];
         LossLimits = [.. LossOptions.Select(v => new Choice(v, (v / 100.0).ToString("P0", f)))];
         VariationLimits = [.. VariationOptions.Select(v => new Choice(v, string.Format(f, "{0} ms", v)))];
-        LongCaptureLengths = [.. LongCaptureOptions.Select(m => new Choice(m, string.Format(f, "{0} h", m / 60)))];
+        LongCaptureLengths = [.. LongCaptureOptions.Select(m => new Choice(m, m < 60 ? string.Format(f, "{0} min", m) : string.Format(f, "{0} h", m / 60)))];
         BackgroundEnabled = backgroundEnabled;
         IntervalMinutes = Snap(intervalMinutes, IntervalOptions, 15);
         DelayLimitMs = Snap(delayLimitMs, DelayOptions, 100);
@@ -167,12 +174,27 @@ public sealed partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>Download and upload phase after the latency phase of manual checks (never in background checks).</summary>
-    [ObservableProperty]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CheckTotalHint))]
     public partial bool MeasureSpeed { get; set; }
 
-    /// <summary>Quick check length for manual and background checks.</summary>
-    [ObservableProperty]
+    /// <summary>Length of the delay-measurement phase of manual and background checks; the speed test comes on top.</summary>
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CheckTotalHint))]
     public partial int CheckSeconds { get; set; }
+
+    /// <summary>The speed test's two phases (download, then upload) that follow the delay phase of a manual check.</summary>
+    public static int SpeedTestSeconds => (int)(2 * MainViewModel.SpeedPhase.TotalSeconds);
+
+    /// <summary>What a quick check takes with these settings, so the length field never promises less than the check lasts.</summary>
+    public string CheckTotalHint => MeasureSpeed
+        ? string.Format(CultureInfo.CurrentCulture, _l.Get("Settings_CheckTotalSpeed", _ui), CheckSeconds, CheckSeconds + SpeedTestSeconds)
+        : string.Format(CultureInfo.CurrentCulture, _l.Get("Settings_CheckTotal", _ui), CheckSeconds);
+
+    /// <summary>Gives every empty symptom target its default service (first start, or settings saved before defaults existed).</summary>
+    public void ApplyDefaultTargets()
+    {
+        foreach (var symptom in Enum.GetValues<Symptom>())
+            if (string.IsNullOrWhiteSpace(TargetFor(symptom))) SetTarget(symptom, SymptomServices.DefaultTargetText(symptom));
+    }
 
     /// <summary>Text field for <see cref="CheckSeconds"/>; applied only when it parses to a whole number in range.</summary>
     public string CheckSecondsText
