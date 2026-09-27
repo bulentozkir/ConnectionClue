@@ -276,4 +276,17 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Ağ bağlantısı yeniden kuruldu. Uygulama hazır olduğunda bir kez 10 saniyelik kontrol başlayacak.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Ağ bağlantısı yeniden kuruldu. Hız testi olmadan bir kez 10 saniyelik bağlantı kontrolü yapılıyor.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Yeniden bağlantı sonrası otomatik kontrol tamamlanamadı. Tekrar denemek için hızlı kontrolü elle başlatın.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>Bağlantı sorunu sürüyor</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>Performans hâlâ sınırlarınızın altında</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>İlk görülme: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>Yeniden çevrimiçi: sorun bulunamadı</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>Yeniden çevrimiçi, ancak bağlantıda bir sorun var</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>Yeniden çevrimiçi, ancak performans sınırlarınızın altında</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Yeniden çevrimiçi: değerlendirmek için yeterli veri yok</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Yeniden bağlanma sonrası kontrol ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Arka plan kontrol süresi</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Her düzenli arka plan kontrolünün gecikmeyi ne kadar süre ölçtüğü. Arka plan kontrolleri hiçbir zaman hız testi veya hizmet testi çalıştırmaz; bu yüzden bu, kontrolün tüm süresidir.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Bu bildirimi gizle. Bağlantı yeniden koparsa veya geri gelirse yeni bir bildirim görünür.</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} saat</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} saat</value></data>
 </root>

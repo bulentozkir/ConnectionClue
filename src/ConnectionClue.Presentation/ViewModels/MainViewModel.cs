@@ -31,7 +31,9 @@ public enum HeroState { Idle, Running, NoIssue, Inconclusive, Degraded, Unhealth
 public sealed record SymptomOption(string Key, string Label, string Glyph, string Help = "");
 public sealed record LanguageOption(string Name, string NativeName);
 public sealed record Announcement(string Text, AnnouncementUrgency Urgency);
-public sealed record Alert(AlertKind Kind, string Title, string Body);
+/// <summary>A Windows notification. Automatic: nothing the user did started it (a disconnection, a background or reconnect
+/// check), so it is shown even while the window is active.</summary>
+public sealed record Alert(AlertKind Kind, string Title, string Body, bool Warning = true, bool Automatic = false);
 
 public enum RecommendationActionKind { Open, CopyText, CopySummary }
 
@@ -796,14 +798,14 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         CancelReconnectCheck();
         ConfigureRecurringChecks();
         string title = _l.Get("Hero_Disconnected", _ui), detail = _l.Get("Summary_Disconnected", _ui);
-        ConnectionStatus = title + ". " + detail;
+        SetConnectionNotice(title + ". " + detail, warning: true);
         if (!IsRunning)
             (Hero, HeroTitle, Summary, TryPreview, CheckedOkText) = (HeroState.Disconnected, title, detail, "", "");
         if (announce) Emit(ConnectionStatus, AnnouncementKind.Error);
         if (!_disconnectNotified)
         {
             _disconnectNotified = true;
-            AlertRaised?.Invoke(this, new Alert(AlertKind.Disconnected, title, detail));
+            AlertRaised?.Invoke(this, new Alert(AlertKind.Disconnected, title, detail, Automatic: true));
         }
     }
 
@@ -839,8 +841,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     }
 
     /// <summary>
-    /// Runs one check: a latency phase, then (manual checks only) download and upload phases while latency probes
-    /// keep running, which yields latency under load. Returns at once when another check is already running.
+    /// Runs one background check (Background check length unless given): a latency phase, then, when asked, download and
+    /// upload phases while latency probes keep running, which yields latency under load. Returns at once when another check
+    /// is already running.
     /// </summary>
     public Task RunCheckAsync(bool measureSpeed, int? checkSeconds = null) => RunCheckAsync(measureSpeed, checkSeconds, CheckKind.Background);
 
@@ -869,7 +872,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             return;
         }
         if (IsDisconnected) UpdateConnectivity(true, _isMobileNetwork?.Invoke() ?? IsMobileNetwork);
-        if (_reconnectCancellation is null) ConnectionStatus = "";
+        if (_reconnectCancellation is null) SetConnectionNotice("");
         IsRunning = true;
         (ServiceResults, ServiceSummary) = ([], "");
         Message = "";
@@ -884,8 +887,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         (_downloadMbps, _uploadMbps, _loadedDownMs, _loadedUpMs, _checkStartedUtc) = (null, null, null, null, _time.GetUtcNow());
         (Markers, MarkersText, CheckedOkText, _otherTraffic) = ([], "", "", null);
         _start = _time.GetTimestamp(); // markers pressed while the session starts land at 0 s
-        int seconds = Math.Clamp(checkSeconds ?? Settings.CheckSeconds, SettingsViewModel.MinCheckSeconds,
-            SettingsViewModel.MaxLongCaptureMinutes * 60);
+        int seconds = Math.Clamp(checkSeconds ?? (kind == CheckKind.Background ? Settings.BackgroundCheckSeconds : Settings.CheckSeconds),
+            SettingsViewModel.MinCheckSeconds, SettingsViewModel.MaxLongCaptureMinutes * 60);
         var duration = TimeSpan.FromSeconds(seconds);
         _idleSeconds = duration.TotalSeconds;
         ChartSeconds = duration.TotalSeconds;
@@ -1107,18 +1110,44 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         if (IsDisconnected) return; // The connection notice takes priority over an older measurement verdict.
         Emit(TryPreview.Length == 0 ? Summary : Summary + " " + TryPreview, AnnouncementKind.FindingReady);
 
-        // The shell decides whether to show it (not while the window is in the foreground).
-        if (_alerts.Evaluate(report) is not { } kind) return;
-        string title = _l.Get(kind switch
+        bool automatic = _currentKind is CheckKind.Background or CheckKind.Reconnect;
+        if (_currentKind == CheckKind.Reconnect)
+            SetConnectionNotice(LocFormat("Connectivity_ReconnectResult", LocalTime(checkedAt), HeroTitle),
+                warning: IsProblem(report.Level), dismissible: true);
+        var trigger = _currentKind switch
         {
-            AlertKind.Problem => "Alert_Problem",
-            AlertKind.Slow => "Alert_Slow",
+            CheckKind.Background => AlertTrigger.Background,
+            CheckKind.Reconnect => AlertTrigger.Reconnect,
+            _ => AlertTrigger.Manual,
+        };
+        if (_alerts.Evaluate(report, trigger) is { } alert) AlertRaised?.Invoke(this, ToAlert(alert, automatic && !_checkStopped));
+    }
+
+    private static bool IsProblem(HealthLevel level) => level is HealthLevel.Unhealthy or HealthLevel.Degraded;
+
+    private string LocalTime(DateTimeOffset utc) => TimeZoneInfo.ConvertTime(utc, _time.LocalTimeZone).ToString("t", CultureInfo.CurrentCulture);
+
+    /// <summary>The notification text; the shell shows it unless the user is looking at the result of their own check.</summary>
+    private Alert ToAlert(AlertDecision alert, bool automatic)
+    {
+        string title = _l.Get(alert.Kind switch
+        {
+            AlertKind.Reconnected => alert.Level switch
+            {
+                HealthLevel.NoIssue => "Alert_ReconnectedNoIssue",
+                HealthLevel.Unhealthy => "Alert_ReconnectedProblem",
+                HealthLevel.Degraded => "Alert_ReconnectedSlow",
+                _ => "Alert_ReconnectedUnclear",
+            },
+            AlertKind.Problem => alert.FirstSeen is null ? "Alert_Problem" : "Alert_ProblemContinues",
+            AlertKind.Slow => alert.FirstSeen is null ? "Alert_Slow" : "Alert_SlowContinues",
             _ => "Alert_Recovered",
         }, _ui);
-        string body = kind == AlertKind.Recovered ? _l.Get("Health_NoIssue", _ui)
+        string body = alert.Kind == AlertKind.Recovered ? _l.Get("Health_NoIssue", _ui)
             : TryPreview.Length == 0 ? Summary
             : Summary + "\n" + TryPreview;
-        AlertRaised?.Invoke(this, new Alert(kind, title, body));
+        if (alert.FirstSeen is { } since) body = LocFormat("Alert_FirstSeen", LocalTime(since)) + " " + body;
+        return new Alert(alert.Kind, title, body, IsProblem(alert.Level), automatic);
     }
 
     private void RecordHistory(CheckHistoryEntry entry)

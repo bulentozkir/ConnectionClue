@@ -8,7 +8,6 @@ using System.Windows;
 using ConnectionClue.Analysis;
 using ConnectionClue.Core;
 using ConnectionClue.Presentation.Accessibility;
-using ConnectionClue.Presentation.Alerts;
 using ConnectionClue.Presentation.Localization;
 using ConnectionClue.Presentation.Review;
 using ConnectionClue.Presentation.Theming;
@@ -27,7 +26,7 @@ public partial class App : Application
     private TrayIcon _tray = null!;
     private SingleInstanceGate? _singleInstance;
     private string? _language;
-    private bool _exiting, _trayHintShown, _offline, _suppressStartupChange;
+    private bool _exiting, _trayHintShown, _offline, _suppressStartupChange, _notified;
     private WindowState _restoreState = WindowState.Maximized;
 
     protected override void OnStartup(StartupEventArgs e)
@@ -60,17 +59,13 @@ public partial class App : Application
         var settings = new SettingsViewModel(l, ui, saved.BackgroundEnabled, saved.IntervalMinutes,
             saved.DelayLimitMs, saved.LossLimitPercent, saved.VariationLimitMs, saved.CheckSeconds, saved.MeasureSpeed, saved.AiReview, theme,
             saved.StartWithWindows, saved.PlanDownloadMbps, saved.PlanUploadMbps, saved.GamingTarget, saved.VideoTarget,
-            saved.CallsTarget, saved.DisconnectTarget, saved.LongCaptureMinutes, saved.BackgroundOnMobileEnabled)
+            saved.CallsTarget, saved.DisconnectTarget, saved.LongCaptureMinutes, saved.BackgroundOnMobileEnabled, saved.BackgroundCheckSeconds)
         {
             WindowsHighContrast = ThemeManager.WindowsHighContrast,
         };
-        // New install, or settings from before version 2: fill empty targets once (a later clear is kept), and move the old
-        // 1-hour Capture longer default to the new 15-minute one.
-        if (saved.SettingsVersion < AppSettings.CurrentVersion)
-        {
-            settings.ApplyDefaultTargets();
-            if (saved.LongCaptureMinutes == 60) settings.LongCaptureMinutes = SettingsViewModel.DefaultLongCaptureMinutes;
-        }
+        // New install, or settings from an older version: move values still at an old default to the new one (a later
+        // choice of the user, such as a cleared target, is kept).
+        if (saved.SettingsVersion < AppSettings.CurrentVersion) settings.Upgrade(saved.SettingsVersion);
         settings.PropertyChanged += (_, a) =>
         {
             if (a.PropertyName == nameof(SettingsViewModel.Theme)) ThemeManager.Apply(this, settings.Theme);
@@ -99,8 +94,10 @@ public partial class App : Application
         _vm.PropertyChanged += OnViewModelChanged;
         _vm.AlertRaised += (_, a) =>
         {
-            if (_tray.Visible && (a.Kind == AlertKind.Disconnected || !_window.IsActive))
-                _tray.Notify(a.Title, a.Body, a.Kind != AlertKind.Recovered);
+            if (!a.Automatic && _window.IsActive) return; // The user is watching the result of their own check.
+            _notified = true; // The icon owns its notifications, so it stays for the session to keep them in Windows.
+            RefreshTray();
+            _tray.Notify(a.Title, a.Body, a.Warning);
         };
         _vm.LanguageChangeRequested += (_, name) =>
         {
@@ -231,7 +228,7 @@ public partial class App : Application
     private void RefreshTray()
     {
         var s = _vm.Settings;
-        _tray.Visible = s.BackgroundEnabled || _vm.IsDisconnected || !_window.IsVisible;
+        _tray.Visible = s.BackgroundEnabled || _vm.IsDisconnected || !_window.IsVisible || _notified;
         var state = _vm.IsDisconnected ? TrayState.Warning : _vm.LastLevel switch
         {
             HealthLevel.Unhealthy => TrayState.Problem,
@@ -248,7 +245,7 @@ public partial class App : Application
         SettingsStore.Save(new AppSettings(_language, s.BackgroundEnabled, s.IntervalMinutes, s.DelayLimitMs,
             s.LossLimitPercent, s.VariationLimitMs, s.CheckSeconds, s.MeasureSpeed, s.AiReview, s.Theme,
             s.StartWithWindows, s.PlanDownloadMbps, s.PlanUploadMbps, s.GamingTarget, s.VideoTarget, s.CallsTarget, s.DisconnectTarget,
-            s.LongCaptureMinutes, s.BackgroundOnMobileEnabled, AppSettings.CurrentVersion));
+            s.LongCaptureMinutes, s.BackgroundOnMobileEnabled, s.BackgroundCheckSeconds, AppSettings.CurrentVersion));
     }
 
     private async Task ApplyStartupSettingAsync(SettingsViewModel settings)

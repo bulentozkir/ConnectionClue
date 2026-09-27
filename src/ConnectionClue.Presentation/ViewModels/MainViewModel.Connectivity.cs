@@ -19,12 +19,26 @@ public sealed partial class MainViewModel
     private IAsyncRelayCommand[] _reconnectBlockers = [];
     private bool _disconnectNotified, _disposed;
 
-    /// <summary>A connection notice shown on every page; empty once the reconnect check has finished.</summary>
+    /// <summary>A connection notice shown on every page: no network, the reconnect check, then its result.</summary>
     [ObservableProperty]
     public partial string ConnectionStatus { get; set; } = "";
 
+    /// <summary>The notice reports a problem: no network, a failed reconnect check, or a problem found after reconnecting.</summary>
+    [ObservableProperty]
+    public partial bool IsConnectionNoticeWarning { get; set; }
+
+    /// <summary>A finished reconnect check's notice can be dismissed; it also clears when the next check starts.</summary>
+    [ObservableProperty, NotifyCanExecuteChangedFor(nameof(DismissConnectionStatusCommand))]
+    public partial bool CanDismissConnectionStatus { get; set; }
+
     /// <summary>The latest one-shot reconnect operation, including waiting for the current operation to finish.</summary>
     public Task ReconnectCheckTask { get; private set; } = Task.CompletedTask;
+
+    private void SetConnectionNotice(string text, bool warning = false, bool dismissible = false) =>
+        (ConnectionStatus, IsConnectionNoticeWarning, CanDismissConnectionStatus) = (text, warning, dismissible);
+
+    [RelayCommand(CanExecute = nameof(CanDismissConnectionStatus))]
+    private void DismissConnectionStatus() => SetConnectionNotice("");
 
     private void InitializeReconnectChecks()
     {
@@ -67,7 +81,7 @@ public sealed partial class MainViewModel
     {
         var cancellation = new CancellationTokenSource();
         _reconnectCancellation = cancellation;
-        ConnectionStatus = _l.Get("Connectivity_ReconnectPending", _ui);
+        SetConnectionNotice(_l.Get("Connectivity_ReconnectPending", _ui));
         Emit(ConnectionStatus, AnnouncementKind.SessionState);
         ReconnectCheckTask = RunReconnectCheckAsync(cancellation);
     }
@@ -95,9 +109,9 @@ public sealed partial class MainViewModel
                 UpdateConnectivity(false, IsMobileNetwork);
                 return;
             }
-            ConnectionStatus = _l.Get("Connectivity_ReconnectChecking", _ui);
+            SetConnectionNotice(_l.Get("Connectivity_ReconnectChecking", _ui));
             Emit(ConnectionStatus, AnnouncementKind.SessionState);
-            await RunCheckAsync(false, ReconnectCheckSeconds, CheckKind.Reconnect, token);
+            await RunCheckAsync(false, ReconnectCheckSeconds, CheckKind.Reconnect, token); // Its result replaces the notice.
         }
         catch (OperationCanceledException) when (token.IsCancellationRequested)
         {
@@ -108,10 +122,10 @@ public sealed partial class MainViewModel
             failed = true;
             if (!_disposed && ReferenceEquals(_reconnectCancellation, cancellation) && !IsDisconnected)
             {
-                ConnectionStatus = _l.Get("Connectivity_ReconnectFailed", _ui);
+                SetConnectionNotice(_l.Get("Connectivity_ReconnectFailed", _ui), warning: true, dismissible: true);
                 (Hero, HeroTitle, Summary) = (HeroState.Inconclusive, _l.Get("Health_Inconclusive", _ui), ConnectionStatus);
                 Emit(ConnectionStatus, AnnouncementKind.Error);
-                AlertRaised?.Invoke(this, new Alert(AlertKind.Problem, HeroTitle, ConnectionStatus));
+                AlertRaised?.Invoke(this, new Alert(AlertKind.Problem, HeroTitle, ConnectionStatus, Automatic: true));
             }
         }
         finally
@@ -119,7 +133,8 @@ public sealed partial class MainViewModel
             if (ReferenceEquals(_reconnectCancellation, cancellation))
             {
                 _reconnectCancellation = null;
-                if (!failed && !IsDisconnected) ConnectionStatus = "";
+                // Only a finished check leaves a dismissible notice (its result); otherwise clear the pending text.
+                if (!failed && !IsDisconnected && !CanDismissConnectionStatus) SetConnectionNotice("");
             }
             cancellation.Dispose();
         }

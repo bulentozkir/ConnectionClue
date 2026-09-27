@@ -279,4 +279,18 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>A rede foi reconectada. Uma verificação única de 10 segundos começará quando o aplicativo estiver pronto.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>A rede foi reconectada. Executando uma verificação de conexão de 10 segundos, sem testes de velocidade.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Não foi possível concluir a verificação automática após a reconexão. Execute uma verificação rápida manualmente para tentar novamente.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>O problema de conexão continua</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>Desempenho ainda abaixo dos seus limites</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>Detectado pela primeira vez: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>Conexão restabelecida: nenhum problema encontrado</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>Conexão restabelecida, mas há um problema de conexão</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>Conexão restabelecida, mas o desempenho está abaixo dos seus limites</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Conexão restabelecida: dados insuficientes para avaliar</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Verificação após reconectar ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Duração da verificação em segundo plano</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Por quanto tempo cada verificação regular em segundo plano mede o atraso. As verificações em segundo plano nunca fazem testes de velocidade nem de serviços, então esta é a duração total delas.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Ocultar este aviso. Um novo aviso aparece se a conexão cair ou voltar novamente.</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} hora</value></data>
+  <data name="Duration_Hours.many" xml:space="preserve"><value>{0} de horas</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} horas</value></data>
 </root>

@@ -279,4 +279,18 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Le réseau est reconnecté. Une vérification unique de 10 secondes démarrera dès que l’application sera prête.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Le réseau est reconnecté. Une vérification de connexion de 10 secondes est en cours, sans test de débit.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>La vérification automatique après reconnexion n’a pas pu se terminer. Lancez manuellement une vérification rapide pour réessayer.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>Le problème de connexion persiste</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>Performances toujours en dessous de vos limites</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>Détecté pour la première fois : {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>De retour en ligne : aucun problème détecté</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>De retour en ligne, mais la connexion a un problème</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>De retour en ligne, mais les performances sont en dessous de vos limites</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>De retour en ligne : pas assez de données pour conclure</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Vérification après reconnexion ({0}) : {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Durée de la vérification en arrière-plan</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Durée pendant laquelle chaque vérification régulière en arrière-plan mesure le délai. Les vérifications en arrière-plan ne mesurent jamais le débit et ne testent aucun service : c’est donc leur durée totale.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Masquer cet avis. Un nouvel avis s’affiche si la connexion se coupe ou revient.</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} heure</value></data>
+  <data name="Duration_Hours.many" xml:space="preserve"><value>{0} d’heures</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} heures</value></data>
 </root>

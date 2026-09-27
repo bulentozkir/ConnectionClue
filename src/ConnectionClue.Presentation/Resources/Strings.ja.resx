@@ -273,4 +273,16 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>ネットワークに再接続しました。アプリの準備ができ次第、10秒間のチェックを1回実行します。</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>ネットワークに再接続しました。速度テストなしで、10秒間の接続チェックを1回実行しています。</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>再接続後の自動チェックを完了できませんでした。手動でクイックチェックを実行して再試行してください。</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>接続の問題が続いています</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>パフォーマンスがまだ設定した基準を下回っています</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>最初に検出：{0}。</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>オンラインに復帰：問題は見つかりませんでした</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>オンラインに復帰しましたが、接続に問題があります</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>オンラインに復帰しましたが、パフォーマンスが設定した基準を下回っています</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>オンラインに復帰：判断に十分なデータがありません</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>再接続後のチェック（{0}）：{1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>バックグラウンドチェックの長さ</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>定期的なバックグラウンドチェックごとに遅延を測定する時間です。バックグラウンドチェックでは速度テストやサービステストを行わないため、これがチェック全体の長さです。</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>この通知を非表示にします。接続が再び切れたり復帰したりすると、新しい通知が表示されます。</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} 時間</value></data>
 </root>

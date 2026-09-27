@@ -273,4 +273,16 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Mạng đã kết nối lại. Một lần kiểm tra 10 giây sẽ bắt đầu khi ứng dụng sẵn sàng.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Mạng đã kết nối lại. Đang kiểm tra kết nối một lần trong 10 giây, không kiểm tra tốc độ.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Không thể hoàn tất kiểm tra tự động sau khi kết nối lại. Hãy chạy kiểm tra nhanh theo cách thủ công để thử lại.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>Sự cố kết nối vẫn tiếp diễn</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>Hiệu suất vẫn thấp hơn ngưỡng của bạn</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>Phát hiện lần đầu: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>Đã trực tuyến trở lại: không phát hiện sự cố</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>Đã trực tuyến trở lại, nhưng kết nối có sự cố</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>Đã trực tuyến trở lại, nhưng hiệu suất thấp hơn ngưỡng của bạn</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Đã trực tuyến trở lại: không đủ dữ liệu để đánh giá</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Kiểm tra sau khi kết nối lại ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Thời lượng kiểm tra nền</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Thời gian mỗi lần kiểm tra nền định kỳ đo độ trễ. Kiểm tra nền không bao giờ chạy thử nghiệm tốc độ hay kiểm tra dịch vụ, nên đây là toàn bộ thời lượng của nó.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Ẩn thông báo này. Thông báo mới sẽ xuất hiện nếu kết nối lại bị ngắt hoặc được khôi phục.</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} giờ</value></data>
 </root>

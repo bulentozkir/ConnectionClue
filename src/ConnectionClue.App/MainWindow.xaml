@@ -368,7 +368,7 @@
                     <Style TargetType="Border">
                         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsDisconnected}" Value="True">
+                            <DataTrigger Binding="{Binding IsConnectionNoticeWarning}" Value="True">
                                 <Setter Property="BorderBrush" Value="{DynamicResource WarningBrush}" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -380,15 +380,25 @@
                             <Style TargetType="TextBlock" BasedOn="{StaticResource Glyph}">
                                 <Setter Property="Text" Value="&#xE946;" />
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsDisconnected}" Value="True">
+                                    <DataTrigger Binding="{Binding IsConnectionNoticeWarning}" Value="True">
                                         <Setter Property="Text" Value="&#xE7BA;" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
+                    <!-- Only a finished reconnect check's result can be dismissed; the next check also clears it. -->
+                    <Button DockPanel.Dock="Right" Style="{StaticResource NeutralButton}" Margin="10,0,0,0" VerticalAlignment="Center"
+                            Command="{Binding DismissConnectionStatusCommand}" AutomationProperties.Name="{Binding [Action_Dismiss]}"
+                            AutomationProperties.HelpText="{Binding [ButtonHelp_DismissNotice]}"
+                            Visibility="{Binding CanDismissConnectionStatus, Converter={StaticResource Shown}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Glyph}" Text="&#xE711;" />
+                            <TextBlock Text="{Binding [Action_Dismiss]}" Margin="6,0,0,0" />
+                        </StackPanel>
+                    </Button>
                     <TextBlock Text="{Binding ConnectionStatus}" FontSize="13" FontWeight="SemiBold" TextWrapping="Wrap"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                               VerticalAlignment="Center" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
                 </DockPanel>
             </Border>
         </c:AccessibleGroup>
@@ -1317,6 +1327,70 @@
                                             VerticalAlignment="Center"
                                             TextWrapping="Wrap"
                                             Margin="0,0,12,0" />
+                                    </DockPanel>
+                                </Border>
+                                <Border
+                                    Style="{StaticResource SettingsSubCard}">
+                                    <DockPanel>
+                                        <StackPanel
+                                            DockPanel.Dock="Right"
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Center">
+                                            <TextBox
+                                                x:Name="BackgroundCheckSecondsBox"
+                                                MinWidth="112"
+                                                MinHeight="28"
+                                                VerticalContentAlignment="Center"
+                                                InputScope="Number"
+                                                Text="{Binding Settings.BackgroundCheckSecondsText, UpdateSourceTrigger=PropertyChanged}"
+                                                IsEnabled="{Binding Settings.BackgroundEnabled}"
+                                                AutomationProperties.Name="{Binding [Settings_BackgroundCheckLength]}"
+                                                AutomationProperties.HelpText="{Binding [Settings_BackgroundCheckLengthHint]}"
+                                                ToolTip="{Binding [Settings_BackgroundCheckLengthHint]}"
+                                                ToolTipService.ShowOnDisabled="True" />
+                                            <TextBlock
+                                                Text="{Binding [Unit_Seconds]}"
+                                                FontSize="13"
+                                                VerticalAlignment="Center"
+                                                Margin="6,0,0,0" />
+                                        </StackPanel>
+                                        <StackPanel
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,12,0">
+                                            <TextBlock
+                                                Text="{Binding [Settings_BackgroundCheckLength]}"
+                                                Style="{StaticResource SettingLabel}"
+                                                TextWrapping="Wrap" />
+                                            <StackPanel
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    Style="{StaticResource Glyph}"
+                                                    Text="&#xE783;"
+                                                    FontSize="11"
+                                                    Margin="0,0,4,0"
+                                                    Foreground="{DynamicResource SystemFillColorCriticalBrush}"
+                                                    Visibility="{Binding Settings.IsBackgroundCheckSecondsInvalid, Converter={StaticResource Shown}}" />
+                                                <TextBlock
+                                                    Text="{Binding Settings.CheckLengthHint}"
+                                                    AutomationProperties.LiveSetting="Assertive">
+                                                    <TextBlock.Style>
+                                                        <Style
+                                                            TargetType="TextBlock"
+                                                            BasedOn="{StaticResource Caption}">
+                                                            <Style.Triggers>
+                                                                <DataTrigger
+                                                                    Binding="{Binding Settings.IsBackgroundCheckSecondsInvalid}"
+                                                                    Value="True">
+                                                                    <Setter
+                                                                        Property="Foreground"
+                                                                        Value="{DynamicResource SystemFillColorCriticalBrush}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
                                     </DockPanel>
                                 </Border>
                                 <Border

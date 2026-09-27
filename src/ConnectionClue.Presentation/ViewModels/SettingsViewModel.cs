@@ -12,46 +12,57 @@ public sealed record Choice(int Value, string Label);
 public sealed record ThemeChoice(ConnectionClue.Presentation.Theming.AppTheme Value, string Label);
 
 /// <summary>
-/// User preferences: check length and speed test, background schedule (including mobile networks and Windows startup), alert
-/// limits, online review, theme, plan speeds and per-symptom targets. Values outside the offered choices snap to defaults.
+/// User preferences: quick check length and speed test, background schedule and check length (including mobile networks and
+/// Windows startup), alert limits, online review, theme, plan speeds and per-symptom targets. Values outside the offered
+/// choices snap to defaults.
 /// </summary>
 public sealed partial class SettingsViewModel : ObservableObject
 {
-    public static readonly int[] IntervalOptions = [10, 15, 30, 60, 120];
+    public static readonly int[] IntervalOptions = [3, 5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240, 360, 480];
     public static readonly int[] DelayOptions = [50, 100, 150, 200, 300];
     public static readonly int[] LossOptions = [1, 2, 5, 10];
     public static readonly int[] VariationOptions = [10, 20, 30, 50];
     public static readonly int[] LongCaptureOptions = [15, 30, 45, 60, 120, 240, 480];
+    public const int DefaultIntervalMinutes = 5;
     public const int DefaultLongCaptureMinutes = 15, MaxLongCaptureMinutes = 480;
-    public const int MinCheckSeconds = 10, MaxCheckSeconds = 600, DefaultCheckSeconds = 30;
+    /// <summary>Quick checks and background checks share this length range.</summary>
+    public const int MinCheckSeconds = 10, MaxCheckSeconds = 60, DefaultCheckSeconds = 30, DefaultBackgroundCheckSeconds = 10;
+    /// <summary>
+    /// Settings format version. 2: symptom targets have defaults and Capture longer defaults to 15 minutes instead of 1 hour.
+    /// 3: background checks default to every 5 minutes instead of 15.
+    /// </summary>
+    public const int CurrentVersion = 3;
     private readonly Localizer _l;
     private readonly CultureInfo _ui;
-    private string _checkSecondsText;
+    private string _checkSecondsText, _backgroundCheckSecondsText;
     private string _planDownloadText = "";
     private string _planUploadText = "";
 
-    public SettingsViewModel(Localizer l, CultureInfo ui, bool backgroundEnabled = true, int intervalMinutes = 15,
+    public SettingsViewModel(Localizer l, CultureInfo ui, bool backgroundEnabled = true, int intervalMinutes = DefaultIntervalMinutes,
         int delayLimitMs = 100, int lossLimitPercent = 2, int variationLimitMs = 30, int checkSeconds = DefaultCheckSeconds, bool measureSpeed = true,
         bool aiReview = true, ConnectionClue.Presentation.Theming.AppTheme theme = ConnectionClue.Presentation.Theming.AppTheme.Dark,
         bool startWithWindows = false, double planDownloadMbps = 0, double planUploadMbps = 0,
         string gamingTarget = "", string videoTarget = "", string callsTarget = "", string disconnectTarget = "",
-        int longCaptureMinutes = DefaultLongCaptureMinutes, bool backgroundOnMobileEnabled = false)
+        int longCaptureMinutes = DefaultLongCaptureMinutes, bool backgroundOnMobileEnabled = false,
+        int backgroundCheckSeconds = DefaultBackgroundCheckSeconds)
     {
         (_l, _ui) = (l, ui);
         Themes = [.. Enum.GetValues<ConnectionClue.Presentation.Theming.AppTheme>().Select(t => new ThemeChoice(t, l.Get($"Theme_{t}", ui)))];
         Theme = Enum.IsDefined(theme) ? theme : ConnectionClue.Presentation.Theming.AppTheme.Dark;
         var f = CultureInfo.CurrentCulture;
-        Intervals = [.. IntervalOptions.Select(m => new Choice(m, l.Plural("Duration_Minutes", m, ui)))];
+        Intervals = [.. IntervalOptions.Select(m => new Choice(m, m % 60 == 0
+            ? l.Plural("Duration_Hours", m / 60, ui) : l.Plural("Duration_Minutes", m, ui)))];
         DelayLimits = [.. DelayOptions.Select(v => new Choice(v, string.Format(f, "{0} ms", v)))];
         LossLimits = [.. LossOptions.Select(v => new Choice(v, (v / 100.0).ToString("P0", f)))];
         VariationLimits = [.. VariationOptions.Select(v => new Choice(v, string.Format(f, "{0} ms", v)))];
         LongCaptureLengths = [.. LongCaptureOptions.Select(m => new Choice(m, m < 60 ? string.Format(f, "{0} min", m) : string.Format(f, "{0} h", m / 60)))];
         BackgroundEnabled = backgroundEnabled;
-        IntervalMinutes = Snap(intervalMinutes, IntervalOptions, 15);
+        IntervalMinutes = Snap(intervalMinutes, IntervalOptions, DefaultIntervalMinutes);
         DelayLimitMs = Snap(delayLimitMs, DelayOptions, 100);
         LossLimitPercent = Snap(lossLimitPercent, LossOptions, 2);
         VariationLimitMs = Snap(variationLimitMs, VariationOptions, 30);
         CheckSeconds = Math.Clamp(checkSeconds, MinCheckSeconds, MaxCheckSeconds);
+        BackgroundCheckSeconds = Math.Clamp(backgroundCheckSeconds, MinCheckSeconds, MaxCheckSeconds);
         MeasureSpeed = measureSpeed;
         AiReview = aiReview;
         StartWithWindows = startWithWindows;
@@ -62,6 +73,7 @@ public sealed partial class SettingsViewModel : ObservableObject
         (GamingTarget, VideoTarget, CallsTarget, DisconnectTarget) =
             (gamingTarget, videoTarget, callsTarget, disconnectTarget);
         _checkSecondsText = CheckSeconds.ToString(f);
+        _backgroundCheckSecondsText = BackgroundCheckSeconds.ToString(f);
         _planDownloadText = PlanText(PlanDownloadMbps, f);
         _planUploadText = PlanText(PlanUploadMbps, f);
         CheckLengthHint = string.Format(f, l.Get("Settings_CheckLengthHint", ui), MinCheckSeconds, MaxCheckSeconds);
@@ -173,13 +185,17 @@ public sealed partial class SettingsViewModel : ObservableObject
         RefreshPlanValidation();
     }
 
-    /// <summary>Download and upload phase after the latency phase of manual checks (never in background checks).</summary>
+    /// <summary>Download and upload phase after the latency phase of quick checks (never in background checks).</summary>
     [ObservableProperty, NotifyPropertyChangedFor(nameof(CheckTotalHint))]
     public partial bool MeasureSpeed { get; set; }
 
-    /// <summary>Length of the delay-measurement phase of manual and background checks; the speed test comes on top.</summary>
+    /// <summary>Length of the delay-measurement phase of quick checks; the speed test comes on top.</summary>
     [ObservableProperty, NotifyPropertyChangedFor(nameof(CheckTotalHint))]
     public partial int CheckSeconds { get; set; }
+
+    /// <summary>Length of each regular background check: delay only, because background checks run no speed or service tests.</summary>
+    [ObservableProperty]
+    public partial int BackgroundCheckSeconds { get; set; }
 
     /// <summary>The speed test's two phases (download, then upload) that follow the delay phase of a manual check.</summary>
     public static int SpeedTestSeconds => (int)(2 * MainViewModel.SpeedPhase.TotalSeconds);
@@ -196,6 +212,18 @@ public sealed partial class SettingsViewModel : ObservableObject
             if (string.IsNullOrWhiteSpace(TargetFor(symptom))) SetTarget(symptom, SymptomServices.DefaultTargetText(symptom));
     }
 
+    /// <summary>Moves settings saved by an older version (see <see cref="CurrentVersion"/>) to the defaults introduced since;
+    /// only values still at an old default change, so a later choice of the user is kept.</summary>
+    public void Upgrade(int savedVersion)
+    {
+        if (savedVersion < 2)
+        {
+            ApplyDefaultTargets();
+            if (LongCaptureMinutes == 60) LongCaptureMinutes = DefaultLongCaptureMinutes;
+        }
+        if (savedVersion < 3 && IntervalMinutes == 15) IntervalMinutes = DefaultIntervalMinutes;
+    }
+
     /// <summary>Text field for <see cref="CheckSeconds"/>; applied only when it parses to a whole number in range.</summary>
     public string CheckSecondsText
     {
@@ -203,16 +231,15 @@ public sealed partial class SettingsViewModel : ObservableObject
         set
         {
             if (!SetProperty(ref _checkSecondsText, value)) return;
-            bool valid = int.TryParse(value.Trim(), NumberStyles.Integer, CultureInfo.CurrentCulture, out int seconds)
-                && seconds is >= MinCheckSeconds and <= MaxCheckSeconds;
-            IsCheckSecondsInvalid = !valid;
-            if (valid) CheckSeconds = seconds;
+            IsCheckSecondsInvalid = !TryCheckSeconds(value, out int seconds);
+            if (!IsCheckSecondsInvalid) CheckSeconds = seconds;
         }
     }
 
     [ObservableProperty]
     public partial bool IsCheckSecondsInvalid { get; set; }
 
+    /// <summary>The allowed range, shared by both length fields.</summary>
     public string CheckLengthHint { get; }
 
     /// <summary>When the field loses focus, show the value in effect again (discarding an invalid entry).</summary>
@@ -222,6 +249,32 @@ public sealed partial class SettingsViewModel : ObservableObject
         OnPropertyChanged(nameof(CheckSecondsText));
         IsCheckSecondsInvalid = false;
     }
+
+    /// <summary>Text field for <see cref="BackgroundCheckSeconds"/>; applied only when it parses to a whole number in range.</summary>
+    public string BackgroundCheckSecondsText
+    {
+        get => _backgroundCheckSecondsText;
+        set
+        {
+            if (!SetProperty(ref _backgroundCheckSecondsText, value)) return;
+            IsBackgroundCheckSecondsInvalid = !TryCheckSeconds(value, out int seconds);
+            if (!IsBackgroundCheckSecondsInvalid) BackgroundCheckSeconds = seconds;
+        }
+    }
+
+    [ObservableProperty]
+    public partial bool IsBackgroundCheckSecondsInvalid { get; set; }
+
+    public void CommitBackgroundCheckSecondsText()
+    {
+        _backgroundCheckSecondsText = BackgroundCheckSeconds.ToString(CultureInfo.CurrentCulture);
+        OnPropertyChanged(nameof(BackgroundCheckSecondsText));
+        IsBackgroundCheckSecondsInvalid = false;
+    }
+
+    private static bool TryCheckSeconds(string text, out int seconds) =>
+        int.TryParse(text.Trim(), NumberStyles.Integer, CultureInfo.CurrentCulture, out seconds)
+        && seconds is >= MinCheckSeconds and <= MaxCheckSeconds;
 
     public IReadOnlyList<Choice> Intervals { get; }
     public IReadOnlyList<Choice> DelayLimits { get; }

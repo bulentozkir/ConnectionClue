@@ -279,4 +279,18 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>La red vuelve a estar conectada. Se iniciará una comprobación única de 10 segundos cuando la aplicación esté lista.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>La red vuelve a estar conectada. Se está ejecutando una comprobación de conexión de 10 segundos sin pruebas de velocidad.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>No se pudo completar la comprobación automática tras la reconexión. Inicie una comprobación rápida manualmente para reintentarlo.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>El problema de conexión continúa</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>El rendimiento sigue por debajo de tus límites</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>Detectado por primera vez: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>Conexión restablecida: no se encontraron problemas</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>Conexión restablecida, pero hay un problema de conexión</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>Conexión restablecida, pero el rendimiento está por debajo de tus límites</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Conexión restablecida: no hay datos suficientes para valorar</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Comprobación tras reconectar ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Duración de la comprobación en segundo plano</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Cuánto tiempo mide el retraso cada comprobación periódica en segundo plano. Las comprobaciones en segundo plano nunca miden la velocidad ni prueban servicios, así que esta es su duración total.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Oculta este aviso. Aparecerá uno nuevo si la conexión se corta o vuelve otra vez.</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} hora</value></data>
+  <data name="Duration_Hours.many" xml:space="preserve"><value>{0} de horas</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} horas</value></data>
 </root>

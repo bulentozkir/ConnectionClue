@@ -276,4 +276,17 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>নেটওয়ার্ক আবার সংযুক্ত হয়েছে। অ্যাপ প্রস্তুত হলে একবার 10 সেকেন্ডের পরীক্ষা শুরু হবে।</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>নেটওয়ার্ক আবার সংযুক্ত হয়েছে। গতির পরীক্ষা ছাড়া একবার 10 সেকেন্ডের সংযোগ পরীক্ষা চলছে।</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>পুনঃসংযোগের পর স্বয়ংক্রিয় পরীক্ষা শেষ করা যায়নি। আবার চেষ্টা করতে নিজে একটি দ্রুত পরীক্ষা চালান।</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>সংযোগের সমস্যা চলছে</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>পারফরম্যান্স এখনও আপনার সীমার নিচে</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>প্রথম দেখা গেছে: {0}।</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>আবার অনলাইন: কোনো সমস্যা পাওয়া যায়নি</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>আবার অনলাইন, কিন্তু সংযোগে সমস্যা আছে</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>আবার অনলাইন, কিন্তু পারফরম্যান্স আপনার সীমার নিচে</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>আবার অনলাইন: বিচার করার মতো যথেষ্ট তথ্য নেই</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>পুনঃসংযোগের পরের পরীক্ষা ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>ব্যাকগ্রাউন্ড পরীক্ষার সময়কাল</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>প্রতিটি নিয়মিত ব্যাকগ্রাউন্ড পরীক্ষা কতক্ষণ বিলম্ব পরিমাপ করে। ব্যাকগ্রাউন্ড পরীক্ষায় কখনও গতি পরীক্ষা বা পরিষেবা পরীক্ষা হয় না, তাই এটাই তার পুরো সময়কাল।</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>এই বিজ্ঞপ্তি লুকান। সংযোগ আবার বিচ্ছিন্ন হলে বা ফিরে এলে নতুন বিজ্ঞপ্তি দেখানো হবে।</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} ঘণ্টা</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} ঘণ্টা</value></data>
 </root>

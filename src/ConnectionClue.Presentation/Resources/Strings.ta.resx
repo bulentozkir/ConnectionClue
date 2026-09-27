@@ -276,4 +276,17 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>பிணையம் மீண்டும் இணைக்கப்பட்டது. பயன்பாடு தயாரானதும் ஒருமுறை 10 வினாடிச் சோதனை தொடங்கும்.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>பிணையம் மீண்டும் இணைக்கப்பட்டது. வேகச் சோதனைகள் இல்லாமல் ஒருமுறை 10 வினாடி இணைப்புச் சோதனை நடைபெறுகிறது.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>மீண்டும் இணைத்தபின் தானியங்கிச் சோதனையை முடிக்க முடியவில்லை. மீண்டும் முயற்சிக்க விரைவுச் சோதனையை கைமுறையாக இயக்கவும்.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>இணைப்புச் சிக்கல் தொடர்கிறது</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>செயல்திறன் இன்னும் உங்கள் வரம்புகளுக்குக் கீழ் உள்ளது</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>முதலில் கண்டறியப்பட்டது: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>மீண்டும் இணையத்தில்: சிக்கல்கள் எதுவும் கண்டறியப்படவில்லை</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>மீண்டும் இணையத்தில், ஆனால் இணைப்பில் சிக்கல் உள்ளது</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>மீண்டும் இணையத்தில், ஆனால் செயல்திறன் உங்கள் வரம்புகளுக்குக் கீழ் உள்ளது</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>மீண்டும் இணையத்தில்: மதிப்பிட போதுமான தரவு இல்லை</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>மீண்டும் இணைந்த பிறகான சோதனை ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>பின்னணி சோதனையின் கால அளவு</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>ஒவ்வொரு வழக்கமான பின்னணி சோதனையும் தாமதத்தை எவ்வளவு நேரம் அளவிடுகிறது என்பது. பின்னணி சோதனைகள் ஒருபோதும் வேகச் சோதனைகளையோ சேவைச் சோதனைகளையோ இயக்காது, எனவே இதுவே அவற்றின் முழு கால அளவு.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>இந்த அறிவிப்பை மறை. இணைப்பு மீண்டும் துண்டிக்கப்பட்டால் அல்லது திரும்பினால் புதிய அறிவிப்பு தோன்றும்.</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} மணிநேரம்</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} மணிநேரம்</value></data>
 </root>

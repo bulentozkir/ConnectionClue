@@ -276,4 +276,17 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>An sake haɗa hanyar sadarwa. Za a fara binciken sakan 10 sau ɗaya idan manhajar ta shirya.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>An sake haɗa hanyar sadarwa. Ana binciken haɗin na sakan 10 sau ɗaya ba tare da gwajin gudu ba.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Ba a iya kammala binciken atomatik bayan sake haɗawa ba. Fara binciken gaggawa da kanka don sake gwadawa.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>Matsalar haɗi tana ci gaba</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>Aiki har yanzu ya gaza iyakokinka</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>An fara gani: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>An dawo kan layi: ba a sami matsala ba</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>An dawo kan layi, amma akwai matsalar haɗi</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>An dawo kan layi, amma aiki ya gaza iyakokinka</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>An dawo kan layi: babu isassun bayanai don yanke hukunci</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Binciken bayan sake haɗawa ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Tsawon gwajin bango</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Tsawon lokacin da kowane gwajin bango na yau da kullum ke auna jinkiri. Gwajin bango ba ya taɓa auna saurin intanet ko gwada ayyuka, don haka wannan shi ne cikakken tsawonsa.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Ɓoye wannan sanarwa. Sabuwar sanarwa za ta bayyana idan haɗin ya sake yankewa ko ya dawo.</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>awa {0}</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>awanni {0}</value></data>
 </root>

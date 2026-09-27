@@ -21,6 +21,7 @@ public partial class MainWindow : Window
         FlowDirection = ui.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         Height = Math.Min(Height, SystemParameters.WorkArea.Height - 40);
         CheckSecondsBox.LostKeyboardFocus += (_, _) => vm.Settings.CommitCheckSecondsText();
+        BackgroundCheckSecondsBox.LostKeyboardFocus += (_, _) => vm.Settings.CommitBackgroundCheckSecondsText();
         PlanDownloadBox.LostKeyboardFocus += (_, _) => vm.Settings.CommitPlanSpeedText();
         PlanUploadBox.LostKeyboardFocus += (_, _) => vm.Settings.CommitPlanSpeedText();
         vm.Announce += (_, a) => Dispatcher.Invoke(() =>

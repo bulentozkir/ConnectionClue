@@ -288,4 +288,21 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>عادت الشبكة للاتصال. سيبدأ فحص لمرة واحدة لمدة 10 ثوانٍ عندما يصبح التطبيق جاهزًا.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>عادت الشبكة للاتصال. يجري فحص اتصال واحد لمدة 10 ثوانٍ دون اختبارات سرعة.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>تعذر إكمال الفحص التلقائي بعد إعادة الاتصال. شغّل فحصًا سريعًا يدويًا للمحاولة مجددًا.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>مشكلة الاتصال مستمرة</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>لا يزال الأداء أقل من الحدود التي حددتها</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>رُصدت لأول مرة: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>عاد الاتصال: لم يتم العثور على مشكلات</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>عاد الاتصال، لكن توجد مشكلة في الاتصال</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>عاد الاتصال، لكن الأداء أقل من الحدود التي حددتها</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>عاد الاتصال: لا توجد بيانات كافية للحكم</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>فحص ما بعد إعادة الاتصال ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>مدة الفحص في الخلفية</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>المدة التي يقيس فيها كل فحص دوري في الخلفية التأخير. لا تتضمن الفحوصات في الخلفية أبدًا اختبار السرعة أو اختبار الخدمات، لذا هذه مدتها الكاملة.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>إخفاء هذا الإشعار. سيظهر إشعار جديد إذا انقطع الاتصال أو عاد مرة أخرى.</value></data>
+  <data name="Duration_Hours.zero" xml:space="preserve"><value>{0} ساعة</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>ساعة واحدة</value></data>
+  <data name="Duration_Hours.two" xml:space="preserve"><value>ساعتان</value></data>
+  <data name="Duration_Hours.few" xml:space="preserve"><value>{0} ساعات</value></data>
+  <data name="Duration_Hours.many" xml:space="preserve"><value>{0} ساعة</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} ساعة</value></data>
 </root>

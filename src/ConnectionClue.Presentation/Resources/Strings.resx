@@ -521,4 +521,17 @@
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Network reconnected. Running one 10-second connectivity check without speed tests.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>The automatic reconnect check could not finish. Run a quick check manually to try again.</value></data>
   <data name="Export_KindReconnect" xml:space="preserve"><value>Reconnect check</value><comment>One-time automatic connectivity check after reconnecting.</comment></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>Connection problem continues</value><comment>Notification title: a background check found the same problem again.</comment></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>Performance still below your limits</value><comment>Notification title: a background check found the same user-set limit exceeded again.</comment></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>First seen at {0}.</value><comment>Starts a repeated problem notification; {0} = local time the problem was first found.</comment></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>Back online: no problems found</value><comment>Notification title after the automatic check that follows a reconnection. Must not claim the network is healthy.</comment></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>Back online, but the connection has a problem</value><comment>Notification title: the automatic check after a reconnection found a problem.</comment></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>Back online, but performance is below your limits</value><comment>Notification title: the automatic check after a reconnection exceeded a user-set limit.</comment></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Back online: not enough data to judge</value><comment>Notification title: the automatic check after a reconnection could not judge the connection.</comment></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Reconnect check ({0}): {1}</value><comment>Notice on every page after the automatic reconnect check; {0} = local time, {1} = result headline.</comment></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Background check length</value><comment>Label for the background check length field.</comment></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>How long each regular background check measures delay. Background checks never run speed tests or service tests, so this is their full length.</value><comment>Help for the background check length field.</comment></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Hide this notice. A new one appears if the connection drops or comes back again.</value><comment>Dismiss button help on the reconnect result notice.</comment></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} hour</value><comment>Plural (CLDR one). {0} = hours.</comment></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} hours</value><comment>Plural (CLDR other). {0} = hours.</comment></data>
 </root>

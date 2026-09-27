@@ -282,4 +282,19 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Подключение к сети восстановлено. Когда приложение будет готово, начнётся однократная проверка на 10 секунд.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Подключение к сети восстановлено. Выполняется однократная проверка соединения на 10 секунд без тестов скорости.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Не удалось завершить автоматическую проверку после восстановления подключения. Запустите быструю проверку вручную, чтобы повторить попытку.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>Проблема с подключением сохраняется</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>Производительность всё ещё ниже ваших порогов</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>Впервые замечено: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>Подключение восстановлено: проблем не обнаружено</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>Подключение восстановлено, но есть проблема с подключением</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>Подключение восстановлено, но производительность ниже ваших порогов</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Подключение восстановлено: недостаточно данных для оценки</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Проверка после переподключения ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Длительность фоновой проверки</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Сколько времени каждая регулярная фоновая проверка измеряет задержку. Фоновые проверки никогда не запускают тест скорости или проверку сервисов, поэтому это их полная длительность.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Скрыть это уведомление. Новое появится, если подключение снова пропадёт или восстановится.</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} час</value></data>
+  <data name="Duration_Hours.few" xml:space="preserve"><value>{0} часа</value></data>
+  <data name="Duration_Hours.many" xml:space="preserve"><value>{0} часов</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} часа</value></data>
 </root>

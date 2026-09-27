@@ -59,11 +59,11 @@ public sealed class SameItem : IMultiValueConverter
 internal sealed record AppSettings(
     string? Language = null,
     bool BackgroundEnabled = true,
-    int IntervalMinutes = 15,
+    int IntervalMinutes = SettingsViewModel.DefaultIntervalMinutes,
     int DelayLimitMs = 100,
     int LossLimitPercent = 2,
     int VariationLimitMs = 30,
-    int CheckSeconds = 30,
+    int CheckSeconds = SettingsViewModel.DefaultCheckSeconds,
     bool MeasureSpeed = true,
     bool AiReview = true,
     ConnectionClue.Presentation.Theming.AppTheme Theme = ConnectionClue.Presentation.Theming.AppTheme.Dark,
@@ -76,10 +76,10 @@ internal sealed record AppSettings(
     string DisconnectTarget = "",
     int LongCaptureMinutes = SettingsViewModel.DefaultLongCaptureMinutes,
     bool BackgroundOnMobileEnabled = false,
+    int BackgroundCheckSeconds = SettingsViewModel.DefaultBackgroundCheckSeconds,
     int SettingsVersion = 0)
 {
-    /// <summary>2: symptom targets have defaults, and Capture longer defaults to 15 minutes instead of 1 hour.</summary>
-    public const int CurrentVersion = 2;
+    public const int CurrentVersion = SettingsViewModel.CurrentVersion;
 }
 
 internal static class AppData

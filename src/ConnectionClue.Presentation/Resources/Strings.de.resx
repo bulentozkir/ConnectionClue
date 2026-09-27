@@ -276,4 +276,17 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Das Netzwerk ist wieder verbunden. Sobald die App bereit ist, startet eine einmalige Prüfung über 10 Sekunden.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Das Netzwerk ist wieder verbunden. Eine einmalige Verbindungsprüfung über 10 Sekunden läuft, ohne Geschwindigkeitstests.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Die automatische Prüfung nach der Wiederverbindung konnte nicht abgeschlossen werden. Starten Sie manuell eine Schnellprüfung.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>Verbindungsproblem besteht weiter</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>Leistung weiterhin unter Ihren Grenzwerten</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>Zuerst festgestellt: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>Wieder online: keine Probleme gefunden</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>Wieder online, aber die Verbindung hat ein Problem</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>Wieder online, aber die Leistung liegt unter Ihren Grenzwerten</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Wieder online: nicht genug Daten für eine Bewertung</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Test nach der Wiederverbindung ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Dauer des Hintergrundtests</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Wie lange jeder regelmäßige Hintergrundtest die Verzögerung misst. Hintergrundtests führen nie Geschwindigkeits- oder Diensttests aus, daher ist dies ihre gesamte Dauer.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Diesen Hinweis ausblenden. Ein neuer erscheint, wenn die Verbindung erneut abbricht oder zurückkehrt.</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} Stunde</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} Stunden</value></data>
 </root>

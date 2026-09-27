@@ -276,4 +276,17 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>నెట్‌వర్క్ మళ్లీ కనెక్ట్ అయింది. యాప్ సిద్ధమైనప్పుడు ఒక్కసారి 10 సెకన్ల తనిఖీ ప్రారంభమవుతుంది.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>నెట్‌వర్క్ మళ్లీ కనెక్ట్ అయింది. వేగ పరీక్షలు లేకుండా ఒక్కసారి 10 సెకన్ల కనెక్షన్ తనిఖీ జరుగుతోంది.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>మళ్లీ కనెక్ట్ అయిన తర్వాత స్వయంచాలక తనిఖీ పూర్తికాలేదు. మళ్లీ ప్రయత్నించడానికి త్వరిత తనిఖీని మాన్యువల్‌గా ప్రారంభించండి.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>కనెక్షన్ సమస్య కొనసాగుతోంది</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>పనితీరు ఇంకా మీ పరిమితుల కంటే తక్కువగా ఉంది</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>మొదట గుర్తించినది: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>మళ్లీ ఆన్‌లైన్: సమస్యలు ఏవీ కనుగొనబడలేదు</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>మళ్లీ ఆన్‌లైన్, కానీ కనెక్షన్‌లో సమస్య ఉంది</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>మళ్లీ ఆన్‌లైన్, కానీ పనితీరు మీ పరిమితుల కంటే తక్కువగా ఉంది</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>మళ్లీ ఆన్‌లైన్: నిర్ణయించడానికి తగినంత డేటా లేదు</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>మళ్లీ కనెక్ట్ అయిన తర్వాతి తనిఖీ ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>బ్యాక్‌గ్రౌండ్ తనిఖీ వ్యవధి</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>ప్రతి క్రమమైన బ్యాక్‌గ్రౌండ్ తనిఖీ ఎంతసేపు ఆలస్యాన్ని కొలుస్తుంది. బ్యాక్‌గ్రౌండ్ తనిఖీలు ఎప్పుడూ వేగ పరీక్షలు లేదా సేవా పరీక్షలు చేయవు, కాబట్టి ఇదే వాటి పూర్తి వ్యవధి.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>ఈ నోటీసును దాచండి. కనెక్షన్ మళ్లీ తెగిపోయినా లేదా తిరిగి వచ్చినా కొత్త నోటీసు కనిపిస్తుంది.</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} గంట</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} గంటలు</value></data>
 </root>

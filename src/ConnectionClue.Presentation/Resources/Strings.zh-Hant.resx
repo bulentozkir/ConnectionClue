@@ -273,4 +273,16 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>網路已重新連線。應用程式準備好後將進行一次 10 秒的檢查。</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>網路已重新連線。正在進行一次 10 秒的連線檢查，不進行速度測試。</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>重新連線後的自動檢查未能完成。請手動執行快速檢查以重試。</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>連線問題仍在持續</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>效能仍低於你設定的限值</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>首次發現於 {0}。</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>已恢復連線：未發現問題</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>已恢復連線，但連線有問題</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>已恢復連線，但效能低於你設定的限值</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>已恢復連線：資料不足，無法判斷</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>重新連線後的檢測（{0}）：{1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>背景檢測時長</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>每次定期背景檢測測量延遲的時長。背景檢測從不執行速度測試或服務測試，因此這就是它的全部時長。</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>隱藏此通知。如果連線再次中斷或恢復，會顯示新的通知。</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} 小時</value></data>
 </root>

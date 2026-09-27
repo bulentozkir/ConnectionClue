@@ -276,4 +276,17 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>नेटवर्क पुन्हा जोडले गेले आहे. अ‍ॅप तयार झाल्यावर एकदा 10 सेकंदांची तपासणी सुरू होईल.</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>नेटवर्क पुन्हा जोडले गेले आहे. वेग चाचणीशिवाय एकदा 10 सेकंदांची जोडणी तपासणी सुरू आहे.</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>पुन्हा जोडल्यानंतर स्वयंचलित तपासणी पूर्ण होऊ शकली नाही. पुन्हा प्रयत्न करण्यासाठी स्वतः जलद तपासणी सुरू करा.</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>कनेक्शनमधील समस्या कायम आहे</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>कार्यक्षमता अजूनही तुमच्या मर्यादांपेक्षा कमी आहे</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>प्रथम आढळले: {0}.</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>पुन्हा ऑनलाइन: कोणतीही समस्या आढळली नाही</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>पुन्हा ऑनलाइन, पण कनेक्शनमध्ये समस्या आहे</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>पुन्हा ऑनलाइन, पण कार्यक्षमता तुमच्या मर्यादांपेक्षा कमी आहे</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>पुन्हा ऑनलाइन: निर्णयासाठी पुरेसा डेटा नाही</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>पुन्हा जोडल्यानंतरची तपासणी ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>पार्श्वभूमी तपासणीचा कालावधी</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>प्रत्येक नियमित पार्श्वभूमी तपासणी किती वेळ विलंब मोजते. पार्श्वभूमीतील तपासणी कधीही वेग चाचणी किंवा सेवा चाचणी करत नाही, त्यामुळे हाच तिचा पूर्ण कालावधी आहे.</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>ही सूचना लपवा. कनेक्शन पुन्हा तुटल्यास किंवा परत आल्यास नवीन सूचना दिसेल.</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} तास</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} तास</value></data>
 </root>

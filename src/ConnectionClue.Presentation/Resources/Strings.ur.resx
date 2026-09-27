@@ -276,4 +276,17 @@
   <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>نیٹ ورک دوبارہ جڑ گیا ہے۔ ایپ تیار ہونے پر ایک بار 10 سیکنڈ کی جانچ شروع ہوگی۔</value></data>
   <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>نیٹ ورک دوبارہ جڑ گیا ہے۔ رفتار کے ٹیسٹ کے بغیر ایک بار 10 سیکنڈ کی کنکشن جانچ جاری ہے۔</value></data>
   <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>دوبارہ جڑنے کے بعد خودکار جانچ مکمل نہیں ہو سکی۔ دوبارہ کوشش کے لیے فوری جانچ دستی طور پر چلائیں۔</value></data>
+  <data name="Alert_ProblemContinues" xml:space="preserve"><value>کنکشن کا مسئلہ برقرار ہے</value></data>
+  <data name="Alert_SlowContinues" xml:space="preserve"><value>کارکردگی اب بھی آپ کی حدود سے کم ہے</value></data>
+  <data name="Alert_FirstSeen" xml:space="preserve"><value>پہلی بار دیکھا گیا: {0}۔</value></data>
+  <data name="Alert_ReconnectedNoIssue" xml:space="preserve"><value>دوبارہ آن لائن: کوئی مسئلہ نہیں ملا</value></data>
+  <data name="Alert_ReconnectedProblem" xml:space="preserve"><value>دوبارہ آن لائن، لیکن کنکشن میں مسئلہ ہے</value></data>
+  <data name="Alert_ReconnectedSlow" xml:space="preserve"><value>دوبارہ آن لائن، لیکن کارکردگی آپ کی حدود سے کم ہے</value></data>
+  <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>دوبارہ آن لائن: فیصلے کے لیے کافی ڈیٹا نہیں ہے</value></data>
+  <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>دوبارہ جڑنے کے بعد کی جانچ ({0}): {1}</value></data>
+  <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>پس منظر کی جانچ کا دورانیہ</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>ہر باقاعدہ پس منظر کی جانچ کتنی دیر تک تاخیر کی پیمائش کرتی ہے۔ پس منظر کی جانچ کبھی رفتار کا ٹیسٹ یا سروس ٹیسٹ نہیں چلاتی، اس لیے یہی اس کا پورا دورانیہ ہے۔</value></data>
+  <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>یہ اطلاع چھپائیں۔ کنکشن دوبارہ ٹوٹنے یا بحال ہونے پر نئی اطلاع دکھائی دے گی۔</value></data>
+  <data name="Duration_Hours.one" xml:space="preserve"><value>{0} گھنٹہ</value></data>
+  <data name="Duration_Hours.other" xml:space="preserve"><value>{0} گھنٹے</value></data>
 </root>
