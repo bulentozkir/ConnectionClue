@@ -1,6 +1,6 @@
 # ConnectionClue help
 
-For ConnectionClue 1.0.6.
+For ConnectionClue 1.0.7.
 
 ConnectionClue checks this PC's path to the internet, explains what it observed in plain sentences with local times, and suggests next steps. It changes a Windows setting only when you ask: the DNS switch, which Windows confirms with an administrator prompt and which you can undo.
 
@@ -9,7 +9,7 @@ ConnectionClue checks this PC's path to the internet, explains what it observed 
 - Under **What's happening?**, choose one of Gaming lag, Buffering video, Choppy calls or Disconnections. It's a radio group: exactly one choice is selected, Tab moves into the group and the arrow keys change the choice. Then select **Quick check**. You can also press F5, use **Quick check** in the taskbar button's right-click menu, or use the notification-area icon's menu.
 - After the check, **Quick check** also measures how long a connection to real services for your choice takes: Xbox network, Steam and Epic Games for gaming lag; Microsoft Teams, Zoom and Google Meet for calls; Netflix, YouTube and Twitch for video; the Windows connectivity check, Cloudflare and Google for disconnections. It is a TCP connection only: no data is sent, and it can't measure a game's UDP traffic, call quality or a video's bitrate.
 - Each choice also tests one extra service, which you can change in **Settings > Network > Optional symptom-specific targets** or in Insights: Riot Games (auth.riotgames.com:443) for gaming lag, Prime Video (www.primevideo.com:443) for video, Discord (discord.com:443) for calls and Microsoft (www.microsoft.com:443) for disconnections. Replace it with your own server, such as your game's, or clear the box to test only the built-in services.
-- **Quick check length** in Settings sets the baseline delay-measurement phase (10–600 seconds, 30 by default). The optional speed test adds about 16 seconds. Service tests and result processing can take additional time, so the setting is not a deadline for the whole operation. Settings shows the estimated measurement time next to the length.
+- **Quick check length** in Settings sets the baseline delay-measurement phase (10–60 seconds, 30 by default). The optional speed test adds about 16 seconds. Service tests and result processing can take additional time, so the setting is not a deadline for the whole operation. Settings shows the estimated measurement time next to the length. A longer length saved by an earlier version is shortened to 60 seconds; use **Capture longer** for longer recordings.
 - The speed test uses up to 300 MB, is skipped on metered connections and never runs in the background.
 - Select **It lagged just now** right after a lag (Ctrl+L during a check). Findings at your lag marks are listed first.
 - **Stop** ends a check early; a short check may not have enough evidence.
@@ -18,16 +18,20 @@ ConnectionClue checks this PC's path to the internet, explains what it observed 
 - With no network at all, ConnectionClue shows a warning and starts no network tests.
 - Only one copy runs. Starting it again brings the running window back.
 
-## Disconnection alerts and automatic recheck
+## Notifications, disconnections and the automatic recheck
 
-New in 1.0.6: connection-loss notifications and a one-time check after reconnection.
+New in 1.0.7: the one-time check after reconnection reports its result, background checks notify every problem they find, background checks have their own length, and intervals range from 3 minutes to 8 hours. Connection-loss notifications and the reconnect check itself arrived in 1.0.6.
 
-- If Windows reports that this PC has lost its network connection, a clear warning appears above every page, including Settings. A desktop notification is sent once per disconnection; Windows Focus or Do not disturb settings may suppress it. New checks do not start while disconnected.
-- When the network reconnects, ConnectionClue waits about two seconds for Windows to settle, then runs **one 10-second connectivity check**. Repeated Windows notifications do not start duplicate checks, and opening the app while already connected does not trigger this recheck.
-- This one-off check runs without download/upload speed tests, symptom-specific service tests or online advice review. It does not change your saved check length or other preferences. Ten seconds is the measurement window; setup, outstanding probes and result processing can take additional time.
+- If Windows reports that this PC has lost its network connection, a clear warning appears above every page, including Settings. A desktop notification is sent once per disconnection, even while the window is open. New checks do not start while disconnected.
+- When the network reconnects, ConnectionClue waits about two seconds for Windows to settle, then runs **one 10-second connectivity check**, whatever your quick or background check lengths are. Repeated Windows notifications do not start duplicate checks, and opening the app while already connected does not trigger this recheck.
+- This one-off check runs without download/upload speed tests, symptom-specific service tests or online advice review. It does not change your saved settings. Ten seconds is the measurement window; setup, outstanding probes and result processing can take additional time.
+- When it finishes, a desktop notification gives the result: **Back online: no problems found**, **Back online, but the connection has a problem**, **Back online, but performance is below your limits**, or **Back online: not enough data to judge**. The notice above every page shows the check time and result (with a warning icon for a problem) until you select **Dismiss** or the next check starts. "No problems found" means nothing exceeded your limits during those seconds; it is not a guarantee that the connection is always fine.
 - If a check, diagnostic or export is busy, the automatic recheck waits. A new disconnection cancels a queued or running automatic recheck, and reconnecting arms one new attempt. A manual capture is not interrupted, so it can continue recording the drop. Exiting the app cancels pending rechecks.
 - This one-time reconnect check is separate from regular background checks and also applies on mobile/metered networks. It does not enable recurring mobile checks or speed tests; those settings remain unchanged.
 - If the automatic attempt cannot finish, the app shows an error and lets you try a quick check manually instead of retrying repeatedly.
+- Every background check that finds a connection problem, or performance below your limits, sends a notification. When the same problem is still there, the title says it continues and the text says when it was first seen. The first background check without problems afterwards sends one **Back to normal** notification. Checks that can't conclude never notify.
+- Notifications from automatic checks and disconnections appear even while the window is open. The result of a check you started notifies only while the window is in the background, for example when a longer capture ends while you use another app; the same problem is repeated at most hourly.
+- After the first notification, the notification-area icon stays for the rest of the session so that Windows keeps the notification in its notification center. Windows Focus or Do not disturb settings may hold banners back.
 
 ## Why some charts continue past the check length
 
@@ -63,7 +67,9 @@ Each check ends with findings based on the evidence it collected. Times are this
 
 ## Background checks and mobile networks
 
-- Background checks are on by default on Wi-Fi and Ethernet. They run at the interval you choose (15 minutes by default) while ConnectionClue is open, including from the notification area, and never run a speed test.
+- Background checks are on by default on Wi-Fi and Ethernet. They run at the interval you choose under **Check every** (3, 5, 10, 15, 20, 30 or 45 minutes, or 1 hour, 90 minutes, or 2, 3, 4, 6 or 8 hours; 5 minutes by default) while ConnectionClue is open, including from the notification area.
+- Each background check measures delay for the **Background check length** (10–60 seconds, 10 by default). It is separate from **Quick check length**, and background checks never run a speed test or service tests, so it is their whole measurement time. A short check uses little data; a longer one gives more evidence per check.
+- If your settings were saved by an earlier version with the old 15-minute default, the interval moves to the new 5-minute default once. An interval you chose yourself is kept.
 - On mobile networks, background checks are off by default. Mobile networks include cellular connections and connections Windows marks as metered, such as phone hotspots. Turn on **Check regularly on mobile networks** in Settings to allow them. When you move back to Wi-Fi or Ethernet, scheduled checks resume automatically. Checks you start yourself always run.
 - To catch problems that only happen at certain times, leave ConnectionClue running in the notification area for days. It keeps 30 days of check summaries; the time between checks is not observed.
 
@@ -86,7 +92,7 @@ Each check ends with findings based on the evidence it collected. Times are this
 
 ## Settings, shortcuts and accessibility
 
-- Settings uses three compact tabs rather than one long page: **Checks** for quick checks and background scheduling; **Network** for alert limits, plan speeds and service targets; **Preferences** for appearance, language, online advice review and history. Normal window sizes fit without scrolling; scrolling remains available when enlarged text needs more room.
+- Settings uses three compact tabs rather than one long page: **Checks** for quick check length and speed test, and background scheduling and length; **Network** for alert limits, plan speeds and service targets; **Preferences** for appearance, language, online advice review and history. Normal window sizes fit without scrolling; scrolling remains available when enlarged text needs more room.
 - Themes: Dark (default), Light, System, High Contrast Dark and High Contrast Light. Windows High Contrast always takes priority.
 - Colours keep one meaning everywhere. In the default Dark theme, headings are gold, labels that name a setting or field are lavender, and links are cyan and underlined. A filled blue button starts a check or test, an outlined teal button runs a tool, an amber button with a shield changes a Windows setting after an administrator prompt, and a pink button marks a lag. An unavailable button is grey with a dashed outline; hover over it or focus it to see why. Every button also has an icon and a label, so colour is never the only cue.
 - Keyboard: F5 runs a quick check, Ctrl+L marks a lag, Tab and Shift+Tab move between controls, and Space or Enter activates them. Every control has a screen-reader name and help text, results are announced as they arrive, and status is shown with icons and words, never colour alone. Hover or focus a control for a tooltip.

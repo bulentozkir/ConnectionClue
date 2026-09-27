@@ -18,10 +18,10 @@
   bundle; the Store re-signs it.
 
 .EXAMPLE
-  pwsh tools/build-release.ps1 -Version 1.0.6
+  pwsh tools/build-release.ps1 -Version 1.0.7
 #>
 param(
-    [string]$Version = '1.0.6',
+    [string]$Version = '1.0.7',
     [string]$IdentityName = 'ConnectionClue',
     [string]$Publisher = 'CN=ConnectionClue Test',
     [string]$PublisherDisplayName = 'ConnectionClue',

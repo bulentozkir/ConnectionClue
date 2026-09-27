@@ -7,12 +7,13 @@ ConnectionClue is a Windows desktop tool for investigating connection problems w
 ## Features
 
 - Quick and repeated checks for connectivity and latency, with an explicit warning and no new checks starting when Windows reports no connection. One copy runs at a time; starting it again brings the running window back.
-- A disconnection warning is visible on every page and produces one desktop notification per episode. After reconnecting, one 10-second connectivity-only check runs once the app is idle, without speed tests, extra service probes or online advice review; saved recurring-check settings are unchanged.
+- A disconnection warning is visible on every page and produces one desktop notification per episode. After reconnecting, one 10-second connectivity-only check runs once the app is idle, without speed tests, extra service probes or online advice review; a notification and an all-page notice report its result (no problems found, a problem, performance below the limits, or not enough data). Saved recurring-check settings are unchanged.
+- Background checks notify every result with a connection problem or performance below the limits, saying when a continuing problem was first seen, and report recovery once. Notifications from automatic checks appear even while the window is open; results of checks the user started notify only when the window is in the background.
 - Precise findings from the spec's verdict rules (R01–R05, R07–R11) in plain sentences with local times: link drops ("Wi-Fi link dropped at 21:04:12"), DNS failing while direct connections work, whether delay starts before or beyond the router, secure-web failures by category, and "can't conclude" with what's missing. R06 needs a second independent test service.
 - Real services per "What's happening?" choice, tested after each quick check: game platforms, Teams/Zoom/Meet relays, streaming services, or connectivity checks, plus an optional user host:port (TCP connect time only).
-- Scheduled background checks are enabled by default on Wi-Fi and Ethernet, run at the configured interval (15 minutes by default) only while the app is running, and can be disabled in Settings. On mobile networks (cellular and Windows-metered connections such as phone hotspots) they are off by default behind a separate opt-in, and resume automatically on Wi-Fi or Ethernet.
+- Scheduled background checks are enabled by default on Wi-Fi and Ethernet, run at the configured interval (3 minutes to 8 hours, 5 minutes by default) for the configured background check length (10–60 seconds, 10 by default) only while the app is running, and can be disabled in Settings. On mobile networks (cellular and Windows-metered connections such as phone hotspots) they are off by default behind a separate opt-in, and resume automatically on Wi-Fi or Ethernet.
 - Lag-event markers that correlate a reported symptom with measurements; findings at a marker are listed first.
-- Two ways to check, separated on screen: Quick check, or Capture longer for 15, 30 or 45 minutes or 1, 2, 4 or 8 hours (15 minutes by default). Settings shows how long a quick check really takes with the speed test.
+- Two ways to check, separated on screen: Quick check (10–60 seconds of baseline measurement, 30 by default), or Capture longer for 15, 30 or 45 minutes or 1, 2, 4 or 8 hours (15 minutes by default). Settings shows how long a quick check really takes with the speed test.
 - Export (PDF) and Export (MHTML) after a quick check or longer capture: a multi-page PDF through Microsoft Print to PDF, or an offline single-file web archive with embedded PNG visuals. Both contain check results and measurement tables, with counted sampling limits for long captures.
 - Each symptom's extra service starts with a default (Riot Games, Prime Video, Discord, Microsoft) that users can replace or clear; Insights history can be cleared from Settings.
 - Download/upload and loaded-latency measurement is enabled by default for user-started checks, can be disabled in Settings, uses up to 300 MB, never runs in the background, and is skipped on metered connections. Bufferbloat is graded A–F with router SQM/QoS steps.
@@ -58,10 +59,10 @@ The nine requested PNGs are written to `logos\`: BoxArt 1080×1080; Logo 44×44,
 Build the x64 and ARM64 MSI installers and combined MSIX bundle with:
 
 ```powershell
-pwsh tools/build-release.ps1 -Version 1.0.6
+pwsh tools/build-release.ps1 -Version 1.0.7
 ```
 
-Packages are written to `releases\1.0.6\`, with winget manifests under `releases\1.0.6\winget\`. Publish the GitHub release `v1.0.6` with the MSI files before submitting the manifests to microsoft/winget-pkgs, and set `-WingetLicense` to the project's license. By default, the script uses a self-signed test certificate; these packages are not production-signed and require that certificate to be trusted before installation. For distribution, use an approved code-signing certificate and the correct Microsoft Store package identity. See the developer handoff for signing and release-validation requirements.
+Packages are written to `releases\1.0.7\`, with winget manifests under `releases\1.0.7\winget\`. Publish the GitHub release `v1.0.7` with the MSI files before submitting the manifests to microsoft/winget-pkgs, and set `-WingetLicense` to the project's license. By default, the script uses a self-signed test certificate; these packages are not production-signed and require that certificate to be trusted before installation. For distribution, use an approved code-signing certificate and the correct Microsoft Store package identity. See the developer handoff for signing and release-validation requirements.
 
 The MSI is per-machine and requires Windows Installer elevation; the installed app itself runs as a standard user. MSIX startup is opt-in and managed by Windows.
 

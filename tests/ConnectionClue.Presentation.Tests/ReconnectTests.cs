@@ -19,9 +19,10 @@ public sealed class ReconnectTests : IDisposable
     private readonly SpyServices _services = new();
     private readonly SpyReviewer _reviewer = new();
     private readonly List<Alert> _alerts = [];
-    private readonly SettingsViewModel _settings = new(Localizer.Default, En, backgroundEnabled: false, checkSeconds: 600);
+    private readonly SettingsViewModel _settings = new(Localizer.Default, En, backgroundEnabled: false, checkSeconds: 60);
     private readonly MainViewModel _vm;
     private bool _connected = true;
+    private double _internetMs = 20;
     private int _starts, _active, _maxActive;
     private Exception? _startFailure;
 
@@ -32,7 +33,7 @@ public sealed class ReconnectTests : IDisposable
             _starts++;
             if (_startFailure is { } failure) throw failure;
             _maxActive = Math.Max(_maxActive, ++_active);
-            return Task.FromResult(new PreviewProbes(new Probe(3), new Probe(20), new Probe(15), new Probe(60),
+            return Task.FromResult(new PreviewProbes(new Probe(3), new Probe(_internetMs), new Probe(15), new Probe(60),
                 new CheckContext(ConnectionMedium.WiFi), _speed,
                 Task.FromResult(new SystemFacts(new AdapterFacts(ConnectionMedium.WiFi, 400, SignalBars: 1))),
                 Monitors: new Lifetime(() => _active--)));
@@ -101,15 +102,79 @@ public sealed class ReconnectTests : IDisposable
         Assert.Equal(0, _services.Calls);
         Assert.Equal(0, _reviewer.Calls);
         Assert.NotEmpty(_vm.BestPractices); // Advice exists, but no online review is requested.
-        Assert.Empty(_vm.ConnectionStatus);
-        Assert.Equal(600, _settings.CheckSeconds);
+        Assert.Equal(60, _settings.CheckSeconds);
         Assert.True(_settings.MeasureSpeed);
         Assert.True(_settings.AiReview);
         Assert.False(_settings.BackgroundEnabled);
-        Assert.Equal(15, _settings.IntervalMinutes);
+        Assert.Equal(5, _settings.IntervalMinutes);
         Connected(true);
         await Tick(3600);
         Assert.Equal(1, _starts);
+    }
+
+    [Fact]
+    public async Task Reconnect_result_is_notified_and_shown_on_every_page_until_dismissed()
+    {
+        _vm.Page = AppPage.Settings;
+        Connected(false);
+        Connected(true);
+        await Finish(_vm.ReconnectCheckTask);
+        var result = Assert.Single(_alerts, a => a.Kind == AlertKind.Reconnected);
+        Assert.Equal("Back online: no problems found", result.Title);
+        Assert.True(result.Automatic); // Shown even while the window is active.
+        Assert.False(result.Warning);
+        Assert.Matches(@"^Reconnect check \(.+\): No problems found\.$", _vm.ConnectionStatus);
+        Assert.False(_vm.IsConnectionNoticeWarning);
+        Assert.Equal(AppPage.Settings, _vm.Page);
+        Assert.True(_vm.DismissConnectionStatusCommand.CanExecute(null));
+        _vm.DismissConnectionStatusCommand.Execute(null);
+        Assert.Empty(_vm.ConnectionStatus);
+        Assert.False(_vm.DismissConnectionStatusCommand.CanExecute(null));
+    }
+
+    [Fact]
+    public async Task Reconnect_problem_is_a_warning_and_the_next_check_clears_the_notice()
+    {
+        _internetMs = 400;
+        Connected(false);
+        Assert.False(_vm.CanDismissConnectionStatus); // The offline notice stays until the network returns.
+        Connected(true);
+        await Finish(_vm.ReconnectCheckTask);
+        var result = Assert.Single(_alerts, a => a.Kind == AlertKind.Reconnected);
+        Assert.Equal("Back online, but performance is below your limits", result.Title);
+        Assert.True(result.Warning);
+        Assert.Matches(@"^Reconnect check \(.+\): Performance below your limits$", _vm.ConnectionStatus);
+        Assert.True(_vm.IsConnectionNoticeWarning);
+
+        var next = _vm.RunCheckAsync(false);
+        Assert.Empty(_vm.ConnectionStatus);
+        await Finish(next);
+        var continues = Assert.Single(_alerts, a => a.Kind == AlertKind.Slow);
+        Assert.Equal("Performance still below your limits", continues.Title);
+        Assert.StartsWith("First seen at ", continues.Body, StringComparison.Ordinal);
+        Assert.True(continues.Automatic);
+    }
+
+    [Fact]
+    public async Task Background_checks_use_their_own_length_and_notify_every_unhealthy_result()
+    {
+        _settings.BackgroundCheckSeconds = 25;
+        _internetMs = 400;
+        await Finish(_vm.RunCheckAsync(false));
+        Assert.Equal(25, _vm.ChartSeconds);
+        var first = Assert.Single(_alerts);
+        Assert.Equal((AlertKind.Slow, "Performance below your limits", true, true),
+            (first.Kind, first.Title, first.Warning, first.Automatic));
+        await Tick(300);
+        await Finish(_vm.RunCheckAsync(false));
+        Assert.Equal("Performance still below your limits", _alerts[^1].Title);
+
+        _internetMs = 20;
+        await Finish(_vm.RunCheckAsync(false));
+        Assert.Equal((AlertKind.Recovered, false), (_alerts[^1].Kind, _alerts[^1].Warning));
+        await Finish(_vm.RunCheckAsync(false));
+        Assert.Equal(3, _alerts.Count); // Recovery is reported once.
+        Assert.Empty(_vm.ConnectionStatus); // Background results never use the connection notice.
     }
 
     [Fact]
@@ -136,7 +201,7 @@ public sealed class ReconnectTests : IDisposable
         await Finish(manual);
         await Finish(_vm.ReconnectCheckTask);
         Assert.Equal(2, _starts); // One manual check, then the single queued automatic check.
-        Assert.Empty(_vm.ConnectionStatus);
+        Assert.StartsWith("Reconnect check (", _vm.ConnectionStatus, StringComparison.Ordinal);
     }
 
     [Fact]

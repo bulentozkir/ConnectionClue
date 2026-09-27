@@ -12,7 +12,7 @@ Workflow: **symptom → capture → finding → one change → compare → expor
 
 - **Symptoms:** gaming lag, buffering video, choppy calls, disconnections. Ask whether the problem happens on this PC. If it happens on another device, state that measurements cover this PC only, and advise capturing from the same connection type and location.
 - **v1 includes:**
-  - Configurable 10–600 s quick/repeating checks (30 s default); optional 1/2/4/8-hour foreground captures. Multi-day monitoring uses sampled background summaries (≤30 days); gaps are unobserved.
+  - Configurable 10–60 s quick checks (30 s default) and 10–60 s background checks (10 s default, every 3 min–8 h, 5 min default); optional 15/30/45-minute and 1/2/4/8-hour foreground captures. Multi-day monitoring uses sampled background summaries (≤30 days); gaps are unobserved.
   - Link, route and Wi-Fi events; ICMP, TCP, system DNS and small HTTPS probes.
   - Marker ("It lagged just now") and a timeline with gaps and markers.
   - Evidence cards, each with one next action.
@@ -41,7 +41,7 @@ Workflow: **symptom → capture → finding → one change → compare → expor
 
 ## 3. Target architecture and project layout
 
-The layout below is the intended decomposition, not a current-file inventory. The 1.0.6 preview stores settings, the last recommendation result, review verdicts, and sampled history in atomic per-user JSON files; `schema.sql` is validated separately and is not yet the runtime evidence store. See §19 for the implemented project map.
+The layout below is the intended decomposition, not a current-file inventory. The 1.0.7 preview stores settings, the last recommendation result, review verdicts, and sampled history in atomic per-user JSON files; `schema.sql` is validated separately and is not yet the runtime evidence store. See §19 for the implemented project map.
 
 ```text
 ConnectionClue.slnx            dotnet-buildable projects (packaging excluded, §17)
@@ -86,12 +86,17 @@ Windows 11 is the only platform: every build, test and CI job runs on Windows 11
     - Wi-Fi or a cable without internet still counts as connected, because the check then shows where the path breaks.
     - A check already running continues, because a drop is evidence for "Disconnections".
   - Can be turned off in Settings or from the tray menu; an explicit saved choice is kept. Because network activity starts without a click, it is disclosed on the Store listing and privacy page, and in a notification the first time the window hides to the tray.
-  - While the app runs, it checks every 10/15/30/60/120 min (default 15). Intervals are start to start, and the 10-minute floor caps endpoint traffic.
+  - While the app runs, it checks every 3, 5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240, 360 or 480 min (default 5; labels show whole hours as hours). Intervals are start to start; the 3-minute floor (`RecurringChecks.MinimumInterval`) caps endpoint traffic. Each background check measures for its own length (`BackgroundCheckSeconds`, 10–60 s, default 10), independent of the quick check length.
   - Recurring checks are enabled by default on Wi-Fi and Ethernet. Cellular/WWAN checks are off by default and require the separate saved "Check regularly on mobile networks" opt-in. Manual checks remain available; background checks never run a speed test. Startup checks follow the same cellular opt-in.
   -   There is no Windows service or Task Scheduler job. Start-at-logon is optional and off by default: MSIX uses a disabled Windows startup task that the user may enable; MSI uses a per-user Run entry only after opt-in. When not launched at logon, exiting stops the app and background checks.
   - When enabled, minimizing or closing hides the window to the notification area. The tray menu has Open, Quick check, a background toggle and Exit.
   - Manual and background checks share one engine and never overlap. A tick during a check runs at most once afterwards (`RecurringChecks`).
-  - Alerts are Windows notifications and respect Focus/Do not disturb. They appear only while the window is not in the foreground, and only on change (`AlertPolicy`): a new or different problem, an hourly reminder while it persists, and one "Back to normal". Inconclusive checks never alert. A notification names the issue and "What to try: …" (the top actions), then "Worth checking: …" (the top Important best practice). Best-practice advice alone never alerts. Clicking it, or reopening the window, shows the Recommendations page.
+  - Alerts are Windows notifications (tray balloon → toast) and respect Focus/Do not disturb. `AlertPolicy.Evaluate(report, AlertTrigger)` decides by trigger:
+    - **Background:** every Unhealthy or Degraded check alerts. A repeat of the active issue signature (level + issue kinds) is titled "… continues"/"still …" with "First seen at HH:mm"; the first NoIssue afterwards sends one "Back to normal".
+    - **Reconnect:** always reports its result (`AlertKind.Reconnected`, titled by level, including Inconclusive) and updates the active issue, so the next background check can say it continues.
+    - **Manual:** on change only: a new or different problem, an hourly reminder while it persists, and one "Back to normal".
+    - Inconclusive checks never clear an active problem and alert only from the reconnect check. `Alert.Automatic` (disconnection, background, reconnect; not after the user pressed Stop) shows the notification even while the window is active; manual results notify only while it is not. The first notification keeps the tray icon visible for the session, because removing the icon removes its notifications.
+    - A notification names the issue and "What to try: …" (the top actions), then "Worth checking: …" (the top Important best practice). Best-practice advice alone never alerts. Clicking it, or reopening the window, shows the Recommendations page.
   - The tray icon shows the latest result as a badge whose shape differs as well as its colour (! = below your limits, × = problem). The tooltip gives the time and result.
 - **Exit order:** stop scheduling → cancel probes → flush writes (≤5 s) → release callbacks, hotkey, tray and connections. Never unregister a native notification (CancelMibChangeNotify2, WlanCloseHandle, power) on its own callback thread.
 
@@ -150,7 +155,7 @@ Preparing → Capturing ⇄ Suspended → Stopping → terminal state:
 | System DNS | 2 names in independent zones × A/AAAA | 15 s | 3 s |
 | HTTPS | 2 endpoints, independent operators | 15 s | 5 s |
 
-Preview quick check (manual and background): the length is set in Settings, 10–600 s, default 30. Cadence scales so every check has enough samples: router ICMP every 1 s, internet TCP every clamp(length/30, 1, 5) s, DNS and HTTPS alternating every clamp(length/5, 5, 15) s.
+Preview checks: quick checks 10–60 s (default 30), background checks their own 10–60 s (default 10), the reconnect check 10 s, Capture longer up to 8 h. Cadence scales so every check has enough samples: router ICMP every 1 s (every 5 s during Capture longer), internet TCP every clamp(length/30, 1, 5) s, DNS and HTTPS alternating every clamp(length/5, 5, 15) s.
 
 - **Families:** probe a family only while it has a default route in the segment. The gateway is ICMP-only; a silent gateway means limited visibility (R02).
 - **Budgets:**
@@ -234,7 +239,7 @@ Preview quick check (manual and background): the length is set in Settings, 10�
 - **Blast radius:** resolved and fallback addresses must fall inside the operator's pinned prefixes; otherwise the target is disabled (SessionCapability Target). A hijacked zone therefore can't aim installs at third parties, and per-install rates stay capped.
 - **HTTPS endpoints:** small static objects on two independent CDNs, edge-cached with a long TTL and served downstream with `Cache-Control: no-store`, so proxies can't answer on the upstream path's behalf. No server code. CDN logging minimized and disclosed.
 - **ICMP/TCP targets:** the same operators' edge addresses, under documented terms. Fallback plan: two minimal responders on independent hosts; failing that, pause the release. Resolved at session start, outside timing.
-- **Cost** (docs/endpoint-approval.md): ~8 HTTPS requests/min per active capture, each a tiny static response. Background checks add ~5 HTTPS requests per 30-second check (up to ~40 for a 600-second check). At the 15-minute default that is ~480/day per install while the app is open. That is the default for every install, so budget for it (worst case: 600-second checks every 10 minutes ≈ 5,800/day). Recurring cost against one-time revenue is accepted, capped by cadence, and reviewed against install counts.
+- **Cost** (docs/endpoint-approval.md): ~8 HTTPS requests/min per active capture, each a tiny static response. Background checks add ~2 HTTPS requests per 10-second check (~5 for 30–60 s). At the default 10-second check every 5 minutes that is ~580/day per install while the app is open; each reconnect check adds ~2. That is the default for every install, so budget for it (worst case: 60-second checks every 3 minutes ≈ 2,400/day). Recurring cost against one-time revenue is accepted, capped by cadence, and reviewed against install counts.
 - **Manifest entry:** id, operator id, purpose, names, pinned prefixes, fallback addresses, families, ports/paths, protocols, response contract, expected TLS issuers, payload cap, cadence/timeouts/allowed rate, usage-rights reference, review date, version. No secrets.
   - Shipped in the package and snapshotted per session by content hash. No remote config.
 - **Validation (build and load):** reject plaintext external requests, executable actions, credentials, and external targets in loopback, link-local, private or CGNAT ranges. Release builds fail on a lab manifest.
@@ -524,7 +529,7 @@ Preview mapping (`NextActionPlanner`). The most severe issue comes first, local 
   - After a manual check with issues, the check page shows the findings and Recommendations button, without the long advisory text; it does not navigate away.
 - **Compare:** baseline, action (Completed/Skipped/Failed/NotPossible), follow-up, cards.
 - **History:** delete and export.
-- **Settings:** three compact two-column tabs: Checks (quick check length, speed test, background interval, mobile override and Windows startup); Network (alert limits, plan speeds and symptom targets); Preferences (theme, language, keyboard shortcuts, online advice review and history clearing). The update-check section is removed. The 18 editable preferences retain their original bindings; long target explanations move to field tooltips and UI Automation help, while a short summary stays visible. Check timing uses the full card width. Normal layouts need no scrolling; per-tab scrolling remains an accessibility fallback for enlarged text. Symptom targets start with a default service per symptom (Riot Games, Prime Video, Discord, Microsoft); `AppSettings.SettingsVersion` fills them only in files written before defaults existed, so a cleared box stays empty. Still to come: capabilities/privacy, accessibility (announcement verbosity, marker allowance), endpoints, retention, hotkey, data path.
+- **Settings:** three compact two-column tabs: Checks (quick check length, speed test, background interval, background check length, mobile override and Windows startup); Network (alert limits, plan speeds and symptom targets); Preferences (theme, language, keyboard shortcuts, online advice review and history clearing). The update-check section is removed. The 19 editable preferences keep one binding each; long target explanations move to field tooltips and UI Automation help, while a short summary stays visible. Check timing uses the full card width. Normal layouts need no scrolling; per-tab scrolling remains an accessibility fallback for enlarged text. Symptom targets start with a default service per symptom (Riot Games, Prime Video, Discord, Microsoft). `SettingsViewModel.Upgrade` migrates by `AppSettings.SettingsVersion`: below 2 it fills empty targets (so a later cleared box stays empty) and moves Capture longer from 60 to 15 min; below 3 it moves the old 15-minute interval default to 5. Saved lengths outside 10–60 s are clamped. Still to come: capabilities/privacy, accessibility (announcement verbosity, marker allowance), endpoints, retention, hotkey, data path.
 - **Insights:** connection history and the daily summary first, then services for the chosen symptom, the network tools (route hops, DNS comparison and switch, Wi-Fi channels), the report for your provider and the recent checks.
 
 **Themes (Settings > Appearance):** Dark (default), Light, High contrast dark, High contrast light, and Use Windows setting. A theme applies at once, without a restart. The design tokens live in `Themes.cs`; each has one meaning everywhere and is contrast-tested in every theme (`ThemeContrastTests`).
@@ -538,6 +543,7 @@ Preview mapping (`NextActionPlanner`). The most severe issue comes first, local 
 **Behaviour:**
 
 - Local disconnection produces an all-page notice and one `Disconnected` desktop alert per episode. The next disconnected-to-connected transition queues one 10-second `CheckKind.Reconnect` check after a two-second settling delay. Duplicate connected events do not restart it. The queue waits on ongoing measurements/result processing, diagnostics and exports; another disconnection or disposal cancels it. The reconnect run skips speed tests, symptom services and online review, does not navigate away from the current page, and does not alter saved settings. It is independent of recurring scheduling, including on mobile/metered links.
+- When the reconnect check completes, a `Reconnected` notification reports its level, and the all-page notice shows "Reconnect check (time): headline" (warning border and icon for Unhealthy/Degraded, via `IsConnectionNoticeWarning`) until **Dismiss** (`DismissConnectionStatusCommand`) or the next check starts. The notice never says "healthy": NoIssue is "No problems found".
 - Every async command has busy, cancel and error states.
 - Distinguish NotAvailable from Failed, and NoIssueObserved from "healthy".
 - **Marker:** button, tray, and a RegisterHotKey shortcut registered only during capture (conflicts reported; can be remapped to any key, including a single F-key, or disabled).
@@ -648,7 +654,7 @@ Target: WCAG 2.2 AA, applied to desktop software through EN 301 549 clause 11. I
 
 ## 16. Testing and acceptance
 
-**Scheduling and alerts:** `RecurringChecks` and `AlertPolicy` are tested with FakeTimeProvider (interval, run-now, disable, minimum interval, change/reminder/recovery), and `HealthEvaluator` with synthetic series (outage localization, silent router, loss, delay, variation, user limits).
+**Scheduling and alerts:** `RecurringChecks` and `AlertPolicy` are tested with FakeTimeProvider (interval, run-now, disable, minimum interval, manual change/reminder/recovery, per-check background alerts with first-seen time, reconnect results at every level), view-model tests cover reconnect and background notifications, notice warning/dismissal and background check length, and `HealthEvaluator` is tested with synthetic series (outage localization, silent router, loss, delay, variation, user limits).
 
 **Replay tests:**
 
@@ -749,7 +755,7 @@ Target: WCAG 2.2 AA, applied to desktop software through EN 301 549 clause 11. I
 dotnet build ConnectionClue.slnx -c Release
 dotnet test --solution ConnectionClue.slnx -c Release
 pwsh tools/generate-icons.ps1
-pwsh tools/build-release.ps1 -Version 1.0.6  # → releases/1.0.6/ (git-ignored; publish via GitHub Releases)
+pwsh tools/build-release.ps1 -Version 1.0.7  # → releases/1.0.7/ (git-ignored; publish via GitHub Releases)
 ```
 
 - Run `python tools/validate_schema.py` for the SQLite schema checks. WiX 5 is pinned in `dotnet-tools.json` and restored by the release script.
@@ -765,17 +771,16 @@ pwsh tools/build-release.ps1 -Version 1.0.6  # → releases/1.0.6/ (git-ignored;
 - **Signing:**
   - Without `-CertificateThumbprint`, the script signs with a self-signed test certificate `CN=ConnectionClue Test`. It creates it once in `Cert:\CurrentUser\My` and exports the public `ConnectionClue-test-signing.cer`. Test-signed packages install only where that certificate is trusted, in Trusted People (LocalMachine) for MSIX.
   - **Release:** use a real code-signing certificate for the MSI. For the Store, pass the Partner Center identity (`-IdentityName`, `-Publisher`, `-PublisherDisplayName`) and upload the bundle; the Store re-signs it.
-- **Verification:** 1.0.6 was built with the release pipeline; all 445 tests passed in Release configuration.
-  - Compact Settings was rendered in all 20 UI languages: 63 tab/window layouts fit without scrolling (960×740 across languages, plus 900×600 in English). History confirmation also fits at 900×600 in the four palettes; actual tab-header contrast meets 4.5:1, or 7:1 in high-contrast themes.
-  - All three packages contain signatures matching the bundled self-signed test certificate. Windows trust was not changed; production signing and clean-install validation remain release requirements.
-  - Bundle holds x64 and arm64 with identity 1.0.6.0; makeappx validated the manifests. Both MSI databases report ProductVersion 1.0.6 and the expected architecture.
-  - Read-only WiX extraction of the x64 MSI produced 414 payload files, with executable version 1.0.6.0. Its embedded Help matches `helpme.md` byte-for-byte. The compiled window contains the all-page connection notice, and the packaged view model declares the reconnect-check duration as 10 seconds. English plus 19 satellite resource assemblies were verified. Windows Installer was busy, so verification used WiX extraction without interrupting that installation. No app was installed and no user settings were modified.
-  - The extracted compiled XAML contains all three Settings tabs and the contrast-safe tab-header template, and contains no `CheckForUpdatesCommand` binding.
+- **Verification:** 1.0.7 was built with the release pipeline; all 455 tests passed in Release configuration.
+  - Settings, including the new background check length, was rendered in all 20 UI languages: 63 tab/window layouts fit without scrolling (960×740 across languages, plus 900×600 in English). The Checks tab still fits at 900×600 while the offline notice or the reconnect result notice with its Dismiss button is shown.
+  - All three packages are signed by the bundled self-signed test certificate (thumbprints match). Windows trust was not changed; production signing and clean-install validation remain release requirements.
+  - Bundle holds x64 and arm64 with identity 1.0.7.0 (422 and 421 files, executable 1.0.7.0). Both MSI databases report ProductVersion 1.0.7, the expected architecture (x64, Arm64) and the fixed UpgradeCode.
+  - Read-only WiX extraction of the x64 MSI produced 414 payload files; executable, app and Presentation assemblies are 1.0.7.0. Its embedded Help matches `helpme.md` byte-for-byte. The compiled window contains the background check length field and the notice's warning state and Dismiss command; the neutral resources contain the new alert, notice, setting and hour-plural strings, and all 19 satellites contain the new alert titles. No app was installed or launched, and no user settings were read or modified.
   - winget validated the generated manifests; MSI hashes and product codes match them. Every entry in `SHA256SUMS.txt` matches the release files.
   - ICE validation (`wix msi validate`) needs an elevated shell, so it is a release-checklist step.
 - **Size:** bundle 149 MB, but the Store delivers only the matching architecture (~74 MB). MSIs are 55–60 MB. The biggest cut would be replacing WinForms `NotifyIcon` with a Shell_NotifyIcon wrapper, which removes the WinForms runtime.
 - **Record** the verified packaging and signing commands in docs/release-checklist.md.
-- **Status:** WP1, WP2 (probe/network slice), WP5, WP6 (probes) and WP7 are implemented and tested (§19). A preview App, the health evaluator, the configuration advisor, the background scheduler and 1.0.6 packages also exist. The preview also has a verdict evaluator for R01–R05 and R07–R11 (`VerdictEvaluator`, with link evidence from `InterfaceMonitor` and `WlanMonitor` during each check), the provider report (HTML and print-to-PDF, local times), per-symptom service targets, a hop view summary, a DNS comparison with a consented switch, a Wi-Fi channel analyzer, a daily quality score, the taskbar jump list and winget manifests. Still to do: Capture/storage, R06 (needs a second independent operator), evidence levels and full §12 marker windows, the remaining views, and manifest loading.
+- **Status:** WP1, WP2 (probe/network slice), WP5, WP6 (probes) and WP7 are implemented and tested (§19). A preview App, the health evaluator, the configuration advisor, the background scheduler and 1.0.7 packages also exist. The preview also has a verdict evaluator for R01–R05 and R07–R11 (`VerdictEvaluator`, with link evidence from `InterfaceMonitor` and `WlanMonitor` during each check), the provider report (HTML and print-to-PDF, local times), per-symptom service targets, a hop view summary, a DNS comparison with a consented switch, a Wi-Fi channel analyzer, a daily quality score, the taskbar jump list and winget manifests. Still to do: Capture/storage, R06 (needs a second independent operator), evidence levels and full §12 marker windows, the remaining views, and manifest loading.
 
 ## 18. Release blockers and done
 
@@ -815,7 +820,7 @@ pwsh tools/build-release.ps1 -Version 1.0.6  # → releases/1.0.6/ (git-ignored;
   - **Analysis:** StepStatistics, HealthEvaluator (preview health rules, cadence-aware outage runs), NextActionPlanner and ConfigurationAdvisor (§12). The full R01–R11 engine is still to do.
   - **Windows:** also SystemInspector, a read-only snapshot of adapter, driver, TCP, power and proxy settings with their names (registry, WMI, power APIs, WinRT), and AppNetworkUsage (per-app traffic, standard user).
   - **App test hooks:** `--theme <name>` starts in a theme and `--switch-theme <name>` changes it at run time, the path the Settings page uses. `--page <Check|Recommendations|Settings>` opens a page. `--offline` pretends there is no network. `--snapshot out.png [--size 1240x768] [--start]` renders the window with WPF's software renderer after it settles (after the check with `--start`) and exits. It works without a visible desktop (CI agents, a locked PC).
-  - **Presentation:** also SavedResult/IResultStore (restored recommendations with staleness) and the 10–600 s check-length setting.
+  - **Presentation:** also SavedResult/IResultStore (restored recommendations with staleness) and the 10–60 s quick and background check-length settings.
     - Fluent/system theme, per-monitor DPI, RTL, UIA notifications, and a Settings page with the language picker. English is the default and the choice is saved.
 - **Not yet implemented or verified:** capture/storage, the R01–R11 rule engine, reporting, the remaining views, packaging, an end-to-end alert test, diagnosis accuracy, sales.
 
@@ -844,7 +849,7 @@ pwsh tools/build-release.ps1 -Version 1.0.6  # → releases/1.0.6/ (git-ignored;
 | Single-file atomic exports, HTML print CSS | No partial writes; no PDF dependency |
 | 20 UI languages merged by written locale; resx with CLDR plural keys; switch on restart | Covers most of the world's speakers with standard .NET tooling. Plurals are correct in every language. Restarting avoids half-translated screens |
 | Accessibility as a release gate; Presentation layer; Extended marker allowance | Disabled users must be able to complete the whole journey. The policy is testable without WPF. Fixed reaction windows would penalise motor and cognitive impairments |
-| In-process background checks, on by default, with change-based alerts | Product decision: monitoring is the default. No service, task or login item, disclosure and a one-click off keep it transparent. Alerting on change avoids alert fatigue |
+| In-process background checks, on by default, alerting on every problem check | Product decision: monitoring is the default. No service, task or login item, disclosure and a one-click off keep it transparent. Users asked to hear about every unhealthy background result; repeats say since when the problem continues, recovery is reported once, and manual checks keep change-based alerts to limit fatigue |
 | User-set limits instead of verdicts | Performance alerts need thresholds; the user's own, visible limits keep the no-verdict principle |
 | Small-multiples details chart | Different quantities (ICMP, TCP RTT, HTTPS fetch) each get their own scale; no overlapping lines |
 | Top navigation bar; status and evidence in a top band; chart across the full width | Standard Windows 11 top-navigation structure with a clear hierarchy (status → what to do → evidence). A side pane and a tall status column left empty space on the left; the chart, the widest evidence, gets the full width |

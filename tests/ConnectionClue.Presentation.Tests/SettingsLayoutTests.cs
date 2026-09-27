@@ -38,7 +38,7 @@ public sealed class SettingsLayoutTests
         string[] properties =
         [
             "Settings.CheckSecondsText", "Settings.MeasureSpeed", "Settings.BackgroundEnabled",
-            "Settings.IntervalMinutes", "Settings.BackgroundOnMobileEnabled", "Settings.StartWithWindows",
+            "Settings.IntervalMinutes", "Settings.BackgroundCheckSecondsText", "Settings.BackgroundOnMobileEnabled", "Settings.StartWithWindows",
             "Settings.DelayLimitMs", "Settings.LossLimitPercent", "Settings.VariationLimitMs",
             "Settings.PlanDownloadText", "Settings.PlanUploadText", "Settings.GamingTarget", "Settings.VideoTarget",
             "Settings.CallsTarget", "Settings.DisconnectTarget", "Settings.Theme", "CurrentLanguage", "Settings.AiReview",
