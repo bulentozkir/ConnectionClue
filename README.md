@@ -62,7 +62,9 @@ Build the x64 and ARM64 MSI installers and combined MSIX bundle with:
 pwsh tools/build-release.ps1 -Version 1.0.7
 ```
 
-Packages are written to `releases\1.0.7\`, with winget manifests under `releases\1.0.7\winget\`. Publish the GitHub release `v1.0.7` with the MSI files before submitting the manifests to microsoft/winget-pkgs, and set `-WingetLicense` to the project's license. By default, the script uses a self-signed test certificate; these packages are not production-signed and require that certificate to be trusted before installation. For distribution, use an approved code-signing certificate and the correct Microsoft Store package identity. See the developer handoff for signing and release-validation requirements.
+Packages are written to `releases\1.0.7\`, with winget manifests under `releases\1.0.7\winget\`. Publish the GitHub release `v1.0.7` with the MSI files before submitting the manifests to microsoft/winget-pkgs, and set `-WingetLicense` to the project's license.
+
+The MSIX bundle uses the reserved Microsoft Store identity by default (`BulentOzkir.ConnectionClue`, publisher `CN=06D08AF4-6BB1-40DF-9B96-5DF27BEE0635`, publisher display name `Bulent Ozkir`), so it can be uploaded to Partner Center as is; the Store replaces its signature. For sideloading, it is signed with a self-signed test certificate for that publisher (`ConnectionClue-msix-test-signing.cer`). The MSIs are signed with the self-signed `CN=ConnectionClue Test` certificate (`ConnectionClue-test-signing.cer`) unless `-CertificateThumbprint` names an approved code-signing certificate, which MSI distribution requires because the Store never signs MSIs. Test-signed packages install only where their certificate is trusted. See the developer handoff for signing and release-validation requirements.
 
 The MSI is per-machine and requires Windows Installer elevation; the installed app itself runs as a standard user. MSIX startup is opt-in and managed by Windows.
 

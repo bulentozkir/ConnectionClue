@@ -7,24 +7,27 @@
   2. Packs an .msix per architecture with makeappx (Microsoft.Windows.SDK.BuildTools from NuGet, no Windows SDK install)
      and bundles them.
   3. Builds an .msi per architecture with WiX 5 (pinned in dotnet-tools.json).
-  4. Signs everything with -CertificateThumbprint, or with a self-signed test certificate (CurrentUser\My) whose
-     subject equals -Publisher. Test-signed packages install only where that certificate is trusted.
+  4. Signs the MSIs with -CertificateThumbprint, or with the self-signed test certificate 'CN=ConnectionClue Test'
+     (CurrentUser\My). An MSIX signature must name the manifest publisher, so the bundle is signed with a certificate
+     whose subject equals -Publisher: -CertificateThumbprint when it matches, otherwise a self-signed test certificate
+     for that subject. Test-signed packages install only where that certificate is trusted; the Store replaces the
+     bundle's signature, but never signs MSIs.
   5. Writes winget manifests (winget\manifests\...) for the MSIs: after the GitHub release v<Version> is published with
      these files, submit them to microsoft/winget-pkgs so "winget upgrade --all" delivers new versions. Store installs
      update through the Store.
   6. Archives symbols and writes SHA256SUMS.txt.
 
-  For the Store, pass the Partner Center identity (-IdentityName, -Publisher, -PublisherDisplayName) and upload the
-  bundle; the Store re-signs it.
+  The identity defaults are the product's reserved Partner Center identity (Product management > Product identity);
+  upload the bundle to Partner Center as is. -PublisherDisplayName is also the MSI manufacturer and the winget publisher.
 
 .EXAMPLE
   pwsh tools/build-release.ps1 -Version 1.0.7
 #>
 param(
     [string]$Version = '1.0.7',
-    [string]$IdentityName = 'ConnectionClue',
-    [string]$Publisher = 'CN=ConnectionClue Test',
-    [string]$PublisherDisplayName = 'ConnectionClue',
+    [string]$IdentityName = 'BulentOzkir.ConnectionClue',
+    [string]$Publisher = 'CN=06D08AF4-6BB1-40DF-9B96-5DF27BEE0635',
+    [string]$PublisherDisplayName = 'Bulent Ozkir',
     [string]$CertificateThumbprint,
     [switch]$NoSign,
     [string[]]$Architectures = @('x64', 'arm64'),
@@ -155,14 +158,13 @@ ManifestVersion: $schema
 "@
 }
 
-function Get-SigningCertificate {
-    if ($CertificateThumbprint) { return Get-Item "Cert:\CurrentUser\My\$CertificateThumbprint" }
+function Get-TestCertificate([string]$subject) {
     $existing = Get-ChildItem Cert:\CurrentUser\My | Where-Object {
-        $_.Subject -eq $Publisher -and $_.FriendlyName -eq 'ConnectionClue test signing' -and $_.NotAfter -gt (Get-Date).AddDays(7) -and $_.HasPrivateKey
+        $_.Subject -eq $subject -and $_.FriendlyName -eq 'ConnectionClue test signing' -and $_.NotAfter -gt (Get-Date).AddDays(7) -and $_.HasPrivateKey
     } | Select-Object -First 1
     if ($existing) { return $existing }
-    Write-Host "Creating self-signed test certificate '$Publisher' in Cert:\CurrentUser\My"
-    New-SelfSignedCertificate -Type Custom -Subject $Publisher -KeyUsage DigitalSignature -KeyAlgorithm RSA -KeyLength 3072 `
+    Write-Host "Creating self-signed test certificate '$subject' in Cert:\CurrentUser\My"
+    New-SelfSignedCertificate -Type Custom -Subject $subject -KeyUsage DigitalSignature -KeyAlgorithm RSA -KeyLength 3072 `
         -FriendlyName 'ConnectionClue test signing' -CertStoreLocation Cert:\CurrentUser\My -NotAfter (Get-Date).AddYears(1) `
         -TextExtension @('2.5.29.37={text}1.3.6.1.5.5.7.3.3', '2.5.29.19={text}')
 }
@@ -196,7 +198,8 @@ foreach ($arch in $Architectures) {
     # MSI.
     $msi = Join-Path $out "ConnectionClue-$Version-$arch.msi"
     Invoke-Tool 'dotnet' @('tool', 'run', 'wix', '--', 'build', (Join-Path $root 'packaging\msi\ConnectionClue.wxs'), '-arch', $arch,
-        '-d', "Version=$Version", '-d', "PublishDir=$publish", '-d', "AppIcon=$(Join-Path $root 'src\ConnectionClue.App\Assets\ConnectionClue.ico')",
+        '-d', "Version=$Version", '-d', "Manufacturer=$PublisherDisplayName", '-d', "PublishDir=$publish",
+        '-d', "AppIcon=$(Join-Path $root 'src\ConnectionClue.App\Assets\ConnectionClue.ico')",
         '-o', $msi, '-nologo')
     Remove-Item ([IO.Path]::ChangeExtension($msi, '.wixpdb')) -ErrorAction SilentlyContinue
     $msis += $msi
@@ -208,10 +211,15 @@ $bundle = Join-Path $out "ConnectionClue_$packageVersion.msixbundle"
 Invoke-Tool $sdk.MakeAppx @('bundle', '/d', $bundleDir, '/p', $bundle, '/bv', $packageVersion, '/o') -Quiet
 
 if (-not $NoSign) {
-    $cert = Get-SigningCertificate
-    Invoke-Tool $sdk.SignTool (@('sign', '/fd', 'SHA256', '/sha1', $cert.Thumbprint, '/d', 'ConnectionClue', $bundle) + $msis)
+    $msiCert = if ($CertificateThumbprint) { Get-Item "Cert:\CurrentUser\My\$CertificateThumbprint" } else { Get-TestCertificate 'CN=ConnectionClue Test' }
+    Invoke-Tool $sdk.SignTool (@('sign', '/fd', 'SHA256', '/sha1', $msiCert.Thumbprint, '/d', 'ConnectionClue') + $msis)
+    $bundleCert = if ($msiCert.Subject -eq $Publisher) { $msiCert } else { Get-TestCertificate $Publisher }
+    Invoke-Tool $sdk.SignTool @('sign', '/fd', 'SHA256', '/sha1', $bundleCert.Thumbprint, '/d', 'ConnectionClue', $bundle)
     if (-not $CertificateThumbprint) {
-        Export-Certificate -Cert $cert -FilePath (Join-Path $out 'ConnectionClue-test-signing.cer') | Out-Null
+        Export-Certificate -Cert $msiCert -FilePath (Join-Path $out 'ConnectionClue-test-signing.cer') | Out-Null
+    }
+    if ($bundleCert.Thumbprint -ne $msiCert.Thumbprint) {
+        Export-Certificate -Cert $bundleCert -FilePath (Join-Path $out 'ConnectionClue-msix-test-signing.cer') | Out-Null
     }
 }
 

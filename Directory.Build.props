@@ -6,7 +6,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Deterministic>true</Deterministic>
     <Version>1.0.7</Version>
-    <Company>ConnectionClue</Company>
+    <Company>Bulent Ozkir</Company>
     <Product>ConnectionClue</Product>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>

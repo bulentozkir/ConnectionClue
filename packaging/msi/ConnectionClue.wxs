@@ -1,12 +1,12 @@
 <!--
   ConnectionClue MSI (WiX Toolset 5, pinned in dotnet-tools.json). Built by tools/build-release.ps1:
-  wix build ConnectionClue.wxs -arch x64|arm64 -d Version=… -d PublishDir=… -d AppIcon=…
+  wix build ConnectionClue.wxs -arch x64|arm64 -d Version=… -d Manufacturer=… -d PublishDir=… -d AppIcon=…
   Per-machine install to Program Files; no services, scheduled tasks, or startup entries are installed. The app's
   explicit startup opt-in is separate and uses a per-user Run entry.
 -->
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <Package Name="ConnectionClue"
-           Manufacturer="ConnectionClue"
+           Manufacturer="$(var.Manufacturer)"
            Version="$(var.Version)"
            UpgradeCode="7C6F1D5E-3B8A-4F2C-9D41-5A0E8B2C6F13"
            Scope="perMachine"

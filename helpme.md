@@ -100,6 +100,7 @@ Each check ends with findings based on the evidence it collected. Times are this
 - **Start with Windows** is off by default and starts ConnectionClue in the notification area.
 - **Preferences > Insights history** shows how many check summaries are saved. **Clear Insights history** asks once more before deleting them all; it can't be undone and keeps your recommendations and settings.
 - There is no update-check section in Settings. Microsoft Store and winget updates can be managed outside the app.
+- The publisher is **Bulent Ozkir**. The Microsoft Store and Windows **Settings > Apps > Installed apps** show that name; from 1.0.7 the MSI installers use it too, instead of "ConnectionClue".
 - To use an installed update, exit any older running copy from the notification-area menu's **Exit** command, then open the updated app. Closing the window may only hide it when background checks are enabled; starting it again brings that same running copy back.
 - The toolbar **Help** button opens this guide, which is in English. Text for the newest features also shows in English until its translations are reviewed.
 
