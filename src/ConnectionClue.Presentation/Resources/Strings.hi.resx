@@ -273,4 +273,7 @@
   <data name="Home_Or" xml:space="preserve"><value>या</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>नेटवर्क</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>प्राथमिकताएँ</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>नेटवर्क फिर से जुड़ गया है। ऐप तैयार होने पर एक बार 10 सेकंड की जाँच शुरू होगी।</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>नेटवर्क फिर से जुड़ गया है। गति परीक्षण के बिना एक बार 10 सेकंड की कनेक्शन जाँच चल रही है।</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>दोबारा जुड़ने के बाद स्वचालित जाँच पूरी नहीं हो सकी। फिर से कोशिश करने के लिए मैन्युअल रूप से त्वरित जाँच चलाएँ।</value></data>
 </root>

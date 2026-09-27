@@ -273,4 +273,7 @@
   <data name="Home_Or" xml:space="preserve"><value>oder</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>Netzwerk</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>Voreinstellungen</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Das Netzwerk ist wieder verbunden. Sobald die App bereit ist, startet eine einmalige Prüfung über 10 Sekunden.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Das Netzwerk ist wieder verbunden. Eine einmalige Verbindungsprüfung über 10 Sekunden läuft, ohne Geschwindigkeitstests.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Die automatische Prüfung nach der Wiederverbindung konnte nicht abgeschlossen werden. Starten Sie manuell eine Schnellprüfung.</value></data>
 </root>

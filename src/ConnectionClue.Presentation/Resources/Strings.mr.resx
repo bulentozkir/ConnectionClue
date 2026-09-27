@@ -273,4 +273,7 @@
   <data name="Home_Or" xml:space="preserve"><value>किंवा</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>नेटवर्क</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>प्राधान्ये</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>नेटवर्क पुन्हा जोडले गेले आहे. अ‍ॅप तयार झाल्यावर एकदा 10 सेकंदांची तपासणी सुरू होईल.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>नेटवर्क पुन्हा जोडले गेले आहे. वेग चाचणीशिवाय एकदा 10 सेकंदांची जोडणी तपासणी सुरू आहे.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>पुन्हा जोडल्यानंतर स्वयंचलित तपासणी पूर्ण होऊ शकली नाही. पुन्हा प्रयत्न करण्यासाठी स्वतः जलद तपासणी सुरू करा.</value></data>
 </root>

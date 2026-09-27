@@ -273,4 +273,7 @@
   <data name="Home_Or" xml:space="preserve"><value>অথবা</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>নেটওয়ার্ক</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>পছন্দসমূহ</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>নেটওয়ার্ক আবার সংযুক্ত হয়েছে। অ্যাপ প্রস্তুত হলে একবার 10 সেকেন্ডের পরীক্ষা শুরু হবে।</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>নেটওয়ার্ক আবার সংযুক্ত হয়েছে। গতির পরীক্ষা ছাড়া একবার 10 সেকেন্ডের সংযোগ পরীক্ষা চলছে।</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>পুনঃসংযোগের পর স্বয়ংক্রিয় পরীক্ষা শেষ করা যায়নি। আবার চেষ্টা করতে নিজে একটি দ্রুত পরীক্ষা চালান।</value></data>
 </root>

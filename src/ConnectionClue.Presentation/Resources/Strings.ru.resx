@@ -279,4 +279,7 @@
   <data name="Home_Or" xml:space="preserve"><value>или</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>Сеть</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>Предпочтения</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Подключение к сети восстановлено. Когда приложение будет готово, начнётся однократная проверка на 10 секунд.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Подключение к сети восстановлено. Выполняется однократная проверка соединения на 10 секунд без тестов скорости.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Не удалось завершить автоматическую проверку после восстановления подключения. Запустите быструю проверку вручную, чтобы повторить попытку.</value></data>
 </root>

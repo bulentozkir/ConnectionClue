@@ -270,4 +270,7 @@
   <data name="Home_Or" xml:space="preserve"><value>または</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>ネットワーク</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>環境設定</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>ネットワークに再接続しました。アプリの準備ができ次第、10秒間のチェックを1回実行します。</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>ネットワークに再接続しました。速度テストなしで、10秒間の接続チェックを1回実行しています。</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>再接続後の自動チェックを完了できませんでした。手動でクイックチェックを実行して再試行してください。</value></data>
 </root>

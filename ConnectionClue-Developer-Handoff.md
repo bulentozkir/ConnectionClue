@@ -41,7 +41,7 @@ Workflow: **symptom → capture → finding → one change → compare → expor
 
 ## 3. Target architecture and project layout
 
-The layout below is the intended decomposition, not a current-file inventory. The 1.0.5 preview stores settings, the last recommendation result, review verdicts, and sampled history in atomic per-user JSON files; `schema.sql` is validated separately and is not yet the runtime evidence store. See §19 for the implemented project map.
+The layout below is the intended decomposition, not a current-file inventory. The 1.0.6 preview stores settings, the last recommendation result, review verdicts, and sampled history in atomic per-user JSON files; `schema.sql` is validated separately and is not yet the runtime evidence store. See §19 for the implemented project map.
 
 ```text
 ConnectionClue.slnx            dotnet-buildable projects (packaging excluded, §17)
@@ -537,6 +537,7 @@ Preview mapping (`NextActionPlanner`). The most severe issue comes first, local 
 
 **Behaviour:**
 
+- Local disconnection produces an all-page notice and one `Disconnected` desktop alert per episode. The next disconnected-to-connected transition queues one 10-second `CheckKind.Reconnect` check after a two-second settling delay. Duplicate connected events do not restart it. The queue waits on ongoing measurements/result processing, diagnostics and exports; another disconnection or disposal cancels it. The reconnect run skips speed tests, symptom services and online review, does not navigate away from the current page, and does not alter saved settings. It is independent of recurring scheduling, including on mobile/metered links.
 - Every async command has busy, cancel and error states.
 - Distinguish NotAvailable from Failed, and NoIssueObserved from "healthy".
 - **Marker:** button, tray, and a RegisterHotKey shortcut registered only during capture (conflicts reported; can be remapped to any key, including a single F-key, or disabled).
@@ -748,7 +749,7 @@ Target: WCAG 2.2 AA, applied to desktop software through EN 301 549 clause 11. I
 dotnet build ConnectionClue.slnx -c Release
 dotnet test --solution ConnectionClue.slnx -c Release
 pwsh tools/generate-icons.ps1
-pwsh tools/build-release.ps1 -Version 1.0.5  # → releases/1.0.5/ (git-ignored; publish via GitHub Releases)
+pwsh tools/build-release.ps1 -Version 1.0.6  # → releases/1.0.6/ (git-ignored; publish via GitHub Releases)
 ```
 
 - Run `python tools/validate_schema.py` for the SQLite schema checks. WiX 5 is pinned in `dotnet-tools.json` and restored by the release script.
@@ -764,17 +765,17 @@ pwsh tools/build-release.ps1 -Version 1.0.5  # → releases/1.0.5/ (git-ignored;
 - **Signing:**
   - Without `-CertificateThumbprint`, the script signs with a self-signed test certificate `CN=ConnectionClue Test`. It creates it once in `Cert:\CurrentUser\My` and exports the public `ConnectionClue-test-signing.cer`. Test-signed packages install only where that certificate is trusted, in Trusted People (LocalMachine) for MSIX.
   - **Release:** use a real code-signing certificate for the MSI. For the Store, pass the Partner Center identity (`-IdentityName`, `-Publisher`, `-PublisherDisplayName`) and upload the bundle; the Store re-signs it.
-- **Verification:** 1.0.5 was built with the release pipeline; all 430 tests passed in Release configuration.
+- **Verification:** 1.0.6 was built with the release pipeline; all 445 tests passed in Release configuration.
   - Compact Settings was rendered in all 20 UI languages: 63 tab/window layouts fit without scrolling (960×740 across languages, plus 900×600 in English). History confirmation also fits at 900×600 in the four palettes; actual tab-header contrast meets 4.5:1, or 7:1 in high-contrast themes.
   - All three packages contain signatures matching the bundled self-signed test certificate. Windows trust was not changed; production signing and clean-install validation remain release requirements.
-  - Bundle holds x64 and arm64 with identity 1.0.5.0; makeappx validated the manifests. Both MSI databases report ProductVersion 1.0.5 and the expected architecture.
-  - Administrative extraction of the x64 MSI produced 415 files, with executable version 1.0.5.0. Its embedded Help matches `helpme.md` byte-for-byte. The packaged MHTML stylesheet contains the 18-pixel default size, regular width and weight, 1.75 line height and expanded table spacing. English plus 19 satellite resource assemblies were verified. No app was installed and no user settings were modified during this verification.
+  - Bundle holds x64 and arm64 with identity 1.0.6.0; makeappx validated the manifests. Both MSI databases report ProductVersion 1.0.6 and the expected architecture.
+  - Read-only WiX extraction of the x64 MSI produced 414 payload files, with executable version 1.0.6.0. Its embedded Help matches `helpme.md` byte-for-byte. The compiled window contains the all-page connection notice, and the packaged view model declares the reconnect-check duration as 10 seconds. English plus 19 satellite resource assemblies were verified. Windows Installer was busy, so verification used WiX extraction without interrupting that installation. No app was installed and no user settings were modified.
   - The extracted compiled XAML contains all three Settings tabs and the contrast-safe tab-header template, and contains no `CheckForUpdatesCommand` binding.
   - winget validated the generated manifests; MSI hashes and product codes match them. Every entry in `SHA256SUMS.txt` matches the release files.
   - ICE validation (`wix msi validate`) needs an elevated shell, so it is a release-checklist step.
 - **Size:** bundle 149 MB, but the Store delivers only the matching architecture (~74 MB). MSIs are 55–60 MB. The biggest cut would be replacing WinForms `NotifyIcon` with a Shell_NotifyIcon wrapper, which removes the WinForms runtime.
 - **Record** the verified packaging and signing commands in docs/release-checklist.md.
-- **Status:** WP1, WP2 (probe/network slice), WP5, WP6 (probes) and WP7 are implemented and tested (§19). A preview App, the health evaluator, the configuration advisor, the background scheduler and 1.0.5 packages also exist. The preview also has a verdict evaluator for R01–R05 and R07–R11 (`VerdictEvaluator`, with link evidence from `InterfaceMonitor` and `WlanMonitor` during each check), the provider report (HTML and print-to-PDF, local times), per-symptom service targets, a hop view summary, a DNS comparison with a consented switch, a Wi-Fi channel analyzer, a daily quality score, the taskbar jump list and winget manifests. Still to do: Capture/storage, R06 (needs a second independent operator), evidence levels and full §12 marker windows, the remaining views, and manifest loading.
+- **Status:** WP1, WP2 (probe/network slice), WP5, WP6 (probes) and WP7 are implemented and tested (§19). A preview App, the health evaluator, the configuration advisor, the background scheduler and 1.0.6 packages also exist. The preview also has a verdict evaluator for R01–R05 and R07–R11 (`VerdictEvaluator`, with link evidence from `InterfaceMonitor` and `WlanMonitor` during each check), the provider report (HTML and print-to-PDF, local times), per-symptom service targets, a hop view summary, a DNS comparison with a consented switch, a Wi-Fi channel analyzer, a daily quality score, the taskbar jump list and winget manifests. Still to do: Capture/storage, R06 (needs a second independent operator), evidence levels and full §12 marker windows, the remaining views, and manifest loading.
 
 ## 18. Release blockers and done
 

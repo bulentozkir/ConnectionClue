@@ -6,7 +6,8 @@ ConnectionClue is a Windows desktop tool for investigating connection problems w
 
 ## Features
 
-- Quick and repeated checks for connectivity and latency, with an explicit warning and no network tests when Windows reports no connection. One copy runs at a time; starting it again brings the running window back.
+- Quick and repeated checks for connectivity and latency, with an explicit warning and no new checks starting when Windows reports no connection. One copy runs at a time; starting it again brings the running window back.
+- A disconnection warning is visible on every page and produces one desktop notification per episode. After reconnecting, one 10-second connectivity-only check runs once the app is idle, without speed tests, extra service probes or online advice review; saved recurring-check settings are unchanged.
 - Precise findings from the spec's verdict rules (R01–R05, R07–R11) in plain sentences with local times: link drops ("Wi-Fi link dropped at 21:04:12"), DNS failing while direct connections work, whether delay starts before or beyond the router, secure-web failures by category, and "can't conclude" with what's missing. R06 needs a second independent test service.
 - Real services per "What's happening?" choice, tested after each quick check: game platforms, Teams/Zoom/Meet relays, streaming services, or connectivity checks, plus an optional user host:port (TCP connect time only).
 - Scheduled background checks are enabled by default on Wi-Fi and Ethernet, run at the configured interval (15 minutes by default) only while the app is running, and can be disabled in Settings. On mobile networks (cellular and Windows-metered connections such as phone hotspots) they are off by default behind a separate opt-in, and resume automatically on Wi-Fi or Ethernet.
@@ -57,10 +58,10 @@ The nine requested PNGs are written to `logos\`: BoxArt 1080×1080; Logo 44×44,
 Build the x64 and ARM64 MSI installers and combined MSIX bundle with:
 
 ```powershell
-pwsh tools/build-release.ps1 -Version 1.0.5
+pwsh tools/build-release.ps1 -Version 1.0.6
 ```
 
-Packages are written to `releases\1.0.5\`, with winget manifests under `releases\1.0.5\winget\`. Publish the GitHub release `v1.0.5` with the MSI files before submitting the manifests to microsoft/winget-pkgs, and set `-WingetLicense` to the project's license. By default, the script uses a self-signed test certificate; these packages are not production-signed and require that certificate to be trusted before installation. For distribution, use an approved code-signing certificate and the correct Microsoft Store package identity. See the developer handoff for signing and release-validation requirements.
+Packages are written to `releases\1.0.6\`, with winget manifests under `releases\1.0.6\winget\`. Publish the GitHub release `v1.0.6` with the MSI files before submitting the manifests to microsoft/winget-pkgs, and set `-WingetLicense` to the project's license. By default, the script uses a self-signed test certificate; these packages are not production-signed and require that certificate to be trusted before installation. For distribution, use an approved code-signing certificate and the correct Microsoft Store package identity. See the developer handoff for signing and release-validation requirements.
 
 The MSI is per-machine and requires Windows Installer elevation; the installed app itself runs as a standard user. MSIX startup is opt-in and managed by Windows.
 

@@ -285,4 +285,7 @@
   <data name="Home_Or" xml:space="preserve"><value>أو</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>الشبكة</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>التفضيلات</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>عادت الشبكة للاتصال. سيبدأ فحص لمرة واحدة لمدة 10 ثوانٍ عندما يصبح التطبيق جاهزًا.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>عادت الشبكة للاتصال. يجري فحص اتصال واحد لمدة 10 ثوانٍ دون اختبارات سرعة.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>تعذر إكمال الفحص التلقائي بعد إعادة الاتصال. شغّل فحصًا سريعًا يدويًا للمحاولة مجددًا.</value></data>
 </root>

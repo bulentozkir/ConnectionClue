@@ -8,7 +8,7 @@ using ConnectionClue.Presentation.Diagnostics;
 namespace ConnectionClue.Presentation.ViewModels;
 
 /// <summary>What started a check: the Quick check button, Capture longer, or the background schedule.</summary>
-public enum CheckKind { Quick, Long, Background }
+public enum CheckKind { Quick, Long, Background, Reconnect }
 
 /// <summary>Export the finished quick check or longer capture, including its visuals, as PDF or MHTML.</summary>
 public sealed partial class MainViewModel
@@ -99,6 +99,7 @@ public sealed partial class MainViewModel
             CheckKind.Long => LocFormat("Export_KindLong", _lastCheckSeconds >= 3600
                 ? string.Format(f, "{0:0.#} h", _lastCheckSeconds / 3600) : string.Format(f, "{0:0} min", _lastCheckSeconds / 60)),
             CheckKind.Quick => Loc("Export_KindQuick"),
+            CheckKind.Reconnect => Loc("Export_KindReconnect"),
             _ => Loc("Export_KindBackground"),
         };
         string gap = _ui.TwoLetterISOLanguageName is "zh" or "ja" ? "" : " ";

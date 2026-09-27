@@ -348,6 +348,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         settings.PropertyChanged += OnSettingsChanged;
         _recurring = new RecurringChecks(time, RunBackgroundCheckAsync); // never load the link unattended
         ConfigureRecurringChecks();
+        InitializeReconnectChecks();
     }
 
     public event EventHandler<Announcement>? Announce;
@@ -616,6 +617,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     public void Dispose()
     {
+        DisposeReconnectChecks();
         Settings.PropertyChanged -= OnSettingsChanged;
         _recurring.Dispose();
         _run?.Cancel();
@@ -670,7 +672,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [RelayCommand]
     private void DismissRecommendations() => ClearSaved();
 
-    private bool CanStart() => !IsRunning && !IsExportingResults;
+    private bool CanStart() => !_disposed && _activeCheck.IsCompleted && !IsRunning && !IsExportingResults;
 
     private bool CanRunNetworkTool() =>
         _networkDiagnostics is not null && !IsDisconnected && !IsRunning && !IsRunningNetworkTool;
@@ -769,24 +771,40 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// a check that is already running continues, because a drop is evidence the user needs (Disconnections).</summary>
     public void UpdateConnectivity(bool connected, bool mobileNetwork = false)
     {
+        if (_disposed) return;
         bool connectionChanged = IsDisconnected != !connected;
         bool mobileChanged = IsMobileNetwork != mobileNetwork;
-        if (!connectionChanged && !mobileChanged) return;
-        IsDisconnected = !connected;
         IsMobileNetwork = mobileNetwork;
+        if (!connected)
+        {
+            if (connectionChanged || !_disconnectNotified) ShowDisconnected(announce: true);
+            return;
+        }
+        if (!connectionChanged && !mobileChanged) return;
+        IsDisconnected = false;
+        _disconnectNotified = false;
         ConfigureRecurringChecks();
         if (!connectionChanged) return;
-        if (IsRunning) return;
-        if (!connected) ShowDisconnected(announce: true);
-        else if (Hero == HeroState.Disconnected) (Hero, HeroTitle, Summary) = (HeroState.Idle, _l.Get("Home_Title", _ui), _l.Get("Home_Subtitle", _ui));
+        if (!IsRunning && Hero == HeroState.Disconnected)
+            (Hero, HeroTitle, Summary) = (HeroState.Idle, _l.Get("Home_Title", _ui), _l.Get("Home_Subtitle", _ui));
+        QueueReconnectCheck();
     }
 
     private void ShowDisconnected(bool announce)
     {
         IsDisconnected = true;
-        (Hero, HeroTitle, Summary, TryPreview, CheckedOkText) =
-            (HeroState.Disconnected, _l.Get("Hero_Disconnected", _ui), _l.Get("Summary_Disconnected", _ui), "", "");
-        if (announce) Emit(HeroTitle + ". " + Summary, AnnouncementKind.Error);
+        CancelReconnectCheck();
+        ConfigureRecurringChecks();
+        string title = _l.Get("Hero_Disconnected", _ui), detail = _l.Get("Summary_Disconnected", _ui);
+        ConnectionStatus = title + ". " + detail;
+        if (!IsRunning)
+            (Hero, HeroTitle, Summary, TryPreview, CheckedOkText) = (HeroState.Disconnected, title, detail, "", "");
+        if (announce) Emit(ConnectionStatus, AnnouncementKind.Error);
+        if (!_disconnectNotified)
+        {
+            _disconnectNotified = true;
+            AlertRaised?.Invoke(this, new Alert(AlertKind.Disconnected, title, detail));
+        }
     }
 
     [RelayCommand(CanExecute = nameof(IsRunning))]
@@ -826,7 +844,22 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// </summary>
     public Task RunCheckAsync(bool measureSpeed, int? checkSeconds = null) => RunCheckAsync(measureSpeed, checkSeconds, CheckKind.Background);
 
-    private async Task RunCheckAsync(bool measureSpeed, int? checkSeconds, CheckKind kind)
+    private async Task RunCheckAsync(bool measureSpeed, int? checkSeconds, CheckKind kind, CancellationToken cancellationToken = default)
+    {
+        if (!CanStart()) return;
+        var check = RunCheckCoreAsync(measureSpeed, checkSeconds, kind, cancellationToken);
+        _activeCheck = check;
+        try { await check; }
+        finally
+        {
+            if (!_disposed && IsDisconnected && !IsRunning) ShowDisconnected(announce: false);
+            QuickCheckCommand.NotifyCanExecuteChanged();
+            LongCaptureCommand.NotifyCanExecuteChanged();
+            SignalOperationChanged();
+        }
+    }
+
+    private async Task RunCheckCoreAsync(bool measureSpeed, int? checkSeconds, CheckKind kind, CancellationToken cancellationToken)
     {
         if (!CanStart()) return;
         // No network at all: nothing to measure. Background ticks skip quietly (the warning is already visible).
@@ -835,7 +868,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             ShowDisconnected(announce: Hero != HeroState.Disconnected);
             return;
         }
-        IsDisconnected = false;
+        if (IsDisconnected) UpdateConnectivity(true, _isMobileNetwork?.Invoke() ?? IsMobileNetwork);
+        if (_reconnectCancellation is null) ConnectionStatus = "";
         IsRunning = true;
         (ServiceResults, ServiceSummary) = ([], "");
         Message = "";
@@ -858,7 +892,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         // Denser sampling for short checks so every check has enough samples to judge.
         int homeEvery = seconds <= SettingsViewModel.MaxCheckSeconds ? 1 : Math.Clamp(seconds / 60, 1, 5);
         int internetEvery = Math.Clamp(seconds / 30, 1, 5), webEvery = Math.Clamp(seconds / 5, 5, 15);
-        var run = _run = new CancellationTokenSource();
+        var run = _run = cancellationToken.CanBeCanceled
+            ? CancellationTokenSource.CreateLinkedTokenSource(cancellationToken) : new CancellationTokenSource();
         var clock = new SessionClock(_time);
         var pending = new List<Task>();
         Guid session = Guid.NewGuid(), segment = Guid.NewGuid();
@@ -925,8 +960,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             (IsRunning, TimeLeft, _run) = (false, "", null);
             run.Dispose();
         }
+        if (_disposed) return;
         var facts = await FactsAsync(probes?.Facts);
-        await CompleteAsync(facts, facts is null ? [] : await AppsAsync(probes?.AppTraffic));
+        var apps = facts is null ? [] : await AppsAsync(probes?.AppTraffic);
+        if (_disposed) return;
+        await CompleteAsync(facts, apps);
 
         void Probe(LaneViewModel lane, IProbe probe, StreamKey stream, int timeoutMs) =>
             pending.Add(RecordAsync(lane, probe, new ProbeRequest(session, segment, sequence++, stream, clock.NowUs,
@@ -1058,7 +1096,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             var saved = new SavedResult(checkedAt, report, _context, actions, advice, passed, _samplesStartUtc, verdicts);
             _results.Save(saved);
-            await ShowSavedAsync(saved, previousSession: false);
+            await ShowSavedAsync(saved, previousSession: false, allowOnlineReview: _currentKind != CheckKind.Reconnect);
             (shownActions, shownAdvice) = (_shownActions, _shownAdvice); // only what passed the online review
         }
         else if (report.Level == HealthLevel.NoIssue)
@@ -1066,6 +1104,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             ClearSaved();
         }
         TryPreview = AdviceSummary(shownActions, shownAdvice);
+        if (IsDisconnected) return; // The connection notice takes priority over an older measurement verdict.
         Emit(TryPreview.Length == 0 ? Summary : Summary + " " + TryPreview, AnnouncementKind.FindingReady);
 
         // The shell decides whether to show it (not while the window is in the foreground).
@@ -1162,7 +1201,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// answer or give up; advice two reviewers reject is left out, and confirmed advice is marked. Without an answer (for
     /// example offline), the advice is shown unchecked, because help matters most when the connection is bad.
     /// </summary>
-    private async Task ShowSavedAsync(SavedResult saved, bool previousSession, bool reveal = false)
+    private async Task ShowSavedAsync(SavedResult saved, bool previousSession, bool reveal = false, bool allowOnlineReview = true)
     {
         (_saved, _savedFromPreviousSession) = (saved, previousSession);
         _lastCheckedAtUtc = saved.CheckedAtUtc;
@@ -1177,7 +1216,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         RecommendationStatus = "";
         RecommendationSummary = "";
         IReadOnlyDictionary<string, ReviewVerdict>? verdicts = null;
-        if (_reviewer is not null && Settings.AiReview)
+        if (allowOnlineReview && _reviewer is not null && Settings.AiReview)
         {
             if (_isConnected?.Invoke() == false)
             {

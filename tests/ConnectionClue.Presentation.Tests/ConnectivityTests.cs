@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Xml.Linq;
 using ConnectionClue.Analysis;
 using ConnectionClue.Presentation.Diagnostics;
 using ConnectionClue.Presentation.Localization;
@@ -11,6 +12,21 @@ namespace ConnectionClue.Presentation.Tests;
 public sealed class ConnectivityTests
 {
     private static readonly CultureInfo En = CultureInfo.GetCultureInfo("en-US");
+
+    [Fact]
+    public void Connection_notice_is_outside_individual_pages_and_is_accessible()
+    {
+        XNamespace wpf = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+        XNamespace x = "http://schemas.microsoft.com/winfx/2006/xaml";
+        var document = XDocument.Load(Path.Combine(AppContext.BaseDirectory, "MainWindow.xaml"));
+        var notice = document.Descendants().Single(e => (string?)e.Attribute(x + "Name") == "ConnectionNotice");
+        Assert.Same(document.Root, notice.Parent!.Parent);
+        Assert.Equal("1", (string?)notice.Attribute("Grid.Row"));
+        Assert.Equal("{Binding ConnectionStatus}", (string?)notice.Attribute("AutomationProperties.Name"));
+        Assert.Equal("Polite", (string?)notice.Attribute("AutomationProperties.LiveSetting"));
+        var label = notice.Descendants(wpf + "TextBlock").Single(e => (string?)e.Attribute("Text") == "{Binding ConnectionStatus}");
+        Assert.Equal("Wrap", (string?)label.Attribute("TextWrapping"));
+    }
 
     private sealed class NoStore : IResultStore
     {

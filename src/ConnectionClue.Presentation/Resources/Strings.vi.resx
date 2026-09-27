@@ -270,4 +270,7 @@
   <data name="Home_Or" xml:space="preserve"><value>hoặc</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>Mạng</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>Tùy chọn</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Mạng đã kết nối lại. Một lần kiểm tra 10 giây sẽ bắt đầu khi ứng dụng sẵn sàng.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Mạng đã kết nối lại. Đang kiểm tra kết nối một lần trong 10 giây, không kiểm tra tốc độ.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Không thể hoàn tất kiểm tra tự động sau khi kết nối lại. Hãy chạy kiểm tra nhanh theo cách thủ công để thử lại.</value></data>
 </root>

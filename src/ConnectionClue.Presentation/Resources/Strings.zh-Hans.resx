@@ -270,4 +270,7 @@
   <data name="Home_Or" xml:space="preserve"><value>或</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>网络</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>偏好设置</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>网络已重新连接。应用准备好后将进行一次 10 秒的检查。</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>网络已重新连接。正在进行一次 10 秒的连接检查，不进行速度测试。</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>重新连接后的自动检查未能完成。请手动运行快速检查以重试。</value></data>
 </root>

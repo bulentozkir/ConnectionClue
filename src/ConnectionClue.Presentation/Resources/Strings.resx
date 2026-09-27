@@ -517,4 +517,8 @@
   <data name="ButtonHelp_SettingsNetwork" xml:space="preserve"><value>Set alert limits, the speeds in your internet plan and an extra service target for each symptom.</value></data>
   <data name="ButtonHelp_SettingsPreferences" xml:space="preserve"><value>Choose a theme or language, manage online advice review and clear Insights history.</value></data>
   <data name="Settings_TargetsCompactHint" xml:space="preserve"><value>One extra host:port per symptom. Clear a field to use only built-in services. Hover or focus a field for details.</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Network connected again. A one-time 10-second check will start when the app is ready.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Network reconnected. Running one 10-second connectivity check without speed tests.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>The automatic reconnect check could not finish. Run a quick check manually to try again.</value></data>
+  <data name="Export_KindReconnect" xml:space="preserve"><value>Reconnect check</value><comment>One-time automatic connectivity check after reconnecting.</comment></data>
 </root>

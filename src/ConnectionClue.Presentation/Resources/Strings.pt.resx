@@ -276,4 +276,7 @@
   <data name="Home_Or" xml:space="preserve"><value>ou</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>Rede</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>Preferências</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>A rede foi reconectada. Uma verificação única de 10 segundos começará quando o aplicativo estiver pronto.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>A rede foi reconectada. Executando uma verificação de conexão de 10 segundos, sem testes de velocidade.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Não foi possível concluir a verificação automática após a reconexão. Execute uma verificação rápida manualmente para tentar novamente.</value></data>
 </root>

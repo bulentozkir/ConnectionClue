@@ -2,7 +2,7 @@ using ConnectionClue.Analysis;
 
 namespace ConnectionClue.Presentation.Alerts;
 
-public enum AlertKind { Problem, Slow, Recovered }
+public enum AlertKind { Problem, Slow, Recovered, Disconnected }
 
 /// <summary>
 /// Alerts on change, not on every check: a new or different problem, an hourly reminder while it persists,

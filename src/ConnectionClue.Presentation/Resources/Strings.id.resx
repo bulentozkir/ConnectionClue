@@ -270,4 +270,7 @@
   <data name="Home_Or" xml:space="preserve"><value>atau</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>Jaringan</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>Preferensi</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Jaringan tersambung kembali. Pemeriksaan satu kali selama 10 detik akan dimulai saat aplikasi siap.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Jaringan tersambung kembali. Menjalankan satu pemeriksaan koneksi selama 10 detik tanpa tes kecepatan.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>Pemeriksaan otomatis setelah tersambung kembali tidak dapat diselesaikan. Jalankan pemeriksaan cepat secara manual untuk mencoba lagi.</value></data>
 </root>

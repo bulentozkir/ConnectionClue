@@ -276,4 +276,7 @@
   <data name="Home_Or" xml:space="preserve"><value>ou</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>Réseau</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>Préférences</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>Le réseau est reconnecté. Une vérification unique de 10 secondes démarrera dès que l’application sera prête.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>Le réseau est reconnecté. Une vérification de connexion de 10 secondes est en cours, sans test de débit.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>La vérification automatique après reconnexion n’a pas pu se terminer. Lancez manuellement une vérification rapide pour réessayer.</value></data>
 </root>

@@ -99,7 +99,8 @@ public partial class App : Application
         _vm.PropertyChanged += OnViewModelChanged;
         _vm.AlertRaised += (_, a) =>
         {
-            if (!_window.IsActive && _tray.Visible) _tray.Notify(a.Title, a.Body, a.Kind != AlertKind.Recovered);
+            if (_tray.Visible && (a.Kind == AlertKind.Disconnected || !_window.IsActive))
+                _tray.Notify(a.Title, a.Body, a.Kind != AlertKind.Recovered);
         };
         _vm.LanguageChangeRequested += (_, name) =>
         {
@@ -230,14 +231,14 @@ public partial class App : Application
     private void RefreshTray()
     {
         var s = _vm.Settings;
-        _tray.Visible = s.BackgroundEnabled || !_window.IsVisible;
+        _tray.Visible = s.BackgroundEnabled || _vm.IsDisconnected || !_window.IsVisible;
         var state = _vm.IsDisconnected ? TrayState.Warning : _vm.LastLevel switch
         {
             HealthLevel.Unhealthy => TrayState.Problem,
             HealthLevel.Degraded => TrayState.Warning,
             _ => TrayState.Normal,
         };
-        string detail = _vm.IsRunning ? _vm.TimeLeft : _vm.IsDisconnected ? Localizer.Default.Get("Hero_Disconnected") : _vm.LastResult;
+        string detail = _vm.IsDisconnected ? Localizer.Default.Get("Hero_Disconnected") : _vm.IsRunning ? _vm.TimeLeft : _vm.LastResult;
         _tray.Update(state, detail.Length == 0 ? "ConnectionClue" : $"ConnectionClue · {detail}", !_vm.IsRunning, s.BackgroundEnabled);
     }
 

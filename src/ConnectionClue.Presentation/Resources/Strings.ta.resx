@@ -273,4 +273,7 @@
   <data name="Home_Or" xml:space="preserve"><value>அல்லது</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>நெட்வொர்க்</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>விருப்பங்கள்</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>பிணையம் மீண்டும் இணைக்கப்பட்டது. பயன்பாடு தயாரானதும் ஒருமுறை 10 வினாடிச் சோதனை தொடங்கும்.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>பிணையம் மீண்டும் இணைக்கப்பட்டது. வேகச் சோதனைகள் இல்லாமல் ஒருமுறை 10 வினாடி இணைப்புச் சோதனை நடைபெறுகிறது.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>மீண்டும் இணைத்தபின் தானியங்கிச் சோதனையை முடிக்க முடியவில்லை. மீண்டும் முயற்சிக்க விரைவுச் சோதனையை கைமுறையாக இயக்கவும்.</value></data>
 </root>

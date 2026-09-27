@@ -273,4 +273,7 @@
   <data name="Home_Or" xml:space="preserve"><value>లేదా</value></data>
   <data name="Settings_TabNetwork" xml:space="preserve"><value>నెట్‌వర్క్</value></data>
   <data name="Settings_TabPreferences" xml:space="preserve"><value>ప్రాధాన్యతలు</value></data>
+  <data name="Connectivity_ReconnectPending" xml:space="preserve"><value>నెట్‌వర్క్ మళ్లీ కనెక్ట్ అయింది. యాప్ సిద్ధమైనప్పుడు ఒక్కసారి 10 సెకన్ల తనిఖీ ప్రారంభమవుతుంది.</value></data>
+  <data name="Connectivity_ReconnectChecking" xml:space="preserve"><value>నెట్‌వర్క్ మళ్లీ కనెక్ట్ అయింది. వేగ పరీక్షలు లేకుండా ఒక్కసారి 10 సెకన్ల కనెక్షన్ తనిఖీ జరుగుతోంది.</value></data>
+  <data name="Connectivity_ReconnectFailed" xml:space="preserve"><value>మళ్లీ కనెక్ట్ అయిన తర్వాత స్వయంచాలక తనిఖీ పూర్తికాలేదు. మళ్లీ ప్రయత్నించడానికి త్వరిత తనిఖీని మాన్యువల్‌గా ప్రారంభించండి.</value></data>
 </root>

@@ -1,6 +1,6 @@
 # ConnectionClue help
 
-For ConnectionClue 1.0.5.
+For ConnectionClue 1.0.6.
 
 ConnectionClue checks this PC's path to the internet, explains what it observed in plain sentences with local times, and suggests next steps. It changes a Windows setting only when you ask: the DNS switch, which Windows confirms with an administrator prompt and which you can undo.
 
@@ -17,6 +17,17 @@ ConnectionClue checks this PC's path to the internet, explains what it observed 
 - After a quick check or longer capture, use **Export (PDF)** or **Export (MHTML)** to save the results. See **Export and share results** below for the differences.
 - With no network at all, ConnectionClue shows a warning and starts no network tests.
 - Only one copy runs. Starting it again brings the running window back.
+
+## Disconnection alerts and automatic recheck
+
+New in 1.0.6: connection-loss notifications and a one-time check after reconnection.
+
+- If Windows reports that this PC has lost its network connection, a clear warning appears above every page, including Settings. A desktop notification is sent once per disconnection; Windows Focus or Do not disturb settings may suppress it. New checks do not start while disconnected.
+- When the network reconnects, ConnectionClue waits about two seconds for Windows to settle, then runs **one 10-second connectivity check**. Repeated Windows notifications do not start duplicate checks, and opening the app while already connected does not trigger this recheck.
+- This one-off check runs without download/upload speed tests, symptom-specific service tests or online advice review. It does not change your saved check length or other preferences. Ten seconds is the measurement window; setup, outstanding probes and result processing can take additional time.
+- If a check, diagnostic or export is busy, the automatic recheck waits. A new disconnection cancels a queued or running automatic recheck, and reconnecting arms one new attempt. A manual capture is not interrupted, so it can continue recording the drop. Exiting the app cancels pending rechecks.
+- This one-time reconnect check is separate from regular background checks and also applies on mobile/metered networks. It does not enable recurring mobile checks or speed tests; those settings remain unchanged.
+- If the automatic attempt cannot finish, the app shows an error and lets you try a quick check manually instead of retrying repeatedly.
 
 ## Why some charts continue past the check length
 
