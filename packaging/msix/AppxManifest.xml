@@ -33,7 +33,7 @@ IgnorableNamespaces="uap desktop rescap">
     <Resource Language="mr" />
     <Resource Language="vi" />
     <Resource Language="te" />
-    <Resource Language="ha" />
+    <Resource Language="ha-Latn-NG" />
     <Resource Language="tr" />
     <Resource Language="ta" />
   </Resources>

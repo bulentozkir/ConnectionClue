@@ -68,6 +68,8 @@ The MSIX bundle uses the reserved Microsoft Store identity by default (`BulentOz
 
 The MSI is per-machine and requires Windows Installer elevation; the installed app itself runs as a standard user. MSIX startup is opt-in and managed by Windows.
 
+The MSIX manifest declares Hausa as `ha-Latn-NG`, while the existing .NET translations remain under `ha`. Windows package registration rejects bare `ha` with `0x80073CF6` / `0x80070057`, even when `makeappx` accepts the package. Before Store submission, test installation of the actual bundle on a supported Windows version; a successful build or unpack is not an installation test.
+
 ## Privacy and safety
 
 - Check history is local to the Windows user and retained for a bounded period.

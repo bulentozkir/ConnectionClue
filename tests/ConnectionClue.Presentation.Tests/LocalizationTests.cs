@@ -31,8 +31,13 @@ public partial class LocalizationTests
             .Select(e => (string?)e.Attribute("Language")
                 ?? throw new InvalidDataException("MSIX resource is missing its Language attribute."))
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
-        var expected = SupportedLanguages.All.Skip(1).Select(culture => culture.Name)
-            .Append("en-US")
+        // MSIX registration rejects bare "ha", although .NET accepts it for satellite resources.
+        var expected = SupportedLanguages.All.Select(culture => culture.Name switch
+            {
+                "en" => "en-US",
+                "ha" => "ha-Latn-NG",
+                _ => culture.Name,
+            })
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         Assert.True(expected.SetEquals(actual),
@@ -46,6 +51,7 @@ public partial class LocalizationTests
     [InlineData(new[] { "pt-PT" }, null, "pt")]
     [InlineData(new[] { "pt-BR" }, null, "pt")]
     [InlineData(new[] { "ha-Latn" }, null, "ha")]
+    [InlineData(new[] { "ha-Latn-NG" }, null, "ha")]
     [InlineData(new[] { "es-MX" }, null, "es")]
     [InlineData(new[] { "ar-EG" }, null, "ar")]
     [InlineData(new[] { "pl-PL", "de-DE" }, null, "de")]
@@ -54,6 +60,16 @@ public partial class LocalizationTests
     [InlineData(new[] { "de-DE" }, "tr", "tr")]
     public void Resolves_windows_preferences_to_a_supported_language(string[] preferred, string? userOverride, string expected) =>
         Assert.Equal(expected, LanguageResolver.Resolve(preferred, userOverride).Name);
+
+    [Theory]
+    [InlineData("ha-Latn")]
+    [InlineData("ha-Latn-NG")]
+    public void Windows_hausa_cultures_fall_back_to_existing_hausa_resources(string culture)
+    {
+        var hausa = L.Get("Action_Stop", C("ha"));
+        Assert.NotEqual(L.Get("Action_Stop", C("en")), hausa);
+        Assert.Equal(hausa, L.Get("Action_Stop", C(culture)));
+    }
 
     [Theory]
     [InlineData("ru", 1, PluralCategory.One)]
