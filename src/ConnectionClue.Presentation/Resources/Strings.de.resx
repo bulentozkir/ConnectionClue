@@ -39,7 +39,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>Keine Antwort</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>Regelmäßig im Hintergrund prüfen</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>Regelmäßig über Mobilfunk prüfen</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Standardmäßig deaktiviert. Wenn aktiviert, laufen regelmäßige Verbindungstests auch über Mobilfunk. Hintergrundtests führen nie einen Geschwindigkeitstest aus.</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Standardmäßig deaktiviert. Wenn aktiviert, laufen regelmäßige Verbindungstests auch über Mobilfunk. In diesen Netzen führen Hintergrundtests nie einen Geschwindigkeitstest aus.</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>Prüfen alle</value></data>
   <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} Minute</value></data>
   <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} Minuten</value></data>
@@ -106,7 +106,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>Download-Geschwindigkeit wird gemessen…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>Upload-Geschwindigkeit wird gemessen…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Download- und Upload-Geschwindigkeit messen</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Verlängert Schnelltests um etwa 16 Sekunden und kann bis zu 300 MB verbrauchen. Läuft nie bei Hintergrundprüfungen oder getakteten Verbindungen.</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Verlängert Schnelltests um etwa 16 Sekunden und kann bis zu 300 MB verbrauchen. Hintergrundprüfungen nehmen stattdessen etwa einmal pro Stunde eine leichte Stichprobe (meist wenige MB, höchstens 30 MB), außer in Mobilfunknetzen. Läuft nie über getaktete Verbindungen.</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>Gefundene Probleme beheben</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>Bewährte Methoden für diesen PC</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>Wichtig</value></data>
@@ -285,7 +285,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Wieder online: nicht genug Daten für eine Bewertung</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Test nach der Wiederverbindung ({0}): {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Dauer des Hintergrundtests</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Wie lange jeder regelmäßige Hintergrundtest die Verzögerung misst. Hintergrundtests führen nie Geschwindigkeits- oder Diensttests aus, daher ist dies ihre gesamte Dauer.</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Wie lange jeder regelmäßige Hintergrundtest die Verzögerung misst. Hintergrundtests führen nie Diensttests aus. Bei aktivierter Geschwindigkeitsmessung folgt etwa einmal pro Stunde eine leichte Geschwindigkeitsstichprobe von wenigen Sekunden.</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Diesen Hinweis ausblenden. Ein neuer erscheint, wenn die Verbindung erneut abbricht oder zurückkehrt.</value></data>
   <data name="Duration_Hours.one" xml:space="preserve"><value>{0} Stunde</value></data>
   <data name="Duration_Hours.other" xml:space="preserve"><value>{0} Stunden</value></data>

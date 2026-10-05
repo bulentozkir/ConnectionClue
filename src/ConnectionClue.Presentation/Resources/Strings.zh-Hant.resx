@@ -38,7 +38,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>無應答</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>在背景定期檢測</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>在行動網路上定期檢測</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>預設關閉。啟用後，也會透過行動網路定期檢查連線。背景檢查不會執行速度測試。</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>預設關閉。啟用後，也會透過行動網路定期檢查連線。在這些網路上，背景檢查不會執行速度測試。</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>檢測間隔</value></data>
   <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} 分鐘</value></data>
   <data name="Settings_DelayLimit" xml:space="preserve"><value>網際網路延遲高於此值時提醒</value></data>
@@ -103,7 +103,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>正在測量下載速度…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>正在測量上傳速度…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>測量下載和上傳速度</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>快速檢測將增加約 16 秒，最多可能使用 300 MB 流量。不會在背景檢測或按流量計費的連線上執行。</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>快速檢測將增加約 16 秒，最多可能使用 300 MB 流量。背景檢測改為大約每小時進行一次輕量取樣（通常幾 MB，最多 30 MB），行動網路除外。不會在按流量計費的連線上執行。</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>修正發現的問題</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>這台電腦的最佳做法</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>重要</value></data>
@@ -282,7 +282,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>已恢復連線：資料不足，無法判斷</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>重新連線後的檢測（{0}）：{1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>背景檢測時長</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>每次定期背景檢測測量延遲的時長。背景檢測從不執行速度測試或服務測試，因此這就是它的全部時長。</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>每次定期背景檢測測量延遲的時長。背景檢測從不執行服務測試。開啟速度測量時，大約每小時一次在其後進行幾秒鐘的輕量速度取樣。</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>隱藏此通知。如果連線再次中斷或恢復，會顯示新的通知。</value></data>
   <data name="Duration_Hours.other" xml:space="preserve"><value>{0} 小時</value></data>
 </root>

@@ -39,7 +39,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>సమాధానం లేదు</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>నేపథ్యంలో క్రమం తప్పకుండా తనిఖీ చేయండి</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>మొబైల్ నెట్‌వర్క్‌లో క్రమం తప్పకుండా తనిఖీ చేయండి</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>డిఫాల్ట్‌గా ఆఫ్‌లో ఉంటుంది. ఆన్ చేస్తే మొబైల్ నెట్‌వర్క్‌లలో కూడా క్రమమైన కనెక్టివిటీ తనిఖీలు జరుగుతాయి. బ్యాక్‌గ్రౌండ్ తనిఖీలు వేగ పరీక్షలు చేయవు.</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>డిఫాల్ట్‌గా ఆఫ్‌లో ఉంటుంది. ఆన్ చేస్తే మొబైల్ నెట్‌వర్క్‌లలో కూడా క్రమమైన కనెక్టివిటీ తనిఖీలు జరుగుతాయి. ఈ నెట్‌వర్క్‌లలో బ్యాక్‌గ్రౌండ్ తనిఖీలు వేగ పరీక్షలు చేయవు.</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>తనిఖీ విరామం</value></data>
   <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} నిమిషం</value></data>
   <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} నిమిషాలు</value></data>
@@ -106,7 +106,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>డౌన్‌లోడ్ వేగాన్ని కొలుస్తోంది…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>అప్‌లోడ్ వేగాన్ని కొలుస్తోంది…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>డౌన్‌లోడ్, అప్‌లోడ్ వేగాన్ని కొలవండి</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>శీఘ్ర తనిఖీకి సుమారు 16 సెకన్లు జోడిస్తుంది, 300 MB వరకు ఉపయోగించవచ్చు. నేపథ్య తనిఖీల్లో లేదా మీటర్డ్ కనెక్షన్‌లలో ఎప్పుడూ అమలు కాదు.</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>శీఘ్ర తనిఖీకి సుమారు 16 సెకన్లు జోడిస్తుంది, 300 MB వరకు ఉపయోగించవచ్చు. బదులుగా నేపథ్య తనిఖీలు సుమారు గంటకు ఒకసారి తేలికపాటి నమూనా తీసుకుంటాయి (సాధారణంగా కొన్ని MB, గరిష్ఠంగా 30 MB), మొబైల్ నెట్‌వర్క్‌లలో తప్ప. మీటర్డ్ కనెక్షన్‌లలో ఎప్పుడూ అమలు కాదు.</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>కనుగొన్న సమస్యలను పరిష్కరించండి</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>ఈ PC కోసం ఉత్తమ పద్ధతులు</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>ముఖ్యం</value></data>
@@ -285,7 +285,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>మళ్లీ ఆన్‌లైన్: నిర్ణయించడానికి తగినంత డేటా లేదు</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>మళ్లీ కనెక్ట్ అయిన తర్వాతి తనిఖీ ({0}): {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>బ్యాక్‌గ్రౌండ్ తనిఖీ వ్యవధి</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>ప్రతి క్రమమైన బ్యాక్‌గ్రౌండ్ తనిఖీ ఎంతసేపు ఆలస్యాన్ని కొలుస్తుంది. బ్యాక్‌గ్రౌండ్ తనిఖీలు ఎప్పుడూ వేగ పరీక్షలు లేదా సేవా పరీక్షలు చేయవు, కాబట్టి ఇదే వాటి పూర్తి వ్యవధి.</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>ప్రతి క్రమమైన బ్యాక్‌గ్రౌండ్ తనిఖీ ఎంతసేపు ఆలస్యాన్ని కొలుస్తుంది. బ్యాక్‌గ్రౌండ్ తనిఖీలు ఎప్పుడూ సేవా పరీక్షలు చేయవు. వేగ కొలత ఆన్‌లో ఉంటే, సుమారు గంటకు ఒకసారి దాని తర్వాత కొన్ని సెకన్ల తేలికపాటి వేగ నమూనా తీసుకుంటుంది.</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>ఈ నోటీసును దాచండి. కనెక్షన్ మళ్లీ తెగిపోయినా లేదా తిరిగి వచ్చినా కొత్త నోటీసు కనిపిస్తుంది.</value></data>
   <data name="Duration_Hours.one" xml:space="preserve"><value>{0} గంట</value></data>
   <data name="Duration_Hours.other" xml:space="preserve"><value>{0} గంటలు</value></data>

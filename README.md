@@ -16,7 +16,8 @@ ConnectionClue is a Windows desktop tool for investigating connection problems w
 - Two ways to check, separated on screen: Quick check (10–60 seconds of baseline measurement, 30 by default), or Capture longer for 15, 30 or 45 minutes or 1, 2, 4 or 8 hours (15 minutes by default). Settings shows how long a quick check really takes with the speed test.
 - Export (PDF) and Export (MHTML) after a quick check or longer capture: a multi-page PDF through Microsoft Print to PDF, or an offline single-file web archive with embedded PNG visuals. Both contain check results and measurement tables, with counted sampling limits for long captures.
 - Each symptom's extra service starts with a default (Riot Games, Prime Video, Discord, Microsoft) that users can replace or clear; Insights history can be cleared from Settings.
-- Download/upload and loaded-latency measurement is enabled by default for user-started checks, can be disabled in Settings, uses up to 300 MB, never runs in the background, and is skipped on metered connections. Bufferbloat is graded A–F with router SQM/QoS steps.
+- Download/upload and loaded-latency measurement is enabled by default for user-started checks, can be disabled in Settings, uses up to 300 MB, and is skipped on metered connections. Bufferbloat is graded A–F with router SQM/QoS steps.
+- Background checks also measure download and upload speed with a light sample about once an hour (a quick-check speed test counts): one connection that stops as soon as the speed is steady, about 5 MB per direction at 100 Mbps and never more than 3 seconds or 20 MB down and 10 MB up. The sample waits while other apps use the connection, never runs on metered or mobile connections and follows the same Settings switch. A connection too fast to settle within those limits gets a lower bound ("≥"), kept in history but out of averages, and that direction is sampled again only every 6 hours.
 - Local check history with a daily quality score (0–100), speed compared with the entered plan, and the worst hours; gaps between checks are treated as unobserved.
 - Insights tools: a hop view that names the hop adding lasting delay or loss, a DNS comparison of the current resolver against Cloudflare, Google and Quad9 with a one-click switch and restore, and a Wi-Fi channel analyzer with the connected channel, crowding and band/channel advice.
 - A report for your provider: accessible HTML or print-to-PDF with the findings at local times, measurements and a sampled timeline, with network identifiers omitted.
@@ -59,10 +60,10 @@ The nine requested PNGs are written to `logos\`: BoxArt 1080×1080; Logo 44×44,
 Build the x64 and ARM64 MSI installers and combined MSIX bundle with:
 
 ```powershell
-pwsh tools/build-release.ps1 -Version 1.0.7
+pwsh tools/build-release.ps1 -Version 1.0.8
 ```
 
-Packages are written to `releases\1.0.7\`, with winget manifests under `releases\1.0.7\winget\`. Publish the GitHub release `v1.0.7` with the MSI files before submitting the manifests to microsoft/winget-pkgs, and set `-WingetLicense` to the project's license.
+Packages are written to `releases\1.0.8\`, with winget manifests under `releases\1.0.8\winget\`. Publish the GitHub release `v1.0.8` with the MSI files before submitting the manifests to microsoft/winget-pkgs, and set `-WingetLicense` to the project's license.
 
 The MSIX bundle uses the reserved Microsoft Store identity by default (`BulentOzkir.ConnectionClue`, publisher `CN=06D08AF4-6BB1-40DF-9B96-5DF27BEE0635`, publisher display name `Bulent Ozkir`), so it can be uploaded to Partner Center as is; the Store replaces its signature. For sideloading, it is signed with a self-signed test certificate for that publisher (`ConnectionClue-msix-test-signing.cer`). The MSIs are signed with the self-signed `CN=ConnectionClue Test` certificate (`ConnectionClue-test-signing.cer`) unless `-CertificateThumbprint` names an approved code-signing certificate, which MSI distribution requires because the Store never signs MSIs. Test-signed packages install only where their certificate is trusted. See the developer handoff for signing and release-validation requirements.
 

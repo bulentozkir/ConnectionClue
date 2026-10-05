@@ -40,7 +40,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>Sin respuesta</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>Comprobar periódicamente en segundo plano</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>Comprobar periódicamente en redes móviles</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Desactivado de forma predeterminada. Si se activa, las comprobaciones periódicas también se ejecutan en redes móviles. Las comprobaciones en segundo plano nunca miden la velocidad.</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Desactivado de forma predeterminada. Si se activa, las comprobaciones periódicas también se ejecutan en redes móviles. En estas redes, las comprobaciones en segundo plano nunca miden la velocidad.</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>Comprobar cada</value></data>
   <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} minuto</value></data>
   <data name="Duration_Minutes.many" xml:space="preserve"><value>{0} de minutos</value></data>
@@ -109,7 +109,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>Midiendo la velocidad de descarga…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>Midiendo la velocidad de subida…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Medir la velocidad de descarga y subida</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Añade unos 16 segundos a las comprobaciones rápidas y puede usar hasta 300 MB. Nunca se ejecuta en comprobaciones en segundo plano ni en conexiones de uso medido.</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Añade unos 16 segundos a las comprobaciones rápidas y puede usar hasta 300 MB. Las comprobaciones en segundo plano toman en su lugar una muestra ligera aproximadamente una vez por hora (normalmente unos pocos MB, como máximo 30 MB), salvo en redes móviles. Nunca se ejecuta en conexiones de uso medido.</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>Corrige los problemas encontrados</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>Buenas prácticas para este PC</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>Importante</value></data>
@@ -288,7 +288,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Conexión restablecida: no hay datos suficientes para valorar</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Comprobación tras reconectar ({0}): {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Duración de la comprobación en segundo plano</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Cuánto tiempo mide el retraso cada comprobación periódica en segundo plano. Las comprobaciones en segundo plano nunca miden la velocidad ni prueban servicios, así que esta es su duración total.</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Cuánto tiempo mide el retraso cada comprobación periódica en segundo plano. Las comprobaciones en segundo plano nunca prueban servicios. Con la medición de velocidad activada, aproximadamente una vez por hora sigue una muestra ligera de velocidad de unos segundos.</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Oculta este aviso. Aparecerá uno nuevo si la conexión se corta o vuelve otra vez.</value></data>
   <data name="Duration_Hours.one" xml:space="preserve"><value>{0} hora</value></data>
   <data name="Duration_Hours.many" xml:space="preserve"><value>{0} de horas</value></data>

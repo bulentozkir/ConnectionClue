@@ -184,6 +184,7 @@ public partial class LocalizationTests
         || key.StartsWith("Export_", StringComparison.Ordinal)
         || key.StartsWith("ButtonHelp_", StringComparison.Ordinal)
         || key.StartsWith("Settings_CheckTotal", StringComparison.Ordinal)
+        || key.StartsWith("SpeedSample_", StringComparison.Ordinal)
         || key is "Nav_Insights" or "Settings_InvalidPlanSpeed" or "Settings_SectionUpdates"
             or "Capture_MinutesLeft.one" or "Capture_SecondsLeft.one" or "Duration_Minutes.one";
 

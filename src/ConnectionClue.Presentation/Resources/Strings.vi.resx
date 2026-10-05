@@ -38,7 +38,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>Không có phản hồi</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>Kiểm tra định kỳ trong nền</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>Kiểm tra định kỳ trên mạng di động</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Mặc định tắt. Khi bật, kiểm tra kết nối định kỳ cũng chạy trên mạng di động. Kiểm tra nền không chạy thử nghiệm tốc độ.</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Mặc định tắt. Khi bật, kiểm tra kết nối định kỳ cũng chạy trên mạng di động. Trên các mạng này, kiểm tra nền không chạy thử nghiệm tốc độ.</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>Kiểm tra mỗi</value></data>
   <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} phút</value></data>
   <data name="Settings_DelayLimit" xml:space="preserve"><value>Cảnh báo nếu độ trễ Internet vượt quá</value></data>
@@ -103,7 +103,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>Đang đo tốc độ tải xuống…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>Đang đo tốc độ tải lên…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Đo tốc độ tải xuống và tải lên</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Thêm khoảng 16 giây vào kiểm tra nhanh và có thể dùng tới 300 MB. Không bao giờ chạy khi kiểm tra trong nền hoặc trên kết nối có đo lưu lượng.</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Thêm khoảng 16 giây vào kiểm tra nhanh và có thể dùng tới 300 MB. Thay vào đó, kiểm tra nền lấy một mẫu nhẹ khoảng mỗi giờ một lần (thường vài MB, tối đa 30 MB), trừ trên mạng di động. Không bao giờ chạy trên kết nối có đo lưu lượng.</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>Khắc phục các sự cố tìm thấy</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>Các cách nên dùng cho PC này</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>Quan trọng</value></data>
@@ -282,7 +282,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Đã trực tuyến trở lại: không đủ dữ liệu để đánh giá</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Kiểm tra sau khi kết nối lại ({0}): {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Thời lượng kiểm tra nền</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Thời gian mỗi lần kiểm tra nền định kỳ đo độ trễ. Kiểm tra nền không bao giờ chạy thử nghiệm tốc độ hay kiểm tra dịch vụ, nên đây là toàn bộ thời lượng của nó.</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Thời gian mỗi lần kiểm tra nền định kỳ đo độ trễ. Kiểm tra nền không bao giờ chạy kiểm tra dịch vụ. Khi bật đo tốc độ, khoảng mỗi giờ một lần sẽ có thêm một mẫu tốc độ nhẹ trong vài giây.</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Ẩn thông báo này. Thông báo mới sẽ xuất hiện nếu kết nối lại bị ngắt hoặc được khôi phục.</value></data>
   <data name="Duration_Hours.other" xml:space="preserve"><value>{0} giờ</value></data>
 </root>

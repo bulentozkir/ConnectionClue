@@ -38,7 +38,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>Tidak ada jawaban</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>Periksa secara berkala di latar belakang</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>Periksa secara berkala melalui jaringan seluler</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Nonaktif secara default. Jika diaktifkan, pemeriksaan konektivitas berkala juga berjalan melalui jaringan seluler. Pemeriksaan latar belakang tidak menjalankan tes kecepatan.</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Nonaktif secara default. Jika diaktifkan, pemeriksaan konektivitas berkala juga berjalan melalui jaringan seluler. Di jaringan ini, pemeriksaan latar belakang tidak menjalankan tes kecepatan.</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>Periksa setiap</value></data>
   <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} menit</value></data>
   <data name="Settings_DelayLimit" xml:space="preserve"><value>Peringatkan jika penundaan internet di atas</value></data>
@@ -103,7 +103,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>Mengukur kecepatan unduh…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>Mengukur kecepatan unggah…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Ukur kecepatan unduh dan unggah</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Menambah sekitar 16 detik pada pemeriksaan cepat dan dapat memakai hingga 300 MB. Tidak pernah berjalan pada pemeriksaan latar belakang atau koneksi terukur.</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Menambah sekitar 16 detik pada pemeriksaan cepat dan dapat memakai hingga 300 MB. Pemeriksaan latar belakang mengambil sampel ringan sekitar sekali per jam sebagai gantinya (biasanya beberapa MB, paling banyak 30 MB), kecuali di jaringan seluler. Tidak pernah berjalan pada koneksi terukur.</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>Perbaiki masalah yang ditemukan</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>Praktik terbaik untuk PC ini</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>Penting</value></data>
@@ -282,7 +282,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Kembali online: data tidak cukup untuk menilai</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Pemeriksaan setelah tersambung kembali ({0}): {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Durasi pemeriksaan latar belakang</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Berapa lama setiap pemeriksaan berkala di latar belakang mengukur penundaan. Pemeriksaan latar belakang tidak pernah menjalankan tes kecepatan atau tes layanan, jadi inilah durasi penuhnya.</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Berapa lama setiap pemeriksaan berkala di latar belakang mengukur penundaan. Pemeriksaan latar belakang tidak pernah menjalankan tes layanan. Jika pengukuran kecepatan aktif, sekitar sekali per jam disusul sampel kecepatan ringan selama beberapa detik.</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Sembunyikan pemberitahuan ini. Pemberitahuan baru muncul jika koneksi terputus atau tersambung lagi.</value></data>
   <data name="Duration_Hours.other" xml:space="preserve"><value>{0} jam</value></data>
 </root>

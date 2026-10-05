@@ -39,7 +39,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>பதில் இல்லை</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>பின்னணியில் தொடர்ந்து சரிபார்க்கவும்</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>மொபைல் நெட்வொர்க்கில் தொடர்ந்து சரிபார்க்கவும்</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>இயல்பாக முடக்கப்பட்டுள்ளது. இயக்கினால், மொபைல் நெட்வொர்க்கிலும் வழக்கமான இணைப்புச் சோதனைகள் நடைபெறும். பின்னணி சோதனைகள் வேகச் சோதனைகளை இயக்காது.</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>இயல்பாக முடக்கப்பட்டுள்ளது. இயக்கினால், மொபைல் நெட்வொர்க்கிலும் வழக்கமான இணைப்புச் சோதனைகள் நடைபெறும். இந்த நெட்வொர்க்குகளில் பின்னணி சோதனைகள் வேகச் சோதனைகளை இயக்காது.</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>சரிபார்ப்பு இடைவெளி</value></data>
   <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} நிமிடம்</value></data>
   <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} நிமிடங்கள்</value></data>
@@ -106,7 +106,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>பதிவிறக்க வேகம் அளவிடப்படுகிறது…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>பதிவேற்ற வேகம் அளவிடப்படுகிறது…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>பதிவிறக்க, பதிவேற்ற வேகத்தை அளவிடவும்</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>விரைவுச் சோதனைக்குச் சுமார் 16 வினாடிகள் கூடும்; 300 MB வரை பயன்படுத்தலாம். பின்னணிச் சோதனைகளிலோ அளவிடப்பட்ட இணைப்புகளிலோ ஒருபோதும் இயங்காது.</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>விரைவுச் சோதனைக்குச் சுமார் 16 வினாடிகள் கூடும்; 300 MB வரை பயன்படுத்தலாம். அதற்குப் பதிலாக, பின்னணிச் சோதனைகள் சுமார் மணிக்கு ஒருமுறை இலகுவான மாதிரியை எடுக்கும் (பொதுவாகச் சில MB, அதிகபட்சம் 30 MB); மொபைல் நெட்வொர்க்குகளில் அல்ல. அளவிடப்பட்ட இணைப்புகளில் ஒருபோதும் இயங்காது.</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>கண்டறிந்த சிக்கல்களைச் சரிசெய்யவும்</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>இந்தக் கணினிக்கான சிறந்த நடைமுறைகள்</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>முக்கியம்</value></data>
@@ -285,7 +285,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>மீண்டும் இணையத்தில்: மதிப்பிட போதுமான தரவு இல்லை</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>மீண்டும் இணைந்த பிறகான சோதனை ({0}): {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>பின்னணி சோதனையின் கால அளவு</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>ஒவ்வொரு வழக்கமான பின்னணி சோதனையும் தாமதத்தை எவ்வளவு நேரம் அளவிடுகிறது என்பது. பின்னணி சோதனைகள் ஒருபோதும் வேகச் சோதனைகளையோ சேவைச் சோதனைகளையோ இயக்காது, எனவே இதுவே அவற்றின் முழு கால அளவு.</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>ஒவ்வொரு வழக்கமான பின்னணி சோதனையும் தாமதத்தை எவ்வளவு நேரம் அளவிடுகிறது என்பது. பின்னணி சோதனைகள் ஒருபோதும் சேவைச் சோதனைகளை இயக்காது. வேக அளவீடு இயக்கத்தில் இருந்தால், சுமார் மணிக்கு ஒருமுறை அதைத் தொடர்ந்து சில வினாடிகள் இலகுவான வேக மாதிரி எடுக்கப்படும்.</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>இந்த அறிவிப்பை மறை. இணைப்பு மீண்டும் துண்டிக்கப்பட்டால் அல்லது திரும்பினால் புதிய அறிவிப்பு தோன்றும்.</value></data>
   <data name="Duration_Hours.one" xml:space="preserve"><value>{0} மணிநேரம்</value></data>
   <data name="Duration_Hours.other" xml:space="preserve"><value>{0} மணிநேரம்</value></data>

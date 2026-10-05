@@ -185,7 +185,8 @@ public sealed partial class SettingsViewModel : ObservableObject
         RefreshPlanValidation();
     }
 
-    /// <summary>Download and upload phase after the latency phase of quick checks (never in background checks).</summary>
+    /// <summary>Download and upload phase after the latency phase of quick checks; background checks take a light sample about
+    /// once an hour instead (<see cref="MainViewModel.SpeedSampleEvery"/>).</summary>
     [ObservableProperty, NotifyPropertyChangedFor(nameof(CheckTotalHint))]
     public partial bool MeasureSpeed { get; set; }
 
@@ -193,7 +194,8 @@ public sealed partial class SettingsViewModel : ObservableObject
     [ObservableProperty, NotifyPropertyChangedFor(nameof(CheckTotalHint))]
     public partial int CheckSeconds { get; set; }
 
-    /// <summary>Length of each regular background check: delay only, because background checks run no speed or service tests.</summary>
+    /// <summary>Length of each regular background check's delay phase. Background checks run no service tests; about once an
+    /// hour a light speed sample of a few seconds follows.</summary>
     [ObservableProperty]
     public partial int BackgroundCheckSeconds { get; set; }
 

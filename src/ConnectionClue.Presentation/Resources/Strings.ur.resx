@@ -39,7 +39,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>کوئی جواب نہیں</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>پس منظر میں باقاعدگی سے جانچ کریں</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>موبائل نیٹ ورکس پر باقاعدگی سے جانچ کریں</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>بطورِ طے شدہ بند۔ فعال ہونے پر موبائل نیٹ ورکس پر بھی باقاعدہ کنکشن کی جانچ ہوگی۔ پس منظر کی جانچ رفتار کا ٹیسٹ نہیں چلاتی۔</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>بطورِ طے شدہ بند۔ فعال ہونے پر موبائل نیٹ ورکس پر بھی باقاعدہ کنکشن کی جانچ ہوگی۔ ان نیٹ ورکس پر پس منظر کی جانچ رفتار کا ٹیسٹ نہیں چلاتی۔</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>جانچ کا وقفہ</value></data>
   <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} منٹ</value></data>
   <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} منٹ</value></data>
@@ -106,7 +106,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>ڈاؤن لوڈ کی رفتار ناپی جا رہی ہے…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>اپ لوڈ کی رفتار ناپی جا رہی ہے…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>ڈاؤن لوڈ اور اپ لوڈ کی رفتار ناپیں</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>فوری جانچ میں تقریباً 16 سیکنڈ کا اضافہ کرتا ہے اور 300 MB تک استعمال کر سکتا ہے۔ پس منظر کی جانچ یا میٹرڈ کنکشن پر کبھی نہیں چلتا۔</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>فوری جانچ میں تقریباً 16 سیکنڈ کا اضافہ کرتا ہے اور 300 MB تک استعمال کر سکتا ہے۔ اس کے بجائے پس منظر کی جانچ تقریباً ہر گھنٹے ایک ہلکا نمونہ لیتی ہے (عموماً چند MB، زیادہ سے زیادہ 30 MB)، سوائے موبائل نیٹ ورکس کے۔ میٹرڈ کنکشن پر کبھی نہیں چلتا۔</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>ملے ہوئے مسائل ٹھیک کریں</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>اس پی سی کے لیے بہترین طریقے</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>اہم</value></data>
@@ -285,7 +285,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>دوبارہ آن لائن: فیصلے کے لیے کافی ڈیٹا نہیں ہے</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>دوبارہ جڑنے کے بعد کی جانچ ({0}): {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>پس منظر کی جانچ کا دورانیہ</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>ہر باقاعدہ پس منظر کی جانچ کتنی دیر تک تاخیر کی پیمائش کرتی ہے۔ پس منظر کی جانچ کبھی رفتار کا ٹیسٹ یا سروس ٹیسٹ نہیں چلاتی، اس لیے یہی اس کا پورا دورانیہ ہے۔</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>ہر باقاعدہ پس منظر کی جانچ کتنی دیر تک تاخیر کی پیمائش کرتی ہے۔ پس منظر کی جانچ کبھی سروس ٹیسٹ نہیں چلاتی۔ رفتار کی پیمائش آن ہو تو تقریباً ہر گھنٹے اس کے بعد چند سیکنڈ کا ہلکا رفتار نمونہ لیا جاتا ہے۔</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>یہ اطلاع چھپائیں۔ کنکشن دوبارہ ٹوٹنے یا بحال ہونے پر نئی اطلاع دکھائی دے گی۔</value></data>
   <data name="Duration_Hours.one" xml:space="preserve"><value>{0} گھنٹہ</value></data>
   <data name="Duration_Hours.other" xml:space="preserve"><value>{0} گھنٹے</value></data>

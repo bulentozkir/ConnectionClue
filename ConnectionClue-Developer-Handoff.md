@@ -21,8 +21,8 @@ Workflow: **symptom → capture → finding → one change → compare → expor
   - Redacted HTML, text and CSV export.
   - UI in 20 languages (§14).
   - Background checks from the notification area, on by default, alerting against the user's own limits (§4, §12). Optional start-at-logon is off by default; MSIX delegates it to Windows, while MSI uses a per-user Run entry.
-  - Speed test in manual quick checks: download and upload throughput plus latency under load (§6). Never in background checks or on metered connections.
-- **Not in v1:** unattended speed tests, packet capture, overlays/injection, auto-repair, DNS/router/VPN/driver changes, Windows service or Task Scheduler job, remote agents, LLM-generated diagnoses, cloud sync, payment backend, in-app purchases.
+  - Speed test in manual quick checks: download and upload throughput plus latency under load (§6). Background checks take a light speed sample instead, about once an hour (§6). Never on metered connections; background samples also skip mobile networks.
+- **Not in v1:** unattended full speed tests (only the light background sample), packet capture, overlays/injection, auto-repair, DNS/router/VPN/driver changes, Windows service or Task Scheduler job, remote agents, LLM-generated diagnoses, cloud sync, payment backend, in-app purchases.
 - **Wording:** no universal score, no "ISP guilty" label, no promised lag reduction. Localization ("the delay appears beyond your router") is allowed; blame is not.
 
 ## 2. Platform and stack
@@ -41,7 +41,7 @@ Workflow: **symptom → capture → finding → one change → compare → expor
 
 ## 3. Target architecture and project layout
 
-The layout below is the intended decomposition, not a current-file inventory. The 1.0.7 preview stores settings, the last recommendation result, review verdicts, and sampled history in atomic per-user JSON files; `schema.sql` is validated separately and is not yet the runtime evidence store. See §19 for the implemented project map.
+The layout below is the intended decomposition, not a current-file inventory. The 1.0.8 preview stores settings, the last recommendation result, review verdicts, and sampled history in atomic per-user JSON files; `schema.sql` is validated separately and is not yet the runtime evidence store. See §19 for the implemented project map.
 
 ```text
 ConnectionClue.slnx            dotnet-buildable projects (packaging excluded, §17)
@@ -87,7 +87,7 @@ Windows 11 is the only platform: every build, test and CI job runs on Windows 11
     - A check already running continues, because a drop is evidence for "Disconnections".
   - Can be turned off in Settings or from the tray menu; an explicit saved choice is kept. Because network activity starts without a click, it is disclosed on the Store listing and privacy page, and in a notification the first time the window hides to the tray.
   - While the app runs, it checks every 3, 5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240, 360 or 480 min (default 5; labels show whole hours as hours). Intervals are start to start; the 3-minute floor (`RecurringChecks.MinimumInterval`) caps endpoint traffic. Each background check measures for its own length (`BackgroundCheckSeconds`, 10–60 s, default 10), independent of the quick check length.
-  - Recurring checks are enabled by default on Wi-Fi and Ethernet. Cellular/WWAN checks are off by default and require the separate saved "Check regularly on mobile networks" opt-in. Manual checks remain available; background checks never run a speed test. Startup checks follow the same cellular opt-in.
+  - Recurring checks are enabled by default on Wi-Fi and Ethernet. Cellular/WWAN checks are off by default and require the separate saved "Check regularly on mobile networks" opt-in. Manual checks remain available; background checks never run the full speed test, only the light sample (§6), and never on mobile networks. Startup checks follow the same cellular opt-in.
   -   There is no Windows service or Task Scheduler job. Start-at-logon is optional and off by default: MSIX uses a disabled Windows startup task that the user may enable; MSI uses a per-user Run entry only after opt-in. When not launched at logon, exiting stops the app and background checks.
   - When enabled, minimizing or closing hides the window to the notification area. The tray menu has Open, Quick check, a background toggle and Exit.
   - Manual and background checks share one engine and never overlap. A tick during a check runs at most once afterwards (`RecurringChecks`).
@@ -163,13 +163,19 @@ Preview checks: quick checks 10–60 s (default 30), background checks their own
   - ≤1 in-flight operation per (target, kind, family). Every timeout is shorter than its cadence. Slow probes are staggered.
   - A slot that can't run → Skipped with a reason. No catch-up.
 - **Backoff:** 15/30/60 s per endpoint, only for refusals the endpoint signals (429 with Retry-After, 503, contract mismatch). Never for timeouts or network errors.
-- **Traffic:** small diagnostic requests only, except the on-demand speed phase below. Report payload bytes and estimated wire bytes separately.
+- **Traffic:** small diagnostic requests only, except the on-demand speed phase and the light background sample below. Report payload bytes and estimated wire bytes separately.
 - **Speed phase** (manual quick checks, when Settings allows it and the connection is not metered according to Windows connection cost):
-  - Download for 8 s, then upload for 8 s, each over 4 parallel HTTPS streams (`ThroughputProbe`).
+  - Download for 8 s, then upload for 8 s, each over 4 parallel HTTPS streams (`ThroughputProbe`, `ThroughputBudget.Full`).
   - Byte caps: 200 MB down and 100 MB up. The upload payload is random so compression can't inflate results.
   - Mbps excludes ramp-up (the first second, or the first quarter of a capped fast transfer; `ThroughputMath`).
   - Latency probes keep running during the phase, giving latency under load (idle vs ↓/↑ medians, the bufferbloat signal).
   - The health verdict uses the idle phase only, so the test's own load never creates issues.
+- **Light background sample** (`ThroughputBudget.Light`; background checks after their idle phase, same Settings switch):
+  - One HTTPS connection per direction, download then upload. The probe records the bytes as they move (every 2 ms at most) and stops as soon as the last window agrees with the one before within 15% (`ThroughputMath.SettledMbps`), reporting the later window, since the earlier may still hold the tail of ramp-up. Each window lasts at least as long as the first byte took (connection setup and request, a few round trips), 0.2–1 s, and carries at least 1 MB, so TCP ramp-up can't pass for a steady rate and an upload's socket buffer, which fills at memory speed, can't either. Shorter windows were tried and read uploads at 2–3× the link rate. Typical use is about 5 MB per direction at 100 Mbps, growing with speed.
+  - Hard limits per direction: 3 s, 20 MB down, 10 MB up. When the byte cap ends it before the rate settles (roughly above 300 Mbps down or 150 Mbps up), the result is a lower bound (`ThroughputResult.LowerBound`): the tile and history rows show "≥", history stores it apart (`CheckHistoryEntry.DownloadAtLeastMbps`/`UploadAtLeastMbps`, with `LightSample` marking light results) so averages and plan comparisons are not pulled down, and that direction is sampled again only after `MainViewModel.CappedSampleEvery` (6 h), so a fast link costs a few samples a day instead of one every hour. Only a light sample that settles ends the back-off; a quick check's full test confirms a fast link but does not, both while the app runs and when the state is rebuilt from history after a restart.
+  - At most about once an hour (`MainViewModel.SpeedSampleEvery`; any speed test counts, including lower bounds and history from before the app started, so restarts add no samples; 2 minutes of slack keep the hourly check on the hour). A sample that is skipped is not counted, so the next background check tries again; a failed one is, so an endpoint refusal (429) is not retried every few minutes.
+  - Skipped on metered connections, on mobile networks, and while other apps used more than 1 Mbps down or 0.5 Mbps up during the idle phase (interface counters), so it never competes with a stream, a call or a download. The speed tiles say why or when the next sample is due.
+  - No latency under load or bufferbloat grade: one gentle connection does not load the link enough, so LatencyUnderLoad advice carries forward as before.
 - **Cancellation:** aborts operations and closes per-operation sockets → Cancelled, never Timeout. Calls that can't be interrupted are capped, not replaced; their late results after close are discarded.
 
 ## 7. Windows integration and measurement truth
@@ -239,7 +245,7 @@ Preview checks: quick checks 10–60 s (default 30), background checks their own
 - **Blast radius:** resolved and fallback addresses must fall inside the operator's pinned prefixes; otherwise the target is disabled (SessionCapability Target). A hijacked zone therefore can't aim installs at third parties, and per-install rates stay capped.
 - **HTTPS endpoints:** small static objects on two independent CDNs, edge-cached with a long TTL and served downstream with `Cache-Control: no-store`, so proxies can't answer on the upstream path's behalf. No server code. CDN logging minimized and disclosed.
 - **ICMP/TCP targets:** the same operators' edge addresses, under documented terms. Fallback plan: two minimal responders on independent hosts; failing that, pause the release. Resolved at session start, outside timing.
-- **Cost** (docs/endpoint-approval.md): ~8 HTTPS requests/min per active capture, each a tiny static response. Background checks add ~2 HTTPS requests per 10-second check (~5 for 30–60 s). At the default 10-second check every 5 minutes that is ~580/day per install while the app is open; each reconnect check adds ~2. That is the default for every install, so budget for it (worst case: 60-second checks every 3 minutes ≈ 2,400/day). Recurring cost against one-time revenue is accepted, capped by cadence, and reviewed against install counts.
+- **Cost** (docs/endpoint-approval.md): ~8 HTTPS requests/min per active capture, each a tiny static response. Background checks add ~2 HTTPS requests per 10-second check (~5 for 30–60 s). At the default 10-second check every 5 minutes that is ~580/day per install while the app is open; each reconnect check adds ~2. That is the default for every install, so budget for it (worst case: 60-second checks every 3 minutes ≈ 2,400/day). The throughput service additionally sees at most one light download and one light upload per hour per install (usually a few MB, at most 30 MB; §6). Recurring cost against one-time revenue is accepted, capped by cadence, and reviewed against install counts.
 - **Manifest entry:** id, operator id, purpose, names, pinned prefixes, fallback addresses, families, ports/paths, protocols, response contract, expected TLS issuers, payload cap, cadence/timeouts/allowed rate, usage-rights reference, review date, version. No secrets.
   - Shipped in the package and snapshotted per session by content hash. No remote config.
 - **Validation (build and load):** reject plaintext external requests, executable actions, credentials, and external targets in loopback, link-local, private or CGNAT ranges. Release builds fail on a lab manifest.
@@ -424,7 +430,7 @@ Preview mapping (`NextActionPlanner`). The most severe issue comes first, local 
   - It only reads; the app never changes a setting.
   - Each read is independent and best-effort. A value it can't read never produces advice.
   - Facts are gathered in parallel with the check (about 0.5–1.5 s) and awaited when the check completes (at most 5 s).
-  - LatencyUnderLoad needs a speed phase. Background and metered checks have none, so they carry the last measured advice forward; only a check with a speed phase or Dismiss clears it.
+  - LatencyUnderLoad needs a full speed phase. Background checks (light samples only) and metered checks have none, so they carry the last measured advice forward; only a check with a full speed phase or Dismiss clears it.
 - **Levels:** each piece of advice is Important or Suggestion, with Important first.
 - **Gating:** symptom-specific advice appears only when the chosen symptom or a detected issue makes it relevant, so healthy PCs aren't flooded.
 - **Thresholds:** proposed defaults, pending lab calibration.
@@ -634,7 +640,7 @@ Target: WCAG 2.2 AA, applied to desktop software through EN 301 549 clause 11. I
   - The page reflows at 320 CSS px, honours `forced-colors`, `prefers-contrast` and `prefers-reduced-motion`, and never shows status by colour alone.
   - The text report is linear "label: value" lines, with no ASCII tables. The CSV has a single header row with units in the column names.
 - **Report language:** chosen at export time (defaults to the UI language); findings re-render from their message keys. CSV stays culture-invariant, with English column identifiers, a . decimal separator and UTC ISO 8601 times.
-- **Speed-test data use** is stated next to its setting (up to about 300 MB per manual check). It never runs in the background or on metered connections.
+- **Speed-test data use** is stated next to its setting (up to about 300 MB per manual check; the light background sample usually a few MB, at most 30 MB, about once an hour). Neither runs on metered connections, and background samples also skip mobile networks.
 - **Network disclosure:**
   - No telemetry = no analytics uploads. Probe operators see normal connection metadata.
   - No credentials, cookies, notes or user content leave the PC.
@@ -755,7 +761,7 @@ Target: WCAG 2.2 AA, applied to desktop software through EN 301 549 clause 11. I
 dotnet build ConnectionClue.slnx -c Release
 dotnet test --solution ConnectionClue.slnx -c Release
 pwsh tools/generate-icons.ps1
-pwsh tools/build-release.ps1 -Version 1.0.7  # → releases/1.0.7/ (git-ignored; publish via GitHub Releases)
+pwsh tools/build-release.ps1 -Version 1.0.8  # → releases/1.0.8/ (git-ignored; publish via GitHub Releases)
 ```
 
 - Run `python tools/validate_schema.py` for the SQLite schema checks. WiX 5 is pinned in `dotnet-tools.json` and restored by the release script.
@@ -784,16 +790,21 @@ pwsh tools/build-release.ps1 -Version 1.0.7  # → releases/1.0.7/ (git-ignored;
   - Rebuilt `ConnectionClue_1.0.7.0.msixbundle` with both architectures and the unchanged Store identity. SHA256: `7CC6A43E0C22D5E3947C63BE38B7A76E1057237974E80B04E518658FA7DD1982`.
   - A real `Add-AppxPackage` install from elevated Windows PowerShell passed on Windows 11 x64 build `10.0.26300`, with package status `Ok` and the expected PFN. This was not development registration. The test app was uninstalled and the temporarily imported test certificate was removed from `LocalMachine\TrustedPeople`; the app was not launched.
   - Both architecture payloads contain the corrected language, the self-contained runtime and the Hausa satellite. ARM64 installation, minimum-build installation and Store-delivered installation still require separate validation; local success is not Store certification.
+- **1.0.8 build (light background speed sample):** built with `pwsh tools/build-release.ps1 -Version 1.0.8` into `releases/1.0.8/`; all 481 tests passed in Release configuration, including the live throughput tests against the lab endpoint.
+  - Both MSI databases report ProductVersion 1.0.8, the expected architecture (x64, Arm64), the fixed UpgradeCode and manufacturer `Bulent Ozkir`; product codes x64 `{91B3C310-03A1-4911-9EF2-DE2A9DC964F1}`, arm64 `{68C6DBB8-B51B-4920-8290-A25448F935FE}`. The bundle identity is `BulentOzkir.ConnectionClue` 1.0.8.0 with the Store publisher and PublisherDisplayName `Bulent Ozkir`; its x64 and arm64 packages hold the same files as 1.0.7, and the executable and app assemblies are 1.0.8.0. Bundle SHA256: `50A8AC5FE80BD3321D18DB1D1FDF5D075475EC3AABF75B41ADA59F7C17E4C691`.
+  - Signed with the same test certificates as 1.0.7 (MSIs `CN=ConnectionClue Test`, `816BD0D7…`; bundle the Store-publisher test certificate, `490A28C5…`); Windows reports only the untrusted test root. `winget validate` passed; `SHA256SUMS.txt` and the manifests' v1.0.8 URLs, hashes and product codes match the files.
+  - The shipped app embeds the 1.0.8 Help and contains the new speed-sample strings and the updated speed hints (neutral resources, and the de and tr satellites checked). The icon step re-encodes the tracked images without visible change (pixel-identical apart from 6 bytes of anti-aliasing in the 1080×1080 box art), so they were restored from git.
+  - Not done for 1.0.8: re-rendering Settings in all 20 languages with the longer speed hints (the app was not launched, so no user settings were read or modified), ICE validation, and an install test of the bundle.
 - **Size:** bundle 149 MB, but the Store delivers only the matching architecture (~74 MB). MSIs are 55–60 MB. The biggest cut would be replacing WinForms `NotifyIcon` with a Shell_NotifyIcon wrapper, which removes the WinForms runtime.
 - **Record** the verified packaging and signing commands in docs/release-checklist.md.
-- **Status:** WP1, WP2 (probe/network slice), WP5, WP6 (probes) and WP7 are implemented and tested (§19). A preview App, the health evaluator, the configuration advisor, the background scheduler and 1.0.7 packages also exist. The preview also has a verdict evaluator for R01–R05 and R07–R11 (`VerdictEvaluator`, with link evidence from `InterfaceMonitor` and `WlanMonitor` during each check), the provider report (HTML and print-to-PDF, local times), per-symptom service targets, a hop view summary, a DNS comparison with a consented switch, a Wi-Fi channel analyzer, a daily quality score, the taskbar jump list and winget manifests. Still to do: Capture/storage, R06 (needs a second independent operator), evidence levels and full §12 marker windows, the remaining views, and manifest loading.
+- **Status:** WP1, WP2 (probe/network slice), WP5, WP6 (probes) and WP7 are implemented and tested (§19). A preview App, the health evaluator, the configuration advisor, the background scheduler and 1.0.8 packages also exist. The preview also has a verdict evaluator for R01–R05 and R07–R11 (`VerdictEvaluator`, with link evidence from `InterfaceMonitor` and `WlanMonitor` during each check), the provider report (HTML and print-to-PDF, local times), per-symptom service targets, a hop view summary, a DNS comparison with a consented switch, a Wi-Fi channel analyzer, a daily quality score, the taskbar jump list and winget manifests. Still to do: Capture/storage, R06 (needs a second independent operator), evidence levels and full §12 marker windows, the remaining views, and manifest loading.
 
 ## 18. Release blockers and done
 
 **Blockers:**
 
 - Endpoint rights and rates; CDN endpoints live under product-owned names; cost budget approved.
-- **Throughput service:** the preview uses a public speed-test endpoint (LAB only). Release needs a licensed or product-owned download/upload service (uploads need a sink, i.e. server-side code), sized for up to ~300 MB per manual check.
+- **Throughput service:** the preview uses a public speed-test endpoint (LAB only). Release needs a licensed or product-owned download/upload service (uploads need a sink, i.e. server-side code), sized for up to ~300 MB per manual check plus an hourly light sample (up to 30 MB) per running background-check install.
 - **Symptom service targets:** `SymptomServices` lists well-known public endpoints (game platforms, Teams/Zoom/Meet, streaming services, connectivity checks) that Quick Check contacts with a TCP handshake only. Confirm acceptable use, or replace them with product-owned targets, before release; hosts can move, so review them each release.
 - Proposed calibration targets met on the labelled corpus:
   - ≥95 % recall for outages ≥5 s (R01/R03/R04);
@@ -862,6 +873,7 @@ pwsh tools/build-release.ps1 -Version 1.0.7  # → releases/1.0.7/ (git-ignored;
 | Recommendations persisted as codes, with their check time first | Survives restarts; re-renders in any language; the user always sees how old the advice is |
 | One colour per action role, always with an icon and a label | Easier to recognise for low-vision and cognitive disabilities; never colour alone; high contrast uses system colours |
 | On-demand speed test with latency under load; idle-only verdicts | The user asked for throughput. Keeping it manual, capped and off on metered connections bounds cost and data use. Loaded latency explains lag while someone uploads |
+| Light hourly background speed sample instead of an unattended full test | Speed is tracked all day for trends and worst hours at minimum cost: one connection that stops once its rate settles, hourly rather than every check, skipped while other apps use the link and on metered or mobile networks. A capped sample is a lower bound kept out of averages, and its direction backs off to every 6 hours |
 | Read-only configuration advisor, gated by symptom and issues | Users need to know which OS, driver and power settings hurt their connection. Reading (never writing) keeps the app standard-user and safe. Gating and Important/Suggestion levels avoid noise on healthy PCs |
 | "Checked, no change needed" list and one-click helpers | A healthy PC otherwise showed nothing, which looked like nothing was checked. Helpers turn instructions into one click without the app changing settings; allow-listed targets keep them safe |
 | Lag marker as a chart flag | A button that only said "recorded" was unexplained and unverifiable; the flag ties the user's moment to the evidence |

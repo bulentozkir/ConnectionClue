@@ -3,7 +3,10 @@ using ConnectionClue.Analysis;
 
 namespace ConnectionClue.Presentation.History;
 
-/// <summary>A small, identity-free summary of one check. Sample gaps are not treated as observed uptime.</summary>
+/// <summary>A small, identity-free summary of one check. Sample gaps are not treated as observed uptime.
+/// DownloadAtLeastMbps and UploadAtLeastMbps are lower bounds from light background samples that spent their byte budget
+/// before the speed settled: shown with "≥", never averaged. LightSample: the speeds come from a background check's light
+/// sample (one connection), not a quick check's full test.</summary>
 public sealed record CheckHistoryEntry(
     DateTimeOffset CheckedAtUtc,
     HealthLevel Level,
@@ -12,7 +15,10 @@ public sealed record CheckHistoryEntry(
     double? MedianLatencyMs,
     double? VariationMs,
     BufferbloatGrade? BufferbloatGrade,
-    double? BufferbloatIncreaseMs);
+    double? BufferbloatIncreaseMs,
+    double? DownloadAtLeastMbps = null,
+    double? UploadAtLeastMbps = null,
+    bool LightSample = false);
 
 public interface ICheckHistoryStore
 {

@@ -38,7 +38,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>応答なし</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>バックグラウンドで定期的にチェック</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>モバイルネットワークで定期的にチェック</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>既定ではオフです。オンにすると、モバイルネットワークでも定期的に接続を確認します。バックグラウンドの確認では速度テストを行いません。</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>既定ではオフです。オンにすると、モバイルネットワークでも定期的に接続を確認します。これらのネットワークでは、バックグラウンドの確認で速度テストを行いません。</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>チェック間隔</value></data>
   <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} 分</value></data>
   <data name="Settings_DelayLimit" xml:space="preserve"><value>インターネットの遅延がこの値を超えたら警告</value></data>
@@ -103,7 +103,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>ダウンロード速度を測定しています…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>アップロード速度を測定しています…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>ダウンロードとアップロードの速度を測定</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>クイックチェックが約 16 秒長くなり、最大 300 MB を使用する場合があります。バックグラウンドのチェックや従量制課金接続では実行されません。</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>クイックチェックが約 16 秒長くなり、最大 300 MB を使用する場合があります。バックグラウンドのチェックでは代わりに約 1 時間に 1 回、軽いサンプル測定を行います (通常は数 MB、最大 30 MB。モバイル ネットワークを除く)。従量制課金接続では実行されません。</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>見つかった問題を修正する</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>この PC のベスト プラクティス</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>重要</value></data>
@@ -282,7 +282,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>オンラインに復帰：判断に十分なデータがありません</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>再接続後のチェック（{0}）：{1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>バックグラウンドチェックの長さ</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>定期的なバックグラウンドチェックごとに遅延を測定する時間です。バックグラウンドチェックでは速度テストやサービステストを行わないため、これがチェック全体の長さです。</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>定期的なバックグラウンドチェックごとに遅延を測定する時間です。バックグラウンドチェックではサービステストを行いません。速度測定がオンの場合は、約 1 時間に 1 回、続けて数秒間の軽い速度サンプル測定を行います。</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>この通知を非表示にします。接続が再び切れたり復帰したりすると、新しい通知が表示されます。</value></data>
   <data name="Duration_Hours.other" xml:space="preserve"><value>{0} 時間</value></data>
 </root>

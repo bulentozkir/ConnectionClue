@@ -43,7 +43,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>لا رد</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>الفحص بانتظام في الخلفية</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>التحقق بانتظام عبر شبكات الهاتف المحمول</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>متوقف افتراضيًا. عند تفعيله، تُجرى فحوصات الاتصال الدورية أيضًا عبر شبكة الهاتف المحمول. لا تتضمن الفحوصات في الخلفية اختبار السرعة.</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>متوقف افتراضيًا. عند تفعيله، تُجرى فحوصات الاتصال الدورية أيضًا عبر شبكة الهاتف المحمول. لا تتضمن الفحوصات في الخلفية اختبار السرعة على هذه الشبكات.</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>الفحص كل</value></data>
   <data name="Duration_Minutes.zero" xml:space="preserve"><value>{0} دقيقة</value></data>
   <data name="Duration_Minutes.one" xml:space="preserve"><value>دقيقة واحدة</value></data>
@@ -118,7 +118,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>جارٍ قياس سرعة التنزيل…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>جارٍ قياس سرعة الرفع…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>قياس سرعة التنزيل والرفع</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>يضيف نحو 16 ثانية إلى الفحص السريع وقد يستهلك حتى 300 MB. لا يعمل أبدًا في الفحوصات الخلفية أو على الاتصالات المحدودة.</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>يضيف نحو 16 ثانية إلى الفحص السريع وقد يستهلك حتى 300 MB. تأخذ الفحوصات الخلفية بدلًا من ذلك عينة خفيفة نحو مرة كل ساعة (عادةً بضعة MB، و30 MB كحد أقصى)، إلا على شبكات الهاتف المحمول. لا يعمل أبدًا على الاتصالات المحدودة.</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>أصلح المشكلات التي تم العثور عليها</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>أفضل الممارسات لهذا الكمبيوتر</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>مهم</value></data>
@@ -297,7 +297,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>عاد الاتصال: لا توجد بيانات كافية للحكم</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>فحص ما بعد إعادة الاتصال ({0}): {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>مدة الفحص في الخلفية</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>المدة التي يقيس فيها كل فحص دوري في الخلفية التأخير. لا تتضمن الفحوصات في الخلفية أبدًا اختبار السرعة أو اختبار الخدمات، لذا هذه مدتها الكاملة.</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>المدة التي يقيس فيها كل فحص دوري في الخلفية التأخير. لا تتضمن الفحوصات في الخلفية أبدًا اختبار الخدمات. عند تشغيل قياس السرعة، تليها نحو مرة كل ساعة عينة سرعة خفيفة تستغرق بضع ثوانٍ.</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>إخفاء هذا الإشعار. سيظهر إشعار جديد إذا انقطع الاتصال أو عاد مرة أخرى.</value></data>
   <data name="Duration_Hours.zero" xml:space="preserve"><value>{0} ساعة</value></data>
   <data name="Duration_Hours.one" xml:space="preserve"><value>ساعة واحدة</value></data>

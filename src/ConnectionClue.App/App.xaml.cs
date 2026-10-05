@@ -140,7 +140,7 @@ public partial class App : Application
         {
             HideToTray();
             if (!ConnectionCost.IsMobileNetwork() || settings.BackgroundOnMobileEnabled)
-                _ = _vm.RunCheckAsync(measureSpeed: false);
+                _ = _vm.RunCheckAsync(measureSpeed: settings.MeasureSpeed);
         }
         RefreshTray();
         // Live connectivity: with no network at all the status and tray warn, and no check starts.

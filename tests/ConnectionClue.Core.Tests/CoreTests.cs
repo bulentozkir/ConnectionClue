@@ -193,4 +193,96 @@ public class ThroughputMathTests
         Assert.Null(ThroughputMath.Mbps([(0, 0), (1, 0)]));
         Assert.Null(ThroughputMath.Mbps([(0, 0)]));
     }
+
+    // Cumulative samples every 10 ms, like the probe's as bytes move; bytes flow from firstByte at rate(t) bytes per second.
+    private static List<(double Seconds, long Bytes)> Transfer(double until, double firstByte, Func<double, double> rate)
+    {
+        var samples = new List<(double Seconds, long Bytes)> { (0, 0) };
+        double bytes = 0;
+        for (int i = 1; i / 100.0 <= until + 1e-9; i++)
+        {
+            double t = i / 100.0;
+            if (t >= firstByte - 1e-9) bytes += rate(t) * 0.01;
+            samples.Add((t, (long)bytes));
+        }
+        return samples;
+    }
+
+    // The probe checks after every sample and stops at the first settled rate.
+    private static (double Seconds, long Bytes, double Mbps)? FirstSettle(List<(double Seconds, long Bytes)> samples)
+    {
+        for (int n = 2; n <= samples.Count; n++)
+            if (ThroughputMath.SettledMbps(samples[..n]) is { } mbps) return (samples[n - 1].Seconds, samples[n - 1].Bytes, mbps);
+        return null;
+    }
+
+    [Fact]
+    public void Steady_rate_settles_once_two_windows_after_the_first_byte_agree()
+    {
+        Assert.Null(ThroughputMath.SettledMbps(Transfer(0.2, 0.1, _ => 12_500_000))); // too soon after the first byte
+        var settle = FirstSettle(Transfer(1, 0.1, _ => 12_500_000))!.Value;
+        Assert.Equal(100, settle.Mbps, 3);
+        Assert.InRange(settle.Seconds, 0.49, 0.53); // two 0.2-second windows after the first byte
+        Assert.InRange(settle.Bytes, 5_000_000, 5_600_000);
+    }
+
+    [Fact]
+    public void Ramp_up_is_never_taken_for_a_settled_rate()
+    {
+        // 20 ms round trips: the first byte after three, then the rate doubles every round trip up to 300 Mbps at 0.231 s.
+        static double Ramp(double t) => Math.Min(37_500_000, 100_000 * Math.Pow(2, (t - 0.06) / 0.02));
+        var settle = FirstSettle(Transfer(1, 0.06, Ramp))!.Value;
+        Assert.True(settle.Seconds > 0.231 + ThroughputMath.MinSettleWindow.TotalSeconds, $"settled during ramp-up at {settle.Seconds} s");
+        Assert.Equal(300, settle.Mbps, 3); // the later window, past the ramp
+        Assert.True(settle.Bytes < ThroughputBudget.Light(ThroughputDirection.Download).MaxBytes, $"{settle.Bytes} bytes");
+    }
+
+    [Fact]
+    public void A_gigabit_download_spends_the_light_budget_before_it_settles()
+    {
+        // Such a link ends its light sample at the byte cap: a lower bound, sampled again only every few hours.
+        static double Ramp(double t) => Math.Min(112_500_000, 100_000 * Math.Pow(2, (t - 0.06) / 0.02));
+        var settle = FirstSettle(Transfer(1, 0.06, Ramp))!.Value;
+        Assert.True(settle.Bytes > ThroughputBudget.Light(ThroughputDirection.Download).MaxBytes, $"{settle.Bytes} bytes");
+    }
+
+    [Fact]
+    public void A_slow_first_byte_lengthens_the_windows()
+    {
+        // The first byte took 0.5 s (long round trips), so each window lasts at least 0.5 s.
+        Assert.Null(ThroughputMath.SettledMbps(Transfer(1.4, 0.5, _ => 12_500_000)));
+        Assert.Equal(100, ThroughputMath.SettledMbps(Transfer(1.6, 0.5, _ => 12_500_000))!.Value, 3);
+    }
+
+    [Fact]
+    public void A_slow_link_needs_a_megabyte_per_window()
+    {
+        Assert.Null(FirstSettle(Transfer(3, 0.1, _ => 125_000))); // 1 Mbps: never within a light sample's 3 s
+        Assert.Null(ThroughputMath.SettledMbps(Transfer(1.5, 0.1, _ => 1_250_000)));
+        Assert.Equal(10, ThroughputMath.SettledMbps(Transfer(2, 0.1, _ => 1_250_000))!.Value, 3);
+    }
+
+    [Fact]
+    public void Windows_must_agree_within_the_tolerance_and_the_later_one_is_reported()
+    {
+        // Windows 0.32–0.53 s at 10 MB/s, then 0.53–0.75 s at 11 MB/s (9% apart) or 13 MB/s (23% apart).
+        List<(double, long)> Windows(double laterRate) =>
+            [(0, 0), (0.1, 1_000), (0.32, 1_000_000), (0.53, 3_100_000), (0.75, 3_100_000 + (long)(0.22 * laterRate))];
+        Assert.Equal(88, ThroughputMath.SettledMbps(Windows(11_000_000))!.Value, 3);
+        Assert.Null(ThroughputMath.SettledMbps(Windows(13_000_000)));
+    }
+
+    [Fact]
+    public void Nothing_transferred_never_settles() =>
+        Assert.Null(ThroughputMath.SettledMbps([(0, 0), (0.5, 0), (1, 0)]));
+
+    [Fact]
+    public void Light_budget_uses_one_connection_and_a_few_seconds()
+    {
+        var light = ThroughputBudget.Light(ThroughputDirection.Download);
+        Assert.Equal((1, true), (light.Streams, light.StopWhenSettled));
+        Assert.True(light.Duration < ThroughputBudget.Full(ThroughputDirection.Download).Duration);
+        Assert.True(ThroughputBudget.Light(ThroughputDirection.Upload).MaxBytes < light.MaxBytes);
+        Assert.False(ThroughputBudget.Full(ThroughputDirection.Upload).StopWhenSettled);
+    }
 }

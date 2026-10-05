@@ -260,17 +260,34 @@ public class ThroughputProbeTests
         RequireInternet();
         using var probe = Probe();
         var live = new List<double>();
-        var r = await probe.MeasureAsync(direction, TimeSpan.FromSeconds(6), new Progress<double>(live.Add), Ct);
+        var budget = ThroughputBudget.Full(direction) with { Duration = TimeSpan.FromSeconds(6) };
+        var r = await probe.MeasureAsync(direction, budget, new Progress<double>(live.Add), Ct);
         Assert.Equal(ProbeStatus.Success, r.Status);
         Assert.True(r.Mbps > 0);
         Assert.InRange(r.Bytes, 1, (direction == ThroughputDirection.Download ? 8_000_000 : 3_000_000) + 4 * 81_920 + 4 * 65_536);
+    }
+
+    [Theory]
+    [InlineData(ThroughputDirection.Download)]
+    [InlineData(ThroughputDirection.Upload)]
+    public async Task Light_sample_uses_one_connection_and_stays_within_its_budget(ThroughputDirection direction)
+    {
+        RequireInternet();
+        using var probe = new ThroughputProbe(TimeProvider.System, "https://speed.cloudflare.com/__down?bytes={0}",
+            new Uri("https://speed.cloudflare.com/__up"));
+        var budget = ThroughputBudget.Light(direction);
+        var r = await probe.MeasureAsync(direction, budget, null, Ct);
+        Assert.Equal(ProbeStatus.Success, r.Status);
+        Assert.True(r.Mbps > 0);
+        Assert.InRange(r.Bytes, 1, budget.MaxBytes + 81_920 + 65_536);
+        Assert.InRange(r.Elapsed, TimeSpan.Zero, budget.Duration + TimeSpan.FromSeconds(1));
     }
 
     [Fact]
     public async Task Cancellation_is_cancelled()
     {
         using var probe = Probe();
-        var r = await probe.MeasureAsync(ThroughputDirection.Download, TimeSpan.FromSeconds(5), null, Cancelled());
+        var r = await probe.MeasureAsync(ThroughputDirection.Download, ThroughputBudget.Full(ThroughputDirection.Download), null, Cancelled());
         Assert.Equal(ProbeStatus.Cancelled, r.Status);
     }
 

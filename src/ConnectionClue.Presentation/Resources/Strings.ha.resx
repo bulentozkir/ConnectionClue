@@ -39,7 +39,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>Babu amsa</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>Yi bincike akai-akai a bango</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>Yi bincike akai-akai ta hanyar sadarwar wayar hannu</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>A kashe shi ne ta tsohuwa. Idan an kunna, ana yin gwajin haɗi akai-akai ta cibiyar sadarwar wayar hannu. Gwajin bango ba ya auna saurin intanet.</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>A kashe shi ne ta tsohuwa. Idan an kunna, ana yin gwajin haɗi akai-akai ta cibiyar sadarwar wayar hannu. A waɗannan cibiyoyin sadarwa, gwajin bango ba ya auna saurin intanet.</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>Yi bincike kowane</value></data>
   <data name="Duration_Minutes.one" xml:space="preserve"><value>minti {0}</value></data>
   <data name="Duration_Minutes.other" xml:space="preserve"><value>mintuna {0}</value></data>
@@ -106,7 +106,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>Ana auna saurin saukarwa…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>Ana auna saurin lodawa…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Auna saurin saukarwa da lodawa</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Yana ƙara kusan daƙiƙa 16 ga bincike cikin sauri kuma yana iya amfani da har zuwa 300 MB. Ba ya aiki a binciken bango ko a kan haɗin da ake auna amfaninsa.</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Yana ƙara kusan daƙiƙa 16 ga bincike cikin sauri kuma yana iya amfani da har zuwa 300 MB. Maimakon haka, binciken bango yana ɗaukar ƙaramin samfuri kusan sau ɗaya a kowace awa (yawanci 'yan MB kaɗan, bai wuce 30 MB ba), sai dai a cibiyoyin sadarwar wayar hannu. Ba ya taɓa aiki a kan haɗin da ake auna amfaninsa.</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>Gyara matsalolin da aka samu</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>Mafi kyawun hanyoyi ga wannan kwamfuta</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>Muhimmi</value></data>
@@ -285,7 +285,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>An dawo kan layi: babu isassun bayanai don yanke hukunci</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Binciken bayan sake haɗawa ({0}): {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Tsawon gwajin bango</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Tsawon lokacin da kowane gwajin bango na yau da kullum ke auna jinkiri. Gwajin bango ba ya taɓa auna saurin intanet ko gwada ayyuka, don haka wannan shi ne cikakken tsawonsa.</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Tsawon lokacin da kowane gwajin bango na yau da kullum ke auna jinkiri. Gwajin bango ba ya taɓa gwada ayyuka. Idan auna saurin yana kunne, kusan sau ɗaya a kowace awa ana biye da ƙaramin samfurin sauri na 'yan daƙiƙoƙi.</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Ɓoye wannan sanarwa. Sabuwar sanarwa za ta bayyana idan haɗin ya sake yankewa ko ya dawo.</value></data>
   <data name="Duration_Hours.one" xml:space="preserve"><value>awa {0}</value></data>
   <data name="Duration_Hours.other" xml:space="preserve"><value>awanni {0}</value></data>

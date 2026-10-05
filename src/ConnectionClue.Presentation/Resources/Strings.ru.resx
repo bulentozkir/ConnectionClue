@@ -41,7 +41,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>Нет ответа</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>Регулярно проверять в фоновом режиме</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>Регулярно проверять в мобильных сетях</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>По умолчанию отключено. При включении регулярные проверки подключения выполняются и в мобильных сетях. Фоновые проверки не запускают тест скорости.</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>По умолчанию отключено. При включении регулярные проверки подключения выполняются и в мобильных сетях. В этих сетях фоновые проверки не запускают тест скорости.</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>Интервал проверки</value></data>
   <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} минута</value></data>
   <data name="Duration_Minutes.few" xml:space="preserve"><value>{0} минуты</value></data>
@@ -112,7 +112,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>Измерение скорости загрузки…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>Измерение скорости отдачи…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Измерять скорость загрузки и отдачи</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Добавляет около 16 секунд к быстрой проверке и может использовать до 300 МБ. Никогда не выполняется при фоновых проверках и на лимитных подключениях.</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Добавляет около 16 секунд к быстрой проверке и может использовать до 300 МБ. Фоновые проверки вместо этого примерно раз в час берут лёгкую пробу (обычно несколько МБ, не более 30 МБ), кроме мобильных сетей. Никогда не выполняется на лимитных подключениях.</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>Исправьте найденные проблемы</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>Рекомендации для этого компьютера</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>Важно</value></data>
@@ -291,7 +291,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>Подключение восстановлено: недостаточно данных для оценки</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Проверка после переподключения ({0}): {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Длительность фоновой проверки</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Сколько времени каждая регулярная фоновая проверка измеряет задержку. Фоновые проверки никогда не запускают тест скорости или проверку сервисов, поэтому это их полная длительность.</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Сколько времени каждая регулярная фоновая проверка измеряет задержку. Фоновые проверки никогда не запускают проверку сервисов. Если измерение скорости включено, примерно раз в час за ней следует лёгкая проба скорости на несколько секунд.</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Скрыть это уведомление. Новое появится, если подключение снова пропадёт или восстановится.</value></data>
   <data name="Duration_Hours.one" xml:space="preserve"><value>{0} час</value></data>
   <data name="Duration_Hours.few" xml:space="preserve"><value>{0} часа</value></data>

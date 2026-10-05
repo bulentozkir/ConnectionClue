@@ -363,10 +363,10 @@ public sealed class ReconnectTests : IDisposable
     private sealed class SpySpeed : IThroughputProbe
     {
         public int Calls { get; private set; }
-        public Task<ThroughputResult> MeasureAsync(ThroughputDirection direction, TimeSpan duration, IProgress<double>? progress, CancellationToken ct)
+        public Task<ThroughputResult> MeasureAsync(ThroughputDirection direction, ThroughputBudget budget, IProgress<double>? progress, CancellationToken ct)
         {
             Calls++;
-            return Task.FromResult(new ThroughputResult(direction, ProbeStatus.Success, 20, 1000, duration));
+            return Task.FromResult(new ThroughputResult(direction, ProbeStatus.Success, 20, 1000, budget.Duration));
         }
     }
 

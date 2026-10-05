@@ -267,13 +267,27 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private bool _savedFromPreviousSession;
     private long _start;
 
-    /// <summary>Length of each speed phase (download, then upload).</summary>
-    public static readonly TimeSpan SpeedPhase = TimeSpan.FromSeconds(8);
+    /// <summary>Length of each speed phase (download, then upload) of the manual speed test.</summary>
+    public static readonly TimeSpan SpeedPhase = ThroughputBudget.FullPhase;
+
+    /// <summary>Background checks take a light speed sample at most about this often; any speed test counts. The slack lets the
+    /// sample land on the check at the hour, although the previous one finished seconds into its own check.</summary>
+    public static readonly TimeSpan SpeedSampleEvery = TimeSpan.FromHours(1);
+    private static readonly TimeSpan SpeedSampleSlack = TimeSpan.FromMinutes(2);
+
+    /// <summary>A direction whose light sample spent its byte budget before settling is too fast to sample lightly; it is
+    /// sampled again only after this long, so a fast link costs a few samples a day instead of one every hour.</summary>
+    public static readonly TimeSpan CappedSampleEvery = TimeSpan.FromHours(6);
+
+    /// <summary>Other apps' traffic during the delay phase (Mbps) from which a background sample waits for a quieter check, so
+    /// it never competes with a stream, a call or a download.</summary>
+    public const double BusyDownMbps = 1, BusyUpMbps = 0.5;
+    private DateTimeOffset? _lastSpeedTestUtc, _downloadCappedUtc, _uploadCappedUtc;
     private double _idleSeconds = double.MaxValue;
     private (double From, double To)? _downloadWindow, _uploadWindow;
     private readonly List<double> _dnsMs = [];
     private (double Down, double Up)? _otherTraffic;
-    private double? _downloadMbps, _uploadMbps, _loadedDownMs, _loadedUpMs;
+    private double? _downloadMbps, _uploadMbps, _downloadAtLeast, _uploadAtLeast, _loadedDownMs, _loadedUpMs;
     private DateTimeOffset _checkStartedUtc;
     private readonly IShell? _shell;
     private readonly Func<bool>? _isConnected;
@@ -344,11 +358,16 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         TryPreview = "";
         BufferbloatText = l.Get("Bufferbloat_NotMeasured", ui);
         _history = CheckHistoryAnalytics.Retain(historyStore?.Load() ?? [], _time.GetUtcNow());
+        // Speed tests before this start still count, so restarting the app never adds samples.
+        _lastSpeedTestUtc = _history.FirstOrDefault(e => (e.DownloadMbps ?? e.UploadMbps ?? e.DownloadAtLeastMbps ?? e.UploadAtLeastMbps) is not null)
+            ?.CheckedAtUtc;
+        _downloadCappedUtc = LastCapped(_history, e => e.DownloadMbps, e => e.DownloadAtLeastMbps);
+        _uploadCappedUtc = LastCapped(_history, e => e.UploadMbps, e => e.UploadAtLeastMbps);
         RefreshHistory();
         ApplyLimit();
         if (results.Load() is { } saved) _ = ShowSavedAsync(saved, previousSession: true, reveal: true);
         settings.PropertyChanged += OnSettingsChanged;
-        _recurring = new RecurringChecks(time, RunBackgroundCheckAsync); // never load the link unattended
+        _recurring = new RecurringChecks(time, RunBackgroundCheckAsync); // at most a light speed sample, never the full test
         ConfigureRecurringChecks();
         InitializeReconnectChecks();
     }
@@ -666,7 +685,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     }
 
     private Task RunBackgroundCheckAsync() =>
-        CanScheduleBackgroundChecks ? RunCheckAsync(measureSpeed: false) : Task.CompletedTask;
+        CanScheduleBackgroundChecks ? RunCheckAsync(measureSpeed: Settings.MeasureSpeed) : Task.CompletedTask;
 
     [RelayCommand]
     private void GoToRecommendations() => RevealRecommendations();
@@ -841,8 +860,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     }
 
     /// <summary>
-    /// Runs one background check (Background check length unless given): a latency phase, then, when asked, download and
-    /// upload phases while latency probes keep running, which yields latency under load. Returns at once when another check
+    /// Runs one background check (Background check length unless given): a latency phase, then, when measureSpeed is set and a
+    /// sample is due (<see cref="SpeedSampleEvery"/>), a light download and upload sample over one connection. The sample is
+    /// skipped on metered and mobile connections and while other apps are busy on the link. Returns at once when another check
     /// is already running.
     /// </summary>
     public Task RunCheckAsync(bool measureSpeed, int? checkSeconds = null) => RunCheckAsync(measureSpeed, checkSeconds, CheckKind.Background);
@@ -885,6 +905,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         ResetEvidence();
         (_checkStopped, _currentKind) = (false, kind);
         (_downloadMbps, _uploadMbps, _loadedDownMs, _loadedUpMs, _checkStartedUtc) = (null, null, null, null, _time.GetUtcNow());
+        (_downloadAtLeast, _uploadAtLeast) = (null, null);
         (Markers, MarkersText, CheckedOkText, _otherTraffic) = ([], "", "", null);
         _start = _time.GetTimestamp(); // markers pressed while the session starts land at 0 s
         int seconds = Math.Clamp(checkSeconds ?? (kind == CheckKind.Background ? Settings.BackgroundCheckSeconds : Settings.CheckSeconds),
@@ -908,11 +929,14 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             probes = await _startSession(clock, run.Token);
             _context = probes.Context;
-            bool withSpeed = measureSpeed && probes.Throughput is not null && !probes.Context.Metered;
+            // Background checks take a light sample instead of the full test, and only when one is due.
+            bool light = kind == CheckKind.Background;
             string speedNote = !measureSpeed ? _l.Get("Speed_NotMeasured", _ui)
-                : probes.Context.Metered ? _l.Get("Speed_Metered", _ui) : "";
+                : probes.Context.Metered ? _l.Get("Speed_Metered", _ui)
+                : light ? LightSampleNote() : "";
+            bool withSpeed = measureSpeed && probes.Throughput is not null && speedNote.Length == 0;
             (Download.Detail, Upload.Detail) = (speedNote, speedNote);
-            var total = withSpeed ? duration + 2 * SpeedPhase : duration;
+            var total = withSpeed ? duration + 2 * (light ? ThroughputBudget.LightPhase : SpeedPhase) : duration;
             ChartSeconds = total.TotalSeconds;
             Say("Announce_CaptureStarted", AnnouncementKind.SessionState);
             _start = _time.GetTimestamp();
@@ -930,7 +954,16 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
                     trafficRead = true;
                     if (countersAtStart is { } from && counters?.Invoke() is { } to) _otherTraffic = TrafficMbps(from, to, elapsed.TotalSeconds);
                 }
-                if (withSpeed && speed is null && elapsed >= duration) speed = MeasureSpeedAsync(probes.Throughput!, run.Token);
+                if (withSpeed && speed is null && elapsed >= duration)
+                {
+                    if (light && IsBusy(_otherTraffic))
+                    {
+                        withSpeed = false; // the next background check tries again
+                        string busy = _l.Get("SpeedSample_Busy", _ui);
+                        (Download.Detail, Upload.Detail) = (busy, busy);
+                    }
+                    else speed = MeasureSpeedAsync(probes.Throughput!, light, run.Token);
+                }
                 bool latencyDone = elapsed >= duration;
                 if (latencyDone && (speed is null || speed.IsCompleted)) break;
                 var left = total - elapsed;
@@ -945,6 +978,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
                 if (!await timer.WaitForNextTickAsync(run.Token)) break;
             }
             Progress = 1;
+            // A light sample usually settles within a second or two: the chart ends with the check, not its time limit.
+            if (light) ChartSeconds = Math.Clamp(_time.GetElapsedTime(_start).TotalSeconds, duration.TotalSeconds, total.TotalSeconds);
         }
         catch (OperationCanceledException)
         {
@@ -974,29 +1009,77 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
                 TimeSpan.FromMilliseconds(timeoutMs)), run.Token));
     }
 
-    private async Task MeasureSpeedAsync(IThroughputProbe probe, CancellationToken ct)
+    private async Task MeasureSpeedAsync(IThroughputProbe probe, bool light, CancellationToken ct)
     {
+        _lastSpeedTestUtc = _checkStartedUtc;
         foreach (var (direction, tile, heroKey) in new[]
         {
             (ThroughputDirection.Download, Download, "Hero_SpeedDownload"),
             (ThroughputDirection.Upload, Upload, "Hero_SpeedUpload"),
         })
         {
+            bool download = direction == ThroughputDirection.Download;
+            if (light && NotBefore(download ? _downloadCappedUtc : _uploadCappedUtc, CappedSampleEvery) is { } next)
+            {
+                (tile.Value, tile.Detail) = ("—", LocFormat("SpeedSample_Next", LocalTime(next)));
+                continue;
+            }
             HeroTitle = _l.Get(heroKey, _ui);
             double from = _time.GetElapsedTime(_start).TotalSeconds;
             var live = new Progress<double>(mbps => tile.Value = Mbps(mbps));
-            var result = await probe.MeasureAsync(direction, SpeedPhase, live, ct);
-            var window = (from, _time.GetElapsedTime(_start).TotalSeconds);
-            if (direction == ThroughputDirection.Download) _downloadWindow = window;
-            else _uploadWindow = window;
+            var budget = light ? ThroughputBudget.Light(direction) : ThroughputBudget.Full(direction);
+            var result = await probe.MeasureAsync(direction, budget, live, ct);
+            // A light sample is too short and gentle to show latency under load; bufferbloat needs the full test.
+            if (!light)
+            {
+                var window = (from, _time.GetElapsedTime(_start).TotalSeconds);
+                if (download) _downloadWindow = window;
+                else _uploadWindow = window;
+            }
+            string used = DataUsed(result.Bytes);
             (tile.Value, tile.Detail) = result.Mbps is { } v
-                ? (Mbps(v), string.Format(CultureInfo.CurrentCulture, "{0:0} MB", result.Bytes / 1e6))
+                ? (result.LowerBound ? "≥ " + Mbps(v) : Mbps(v), light ? LocFormat("SpeedSample_Detail", used) : used)
                 : ("—", _l.Get("Speed_Failed", _ui));
-            if (direction == ThroughputDirection.Download) _downloadMbps = result.Mbps;
-            else _uploadMbps = result.Mbps;
+            // History keeps a lower bound apart, so it never pulls averages or plan comparisons down.
+            var (measured, atLeast) = result.LowerBound ? ((double?)null, result.Mbps) : (result.Mbps, (double?)null);
+            if (download) (_downloadMbps, _downloadAtLeast) = (measured, atLeast);
+            else (_uploadMbps, _uploadAtLeast) = (measured, atLeast);
+            if (light && result.Mbps is not null)
+            {
+                DateTimeOffset? capped = result.LowerBound ? _checkStartedUtc : null;
+                if (download) _downloadCappedUtc = capped;
+                else _uploadCappedUtc = capped;
+            }
         }
         HeroTitle = _l.Get("Hero_Checking", _ui);
     }
+
+    /// <summary>Why a background check takes no light speed sample now, or "" when it takes one.</summary>
+    private string LightSampleNote() =>
+        IsMobileNetwork ? _l.Get("SpeedSample_Mobile", _ui)
+        : NotBefore(_lastSpeedTestUtc, SpeedSampleEvery) is { } next ? LocFormat("SpeedSample_Next", LocalTime(next)) : "";
+
+    /// <summary>The earliest time something last done at <paramref name="last"/> may run again, about every
+    /// <paramref name="every"/>; null when it may run now.</summary>
+    private DateTimeOffset? NotBefore(DateTimeOffset? last, TimeSpan every)
+    {
+        var now = _time.GetUtcNow();
+        var next = last + every - SpeedSampleSlack;
+        return last <= now && now < next ? next : null; // a clock set back never postpones it
+    }
+
+    /// <summary>When the newest light sample of one direction was only a lower bound, the time of that check. Full tests are
+    /// ignored, as while the app runs: only a light sample that settles ends the back-off.</summary>
+    private static DateTimeOffset? LastCapped(IEnumerable<CheckHistoryEntry> newestFirst, Func<CheckHistoryEntry, double?> measured,
+        Func<CheckHistoryEntry, double?> atLeast) =>
+        newestFirst.FirstOrDefault(e => atLeast(e) is not null || e.LightSample && measured(e) is not null) is { } latest
+            && atLeast(latest) is not null ? latest.CheckedAtUtc : null;
+
+    private static bool IsBusy((double Down, double Up)? traffic) =>
+        traffic is { } t && (t.Down >= BusyDownMbps || t.Up >= BusyUpMbps);
+
+    private static string DataUsed(long bytes) =>
+        string.Format(CultureInfo.CurrentCulture, bytes < 10_000_000 ? "{0:0.0} MB" : "{0:0} MB", bytes / 1e6);
 
     /// <summary>Shows latency tiles and returns idle and worst loaded median latency (bufferbloat input).</summary>
     private (double? Idle, double? Loaded) UpdateLatencyMetrics(Sample[] idleInternet)
@@ -1068,8 +1151,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         RememberForExport(report);
         _lastCheckedAtUtc = checkedAt;
         UpdateReportAvailability();
+        // Background checks never run the full test, so any speed they record is a light sample.
+        bool lightSample = _currentKind == CheckKind.Background && (_downloadMbps ?? _uploadMbps ?? _downloadAtLeast ?? _uploadAtLeast) is not null;
         RecordHistory(new CheckHistoryEntry(checkedAt, report.Level, _downloadMbps, _uploadMbps, idleMs,
-            StepStatistics.From(Idle(Lanes[1])).VariationMs, bufferbloat?.Grade, bufferbloat?.IncreaseMs));
+            StepStatistics.From(Idle(Lanes[1])).VariationMs, bufferbloat?.Grade, bufferbloat?.IncreaseMs, _downloadAtLeast, _uploadAtLeast,
+            lightSample));
         Summary = LeadSentence(report, verdicts);
         Hero = report.Level switch
         {
@@ -1183,7 +1269,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             string localTime = TimeZoneInfo.ConvertTime(row.CheckedAtUtc, zone).ToString("g", _ui);
             string level = Headline(row.Level);
-            string metrics = string.Format(culture, _l.Get("History_RowMetrics", _ui), Format(row.MedianLatencyMs), Format(row.DownloadMbps), Format(row.UploadMbps));
+            string metrics = string.Format(culture, _l.Get("History_RowMetrics", _ui), Format(row.MedianLatencyMs),
+                Speed(row.DownloadMbps, row.DownloadAtLeastMbps), Speed(row.UploadMbps, row.UploadAtLeastMbps));
             return new HistoryListItem(localTime, level, metrics, $"{localTime}. {level}. {metrics}");
         })];
         HistorySummary = _history.Count == 0
@@ -1200,6 +1287,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         ClearHistoryCommand.NotifyCanExecuteChanged();
 
         string Format(double? value) => value is { } v ? v.ToString("0.##", culture) : "—";
+        string Speed(double? measured, double? atLeast) => measured is null && atLeast is { } bound ? "≥ " + Format(bound) : Format(measured);
         string FormatPercent(double? value) => value is { } v ? v.ToString("0", culture) + "%" : "—";
     }
 

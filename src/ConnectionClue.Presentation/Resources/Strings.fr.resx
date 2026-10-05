@@ -40,7 +40,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>Pas de réponse</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>Vérifier régulièrement en arrière-plan</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>Vérifier régulièrement sur les réseaux mobiles</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Désactivé par défaut. Une fois activé, les vérifications régulières s’exécutent aussi sur les réseaux mobiles. Les vérifications en arrière-plan ne mesurent jamais le débit.</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>Désactivé par défaut. Une fois activé, les vérifications régulières s’exécutent aussi sur les réseaux mobiles. Sur ces réseaux, les vérifications en arrière-plan ne mesurent jamais le débit.</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>Vérifier toutes les</value></data>
   <data name="Duration_Minutes.one" xml:space="preserve"><value>{0} minute</value></data>
   <data name="Duration_Minutes.many" xml:space="preserve"><value>{0} de minutes</value></data>
@@ -109,7 +109,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>Mesure du débit descendant…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>Mesure du débit montant…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>Mesurer les débits descendant et montant</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Ajoute environ 16 secondes aux vérifications rapides et peut utiliser jusqu'à 300 Mo. Ne s'exécute jamais en arrière-plan ni sur une connexion limitée.</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>Ajoute environ 16 secondes aux vérifications rapides et peut utiliser jusqu'à 300 Mo. Les vérifications en arrière-plan prennent plutôt un échantillon léger environ une fois par heure (généralement quelques Mo, 30 Mo au maximum), sauf sur les réseaux mobiles. Ne s'exécute jamais sur une connexion limitée.</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>Corrigez les problèmes trouvés</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>Bonnes pratiques pour ce PC</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>Important</value></data>
@@ -288,7 +288,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>De retour en ligne : pas assez de données pour conclure</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>Vérification après reconnexion ({0}) : {1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>Durée de la vérification en arrière-plan</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Durée pendant laquelle chaque vérification régulière en arrière-plan mesure le délai. Les vérifications en arrière-plan ne mesurent jamais le débit et ne testent aucun service : c’est donc leur durée totale.</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>Durée pendant laquelle chaque vérification régulière en arrière-plan mesure le délai. Les vérifications en arrière-plan ne testent aucun service. Si la mesure du débit est activée, un échantillon léger de quelques secondes suit environ une fois par heure.</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>Masquer cet avis. Un nouvel avis s’affiche si la connexion se coupe ou revient.</value></data>
   <data name="Duration_Hours.one" xml:space="preserve"><value>{0} heure</value></data>
   <data name="Duration_Hours.many" xml:space="preserve"><value>{0} d’heures</value></data>

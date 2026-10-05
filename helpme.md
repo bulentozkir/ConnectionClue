@@ -1,6 +1,6 @@
 # ConnectionClue help
 
-For ConnectionClue 1.0.7.
+For ConnectionClue 1.0.8.
 
 ConnectionClue checks this PC's path to the internet, explains what it observed in plain sentences with local times, and suggests next steps. It changes a Windows setting only when you ask: the DNS switch, which Windows confirms with an administrator prompt and which you can undo.
 
@@ -10,7 +10,7 @@ ConnectionClue checks this PC's path to the internet, explains what it observed 
 - After the check, **Quick check** also measures how long a connection to real services for your choice takes: Xbox network, Steam and Epic Games for gaming lag; Microsoft Teams, Zoom and Google Meet for calls; Netflix, YouTube and Twitch for video; the Windows connectivity check, Cloudflare and Google for disconnections. It is a TCP connection only: no data is sent, and it can't measure a game's UDP traffic, call quality or a video's bitrate.
 - Each choice also tests one extra service, which you can change in **Settings > Network > Optional symptom-specific targets** or in Insights: Riot Games (auth.riotgames.com:443) for gaming lag, Prime Video (www.primevideo.com:443) for video, Discord (discord.com:443) for calls and Microsoft (www.microsoft.com:443) for disconnections. Replace it with your own server, such as your game's, or clear the box to test only the built-in services.
 - **Quick check length** in Settings sets the baseline delay-measurement phase (10–60 seconds, 30 by default). The optional speed test adds about 16 seconds. Service tests and result processing can take additional time, so the setting is not a deadline for the whole operation. Settings shows the estimated measurement time next to the length. A longer length saved by an earlier version is shortened to 60 seconds; use **Capture longer** for longer recordings.
-- The speed test uses up to 300 MB, is skipped on metered connections and never runs in the background.
+- The speed test uses up to 300 MB and is skipped on metered connections. Background checks measure speed too, but only with a light sample; see **Background checks and mobile networks**.
 - Select **It lagged just now** right after a lag (Ctrl+L during a check). Findings at your lag marks are listed first.
 - **Stop** ends a check early; a short check may not have enough evidence.
 - Below **Quick check**, a line marked **or** separates the other way to check: **Capture longer** records for 15, 30 or 45 minutes, or 1, 2, 4 or 8 hours (15 minutes by default; pick the length next to the button) while the app stays open. Both are hidden while a check runs.
@@ -38,6 +38,7 @@ New in 1.0.7: the one-time check after reconnection reports its result, backgrou
 - With a 10-second baseline and speed testing enabled, the measurement phases are roughly 10 seconds of baseline, 8 seconds of downloading, then 8 seconds of uploading. Probe completion and other overhead can extend this slightly.
 - **Home network** and **Internet** keep measuring during the speed tests to show delay under load and calculate bufferbloat. **Web services** runs only during the baseline phase, so its chart stops earlier. Empty space after its last sample is not a failed check.
 - All three charts share the same timeline. A chart spanning about 26–30 seconds does not mean the 10-second setting was ignored. Turn off **Measure download and upload speed** to omit those extra load-test phases; service tests and final processing may still finish afterward.
+- A background check with a light speed sample ends a few seconds after its baseline, as soon as the sample settles.
 
 ## Export and share results
 
@@ -67,10 +68,14 @@ Each check ends with findings based on the evidence it collected. Times are this
 
 ## Background checks and mobile networks
 
+New in 1.0.8: background checks also measure download and upload speed, with a light sample about once an hour.
+
 - Background checks are on by default on Wi-Fi and Ethernet. They run at the interval you choose under **Check every** (3, 5, 10, 15, 20, 30 or 45 minutes, or 1 hour, 90 minutes, or 2, 3, 4, 6 or 8 hours; 5 minutes by default) while ConnectionClue is open, including from the notification area.
-- Each background check measures delay for the **Background check length** (10–60 seconds, 10 by default). It is separate from **Quick check length**, and background checks never run a speed test or service tests, so it is their whole measurement time. A short check uses little data; a longer one gives more evidence per check.
+- Each background check measures delay for the **Background check length** (10–60 seconds, 10 by default). It is separate from **Quick check length**. Background checks never run service tests or the full speed test. A short check uses little data; a longer one gives more evidence per check.
+- With **Measure download and upload speed** on, background checks also measure download and upload speed with a light sample, about once an hour (a speed test from a quick check counts too, including one from before the app started). The sample uses one connection and stops as soon as the speed is steady, usually within a second. The data it moves grows with your speed: about 5 MB per direction on a 100 Mbps connection, never more than 3 seconds or 20 MB down and 10 MB up. It waits for a quieter check while other apps use the connection (more than 1 Mbps down or 0.5 Mbps up during the delay phase), and it never runs on metered or mobile connections. The speed tiles say when the next sample is due or why one was skipped.
+- A light sample shows the steady speed of one connection, so it can read a little lower than the full quick-check test. A connection too fast to settle within those limits (roughly above 300 Mbps) gets a lower bound such as "≥ 380 Mbps": the tile and Insights history show it, daily averages and plan comparisons leave it out, and that direction is sampled again only every 6 hours. Delay under load and the bufferbloat grade still need the full speed test in a quick check.
 - If your settings were saved by an earlier version with the old 15-minute default, the interval moves to the new 5-minute default once. An interval you chose yourself is kept.
-- On mobile networks, background checks are off by default. Mobile networks include cellular connections and connections Windows marks as metered, such as phone hotspots. Turn on **Check regularly on mobile networks** in Settings to allow them. When you move back to Wi-Fi or Ethernet, scheduled checks resume automatically. Checks you start yourself always run.
+- On mobile networks, background checks are off by default. Mobile networks include cellular connections and connections Windows marks as metered, such as phone hotspots. Turn on **Check regularly on mobile networks** in Settings to allow them; they never measure speed there. When you move back to Wi-Fi or Ethernet, scheduled checks resume automatically. Checks you start yourself always run.
 - To catch problems that only happen at certain times, leave ConnectionClue running in the notification area for days. It keeps 30 days of check summaries; the time between checks is not observed.
 
 ## Insights
@@ -108,6 +113,6 @@ Each check ends with findings based on the evidence it collected. Times are this
 
 - Check history stays on this PC for this Windows user: up to 30 days and 5,000 summaries, with measurements and times but no raw samples or device or network identifiers. Clear it at any time in Settings.
 - PDF and MHTML result exports contain check data and screenshots of the Check page, which may include service addresses and other details shown by the app. Review either file before sharing.
-- The service test, DNS comparison, route trace and speed test contact public services, which can see your public IP. Only **Quick check** (for the service test) or your own selection starts them.
+- The service test, DNS comparison, route trace and speed test contact public services, which can see your public IP. Only **Quick check** (for the service test), the light background speed sample, or your own selection starts them.
 - The DNS switch is the only setting ConnectionClue changes, and only after you select it and approve the Windows prompt.
 - ConnectionClue is a diagnostic aid. Its results describe what it observed during a check, not a promise of future performance or proof of a provider fault.

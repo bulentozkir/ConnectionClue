@@ -38,7 +38,7 @@
   <data name="Chart_NoAnswer" xml:space="preserve"><value>无应答</value></data>
   <data name="Background_Enable" xml:space="preserve"><value>在后台定期检测</value></data>
   <data name="Background_MobileEnable" xml:space="preserve"><value>在移动网络上定期检测</value></data>
-  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>默认关闭。启用后，也会通过移动网络定期检查连接。后台检查不会运行速度测试。</value></data>
+  <data name="Settings_MobileBackgroundHint" xml:space="preserve"><value>默认关闭。启用后，也会通过移动网络定期检查连接。在这些网络上，后台检查不会运行速度测试。</value></data>
   <data name="Settings_Interval" xml:space="preserve"><value>检测间隔</value></data>
   <data name="Duration_Minutes.other" xml:space="preserve"><value>{0} 分钟</value></data>
   <data name="Settings_DelayLimit" xml:space="preserve"><value>互联网延迟高于此值时提醒</value></data>
@@ -103,7 +103,7 @@
   <data name="Hero_SpeedDownload" xml:space="preserve"><value>正在测量下载速度…</value></data>
   <data name="Hero_SpeedUpload" xml:space="preserve"><value>正在测量上传速度…</value></data>
   <data name="Settings_MeasureSpeed" xml:space="preserve"><value>测量下载和上传速度</value></data>
-  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>快速检测将增加约 16 秒，最多可能使用 300 MB 流量。不会在后台检测或按流量计费的连接上运行。</value></data>
+  <data name="Settings_MeasureSpeedHint" xml:space="preserve"><value>快速检测将增加约 16 秒，最多可能使用 300 MB 流量。后台检测改为大约每小时进行一次轻量采样（通常几 MB，最多 30 MB），移动网络除外。不会在按流量计费的连接上运行。</value></data>
   <data name="Section_Fixes" xml:space="preserve"><value>修复发现的问题</value></data>
   <data name="Section_BestPractices" xml:space="preserve"><value>这台电脑的最佳做法</value></data>
   <data name="Advice_Important" xml:space="preserve"><value>重要</value></data>
@@ -282,7 +282,7 @@
   <data name="Alert_ReconnectedUnclear" xml:space="preserve"><value>已恢复联网：数据不足，无法判断</value></data>
   <data name="Connectivity_ReconnectResult" xml:space="preserve"><value>重新连接后的检测（{0}）：{1}</value></data>
   <data name="Settings_BackgroundCheckLength" xml:space="preserve"><value>后台检测时长</value></data>
-  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>每次定期后台检测测量延迟的时长。后台检测从不运行速度测试或服务测试，因此这就是它的全部时长。</value></data>
+  <data name="Settings_BackgroundCheckLengthHint" xml:space="preserve"><value>每次定期后台检测测量延迟的时长。后台检测从不运行服务测试。开启速度测量时，大约每小时一次在其后进行几秒钟的轻量速度采样。</value></data>
   <data name="ButtonHelp_DismissNotice" xml:space="preserve"><value>隐藏此通知。如果连接再次断开或恢复，会显示新的通知。</value></data>
   <data name="Duration_Hours.other" xml:space="preserve"><value>{0} 小时</value></data>
 </root>
