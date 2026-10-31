@@ -8,6 +8,7 @@ using System.Windows;
 using ConnectionClue.Analysis;
 using ConnectionClue.Core;
 using ConnectionClue.Presentation.Accessibility;
+using ConnectionClue.Presentation.Alerts;
 using ConnectionClue.Presentation.Localization;
 using ConnectionClue.Presentation.Review;
 using ConnectionClue.Presentation.Theming;
@@ -26,8 +27,15 @@ public partial class App : Application
     private TrayIcon _tray = null!;
     private SingleInstanceGate? _singleInstance;
     private string? _language;
-    private bool _exiting, _trayHintShown, _offline, _suppressStartupChange, _notified;
+    private bool _exiting, _trayHintShown, _offline, _suppressStartupChange;
+    private readonly NotificationPolicy _notifications = new();
     private WindowState _restoreState = WindowState.Maximized;
+
+    public App()
+    {
+        // Set before InitializeComponent loads resources or any window can render.
+        System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
+    }
 
     protected override void OnStartup(StartupEventArgs e)
     {
@@ -48,6 +56,7 @@ public partial class App : Application
         _offline = e.Args.Contains("--offline");
         var saved = SettingsStore.Load();
         _language = saved.Language;
+        _trayHintShown = saved.TrayHintShown;
         // Theme before any window exists, so nothing flashes in the wrong colours (--theme for testing).
         var theme = Enum.TryParse<AppTheme>(Arg(e.Args, "--theme"), ignoreCase: true, out var forced) ? forced : saved.Theme;
         ThemeManager.Apply(this, theme);
@@ -95,9 +104,7 @@ public partial class App : Application
         _vm.AlertRaised += (_, a) =>
         {
             if (!a.Automatic && _window.IsActive) return; // The user is watching the result of their own check.
-            _notified = true; // The icon owns its notifications, so it stays for the session to keep them in Windows.
-            RefreshTray();
-            _tray.Notify(a.Title, a.Body, a.Warning);
+            Notify(a.Title, a.Body, a.Warning);
         };
         _vm.LanguageChangeRequested += (_, name) =>
         {
@@ -205,9 +212,17 @@ public partial class App : Application
     {
         _window.Hide();
         RefreshTray();
-        if (_trayHintShown) return;
+        if (_trayHintShown || !Notify("ConnectionClue", Localizer.Default.Get("Tray_Hidden"), warning: false)) return;
         _trayHintShown = true;
-        _tray.Notify("ConnectionClue", Localizer.Default.Get("Tray_Hidden"), warning: false);
+        Persist();
+    }
+
+    private bool Notify(string title, string body, bool warning)
+    {
+        if (!_notifications.TryNotify()) return false;
+        RefreshTray();
+        _tray.Notify(title, body, warning);
+        return true;
     }
 
     private void ExitApp()
@@ -228,7 +243,7 @@ public partial class App : Application
     private void RefreshTray()
     {
         var s = _vm.Settings;
-        _tray.Visible = s.BackgroundEnabled || _vm.IsDisconnected || !_window.IsVisible || _notified;
+        _tray.Visible = s.BackgroundEnabled || _vm.IsDisconnected || !_window.IsVisible || _notifications.HasNotified;
         var state = _vm.IsDisconnected ? TrayState.Warning : _vm.LastLevel switch
         {
             HealthLevel.Unhealthy => TrayState.Problem,
@@ -245,7 +260,7 @@ public partial class App : Application
         SettingsStore.Save(new AppSettings(_language, s.BackgroundEnabled, s.IntervalMinutes, s.DelayLimitMs,
             s.LossLimitPercent, s.VariationLimitMs, s.CheckSeconds, s.MeasureSpeed, s.AiReview, s.Theme,
             s.StartWithWindows, s.PlanDownloadMbps, s.PlanUploadMbps, s.GamingTarget, s.VideoTarget, s.CallsTarget, s.DisconnectTarget,
-            s.LongCaptureMinutes, s.BackgroundOnMobileEnabled, s.BackgroundCheckSeconds, AppSettings.CurrentVersion));
+            s.LongCaptureMinutes, s.BackgroundOnMobileEnabled, s.BackgroundCheckSeconds, AppSettings.CurrentVersion, _trayHintShown));
     }
 
     private async Task ApplyStartupSettingAsync(SettingsViewModel settings)

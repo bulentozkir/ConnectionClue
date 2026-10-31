@@ -39,23 +39,40 @@ public class AlertPolicyTests
     }
 
     [Fact]
-    public void Background_checks_notify_every_problem_with_its_start_and_recover_once()
+    public void A_background_problem_is_notified_once_however_long_it_lasts_or_changes()
     {
         var policy = new AlertPolicy(_time);
-        var start = _time.GetUtcNow();
         Assert.Null(policy.Evaluate(Report(HealthLevel.NoIssue), AlertTrigger.Background));
         var first = policy.Evaluate(Report(HealthLevel.Unhealthy, IssueKind.Loss), AlertTrigger.Background);
         Assert.Equal(new AlertDecision(AlertKind.Problem, HealthLevel.Unhealthy), first);
 
-        _time.Advance(TimeSpan.FromMinutes(5));
+        for (int minute = 1; minute <= 30; minute++)
+        {
+            _time.Advance(TimeSpan.FromMinutes(1));
+            Assert.Null(policy.Evaluate(Report(HealthLevel.Unhealthy, IssueKind.Loss), AlertTrigger.Background));
+        }
         Assert.Null(policy.Evaluate(HealthReport.Inconclusive, AlertTrigger.Background)); // Proves nothing either way.
-        var again = policy.Evaluate(Report(HealthLevel.Unhealthy, IssueKind.Loss), AlertTrigger.Background);
-        Assert.Equal(new AlertDecision(AlertKind.Problem, HealthLevel.Unhealthy, start), again);
-        Assert.Null(policy.Evaluate(Report(HealthLevel.Unhealthy, IssueKind.Loss))); // A manual check keeps the hourly limit.
-        Assert.Equal(AlertKind.Slow, policy.Evaluate(Report(HealthLevel.Degraded, IssueKind.Delay), AlertTrigger.Background)?.Kind);
+        Assert.Null(policy.Evaluate(Report(HealthLevel.Degraded, IssueKind.Delay), AlertTrigger.Background)); // A change is no second alert.
+        Assert.Null(policy.Evaluate(Report(HealthLevel.Unhealthy, IssueKind.Loss))); // A manual check keeps its hourly limit.
+    }
 
-        Assert.Equal(AlertKind.Recovered, policy.Evaluate(Report(HealthLevel.NoIssue), AlertTrigger.Background)?.Kind);
+    [Fact]
+    public void Recovery_new_problems_and_elapsed_time_do_not_rearm_background_notifications()
+    {
+        var policy = new AlertPolicy(_time);
+        Assert.Equal(AlertKind.Slow, policy.Evaluate(Report(HealthLevel.Degraded, IssueKind.Delay), AlertTrigger.Background)?.Kind);
+        for (int minute = 1; minute <= 20; minute++)
+        {
+            _time.Advance(TimeSpan.FromMinutes(1));
+            var report = minute % 2 == 0 ? Report(HealthLevel.Degraded, IssueKind.Delay) : Report(HealthLevel.NoIssue);
+            Assert.Null(policy.Evaluate(report, AlertTrigger.Background)); // Failing every other check never speaks again.
+        }
+
+        _time.Advance(TimeSpan.FromDays(30));
         Assert.Null(policy.Evaluate(Report(HealthLevel.NoIssue), AlertTrigger.Background));
+        Assert.Null(policy.Evaluate(Report(HealthLevel.Unhealthy, IssueKind.Interrupted), AlertTrigger.Background));
+        Assert.Null(policy.Evaluate(Report(HealthLevel.NoIssue), AlertTrigger.Background));
+        Assert.Null(policy.Evaluate(Report(HealthLevel.Degraded, IssueKind.Delay), AlertTrigger.Background));
     }
 
     [Theory]
@@ -69,10 +86,8 @@ public class AlertPolicyTests
         var report = level == HealthLevel.Inconclusive ? HealthReport.Inconclusive
             : level == HealthLevel.NoIssue ? Report(level) : Report(level, IssueKind.Delay);
         Assert.Equal(new AlertDecision(AlertKind.Reconnected, level), policy.Evaluate(report, AlertTrigger.Reconnect));
-        // A problem found after reconnecting is the active one: the next background check says it continues.
-        var next = policy.Evaluate(report, AlertTrigger.Background);
-        if (level is HealthLevel.Degraded or HealthLevel.Unhealthy) Assert.NotNull(next?.FirstSeen);
-        else Assert.Null(next);
+        // A problem found after reconnecting is the active one: background checks do not repeat it.
+        Assert.Null(policy.Evaluate(report, AlertTrigger.Background));
     }
 }
 
@@ -125,7 +140,22 @@ public class RecurringChecksTests
     public void Rejects_intervals_below_the_minimum()
     {
         using var checks = Create();
-        Assert.Throws<ArgumentOutOfRangeException>(() => checks.Configure(true, TimeSpan.FromMinutes(2)));
+        Assert.Throws<ArgumentOutOfRangeException>(() => checks.Configure(true, TimeSpan.FromSeconds(59)));
+    }
+
+    [Fact]
+    public async Task The_minimum_interval_is_one_minute_and_runs_every_minute()
+    {
+        Assert.Equal(TimeSpan.FromSeconds(60), RecurringChecks.MinimumInterval);
+        using var checks = Create();
+        checks.Configure(true, RecurringChecks.MinimumInterval);
+        _time.Advance(TimeSpan.FromSeconds(59));
+        await Task.Delay(100, TestContext.Current.CancellationToken);
+        Assert.False(_calls.Reader.TryRead(out _));
+        _time.Advance(TimeSpan.FromSeconds(1));
+        await Next();
+        _time.Advance(TimeSpan.FromSeconds(60));
+        await Next();
     }
 }
 
@@ -149,9 +179,10 @@ public class SettingsViewModelTests
             var s = new SettingsViewModel(Localizer.Default, tr, intervalMinutes: 7, lossLimitPercent: 5);
             Assert.True(s.BackgroundEnabled);
             Assert.False(s.BackgroundOnMobileEnabled);
-            Assert.Equal(5, s.IntervalMinutes);
+            Assert.Equal(SettingsViewModel.DefaultIntervalMinutes, s.IntervalMinutes);
             Assert.Equal(new HealthThresholds(100, 5, 30), s.Thresholds);
-            Assert.Equal([3, 5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240, 360, 480], s.Intervals.Select(c => c.Value));
+            Assert.Equal([1, 3, 5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240, 360, 480], s.Intervals.Select(c => c.Value));
+            Assert.Equal("1 dakika", s.Intervals.Single(c => c.Value == 1).Label);
             Assert.Equal("15 dakika", s.Intervals.Single(c => c.Value == 15).Label);
             Assert.Equal("1 saat", s.Intervals.Single(c => c.Value == 60).Label);
             Assert.Equal("90 dakika", s.Intervals.Single(c => c.Value == 90).Label);
@@ -162,6 +193,42 @@ public class SettingsViewModelTests
         {
             CultureInfo.CurrentCulture = previous;
         }
+    }
+
+    [Fact]
+    public void Background_checks_are_on_by_default_and_run_every_minute()
+    {
+        var s = new SettingsViewModel(Localizer.Default, CultureInfo.GetCultureInfo("en-US"));
+        Assert.True(s.BackgroundEnabled);
+        Assert.Equal(1, s.IntervalMinutes);
+        Assert.Equal("1 minute", s.Intervals.Single(c => c.Value == 1).Label);
+        Assert.Equal(1, SettingsViewModel.DefaultIntervalMinutes);
+    }
+
+    [Fact]
+    public async Task The_default_schedule_starts_a_background_check_every_60_seconds()
+    {
+        var en = CultureInfo.GetCultureInfo("en-US");
+        var time = new FakeTimeProvider();
+        int starts = 0;
+        using var vm = new MainViewModel(Localizer.Default, en, time,
+            (_, _) => { Interlocked.Increment(ref starts); throw new InvalidOperationException("stop after the start"); },
+            new(), new SettingsViewModel(Localizer.Default, en), new NoResults());
+        Assert.True(vm.IsBackgroundCheckScheduled);
+
+        time.Advance(TimeSpan.FromSeconds(59));
+        await Task.Delay(100, TestContext.Current.CancellationToken);
+        Assert.Equal(0, Volatile.Read(ref starts));
+        time.Advance(TimeSpan.FromSeconds(1));
+        await Until(() => Volatile.Read(ref starts) == 1);
+        time.Advance(TimeSpan.FromSeconds(60));
+        await Until(() => Volatile.Read(ref starts) == 2);
+    }
+
+    private static async Task Until(Func<bool> condition)
+    {
+        for (int i = 0; i < 500 && !condition(); i++) await Task.Delay(10, TestContext.Current.CancellationToken);
+        Assert.True(condition());
     }
 
     [Fact]
@@ -241,13 +308,17 @@ public class CheckLengthTests
     {
         var old = new SettingsViewModel(Localizer.Default, En, intervalMinutes: 15, longCaptureMinutes: 60);
         old.Upgrade(savedVersion: 2);
-        Assert.Equal((5, 60), (old.IntervalMinutes, old.LongCaptureMinutes));
+        Assert.Equal((SettingsViewModel.DefaultIntervalMinutes, 60), (old.IntervalMinutes, old.LongCaptureMinutes));
         Assert.Equal("", old.GamingTarget); // Version 2 already had default targets: a cleared one stays cleared.
 
         var older = new SettingsViewModel(Localizer.Default, En, intervalMinutes: 15, longCaptureMinutes: 60);
         older.Upgrade(savedVersion: 0);
-        Assert.Equal((5, 15), (older.IntervalMinutes, older.LongCaptureMinutes));
+        Assert.Equal((SettingsViewModel.DefaultIntervalMinutes, 15), (older.IntervalMinutes, older.LongCaptureMinutes));
         Assert.NotEqual("", older.GamingTarget);
+
+        var fiveMinutes = new SettingsViewModel(Localizer.Default, En, intervalMinutes: 5);
+        fiveMinutes.Upgrade(savedVersion: 3);
+        Assert.Equal(1, fiveMinutes.IntervalMinutes); // The 1.0.8 default moves to the new one.
 
         var chosen = new SettingsViewModel(Localizer.Default, En, intervalMinutes: 30);
         chosen.Upgrade(savedVersion: 2);
@@ -255,6 +326,9 @@ public class CheckLengthTests
         var current = new SettingsViewModel(Localizer.Default, En, intervalMinutes: 15);
         current.Upgrade(SettingsViewModel.CurrentVersion);
         Assert.Equal(15, current.IntervalMinutes); // Chosen after upgrading.
+        var chosenFive = new SettingsViewModel(Localizer.Default, En, intervalMinutes: 5);
+        chosenFive.Upgrade(SettingsViewModel.CurrentVersion);
+        Assert.Equal(5, chosenFive.IntervalMinutes);
     }
 }
 

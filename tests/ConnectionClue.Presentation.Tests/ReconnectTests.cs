@@ -106,7 +106,7 @@ public sealed class ReconnectTests : IDisposable
         Assert.True(_settings.MeasureSpeed);
         Assert.True(_settings.AiReview);
         Assert.False(_settings.BackgroundEnabled);
-        Assert.Equal(5, _settings.IntervalMinutes);
+        Assert.Equal(SettingsViewModel.DefaultIntervalMinutes, _settings.IntervalMinutes);
         Connected(true);
         await Tick(3600);
         Assert.Equal(1, _starts);
@@ -149,14 +149,13 @@ public sealed class ReconnectTests : IDisposable
         var next = _vm.RunCheckAsync(false);
         Assert.Empty(_vm.ConnectionStatus);
         await Finish(next);
-        var continues = Assert.Single(_alerts, a => a.Kind == AlertKind.Slow);
-        Assert.Equal("Performance still below your limits", continues.Title);
-        Assert.StartsWith("First seen at ", continues.Body, StringComparison.Ordinal);
-        Assert.True(continues.Automatic);
+        // The problem was reported by the reconnect check: the next scheduled check does not repeat it.
+        Assert.DoesNotContain(_alerts, a => a.Kind == AlertKind.Slow);
+        Assert.Single(_alerts, a => a.Kind == AlertKind.Reconnected);
     }
 
     [Fact]
-    public async Task Background_checks_use_their_own_length_and_notify_every_unhealthy_result()
+    public async Task Background_checks_use_their_own_length_and_notify_a_problem_only_once()
     {
         _settings.BackgroundCheckSeconds = 25;
         _internetMs = 400;
@@ -165,16 +164,50 @@ public sealed class ReconnectTests : IDisposable
         var first = Assert.Single(_alerts);
         Assert.Equal((AlertKind.Slow, "Performance below your limits", true, true),
             (first.Kind, first.Title, first.Warning, first.Automatic));
-        await Tick(300);
-        await Finish(_vm.RunCheckAsync(false));
-        Assert.Equal("Performance still below your limits", _alerts[^1].Title);
+        for (int i = 0; i < 3; i++)
+        {
+            await Tick(60);
+            await Finish(_vm.RunCheckAsync(false));
+        }
+        Assert.Single(_alerts); // The same problem is not reported again.
 
         _internetMs = 20;
+        await Tick(60);
         await Finish(_vm.RunCheckAsync(false));
-        Assert.Equal((AlertKind.Recovered, false), (_alerts[^1].Kind, _alerts[^1].Warning));
+        Assert.Single(_alerts); // A single good check does not end it: a flaky link is one problem.
+        await Tick(3600);
         await Finish(_vm.RunCheckAsync(false));
-        Assert.Equal(3, _alerts.Count); // Recovery is reported once.
+        await Finish(_vm.RunCheckAsync(false));
+        _internetMs = 500;
+        await Finish(_vm.RunCheckAsync(false));
+        Assert.Single(_alerts); // Recovery and a later problem never rearm the session's background alert.
         Assert.Empty(_vm.ConnectionStatus); // Background results never use the connection notice.
+    }
+
+    [Fact]
+    public async Task Scheduled_checks_are_heard_only_when_they_raise_their_alert()
+    {
+        var said = new List<Announcement>();
+        _vm.Announce += (_, a) => said.Add(a);
+        await Finish(_vm.RunCheckAsync(false));
+        Assert.Empty(said); // A scheduled check with no problem says nothing.
+
+        _internetMs = 400;
+        await Tick(60);
+        await Finish(_vm.RunCheckAsync(false));
+        Assert.Single(said); // Its one alert is spoken too.
+        Assert.Single(_alerts);
+        await Tick(60);
+        await Finish(_vm.RunCheckAsync(false));
+        Assert.Single(said); // The same problem is not announced again.
+        Assert.Single(_alerts);
+
+        _settings.CheckSeconds = 10;
+        _settings.MeasureSpeed = false;
+        await Tick(60);
+        await Finish(_vm.QuickCheckCommand.ExecuteAsync(null));
+        Assert.Contains(said, a => a.Text == "Capture started."); // The user's own check still announces its progress.
+        Assert.True(said.Count > 2);
     }
 
     [Fact]

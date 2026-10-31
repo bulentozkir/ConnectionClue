@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using ConnectionClue.Analysis;
 using ConnectionClue.Presentation.Accessibility;
 using ConnectionClue.Presentation.Diagnostics;
+using ConnectionClue.Presentation.Results;
 
 namespace ConnectionClue.Presentation.ViewModels;
 
@@ -161,22 +162,6 @@ public sealed partial class MainViewModel
     }
 
     /// <summary>At most max samples, evenly spread; within each stretch an unanswered check is preferred.</summary>
-    private static List<Sample> Downsample(IReadOnlyList<Sample> samples, int max)
-    {
-        int stride = Math.Max(1, (int)Math.Ceiling(samples.Count / (double)max));
-        var points = new List<Sample>(Math.Min(samples.Count, max));
-        for (int start = 0; start < samples.Count; start += stride)
-        {
-            int end = Math.Min(samples.Count, start + stride);
-            var selected = samples[end - 1];
-            for (int i = start; i < end; i++)
-            {
-                if (samples[i].Answered) continue;
-                selected = samples[i];
-                break;
-            }
-            points.Add(selected);
-        }
-        return points;
-    }
+    private static IReadOnlyList<Sample> Downsample(IReadOnlyList<Sample> samples, int max) =>
+        SampleDownsampling.Reduce(samples, max);
 }

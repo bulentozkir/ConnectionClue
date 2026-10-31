@@ -9,6 +9,7 @@
     <None Include="..\..\packaging\msix\AppxManifest.xml" Link="AppxManifest.xml" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\src\ConnectionClue.App\MainWindow.xaml" Link="MainWindow.xaml" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\src\ConnectionClue.App\App.xaml" Link="AppStyles.xaml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\src\ConnectionClue.App\App.xaml.cs" Link="App.xaml.cs" CopyToOutputDirectory="PreserveNewest" />
     <PackageReference Include="xunit.v3" />
     <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
     <ProjectReference Include="..\..\src\ConnectionClue.Presentation\ConnectionClue.Presentation.csproj" />

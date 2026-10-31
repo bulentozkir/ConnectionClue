@@ -7,7 +7,7 @@ namespace ConnectionClue.Presentation.Scheduling;
 /// </summary>
 public sealed class RecurringChecks(TimeProvider time, Func<Task> runCheck, Action<Exception>? onError = null) : IDisposable
 {
-    public static readonly TimeSpan MinimumInterval = TimeSpan.FromMinutes(3);
+    public static readonly TimeSpan MinimumInterval = TimeSpan.FromSeconds(60);
     private CancellationTokenSource? _cts;
 
     public bool IsEnabled => _cts is not null;

@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Globalization;
 using System.Net;
 using System.Security.Cryptography;
@@ -76,24 +77,31 @@ public sealed class ThroughputProbe : IThroughputProbe, IDisposable
 
         async Task WorkerAsync()
         {
-            var buffer = new byte[81920];
-            while (!stop.IsCancellationRequested)
+            byte[]? buffer = direction == ThroughputDirection.Download ? ArrayPool<byte>.Shared.Rent(64 * 1024) : null;
+            try
             {
-                if (direction == ThroughputDirection.Download)
+                while (!stop.IsCancellationRequested)
                 {
-                    var url = string.Format(CultureInfo.InvariantCulture, _downloadUrl, Math.Min(DownloadChunk, cap));
-                    using var response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, stop.Token);
-                    response.EnsureSuccessStatusCode();
-                    await using var body = await response.Content.ReadAsStreamAsync(stop.Token);
-                    int n;
-                    while ((n = await body.ReadAsync(buffer, stop.Token)) > 0) Count(n);
+                    if (buffer is not null)
+                    {
+                        var url = string.Format(CultureInfo.InvariantCulture, _downloadUrl, Math.Min(DownloadChunk, cap));
+                        using var response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, stop.Token);
+                        response.EnsureSuccessStatusCode();
+                        await using var body = await response.Content.ReadAsStreamAsync(stop.Token);
+                        int n;
+                        while ((n = await body.ReadAsync(buffer.AsMemory(0, 64 * 1024), stop.Token)) > 0) Count(n);
+                    }
+                    else
+                    {
+                        using var content = new PayloadContent(Math.Min(UploadChunk, cap), Count);
+                        using var response = await _client.PostAsync(_uploadUrl, content, stop.Token);
+                        response.EnsureSuccessStatusCode();
+                    }
                 }
-                else
-                {
-                    using var content = new PayloadContent(Math.Min(UploadChunk, cap), Count);
-                    using var response = await _client.PostAsync(_uploadUrl, content, stop.Token);
-                    response.EnsureSuccessStatusCode();
-                }
+            }
+            finally
+            {
+                if (buffer is not null) ArrayPool<byte>.Shared.Return(buffer, clearArray: true);
             }
         }
 

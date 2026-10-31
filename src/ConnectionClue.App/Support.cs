@@ -55,6 +55,7 @@ public sealed class SameItem : IMultiValueConverter
 /// <summary>
 /// User settings, stored as plain JSON in the per-user app data folder (not encrypted, by design). SettingsVersion tells
 /// files written before a new default existed (0 when missing) from later ones, where an empty value is the user's choice.
+/// TrayHintShown: the one-time "keeps checking in the background" notification has been shown, so it never appears again.
 /// </summary>
 internal sealed record AppSettings(
     string? Language = null,
@@ -77,7 +78,8 @@ internal sealed record AppSettings(
     int LongCaptureMinutes = SettingsViewModel.DefaultLongCaptureMinutes,
     bool BackgroundOnMobileEnabled = false,
     int BackgroundCheckSeconds = SettingsViewModel.DefaultBackgroundCheckSeconds,
-    int SettingsVersion = 0)
+    int SettingsVersion = 0,
+    bool TrayHintShown = false)
 {
     public const int CurrentVersion = SettingsViewModel.CurrentVersion;
 }
@@ -94,7 +96,9 @@ internal static class AppData
         try
         {
             string path = Path.Combine(Folder, name);
-            return File.Exists(path) ? JsonSerializer.Deserialize<T>(File.ReadAllText(path), Json) : default;
+            if (!File.Exists(path)) return default;
+            using var stream = File.OpenRead(path);
+            return JsonSerializer.Deserialize<T>(stream, Json);
         }
         catch (Exception e) when (e is IOException or JsonException or UnauthorizedAccessException or NotSupportedException)
         {
@@ -109,7 +113,7 @@ internal static class AppData
         {
             Directory.CreateDirectory(Folder);
             string path = Path.Combine(Folder, name), temp = path + ".tmp";
-            File.WriteAllText(temp, JsonSerializer.Serialize(value, Json));
+            using (var stream = File.Create(temp)) JsonSerializer.Serialize(stream, value, Json);
             File.Move(temp, path, overwrite: true);
         }
         catch (Exception e) when (e is IOException or UnauthorizedAccessException)

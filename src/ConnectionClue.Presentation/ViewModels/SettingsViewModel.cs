@@ -18,20 +18,21 @@ public sealed record ThemeChoice(ConnectionClue.Presentation.Theming.AppTheme Va
 /// </summary>
 public sealed partial class SettingsViewModel : ObservableObject
 {
-    public static readonly int[] IntervalOptions = [3, 5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240, 360, 480];
+    public static readonly int[] IntervalOptions = [1, 3, 5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240, 360, 480];
     public static readonly int[] DelayOptions = [50, 100, 150, 200, 300];
     public static readonly int[] LossOptions = [1, 2, 5, 10];
     public static readonly int[] VariationOptions = [10, 20, 30, 50];
     public static readonly int[] LongCaptureOptions = [15, 30, 45, 60, 120, 240, 480];
-    public const int DefaultIntervalMinutes = 5;
+    public const int DefaultIntervalMinutes = 1;
     public const int DefaultLongCaptureMinutes = 15, MaxLongCaptureMinutes = 480;
     /// <summary>Quick checks and background checks share this length range.</summary>
     public const int MinCheckSeconds = 10, MaxCheckSeconds = 60, DefaultCheckSeconds = 30, DefaultBackgroundCheckSeconds = 10;
     /// <summary>
     /// Settings format version. 2: symptom targets have defaults and Capture longer defaults to 15 minutes instead of 1 hour.
     /// 3: background checks default to every 5 minutes instead of 15.
+    /// 4: background checks default to every minute instead of every 5 minutes.
     /// </summary>
-    public const int CurrentVersion = 3;
+    public const int CurrentVersion = 4;
     private readonly Localizer _l;
     private readonly CultureInfo _ui;
     private string _checkSecondsText, _backgroundCheckSecondsText;
@@ -223,7 +224,8 @@ public sealed partial class SettingsViewModel : ObservableObject
             ApplyDefaultTargets();
             if (LongCaptureMinutes == 60) LongCaptureMinutes = DefaultLongCaptureMinutes;
         }
-        if (savedVersion < 3 && IntervalMinutes == 15) IntervalMinutes = DefaultIntervalMinutes;
+        if (savedVersion < 3 && IntervalMinutes == 15) IntervalMinutes = 5;
+        if (savedVersion < 4 && IntervalMinutes == 5) IntervalMinutes = DefaultIntervalMinutes;
     }
 
     /// <summary>Text field for <see cref="CheckSeconds"/>; applied only when it parses to a whole number in range.</summary>

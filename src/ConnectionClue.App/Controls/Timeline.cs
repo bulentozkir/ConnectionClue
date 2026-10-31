@@ -7,25 +7,46 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ConnectionClue.Analysis;
 using ConnectionClue.Presentation.Localization;
+using ConnectionClue.Presentation.Results;
+using ConnectionClue.Presentation.Theming;
 
 namespace ConnectionClue.App.Controls;
 
 /// <summary>Colour-blind-safe (Okabe–Ito based) chart colours from the current theme; system colours in Windows high contrast.</summary>
 internal sealed record ChartPalette(Brush Normal, Brush Over, Brush Ink, Brush Grid, Brush NoAnswerTint, Brush NoAnswerHatch, Brush Marker)
 {
+    private static ChartPalette? _cached;
+    private static ThemePalette? _cachedTheme;
+    private static Brush? _cachedInk;
+
+    public Pen GridPen { get; } = Frozen(new Pen(Grid, 1));
+    public Pen DottedGridPen { get; } = Frozen(new Pen(Grid, 1) { DashStyle = new DashStyle([2, 3], 0) });
+    public Pen MarkerPen { get; } = Frozen(new Pen(Marker, 1.5) { DashStyle = new DashStyle([3, 2], 0) });
+    public Pen LimitPen { get; } = Frozen(new Pen(Over, 1.5) { DashStyle = DashStyles.Dash });
+
     public static ChartPalette For(FrameworkElement e)
     {
         var ink = e.TryFindResource("TextFillColorPrimaryBrush") as Brush ?? SystemColors.WindowTextBrush;
-        if (ThemeManager.Palette is not { } theme)
+        var theme = ThemeManager.Palette;
+        if (_cached is not null && ReferenceEquals(_cachedTheme, theme) && ReferenceEquals(_cachedInk, ink)) return _cached;
+        _cachedTheme = theme;
+        _cachedInk = ink;
+        if (theme is null)
         {
-            return new(SystemColors.HighlightBrush, SystemColors.HotTrackBrush, SystemColors.WindowTextBrush,
+            return _cached = new(SystemColors.HighlightBrush, SystemColors.HotTrackBrush, SystemColors.WindowTextBrush,
                 SystemColors.GrayTextBrush, Brushes.Transparent, Hatch(SystemColors.WindowTextColor), SystemColors.WindowTextBrush);
         }
         var c = theme.Chart;
         var none = (Color)ColorConverter.ConvertFromString(c.NoAnswer);
-        return new(ThemeManager.Brush(c.Normal), ThemeManager.Brush(c.Over), ink, ThemeManager.Brush(c.Grid),
+        return _cached = new(ThemeManager.Brush(c.Normal), ThemeManager.Brush(c.Over), ink, ThemeManager.Brush(c.Grid),
             // High contrast keeps the hatch on a plain background; the tint would lower its contrast.
             Solid(Color.FromArgb(theme.IsHighContrast ? (byte)0 : (byte)60, none.R, none.G, none.B)), Hatch(none), ThemeManager.Brush(c.Marker));
+    }
+
+    private static Pen Frozen(Pen pen)
+    {
+        pen.Freeze();
+        return pen;
     }
 
     private static Brush Solid(Color c)
@@ -116,8 +137,8 @@ public sealed class SampleStrip : FrameworkElement
         double w = ActualWidth, h = ActualHeight;
         if (w < 10 || h < 10) return;
         var p = ChartPalette.For(this);
-        var solid = Frozen(new Pen(p.Grid, 1));
-        var dotted = Frozen(new Pen(p.Grid, 1) { DashStyle = new DashStyle([2, 3], 0) });
+        var solid = p.GridPen;
+        var dotted = p.DottedGridPen;
         // Value grid at 0, ¼, ½, ¾ and the top of the scale (labels: ScaleLabels), time grid at the axis steps.
         for (int k = 0; k < ScaleLabels.Steps; k++)
         {
@@ -135,7 +156,7 @@ public sealed class SampleStrip : FrameworkElement
         foreach (var t in Markers ?? [])
         {
             double x = Math.Round(Math.Clamp(t * pxPerSecond, 1, w - 1)) + 0.5;
-            dc.DrawLine(Frozen(new Pen(p.Marker, 1.5) { DashStyle = new DashStyle([3, 2], 0) }), new Point(x, 0), new Point(x, h));
+            dc.DrawLine(p.MarkerPen, new Point(x, 0), new Point(x, h));
             Flag(dc, p.Marker, x);
         }
     }
@@ -143,8 +164,9 @@ public sealed class SampleStrip : FrameworkElement
     private void DrawSamples(DrawingContext dc, ChartPalette p, IReadOnlyList<Sample> samples, double w, double h, double pxPerSecond)
     {
         double scale = Math.Max(ScaleMaxMs, 1);
-        double bar = Math.Clamp(TypicalSpacing(samples) * pxPerSecond * 0.7, 2, 10);
-        foreach (var s in samples)
+        var visible = SampleDownsampling.Reduce(samples, Math.Max(1, (int)(w / 2)), preservePeaks: true);
+        double bar = Math.Clamp(TypicalSpacing(visible) * pxPerSecond * 0.7, 2, 10);
+        foreach (var s in visible)
         {
             double x = Math.Clamp(s.Seconds * pxPerSecond - bar / 2, 0, w - bar);
             if (s.Milliseconds is not { } ms)
@@ -162,7 +184,7 @@ public sealed class SampleStrip : FrameworkElement
         if (LimitMs > 0 && LimitMs < scale)
         {
             double y = Math.Round(h - LimitMs / scale * h) + 0.5;
-            dc.DrawLine(Frozen(new Pen(p.Over, 1.5) { DashStyle = DashStyles.Dash }), new Point(0, y), new Point(w, y));
+            dc.DrawLine(p.LimitPen, new Point(0, y), new Point(w, y));
         }
     }
 
@@ -202,16 +224,12 @@ public sealed class SampleStrip : FrameworkElement
         return Math.Max(d[d.Length / 2], 0.5);
     }
 
-    private static Pen Frozen(Pen pen)
-    {
-        pen.Freeze();
-        return pen;
-    }
 }
 
 /// <summary>Time labels under the strips. Text must not mirror, so the axis stays left-to-right and places labels for RTL parents.</summary>
 public sealed class TimeAxis : FrameworkElement
 {
+    private static readonly double[] Steps = [1.0, 2, 5, 10, 15, 30, 60, 120, 300];
     public static readonly DependencyProperty DurationSecondsProperty = DependencyProperty.Register(nameof(DurationSeconds),
         typeof(double), typeof(TimeAxis), new FrameworkPropertyMetadata(120.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
@@ -224,7 +242,7 @@ public sealed class TimeAxis : FrameworkElement
     public double DurationSeconds { get => (double)GetValue(DurationSecondsProperty); set => SetValue(DurationSecondsProperty, value); }
 
     /// <summary>Label and grid spacing: about five steps per check, on round seconds.</summary>
-    public static double Step(double duration) => new[] { 1.0, 2, 5, 10, 15, 30, 60, 120, 300 }.FirstOrDefault(s => s >= duration / 5, 600);
+    public static double Step(double duration) => Steps.FirstOrDefault(s => s >= duration / 5, 600);
 
     protected override Size MeasureOverride(Size availableSize) => new(0, 18);
 
@@ -310,9 +328,7 @@ public sealed class LegendSwatch : FrameworkElement
         var r = new Rect(0, 0, ActualWidth, ActualHeight);
         if (Marker)
         {
-            var pen = new Pen(p.Marker, 1.5) { DashStyle = new DashStyle([3, 2], 0) };
-            pen.Freeze();
-            dc.DrawLine(pen, new Point(1.5, 0), new Point(1.5, r.Height));
+            dc.DrawLine(p.MarkerPen, new Point(1.5, 0), new Point(1.5, r.Height));
             SampleStrip.Flag(dc, p.Marker, 1.5);
             return;
         }

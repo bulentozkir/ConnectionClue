@@ -44,10 +44,11 @@ internal sealed class TrayIcon : IDisposable
 
     public void Update(TrayState state, string tooltip, bool canCheck, bool backgroundOn)
     {
-        _icon.Icon = _icons[state];
-        _icon.Text = Truncate(tooltip, 127); // NotifyIcon limit
-        _check.Enabled = canCheck;
-        _background.Checked = backgroundOn;
+        if (_icon.Icon != _icons[state]) _icon.Icon = _icons[state];
+        string text = Truncate(tooltip, 127); // NotifyIcon limit
+        if (_icon.Text != text) _icon.Text = text;
+        if (_check.Enabled != canCheck) _check.Enabled = canCheck;
+        if (_background.Checked != backgroundOn) _background.Checked = backgroundOn;
     }
 
     /// <summary>Shown as a Windows notification (respects Focus / Do not disturb).</summary>

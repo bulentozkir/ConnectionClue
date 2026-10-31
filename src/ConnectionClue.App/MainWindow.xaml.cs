@@ -24,13 +24,18 @@ public partial class MainWindow : Window
         BackgroundCheckSecondsBox.LostKeyboardFocus += (_, _) => vm.Settings.CommitBackgroundCheckSecondsText();
         PlanDownloadBox.LostKeyboardFocus += (_, _) => vm.Settings.CommitPlanSpeedText();
         PlanUploadBox.LostKeyboardFocus += (_, _) => vm.Settings.CommitPlanSpeedText();
+        IsVisibleChanged += (_, _) => vm.SetWindowVisible(IsVisible);
+        vm.SetWindowVisible(IsVisible);
         vm.Announce += (_, a) => Dispatcher.Invoke(() =>
+        {
+            if (!IsVisible || !IsActive) return;
             (UIElementAutomationPeer.FromElement(this) ?? UIElementAutomationPeer.CreatePeerForElement(this))
                 ?.RaiseNotificationEvent(AutomationNotificationKind.Other,
                     a.Urgency == AnnouncementUrgency.Immediate
                         ? AutomationNotificationProcessing.ImportantMostRecent
                         : AutomationNotificationProcessing.MostRecent,
-                    a.Text, "ConnectionClue"));
+                    a.Text, "ConnectionClue");
+        });
     }
 
     private void HelpButton_Click(object sender, RoutedEventArgs e)

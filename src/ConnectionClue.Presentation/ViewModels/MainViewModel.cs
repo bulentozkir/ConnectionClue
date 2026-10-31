@@ -117,10 +117,15 @@ public sealed partial class LaneViewModel : ObservableObject
     private readonly CultureInfo _ui;
     private readonly ProbeKind _chartKind;
     private readonly List<Sample> _samples = [], _chart = [];
+    private readonly TimeProvider _time;
+    private long? _lastRefresh;
+    private int _answered;
+    private bool _presentationEnabled = true, _finished;
 
-    public LaneViewModel(string nameKey, string deviceGlyph, ProbeKind chartKind, Localizer l, CultureInfo ui)
+    public LaneViewModel(string nameKey, string deviceGlyph, ProbeKind chartKind, Localizer l, CultureInfo ui, TimeProvider? time = null)
     {
         (_l, _ui, _chartKind, DeviceGlyph) = (l, ui, chartKind, deviceGlyph);
+        _time = time ?? TimeProvider.System;
         Name = l.Get(nameKey, ui);
         Help = l.Get(nameKey + "_Help", ui);
         Reset();
@@ -185,10 +190,31 @@ public sealed partial class LaneViewModel : ObservableObject
     {
         _samples.Clear();
         _chart.Clear();
+        if (_samples.Capacity > 1024) _samples.Capacity = 0;
+        if (_chart.Capacity > 1024) _chart.Capacity = 0;
+        (_answered, _finished) = (0, false);
         State = LaneState.Waiting;
         StatusText = _l.Get("Status_Waiting", _ui);
         LatencyText = "—";
         CountText = "";
+        Refresh();
+        _lastRefresh = null;
+    }
+
+    public void SetPresentationEnabled(bool enabled)
+    {
+        if (_presentationEnabled == enabled) return;
+        _presentationEnabled = enabled;
+        if (!enabled) return;
+        StatusText = _l.Get(State switch
+        {
+            LaneState.Responding => "Status_Responding",
+            LaneState.Slow => "Status_Slow",
+            LaneState.NotResponding => "Status_NotResponding",
+            _ => "Status_Waiting",
+        }, _ui);
+        if (!_finished && _samples.Count > 0) LatencyText = Ms(_samples[^1].Milliseconds);
+        CountText = string.Format(CultureInfo.CurrentCulture, "{0}/{1}", _answered, _samples.Count);
         Refresh();
     }
 
@@ -199,17 +225,20 @@ public sealed partial class LaneViewModel : ObservableObject
         var sample = new Sample(seconds, ok && o.DurationUs is { } us ? us / 1000.0 : null);
         _samples.Add(sample);
         if (o.Request.Stream.Kind == _chartKind || !ok) _chart.Add(sample);
+        if (sample.Answered) _answered++;
         State = ok ? LaneState.Responding : LaneState.NotResponding;
+        if (!_presentationEnabled) return;
         StatusText = _l.Get(ok ? "Status_Responding" : "Status_NotResponding", _ui);
         LatencyText = Ms(sample.Milliseconds);
-        CountText = string.Format(CultureInfo.CurrentCulture, "{0}/{1}", _samples.Count(x => x.Answered), _samples.Count);
-        Refresh();
+        CountText = string.Format(CultureInfo.CurrentCulture, "{0}/{1}", _answered, _samples.Count);
+        if (_lastRefresh is null || _time.GetElapsedTime(_lastRefresh.Value) >= TimeSpan.FromSeconds(1)) Refresh();
     }
 
     /// <summary>After a check: the step shows the evaluated verdict and its median, not the last sample.</summary>
     public void Finish(LaneState verdict, double idleUntilSeconds = double.MaxValue)
     {
         if (_samples.Count == 0) return;
+        _finished = true;
         State = verdict;
         StatusText = _l.Get(verdict switch
         {
@@ -219,17 +248,26 @@ public sealed partial class LaneViewModel : ObservableObject
             _ => "Status_Waiting",
         }, _ui);
         LatencyText = Ms(StepStatistics.From([.. _chart.Where(s => s.Seconds < idleUntilSeconds)]).MedianMs);
+        CountText = string.Format(CultureInfo.CurrentCulture, "{0}/{1}", _answered, _samples.Count);
+        Refresh(force: true);
     }
 
-    private void Refresh()
+    private void Refresh(bool force = false)
     {
+        if (!_presentationEnabled && !force) return;
+        _lastRefresh = _time.GetTimestamp();
         var s = StepStatistics.From(_chart);
         StatsText = string.Format(_ui, _l.Get("Stats_Summary", _ui), Ms(s.MedianMs), Ms(s.P95Ms), Ms(s.VariationMs),
             string.Format(CultureInfo.CurrentCulture, "{0}/{1}", s.Failed, s.Sent));
-        var values = _chart.Where(x => x.Answered).Select(x => x.Milliseconds!.Value).Order().ToArray();
-        double typicalHigh = values.Length == 0 ? 0 : StepStatistics.NearestRank(values, 0.95);
+        double typicalHigh = s.P95Ms ?? SmallSampleHigh();
         ScaleMaxMs = NiceCeiling(Math.Max(10, Math.Max(typicalHigh * 1.3, LimitMs * 1.15)));
         Version++;
+
+        double SmallSampleHigh()
+        {
+            var values = _chart.Where(x => x.Answered).Select(x => x.Milliseconds!.Value).Order().ToArray();
+            return values.Length == 0 ? 0 : StepStatistics.NearestRank(values, 0.95);
+        }
     }
 
     private static string Ms(double? v) => v is { } x ? string.Format(CultureInfo.CurrentCulture, "{0:0} ms", x) : "—";
@@ -240,8 +278,12 @@ public sealed partial class LaneViewModel : ObservableObject
     public static double NiceCeiling(double v)
     {
         double raw = Math.Max(v, 1) / 4, magnitude = Math.Pow(10, Math.Floor(Math.Log10(raw)));
-        double step = NiceSteps.Select(n => n * magnitude).First(s => s >= raw - 1e-9 && (magnitude < 1 || Math.Abs(s % 1) < 1e-9));
-        return step * 4;
+        foreach (double n in NiceSteps)
+        {
+            double step = n * magnitude;
+            if (step >= raw - 1e-9 && (magnitude < 1 || Math.Abs(step % 1) < 1e-9)) return step * 4;
+        }
+        throw new InvalidOperationException("No chart scale covers the supplied value.");
     }
 }
 
@@ -260,6 +302,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private readonly AnnouncementPolicy _announcements;
     private readonly AlertPolicy _alerts;
     private readonly RecurringChecks _recurring;
+    private bool _windowVisible = true, _historyDirty;
     private readonly IResultStore _results;
     private CancellationTokenSource? _run;
     private CheckContext _context = new();
@@ -327,9 +370,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         _alerts = new AlertPolicy(time);
         Lanes =
         [
-            new("Lane_Local", "\uE80F", ProbeKind.Icmp, l, ui),
-            new("Lane_Internet", "\uE774", ProbeKind.Tcp, l, ui),
-            new("Lane_Services", "\uE753", ProbeKind.Https, l, ui),
+            new("Lane_Local", "\uE80F", ProbeKind.Icmp, l, ui, time),
+            new("Lane_Internet", "\uE774", ProbeKind.Tcp, l, ui, time),
+            new("Lane_Services", "\uE753", ProbeKind.Https, l, ui, time),
         ];
         Symptoms =
         [
@@ -633,7 +676,16 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     partial void OnPageChanged(AppPage value)
     {
+        foreach (var lane in Lanes) lane.SetPresentationEnabled(_windowVisible && value == AppPage.Check);
         if (value == AppPage.Recommendations) UpdateStale();
+    }
+
+    public void SetWindowVisible(bool visible)
+    {
+        if (_windowVisible == visible) return;
+        _windowVisible = visible;
+        foreach (var lane in Lanes) lane.SetPresentationEnabled(visible && IsCheckPage);
+        if (visible && _historyDirty) RefreshHistory();
     }
 
     public void Dispose()
@@ -938,7 +990,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             (Download.Detail, Upload.Detail) = (speedNote, speedNote);
             var total = withSpeed ? duration + 2 * (light ? ThroughputBudget.LightPhase : SpeedPhase) : duration;
             ChartSeconds = total.TotalSeconds;
-            Say("Announce_CaptureStarted", AnnouncementKind.SessionState);
+            // Scheduled checks run every minute: they stay silent for screen readers unless they raise their one alert.
+            if (kind != CheckKind.Background) Say("Announce_CaptureStarted", AnnouncementKind.SessionState);
             _start = _time.GetTimestamp();
             _samplesStartUtc = _time.GetUtcNow();
             var counters = probes.Counters;
@@ -947,6 +1000,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             using var timer = new PeriodicTimer(TimeSpan.FromSeconds(1), _time);
             for (int tick = 0; ; tick++)
             {
+                pending.RemoveAll(static task => task.IsCompletedSuccessfully);
                 var elapsed = _time.GetElapsedTime(_start);
                 // Other apps' traffic over the idle phase, read once before the speed test adds its own.
                 if (elapsed >= duration && !trafficRead)
@@ -1026,7 +1080,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             }
             HeroTitle = _l.Get(heroKey, _ui);
             double from = _time.GetElapsedTime(_start).TotalSeconds;
-            var live = new Progress<double>(mbps => tile.Value = Mbps(mbps));
+            IProgress<double>? live = _windowVisible ? new Progress<double>(mbps => tile.Value = Mbps(mbps)) : null;
             var budget = light ? ThroughputBudget.Light(direction) : ThroughputBudget.Full(direction);
             var result = await probe.MeasureAsync(direction, budget, live, ct);
             // A light sample is too short and gentle to show latency under load; bufferbloat needs the full test.
@@ -1117,7 +1171,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         if (request.Stream.Kind == ProbeKind.SystemDns && observation is { Status: ProbeStatus.Success, DurationUs: { } us })
             _dnsMs.Add(us / 1000.0);
         UpdateLiveSummary();
-        if (before != LaneState.Waiting && before != lane.State)
+        if (before != LaneState.Waiting && before != lane.State && _currentKind != CheckKind.Background)
             Emit(lane.AccessibleText, AnnouncementKind.LinkChange);
     }
 
@@ -1194,19 +1248,22 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
         TryPreview = AdviceSummary(shownActions, shownAdvice);
         if (IsDisconnected) return; // The connection notice takes priority over an older measurement verdict.
-        Emit(TryPreview.Length == 0 ? Summary : Summary + " " + TryPreview, AnnouncementKind.FindingReady);
 
         bool automatic = _currentKind is CheckKind.Background or CheckKind.Reconnect;
-        if (_currentKind == CheckKind.Reconnect)
-            SetConnectionNotice(LocFormat("Connectivity_ReconnectResult", LocalTime(checkedAt), HeroTitle),
-                warning: IsProblem(report.Level), dismissible: true);
         var trigger = _currentKind switch
         {
             CheckKind.Background => AlertTrigger.Background,
             CheckKind.Reconnect => AlertTrigger.Reconnect,
             _ => AlertTrigger.Manual,
         };
-        if (_alerts.Evaluate(report, trigger) is { } alert) AlertRaised?.Invoke(this, ToAlert(alert, automatic && !_checkStopped));
+        var alert = _alerts.Evaluate(report, trigger);
+        // A scheduled check is heard only when it raises its one alert, not as a spoken result every minute.
+        if (_currentKind != CheckKind.Background || alert is not null)
+            Emit(TryPreview.Length == 0 ? Summary : Summary + " " + TryPreview, AnnouncementKind.FindingReady);
+        if (_currentKind == CheckKind.Reconnect)
+            SetConnectionNotice(LocFormat("Connectivity_ReconnectResult", LocalTime(checkedAt), HeroTitle),
+                warning: IsProblem(report.Level), dismissible: true);
+        if (alert is not null) AlertRaised?.Invoke(this, ToAlert(alert, automatic && !_checkStopped));
     }
 
     private static bool IsProblem(HealthLevel level) => level is HealthLevel.Unhealthy or HealthLevel.Degraded;
@@ -1245,6 +1302,10 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private void RefreshHistory()
     {
+        OnPropertyChanged(nameof(HistoryCountText));
+        ClearHistoryCommand.NotifyCanExecuteChanged();
+        _historyDirty = !_windowVisible;
+        if (_historyDirty) return;
         var culture = CultureInfo.CurrentCulture;
         var zone = TimeZoneInfo.Local;
         var trends = CheckHistoryAnalytics.Daily(_history, Settings.PlanDownloadMbps, Settings.PlanUploadMbps, zone);
@@ -1283,9 +1344,6 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             : string.Format(culture, _l.Get("History_WorstHours", _ui),
                 string.Join(", ", worst.Take(3).Select(h =>
                     $"{TimeOnly.MinValue.AddHours(h.Hour).ToString("t", _ui)} ({h.ProblemChecks}/{h.Checks})")));
-        OnPropertyChanged(nameof(HistoryCountText));
-        ClearHistoryCommand.NotifyCanExecuteChanged();
-
         string Format(double? value) => value is { } v ? v.ToString("0.##", culture) : "—";
         string Speed(double? measured, double? atLeast) => measured is null && atLeast is { } bound ? "≥ " + Format(bound) : Format(measured);
         string FormatPercent(double? value) => value is { } v ? v.ToString("0", culture) + "%" : "—";
