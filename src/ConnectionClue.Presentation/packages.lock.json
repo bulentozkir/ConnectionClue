@@ -17,7 +17,6 @@
       "connectionclue.core": {
         "type": "Project"
       }
-    },
-    "net10.0/win-arm64": {}
+    }
   }
 }
