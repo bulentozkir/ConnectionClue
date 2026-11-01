@@ -104,7 +104,7 @@ public sealed class BackgroundSpeedTests : IDisposable
         await RunToEnd(vm.RunCheckAsync(measureSpeed: true));
         Assert.Equal(2, _speed.Calls.Count);
 
-        _time.Advance(TimeSpan.FromMinutes(5));
+        _time.Advance(MainViewModel.HistorySaveEvery); // long enough for this check's history entry to be written as well
         await RunToEnd(vm.RunCheckAsync(measureSpeed: true));
         Assert.Equal(2, _speed.Calls.Count);
         Assert.Equal("—", vm.Download.Value);

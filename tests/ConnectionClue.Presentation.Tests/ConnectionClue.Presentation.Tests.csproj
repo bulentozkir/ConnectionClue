@@ -7,9 +7,13 @@
   <ItemGroup>
     <Using Include="Xunit" />
     <None Include="..\..\packaging\msix\AppxManifest.xml" Link="AppxManifest.xml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\packaging\msi\ConnectionClue.wxs" Link="ConnectionClue.wxs" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\src\ConnectionClue.App\MainWindow.xaml" Link="MainWindow.xaml" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\src\ConnectionClue.App\App.xaml" Link="AppStyles.xaml" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\src\ConnectionClue.App\App.xaml.cs" Link="App.xaml.cs" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\src\ConnectionClue.App\MainWindow.xaml.cs" Link="MainWindow.xaml.cs" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\src\ConnectionClue.App\StartupManager.cs" Link="StartupManager.cs" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\src\ConnectionClue.App\ConnectionClue.App.csproj" Link="ConnectionClue.App.csproj" CopyToOutputDirectory="PreserveNewest" />
     <PackageReference Include="xunit.v3" />
     <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
     <ProjectReference Include="..\..\src\ConnectionClue.Presentation\ConnectionClue.Presentation.csproj" />

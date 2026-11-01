@@ -31,8 +31,9 @@ public sealed partial class SettingsViewModel : ObservableObject
     /// Settings format version. 2: symptom targets have defaults and Capture longer defaults to 15 minutes instead of 1 hour.
     /// 3: background checks default to every 5 minutes instead of 15.
     /// 4: background checks default to every minute instead of every 5 minutes.
+    /// 5: the calls target defaults to Microsoft Teams web instead of Discord.
     /// </summary>
-    public const int CurrentVersion = 4;
+    public const int CurrentVersion = 5;
     private readonly Localizer _l;
     private readonly CultureInfo _ui;
     private string _checkSecondsText, _backgroundCheckSecondsText;
@@ -226,6 +227,9 @@ public sealed partial class SettingsViewModel : ObservableObject
         }
         if (savedVersion < 3 && IntervalMinutes == 15) IntervalMinutes = 5;
         if (savedVersion < 4 && IntervalMinutes == 5) IntervalMinutes = DefaultIntervalMinutes;
+        if (savedVersion < 5 && ServiceTargetParser.TryParse(CallsTarget, out var calls)
+            && calls is { Port: 443 } && calls.Host.Equals("discord.com", StringComparison.OrdinalIgnoreCase))
+            CallsTarget = SymptomServices.DefaultTargetText(Symptom.Calls);
     }
 
     /// <summary>Text field for <see cref="CheckSeconds"/>; applied only when it parses to a whole number in range.</summary>

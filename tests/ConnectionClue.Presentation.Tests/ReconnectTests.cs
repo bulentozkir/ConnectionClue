@@ -295,7 +295,8 @@ public sealed class ReconnectTests : IDisposable
     {
         var review = new TaskCompletionSource<IReadOnlyDictionary<string, ReviewVerdict>>();
         _reviewer.Pending = review.Task;
-        var check = _vm.RunCheckAsync(false, 10);
+        _settings.CheckSecondsText = "10";
+        var check = _vm.QuickCheckCommand.ExecuteAsync(null); // only a check the user starts waits for the online reviewers
         for (int i = 0; i < 30 && !_vm.IsReviewing; i++) await Tick();
         Assert.True(_vm.IsReviewing);
         Assert.False(_vm.IsRunning);

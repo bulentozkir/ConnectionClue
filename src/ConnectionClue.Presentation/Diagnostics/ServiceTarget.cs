@@ -52,12 +52,12 @@ public static class SymptomServices
 
     /// <summary>
     /// The target each symptom's box starts with in Settings: a popular service besides the built-in ones (Riot Games for
-    /// gaming, Discord for calls, Prime Video for video, Microsoft for disconnections). Users can replace or clear it.
+    /// gaming, Microsoft Teams web for calls, Prime Video for video, Microsoft for disconnections). Users can replace or clear it.
     /// </summary>
     public static NamedServiceTarget DefaultTarget(ConnectionClue.Analysis.Symptom symptom) => symptom switch
     {
         ConnectionClue.Analysis.Symptom.Gaming => new("Riot Games", new("auth.riotgames.com", 443)),
-        ConnectionClue.Analysis.Symptom.Calls => new("Discord", new("discord.com", 443)),
+        ConnectionClue.Analysis.Symptom.Calls => new("Microsoft Teams web", new("teams.microsoft.com", 443)),
         ConnectionClue.Analysis.Symptom.Video => new("Prime Video", new("www.primevideo.com", 443)),
         _ => new("Microsoft", new("www.microsoft.com", 443)),
     };

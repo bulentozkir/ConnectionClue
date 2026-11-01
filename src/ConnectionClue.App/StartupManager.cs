@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Win32;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Activation;
 
 namespace ConnectionClue.App;
 
@@ -53,6 +54,19 @@ internal static class StartupManager
 
     public static bool IsStoreManaged() =>
         IsPackaged() && Package.Current.SignatureKind == PackageSignatureKind.Store;
+
+    /// <summary>True when the package's startup task started this copy at sign-in. An unpackaged copy's registry entry carries
+    /// --startup; the manifest's startup task passes no argument, so Windows' own activation record says it instead. A start
+    /// this cannot read counts as one the user asked for: the window shows.</summary>
+    public static bool LaunchedByStartupTask()
+    {
+        if (!IsPackaged()) return false;
+        try { return AppInstance.GetActivatedEventArgs()?.Kind == ActivationKind.StartupTask; }
+        catch (Exception e) when (e is not OutOfMemoryException)
+        {
+            return false;
+        }
+    }
 
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
     private static extern int GetCurrentPackageFullName(ref uint packageFullNameLength, StringBuilder? packageFullName);

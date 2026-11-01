@@ -15,7 +15,15 @@
     <ApplicationIcon>Assets\ConnectionClue.ico</ApplicationIcon>
     <!-- WPF0001: Fluent ThemeMode is marked experimental. -->
     <NoWarn>$(NoWarn);WPF0001</NoWarn>
+    <!-- A tray app that checks every minute: no background GC thread, and no profile-guided re-JIT of code that runs rarely. -->
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+    <TieredPGO>false</TieredPGO>
   </PropertyGroup>
+  <ItemGroup>
+    <!-- The Fluent theme would put a Mica backdrop behind every window: more work for the desktop compositor (the GPU) for a
+         window that is a plain panel. Off, the window paints its own theme background. -->
+    <RuntimeHostConfigurationOption Include="Switch.System.Windows.Appearance.DisableFluentThemeWindowBackdrop" Value="true" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\helpme.md" LogicalName="ConnectionClue.App.helpme.md" />
     <Resource Include="Assets\*.ico" />

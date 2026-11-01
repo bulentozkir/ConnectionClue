@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ConnectionClue.Analysis;
@@ -295,6 +296,14 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 {
     /// <summary>Recommendations older than this (or from an earlier app session) carry a "may have changed" note.</summary>
     public static readonly TimeSpan StaleAfter = TimeSpan.FromMinutes(10);
+
+    /// <summary>While the open window shows the result of a check the user started, scheduled checks wait this long after it, so
+    /// they do not replace the charts and the export being read.</summary>
+    public static readonly TimeSpan ManualResultHold = TimeSpan.FromMinutes(10);
+
+    /// <summary>Scheduled checks rewrite the history file at most this often (the first one, and every check the user starts,
+    /// write at once); disposing writes whatever is pending. The file holds thousands of entries.</summary>
+    public static readonly TimeSpan HistorySaveEvery = TimeSpan.FromMinutes(10);
     private readonly Localizer _l;
     private readonly CultureInfo _ui;
     private readonly TimeProvider _time;
@@ -302,7 +311,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private readonly AnnouncementPolicy _announcements;
     private readonly AlertPolicy _alerts;
     private readonly RecurringChecks _recurring;
-    private bool _windowVisible = true, _historyDirty;
+    private bool _windowVisible = true, _historyDirty, _historyUnsaved;
+    private long? _historySavedAt;
     private readonly IResultStore _results;
     private CancellationTokenSource? _run;
     private CheckContext _context = new();
@@ -418,6 +428,13 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     public event EventHandler<Announcement>? Announce;
     public event EventHandler<Alert>? AlertRaised;
     public event EventHandler<string>? LanguageChangeRequested;
+
+    /// <summary>A check has ended and its result is processed (also raised when a check could not start). With no window open,
+    /// the shell gives memory back then.</summary>
+    public event EventHandler? CheckFinished;
+
+    /// <summary>What started the check that is running, or the last one that ran.</summary>
+    public CheckKind CurrentCheckKind => _currentKind;
 
     /// <summary>XAML binds localized labels as {Binding [Key]}.</summary>
     public string this[string key] => _l.Get(key, _ui);
@@ -685,11 +702,13 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         if (_windowVisible == visible) return;
         _windowVisible = visible;
         foreach (var lane in Lanes) lane.SetPresentationEnabled(visible && IsCheckPage);
+        if (!visible) TimeLeft = ""; // the countdown stops with the window; a frozen one would linger in the tray tooltip
         if (visible && _historyDirty) RefreshHistory();
     }
 
     public void Dispose()
     {
+        if (_historyUnsaved) SaveHistory();
         DisposeReconnectChecks();
         Settings.PropertyChanged -= OnSettingsChanged;
         _recurring.Dispose();
@@ -736,8 +755,13 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         _recurring.Configure(enabled, TimeSpan.FromMinutes(Settings.IntervalMinutes), runNow: runNow && enabled);
     }
 
+    /// <summary>The open window shows the result of a check the user started, finished within <see cref="ManualResultHold"/>.</summary>
+    private bool ManualResultOnScreen =>
+        _windowVisible && _lastKind is (CheckKind.Quick or CheckKind.Long)
+        && _lastCheckedAtUtc is { } at && _time.GetUtcNow() - at < ManualResultHold;
+
     private Task RunBackgroundCheckAsync() =>
-        CanScheduleBackgroundChecks ? RunCheckAsync(measureSpeed: Settings.MeasureSpeed) : Task.CompletedTask;
+        CanScheduleBackgroundChecks && !ManualResultOnScreen ? RunCheckAsync(measureSpeed: Settings.MeasureSpeed) : Task.CompletedTask;
 
     [RelayCommand]
     private void GoToRecommendations() => RevealRecommendations();
@@ -931,6 +955,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             QuickCheckCommand.NotifyCanExecuteChanged();
             LongCaptureCommand.NotifyCanExecuteChanged();
             SignalOperationChanged();
+            if (!_disposed) CheckFinished?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -1020,11 +1045,15 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
                 }
                 bool latencyDone = elapsed >= duration;
                 if (latencyDone && (speed is null || speed.IsCompleted)) break;
-                var left = total - elapsed;
-                Progress = Math.Min(1, elapsed / total);
-                TimeLeft = left <= TimeSpan.Zero ? "" : left.TotalSeconds > 60
-                    ? _l.Plural("Capture_MinutesLeft", (long)Math.Ceiling(left.TotalMinutes), _ui)
-                    : _l.Plural("Capture_SecondsLeft", (long)Math.Ceiling(left.TotalSeconds), _ui);
+                // Nothing shows the countdown while the window is closed; skipping it keeps the tray tooltip quiet as well.
+                if (_windowVisible)
+                {
+                    var left = total - elapsed;
+                    Progress = Math.Min(1, elapsed / total);
+                    TimeLeft = left <= TimeSpan.Zero ? "" : left.TotalSeconds > 60
+                        ? _l.Plural("Capture_MinutesLeft", (long)Math.Ceiling(left.TotalMinutes), _ui)
+                        : _l.Plural("Capture_SecondsLeft", (long)Math.Ceiling(left.TotalSeconds), _ui);
+                }
                 if (tick % homeEvery == 0) Probe(Lanes[0], probes.Icmp, new("gateway", ProbeKind.Icmp, RequestFamily.IPv4), 800);
                 if (tick % internetEvery == 0 || latencyDone) Probe(Lanes[1], probes.Tcp, new("web", ProbeKind.Tcp, RequestFamily.IPv4), 3000);
                 if (!latencyDone && tick % webEvery == 0) Probe(Lanes[2], probes.Dns, new("web", ProbeKind.SystemDns, RequestFamily.IPv4), 3000);
@@ -1054,7 +1083,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
         if (_disposed) return;
         var facts = await FactsAsync(probes?.Facts);
-        var apps = facts is null ? [] : await AppsAsync(probes?.AppTraffic);
+        // The advisor names busy apps only when other traffic crossed its thresholds, so quiet checks skip the lookup.
+        var apps = facts is null || !OtherTrafficNeedsNaming ? [] : await AppsAsync(probes?.AppTraffic);
         if (_disposed) return;
         await CompleteAsync(facts, apps);
 
@@ -1131,6 +1161,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private static bool IsBusy((double Down, double Up)? traffic) =>
         traffic is { } t && (t.Down >= BusyDownMbps || t.Up >= BusyUpMbps);
+
+    private bool OtherTrafficNeedsNaming => _otherTraffic is { } t
+        && (t.Down >= ConfigurationAdvisor.OtherDownMbps || t.Up >= ConfigurationAdvisor.OtherUpMbps);
 
     private static string DataUsed(long bytes) =>
         string.Format(CultureInfo.CurrentCulture, bytes < 10_000_000 ? "{0:0.0} MB" : "{0:0} MB", bytes / 1e6);
@@ -1239,7 +1272,10 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             var saved = new SavedResult(checkedAt, report, _context, actions, advice, passed, _samplesStartUtc, verdicts);
             _results.Save(saved);
-            await ShowSavedAsync(saved, previousSession: false, allowOnlineReview: _currentKind != CheckKind.Reconnect);
+            // Only a check the user started waits for the online reviewers (up to 30 + 30 + 45 s of timeouts). A scheduled or
+            // reconnect check applies only the verdicts already remembered: waiting would stall the schedule just when the
+            // connection is bad.
+            await ShowSavedAsync(saved, previousSession: false, allowOnlineReview: _currentKind is CheckKind.Quick or CheckKind.Long);
             (shownActions, shownAdvice) = (_shownActions, _shownAdvice); // only what passed the online review
         }
         else if (report.Level == HealthLevel.NoIssue)
@@ -1296,8 +1332,18 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private void RecordHistory(CheckHistoryEntry entry)
     {
         _history = CheckHistoryAnalytics.Retain(_history.Append(entry), _time.GetUtcNow());
-        _historyStore?.Save(_history);
+        // The whole file is rewritten on every save, so a scheduled check leaves it to the next one unless it is due.
+        if (_currentKind != CheckKind.Background || _historySavedAt is not { } saved || _time.GetElapsedTime(saved) >= HistorySaveEvery)
+            SaveHistory();
+        else
+            _historyUnsaved = true;
         RefreshHistory();
+    }
+
+    private void SaveHistory()
+    {
+        _historyStore?.Save(_history);
+        (_historySavedAt, _historyUnsaved) = (_time.GetTimestamp(), false);
     }
 
     private void RefreshHistory()
@@ -1386,21 +1432,28 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             TimeZoneInfo.ConvertTime(saved.CheckedAtUtc, _time.LocalTimeZone), Headline(saved.Report.Level));
         UpdateReportAvailability();
         int version = ++_reviewVersion;
+        IsReviewing = false; // the newest result owns the flag: a review still running for an older one never clears it
         var checkedAt = TimeZoneInfo.ConvertTime(saved.CheckedAtUtc, _time.LocalTimeZone);
         RecommendationTime = string.Format(_ui, _l.Get("Recommend_BasedOn", _ui), checkedAt.ToString("g", CultureInfo.CurrentCulture));
         RecommendationStatus = "";
         RecommendationSummary = "";
         IReadOnlyDictionary<string, ReviewVerdict>? verdicts = null;
-        if (allowOnlineReview && _reviewer is not null && Settings.AiReview)
+        if (_reviewer is not null && Settings.AiReview)
         {
-            if (_isConnected?.Invoke() == false)
+            var texts = saved.Actions.Select(a => ReviewText(a, saved)).Concat((saved.Advisories ?? []).Select(ReviewText)).ToList();
+            if (!allowOnlineReview)
+            {
+                // A scheduled check never waits for the reviewers, but advice they already judged keeps its verdict, so advice
+                // they rejected stays out and confirmed advice stays marked.
+                if (_reviewer.Remembered(texts) is { Count: > 0 } known) verdicts = known;
+            }
+            else if (_isConnected?.Invoke() == false)
             {
                 verdicts = new Dictionary<string, ReviewVerdict>();
             }
             else
             {
                 (RecommendationBlocks, ReviewStatus, IsReviewing) = ([], _l.Get("Review_InProgress", _ui), true);
-                var texts = saved.Actions.Select(a => ReviewText(a, saved)).Concat((saved.Advisories ?? []).Select(ReviewText)).ToList();
                 try { verdicts = await _reviewer.ReviewAsync(texts, CancellationToken.None); }
                 catch (Exception e) when (e is HttpRequestException or TaskCanceledException or IOException
                     or UnauthorizedAccessException or InvalidOperationException or FormatException or NotSupportedException
@@ -1601,7 +1654,16 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         AdvisoryCode.TcpAutoTuningLimited => Helper(RecommendationActionKind.CopyText, "Action_CopyCommand", "netsh int tcp set global autotuninglevel=normal", title),
         AdvisoryCode.WifiLinkSlow when a.Variant == "Legacy" => null,
         AdvisoryCode.WifiLinkSlow or AdvisoryCode.SlowDns or AdvisoryCode.MeteredConnection => OpenSettings(NetworkPage(context), title),
-        AdvisoryCode.AdapterPowerSaving or AdvisoryCode.EnergyEfficientEthernet => Helper(RecommendationActionKind.Open, "Action_OpenDeviceManager", "devmgmt.msc", title),
+        AdvisoryCode.AdapterOffloadDisabled when a.Variant == "Global" => OpenSettings("ms-settings:network-advancedsettings", title),
+        AdvisoryCode.AdapterPowerSaving or AdvisoryCode.EnergyEfficientEthernet or AdvisoryCode.WifiDriverLimit or AdvisoryCode.WifiRoaming
+            or AdvisoryCode.EthernetSpeedForced or AdvisoryCode.JumboFrames or AdvisoryCode.AdapterOffloadDisabled
+            or AdvisoryCode.InterruptModeration => Helper(RecommendationActionKind.Open, "Action_OpenDeviceManager", "devmgmt.msc", title),
+        AdvisoryCode.ReceiveScalingDisabled when a.Variant == "Global" => OpenSettings("ms-settings:network-advancedsettings", title),
+        AdvisoryCode.ReceiveScalingDisabled => Helper(RecommendationActionKind.Open, "Action_OpenDeviceManager", "devmgmt.msc", title),
+        AdvisoryCode.LinkLocalAddress or AdvisoryCode.StaticNetworkConfiguration => OpenSettings(NetworkPage(context), title),
+        AdvisoryCode.WifiRetries or AdvisoryCode.WifiInsecureCipher => Router(context, title), // channel and security are router settings
+        AdvisoryCode.TcpTweaks => TcpTweakCommand(a, title),
+        AdvisoryCode.MtuUnusual => MtuCommand(a, title),
         AdvisoryCode.UsbSelectiveSuspend => Helper(RecommendationActionKind.Open, "Action_OpenPowerOptions", "powercfg.cpl", title),
         AdvisoryCode.PowerSaving when a.Variant is "WifiBattery" or "WifiPlugged" => Helper(RecommendationActionKind.Open, "Action_OpenPowerOptions", "powercfg.cpl", title),
         AdvisoryCode.PowerSaving => OpenSettings("ms-settings:powersleep", title),
@@ -1648,6 +1710,27 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             _ => null,
         };
     }
+
+    private static readonly string[] LimitingTcpValues = ["EnablePMTUDiscovery", "Tcp1323Opts", "SackOpts", "DisableTaskOffload"];
+
+    /// <summary>One "reg delete" line per tweak the check found, for an administrator terminal (pasted lines run one after the
+    /// other in cmd and PowerShell alike). Only the four value names the app itself reports are accepted from saved data.</summary>
+    private RecommendationAction? TcpTweakCommand(Advisory a, string title)
+    {
+        var names = (a.Args ?? []).SelectMany(x => x.Split(',')).Select(x => x.Split('=')[0].Trim())
+            .Where(n => LimitingTcpValues.Contains(n)).Distinct().ToList();
+        return names.Count == 0 ? null : Helper(RecommendationActionKind.CopyText, "Action_CopyCommand",
+            string.Join(Environment.NewLine, names.Select(n => $@"reg delete ""HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters"" /v {n} /f")), title);
+    }
+
+    // The connection name goes inside a quoted command, so only the characters Windows uses in such names are accepted.
+    private RecommendationAction? MtuCommand(Advisory a, string title) =>
+        a.Args is [{ } alias, ..] && AdapterAlias().IsMatch(alias)
+            ? Helper(RecommendationActionKind.CopyText, "Action_CopyCommand", $"netsh interface ipv4 set subinterface \"{alias}\" mtu=1500 store=persistent", title)
+            : null;
+
+    [GeneratedRegex(@"^[\p{L}\p{N} _().-]{1,64}$")]
+    private static partial Regex AdapterAlias();
 
     private RecommendationAction Helper(RecommendationActionKind kind, string labelKey, string target, string title)
     {

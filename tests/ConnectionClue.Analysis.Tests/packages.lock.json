@@ -130,6 +130,12 @@
         }
       },
       "connectionclue.analysis": {
+        "type": "Project",
+        "dependencies": {
+          "ConnectionClue.Core": "[1.0.9, )"
+        }
+      },
+      "connectionclue.core": {
         "type": "Project"
       }
     }

@@ -177,6 +177,42 @@ public class SessionClockTests
     }
 }
 
+public class CachedValueTests
+{
+    [Fact]
+    public void Held_value_is_reused_only_when_allowed_and_only_while_it_is_young()
+    {
+        var time = new FakeTimeProvider();
+        int reads = 0;
+        var value = new CachedValue<int?>(TimeSpan.FromHours(1), time);
+        int? Read() => ++reads;
+
+        Assert.Equal(1, value.Get(Read, reuse: true)); // nothing held yet
+        Assert.Equal(1, value.Get(Read, reuse: true));
+        Assert.Equal(2, value.Get(Read, reuse: false)); // a caller that wants it fresh always reads, and the read is held
+        Assert.Equal(2, value.Get(Read, reuse: true));
+
+        time.Advance(TimeSpan.FromMinutes(59));
+        Assert.Equal(2, value.Get(Read, reuse: true));
+        time.Advance(TimeSpan.FromMinutes(1));
+        Assert.Equal(3, value.Get(Read, reuse: true)); // a full lifetime old: read again
+        Assert.Equal(3, reads);
+    }
+
+    [Fact]
+    public void An_unknown_result_is_held_too_so_a_broken_source_is_not_asked_again_at_once()
+    {
+        var time = new FakeTimeProvider();
+        int reads = 0;
+        var value = new CachedValue<int?>(TimeSpan.FromMinutes(10), time);
+        int? Read() { reads++; return null; }
+
+        Assert.Null(value.Get(Read, reuse: true));
+        Assert.Null(value.Get(Read, reuse: true));
+        Assert.Equal(1, reads);
+    }
+}
+
 public class ThroughputMathTests
 {
     [Fact]

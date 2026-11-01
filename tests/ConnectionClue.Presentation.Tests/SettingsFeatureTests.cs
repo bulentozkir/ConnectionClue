@@ -93,7 +93,7 @@ public sealed class SettingsFeatureTests
 
         Assert.Equal("game.example:3074", settings.TargetFor(Symptom.Gaming)); // the user's own server is kept
         Assert.Equal("www.primevideo.com:443", settings.TargetFor(Symptom.Video));
-        Assert.Equal("discord.com:443", settings.TargetFor(Symptom.Calls));
+        Assert.Equal("teams.microsoft.com:443", settings.TargetFor(Symptom.Calls));
         Assert.Equal("www.microsoft.com:443", settings.TargetFor(Symptom.Disconnects));
         Assert.All(Enum.GetValues<Symptom>(), symptom =>
         {
@@ -104,6 +104,36 @@ public sealed class SettingsFeatureTests
             // A default adds a service; it never repeats a built-in one.
             Assert.DoesNotContain(ConnectionClue.Presentation.Diagnostics.SymptomServices.For(symptom), s => s.Target.Host == preset.Target.Host);
         });
+    }
+
+    [Fact]
+    public void Calls_default_names_the_teams_web_endpoint()
+    {
+        var target = ConnectionClue.Presentation.Diagnostics.SymptomServices.DefaultTarget(Symptom.Calls);
+        Assert.Equal("Microsoft Teams web", target.Name);
+        Assert.Equal("teams.microsoft.com", target.Target.Host);
+        Assert.Equal(443, target.Target.Port);
+    }
+
+    [Theory]
+    [InlineData(4, "discord.com:443", "teams.microsoft.com:443")]
+    [InlineData(3, " DISCORD.COM:443 ", "teams.microsoft.com:443")]
+    [InlineData(0, "", "teams.microsoft.com:443")]
+    [InlineData(4, "", "")]
+    [InlineData(4, "meet.google.com:443", "meet.google.com:443")]
+    [InlineData(4, "calls.example:8443", "calls.example:8443")]
+    [InlineData(4, "discord.com:8443", "discord.com:8443")]
+    [InlineData(5, "discord.com:443", "discord.com:443")]
+    public void Calls_target_upgrade_replaces_only_the_legacy_default(int version, string original, string expected)
+    {
+        var settings = NewSettings();
+        settings.SetTarget(Symptom.Calls, original);
+        settings.SetTarget(Symptom.Gaming, "game.example:443");
+        settings.Upgrade(version);
+        Assert.Equal(expected, settings.TargetFor(Symptom.Calls));
+        Assert.Equal("game.example:443", settings.TargetFor(Symptom.Gaming));
+        settings.Upgrade(SettingsViewModel.CurrentVersion);
+        Assert.Equal(expected, settings.TargetFor(Symptom.Calls));
     }
 
     [Fact]

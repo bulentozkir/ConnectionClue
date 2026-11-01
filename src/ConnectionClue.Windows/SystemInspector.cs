@@ -38,7 +38,19 @@ public sealed record SystemSnapshot(
     int? TcpAutoTuningLevel = null,
     int? Ipv6DisabledComponents = null,
     bool Ipv6UnboundOnAdapter = false,
-    string? TunnelName = null);
+    string? TunnelName = null,
+    int? SignalDbm = null,
+    int? WifiChannel = null,
+    double? WifiRetryPercent = null,
+    long WifiFrames = 0,
+    string? WifiEncryption = null,
+    IReadOnlyList<DriverSettingValue>? DriverSettings = null,
+    int? Mtu = null,
+    long PacketErrors = 0,
+    long Packets = 0,
+    string? InterfaceAlias = null,
+    IReadOnlyList<string>? TcpTweaks = null,
+    NetworkConfiguration? Configuration = null);
 
 /// <summary>
 /// Reads network-relevant driver, OS and power settings as a standard user. Strictly read-only: it never changes a
@@ -48,6 +60,7 @@ public static unsafe partial class SystemInspector
 {
     private const string AdapterClassKey = @"SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}";
     private const string Tcpip6Key = @"SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters";
+    private const string TcpipKey = @"SYSTEM\CurrentControlSet\Services\Tcpip\Parameters";
     private static readonly Guid WirelessSubgroup = new("19cbb8fa-5279-450e-9fac-8a3d5fedd0c1");
     private static readonly Guid WirelessPowerSaving = new("12bbebe6-58d6-4636-95bb-3217ef867c1a");
     private static readonly Guid UsbSubgroup = new("2a737441-1930-4402-8d77-b2bebba308a3");
@@ -56,13 +69,24 @@ public static unsafe partial class SystemInspector
     private static readonly Uri ProxyProbe = new("https://www.example.com/");
     private static readonly string[] EeeKeywords = ["*EEE", "EEE", "EEELinkAdvertisement"];
 
-    public static SystemSnapshot Inspect(PathContext? path)
+    // This setting rarely changes: scheduled checks reuse it for an hour instead of waking WMI every minute.
+    private static readonly CachedValue<int?> AutoTuning = new(TimeSpan.FromHours(1));
+
+    // The adapter's advanced settings take about 20 ms of CPU to read and change only when someone opens Device Manager; the
+    // held copy belongs to one adapter, so a switch from Wi-Fi to a cable reads the new one at once.
+    private static readonly CachedValue<(Guid Adapter, IReadOnlyList<DriverSettingValue>? Settings)> DriverSettingsHeld = new(TimeSpan.FromHours(1));
+    private static readonly CachedValue<(Guid Adapter, NetworkConfiguration Configuration)> ConfigurationHeld = new(TimeSpan.FromHours(1));
+
+    /// <summary>reuseSlowFacts lets a scheduled check reuse the facts that are slow to read and rarely change; a check the
+    /// user starts always reads them fresh.</summary>
+    public static SystemSnapshot Inspect(PathContext? path, bool reuseSlowFacts = false)
     {
         var components = Try(Ipv6DisabledComponents);
-        var level = Try(AutoTuningLevel);
+        var level = AutoTuning.Get(() => Try(AutoTuningLevel), reuseSlowFacts);
         var proxy = Try(ProxyAddressInUse);
         var snapshot = new SystemSnapshot(Ipv6Disabled: components is not null, Ipv6DisabledComponents: components,
-            TcpAutoTuningLevel: level, TcpAutoTuningLimited: level is null ? null : level <= 2, ProxyConfigured: proxy is not null, ProxyAddress: proxy);
+            TcpAutoTuningLevel: level, TcpAutoTuningLimited: level is null ? null : level <= 2, ProxyConfigured: proxy is not null, ProxyAddress: proxy,
+            TcpTweaks: Try(ReadTcpTweaks));
         snapshot = Try(() => WithPower(snapshot), snapshot);
         if (path is null) return snapshot;
 
@@ -70,12 +94,19 @@ public static unsafe partial class SystemInspector
         if (PInvoke.GetIfEntry2(&row) != WIN32_ERROR.NO_ERROR) return snapshot;
         var id = row.InterfaceGuid;
         var nic = Try(() => NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault(n => Guid.TryParse(n.Id, out var g) && g == id));
+        var profile = Try(() => ConnectedProfile(id));
         snapshot = snapshot with
         {
-            NetworkName = Try(() => ConnectedProfile(id)?.ProfileName),
+            NetworkName = Try(() => profile?.ProfileName),
             DnsServers = Try(() => nic?.GetIPProperties().DnsAddresses.Where(a => !a.IsIPv6LinkLocal).Select(a => a.ToString()).ToList()),
             TunnelName = path.TunnelSuspected ? nic?.Description : null,
         };
+        int interfaceIndex = (int)row.InterfaceIndex;
+        (Guid Adapter, NetworkConfiguration Configuration) ReadConfiguration() =>
+            (id, NetworkConfigurationReader.Read(interfaceIndex, nic?.Description));
+        var configuration = ConfigurationHeld.Get(ReadConfiguration, reuseSlowFacts);
+        if (configuration.Adapter != id) configuration = ConfigurationHeld.Get(ReadConfiguration, reuse: false);
+        snapshot = snapshot with { Configuration = NetworkConfigurationReader.WithAddressing(configuration.Configuration, nic) };
         if (path is not { IsHardware: true, Medium: InterfaceMedium.Ethernet or InterfaceMedium.WiFi }) return snapshot;
 
         bool unbound = nic is not null && Try(() => !nic.Supports(NetworkInterfaceComponent.IPv6));
@@ -83,13 +114,20 @@ public static unsafe partial class SystemInspector
         {
             Medium = path.Medium,
             AdapterName = nic?.Description,
+            InterfaceAlias = nic?.Name,
             LinkMbps = Math.Min(row.ReceiveLinkSpeed, row.TransmitLinkSpeed) / 1e6,
-            SignalBars = path.Medium == InterfaceMedium.WiFi ? Try(() => SignalBars(id)) : null,
+            SignalBars = path.Medium == InterfaceMedium.WiFi ? Try(() => SignalBars(profile)) : null,
+            Mtu = row.Mtu is > 0 and < 100_000 ? (int)row.Mtu : null,
+            PacketErrors = Clamp(row.InErrors + row.OutErrors),
+            Packets = Clamp(row.InUcastPkts + row.InNUcastPkts + row.OutUcastPkts + row.OutNUcastPkts),
             Ipv6UnboundOnAdapter = unbound,
             Ipv6Disabled = snapshot.Ipv6Disabled || unbound,
         };
-        return Try(() => WithDriver(snapshot, id), snapshot);
+        if (path.Medium == InterfaceMedium.WiFi) snapshot = Try(() => WithWifi(snapshot, id, profile), snapshot);
+        return Try(() => WithDriver(snapshot, id, reuseSlowFacts), snapshot);
     }
+
+    private static long Clamp(ulong count) => (long)Math.Min(count, long.MaxValue);
 
     private static T Try<T>(Func<T> read, T fallback = default!)
     {
@@ -129,12 +167,57 @@ public static unsafe partial class SystemInspector
     private static string? ProxyAddressInUse() =>
         HttpClient.DefaultProxy.GetProxy(ProxyProbe) is { } proxy && proxy != ProxyProbe ? proxy.Authority : null;
 
-    // Saved but disconnected profiles share the adapter (0 bars, stale names); only the connected one counts.
+    // Saved but disconnected profiles share the adapter (0 bars, stale names); only the connected one counts. The profile Windows
+    // uses for the internet is one cheap call (about a tenth of the CPU of listing every profile) and is the one on the default
+    // route in practice; any other case falls back to the full list.
     private static WinRt.ConnectionProfile? ConnectedProfile(Guid id) =>
-        WinRt.NetworkInformation.GetConnectionProfiles().FirstOrDefault(p => p.NetworkAdapter?.NetworkAdapterId == id
-            && p.GetNetworkConnectivityLevel() != WinRt.NetworkConnectivityLevel.None);
+        WinRt.NetworkInformation.GetInternetConnectionProfile() is { NetworkAdapter: { } adapter } internet && adapter.NetworkAdapterId == id
+            ? internet
+            : WinRt.NetworkInformation.GetConnectionProfiles().FirstOrDefault(p => p.NetworkAdapter?.NetworkAdapterId == id
+                && p.GetNetworkConnectivityLevel() != WinRt.NetworkConnectivityLevel.None);
 
-    private static int? SignalBars(Guid id) => ConnectedProfile(id) is { IsWlanConnectionProfile: true } p ? p.GetSignalBars() : null;
+    private static int? SignalBars(WinRt.ConnectionProfile? profile) => profile is { IsWlanConnectionProfile: true } ? profile.GetSignalBars() : null;
+
+    /// <summary>The cipher Windows negotiated (from the connection profile, which needs no Location permission) and what the radio
+    /// reports about the link: channel, signal in dBm and how many frames needed another attempt.</summary>
+    private static SystemSnapshot WithWifi(SystemSnapshot snapshot, Guid id, WinRt.ConnectionProfile? profile)
+    {
+        var link = Try(() => WlanInfo.ReadLink(id));
+        return snapshot with
+        {
+            WifiEncryption = Try(() => profile?.NetworkSecuritySettings?.NetworkEncryptionType.ToString()),
+            WifiChannel = link?.Channel,
+            SignalDbm = link?.SignalDbm,
+            WifiFrames = link?.Frames?.Sent ?? 0,
+            WifiRetryPercent = link?.Frames is { Sent: > 0 } counts ? 100.0 * counts.Retried / counts.Sent : null,
+        };
+    }
+
+    /// <summary>Values that old "speed up your internet" guides leave behind and that make TCP slower or less reliable. Null when
+    /// the registry key cannot be read; empty when nothing is set to such a value.</summary>
+    private static IReadOnlyList<string>? ReadTcpTweaks()
+    {
+        using var key = Registry.LocalMachine.OpenSubKey(TcpipKey);
+        return key is null ? null : FindTcpTweaks(key.GetValue);
+    }
+
+    /// <summary>"Name=value" for each limiting value: path-MTU discovery off (every remote connection falls back to 576-byte
+    /// packets), RFC 1323 window scaling off (bit 0 of Tcp1323Opts; speed is capped near 64 KB per round trip), selective
+    /// acknowledgements off, and task offload off. Windows' own defaults, and values merely present, are not reported.</summary>
+    public static IReadOnlyList<string> FindTcpTweaks(Func<string, object?> read)
+    {
+        var found = new List<string>();
+        void Check(string name, Func<long, bool> limiting)
+        {
+            if (read(name) is { } value && long.TryParse(Convert.ToString(value, CultureInfo.InvariantCulture), NumberStyles.Integer, CultureInfo.InvariantCulture, out var n) && limiting(n))
+                found.Add(string.Create(CultureInfo.InvariantCulture, $"{name}={n}"));
+        }
+        Check("EnablePMTUDiscovery", n => n == 0);
+        Check("Tcp1323Opts", n => (n & 1) == 0);
+        Check("SackOpts", n => n == 0);
+        Check("DisableTaskOffload", n => n == 1);
+        return found;
+    }
 
     private static SystemSnapshot WithPower(SystemSnapshot snapshot)
     {
@@ -179,7 +262,7 @@ public static unsafe partial class SystemInspector
         return PInvoke.GetIfEntry2(&row) == WIN32_ERROR.NO_ERROR ? (row.InOctets, row.OutOctets) : null;
     }
 
-    private static SystemSnapshot WithDriver(SystemSnapshot snapshot, Guid id)
+    private static SystemSnapshot WithDriver(SystemSnapshot snapshot, Guid id, bool reuseSlowFacts)
     {
         using var adapters = Registry.LocalMachine.OpenSubKey(AdapterClassKey);
         if (adapters is null) return snapshot;
@@ -203,9 +286,19 @@ public static unsafe partial class SystemInspector
                 PowerOffAllowed = (pnp & 0x08) == 0,
                 EnergyEfficientEthernet = snapshot.Medium == InterfaceMedium.Ethernet ? Eee(key) : null,
                 IsUsb = key.GetValue("DeviceInstanceID") is string device && device.StartsWith(@"USB\", StringComparison.OrdinalIgnoreCase),
+                DriverSettings = HeldDriverSettings(id, key, reuseSlowFacts),
             };
         }
         return snapshot;
+    }
+
+    private static IReadOnlyList<DriverSettingValue>? HeldDriverSettings(Guid adapter, RegistryKey key, bool reuse)
+    {
+        (Guid Adapter, IReadOnlyList<DriverSettingValue>? Settings) Read() => (adapter, Try(() => DriverSettingsReader.Read(new RegistryNode(key))));
+        var held = DriverSettingsHeld.Get(Read, reuse);
+        // Another adapter's copy, or a read that failed, is not worth holding for an hour.
+        if (held.Adapter != adapter || held.Settings is null && reuse) held = DriverSettingsHeld.Get(Read, reuse: false);
+        return held.Settings;
     }
 
     private static DateOnly? DriverDate(RegistryKey key)

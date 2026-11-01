@@ -12,7 +12,8 @@
            Scope="perMachine"
            Compressed="yes">
     <SummaryInformation Description="ConnectionClue $(var.Version)" />
-    <MajorUpgrade DowngradeErrorMessage="A newer version of ConnectionClue is already installed." />
+    <MajorUpgrade AllowSameVersionUpgrades="yes" Schedule="afterInstallInitialize"
+                  DowngradeErrorMessage="A newer version of ConnectionClue is already installed." />
     <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
 
     <Icon Id="AppIcon.ico" SourceFile="$(var.AppIcon)" />

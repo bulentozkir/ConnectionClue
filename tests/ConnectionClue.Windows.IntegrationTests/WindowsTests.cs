@@ -295,6 +295,8 @@ public class ThroughputProbeTests
     public void Connection_cost_is_readable() => _ = ConnectionCost.IsMetered();
 }
 
+// SystemInspector holds slow facts between scheduled checks, so the classes that call it must not run side by side.
+[Collection("SystemInspector")]
 public class SystemInspectorTests
 {
     [Fact]

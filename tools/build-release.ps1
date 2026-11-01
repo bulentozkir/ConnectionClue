@@ -21,10 +21,10 @@
   upload the bundle to Partner Center as is. -PublisherDisplayName is also the MSI manufacturer and the winget publisher.
 
 .EXAMPLE
-  pwsh tools/build-release.ps1 -Version 1.0.9
+  pwsh tools/build-release.ps1 -Version 1.0.10
 #>
 param(
-    [string]$Version = '1.0.9',
+    [string]$Version = '1.0.10',
     [string]$IdentityName = 'BulentOzkir.ConnectionClue',
     [string]$Publisher = 'CN=06D08AF4-6BB1-40DF-9B96-5DF27BEE0635',
     [string]$PublisherDisplayName = 'Bulent Ozkir',

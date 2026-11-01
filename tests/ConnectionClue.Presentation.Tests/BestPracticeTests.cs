@@ -103,6 +103,18 @@ public sealed class BestPracticeTests : IDisposable
     /// <summary>Every situation-specific wording the advisor can pick, with example names from a PC.</summary>
     public static TheoryData<AdvisoryCode, string?, string[]?> Variants => new()
     {
+        { AdvisoryCode.ReceiveScalingDisabled, null, ["Test adapter", "Receive Side Scaling", "Disabled", "Enabled"] },
+        { AdvisoryCode.ReceiveScalingDisabled, "Global", ["Test adapter", "Receive Side Scaling", "Enabled", "Enabled"] },
+        { AdvisoryCode.AdapterOffloadDisabled, null, ["Test adapter", "TCP Checksum Offload: Disabled -> Rx & Tx Enabled"] },
+        { AdvisoryCode.AdapterOffloadDisabled, "Global", ["Test adapter", ""] },
+        { AdvisoryCode.InterruptModeration, null, ["Test adapter", "Interrupt Moderation", "Enabled", "Disabled"] },
+        { AdvisoryCode.LinkLocalAddress, null, ["Ethernet"] },
+        { AdvisoryCode.StaticNetworkConfiguration, "Address", ["Ethernet"] },
+        { AdvisoryCode.StaticNetworkConfiguration, "Dns", ["Ethernet"] },
+        { AdvisoryCode.NetworkSettingsUnavailable, null, ["MSFT_NetOffloadGlobalSetting"] },
+        { AdvisoryCode.ReceiveScalingDisabled, null, null }, { AdvisoryCode.AdapterOffloadDisabled, null, null },
+        { AdvisoryCode.InterruptModeration, null, null }, { AdvisoryCode.LinkLocalAddress, null, null },
+        { AdvisoryCode.StaticNetworkConfiguration, null, null }, { AdvisoryCode.NetworkSettingsUnavailable, null, null },
         { AdvisoryCode.LatencyUnderLoad, "Download", null }, { AdvisoryCode.LatencyUnderLoad, "Upload", null },
         { AdvisoryCode.OtherTraffic, "OneDrive", ["Microsoft OneDrive", "#12.5", "Visual Studio Code", "#3.1"] },
         { AdvisoryCode.OtherTraffic, "Sync", ["Dropbox", "#8"] }, { AdvisoryCode.OtherTraffic, "Game", ["Steam", "#420"] },
@@ -114,6 +126,29 @@ public sealed class BestPracticeTests : IDisposable
         { AdvisoryCode.EthernetLinkSlow, null, ["Realtek PCIe GbE"] }, { AdvisoryCode.AdapterPowerSaving, null, ["Intel(R) Wi-Fi 6E AX210"] },
         { AdvisoryCode.UsbSelectiveSuspend, "Plugged", ["Lenovo USB Ethernet"] }, { AdvisoryCode.UsbSelectiveSuspend, "Battery", ["Lenovo USB Ethernet"] },
         { AdvisoryCode.EnergyEfficientEthernet, null, ["Realtek PCIe GbE"] },
+        { AdvisoryCode.EnergyEfficientEthernet, "Green", ["Realtek PCIe GbE", "Green Ethernet", "Disabled"] },
+        { AdvisoryCode.WeakWifiSignal, "Dbm", ["HomeNet", "Intel(R) Wi-Fi 6E AX210 160MHz", "#-73"] },
+        { AdvisoryCode.WifiLinkSlow, "Band5", ["HomeNet", "Intel(R) Wi-Fi 6E AX210 160MHz", "5 GHz"] },
+        { AdvisoryCode.WifiRetries, "Band24", ["HomeNet"] }, { AdvisoryCode.WifiRetries, "Band5", ["HomeNet"] }, { AdvisoryCode.WifiRetries, null, ["HomeNet"] },
+        { AdvisoryCode.WifiRetries, "Band24", null }, { AdvisoryCode.WifiRetries, null, null },
+        { AdvisoryCode.WifiInsecureCipher, null, ["HomeNet", "@Cipher_Tkip"] }, { AdvisoryCode.WifiInsecureCipher, null, ["HomeNet", "@Cipher_Wep"] },
+        { AdvisoryCode.WifiInsecureCipher, null, null },
+        { AdvisoryCode.WifiDriverLimit, "Mode", ["Intel(R) Wi-Fi 6E AX210", "802.11n/ac/ax Wireless Mode", "2. 802.11n", "4. 802.11ax"] },
+        { AdvisoryCode.WifiDriverLimit, "Width", ["Intel(R) Wi-Fi 6E AX210", "Channel Width for 5GHz", "20 MHz Only", "Auto"] },
+        { AdvisoryCode.WifiDriverLimit, "Mimo", ["Intel(R) Wi-Fi 6E AX210", "MIMO Power Save Mode", "Static SMPS", "Auto SMPS"] },
+        { AdvisoryCode.WifiDriverLimit, "TxPower", ["Intel(R) Wi-Fi 6E AX210", "Transmit Power", "1. Lowest", "5. Highest"] },
+        { AdvisoryCode.WifiDriverLimit, "Band", ["Intel(R) Wi-Fi 6E AX210", "Preferred Band", "2. Prefer 2.4GHz band", "1. No Preference"] },
+        { AdvisoryCode.WifiDriverLimit, null, null },
+        { AdvisoryCode.WifiRoaming, null, ["Intel(R) Wi-Fi 6E AX210", "Roaming Aggressiveness", "5. Highest", "3. Medium", "1. Lowest"] },
+        { AdvisoryCode.WifiRoaming, null, null },
+        { AdvisoryCode.EthernetSpeedForced, null, ["Realtek PCIe GbE", "Speed & Duplex", "100 Mbps Full Duplex", "Auto Negotiation"] },
+        { AdvisoryCode.EthernetSpeedForced, "Half", ["Realtek PCIe GbE", "Speed & Duplex", "100 Mbps Half Duplex", "Auto Negotiation"] },
+        { AdvisoryCode.EthernetSpeedForced, null, null },
+        { AdvisoryCode.JumboFrames, null, ["Realtek PCIe GbE", "Jumbo Packet", "9014 Bytes", "Disabled"] }, { AdvisoryCode.JumboFrames, null, null },
+        { AdvisoryCode.TcpTweaks, null, ["EnablePMTUDiscovery=0, Tcp1323Opts=0"] }, { AdvisoryCode.TcpTweaks, null, null },
+        { AdvisoryCode.AdapterErrors, "Ethernet", ["Realtek PCIe GbE"] }, { AdvisoryCode.AdapterErrors, "WiFi", ["Intel(R) Wi-Fi 6E AX210"] },
+        { AdvisoryCode.AdapterErrors, null, null },
+        { AdvisoryCode.MtuUnusual, null, ["Ethernet"] }, { AdvisoryCode.MtuUnusual, null, null },
         { AdvisoryCode.PowerSaving, "EnergySaver", null }, { AdvisoryCode.PowerSaving, "Efficiency", null },
         { AdvisoryCode.PowerSaving, "WifiBattery", ["@WifiPower_2"] }, { AdvisoryCode.PowerSaving, "WifiPlugged", ["@WifiPower_3"] },
         { AdvisoryCode.SlowDns, "Router", ["192.168.1.1"] }, { AdvisoryCode.SlowDns, "Other", ["203.0.113.53"] },
@@ -386,5 +421,82 @@ public sealed class BestPracticeTests : IDisposable
         public SavedResult? Load() => Value;
         public void Save(SavedResult result) => Value = result;
         public void Clear() => Value = null;
+    }
+
+    private static readonly string[] Adapter = ["Intel(R) Wi-Fi 6E AX210 160MHz"];
+
+    private SavedResult Newer() => new(_time.GetUtcNow(),
+        new HealthReport(HealthLevel.Degraded, [new HealthIssue(IssueKind.Loss, HealthLevel.Degraded, IssueLocation.LocalNetwork, 4, 2)]),
+        new CheckContext(ConnectionMedium.WiFi, Gateway: "192.168.1.1"), [],
+        [new Advisory(AdvisoryCode.WifiRetries, AdvisoryLevel.Suggestion, 12, 5, ["HomeNet"], "Band24"),
+         new Advisory(AdvisoryCode.WifiInsecureCipher, AdvisoryLevel.Important, 0, 0, ["HomeNet", "@Cipher_Tkip"]),
+         new Advisory(AdvisoryCode.WifiDriverLimit, AdvisoryLevel.Important, 0, 0, [.. Adapter, "Channel Width for 5GHz", "20 MHz Only", "Auto"], "Width"),
+         new Advisory(AdvisoryCode.WifiRoaming, AdvisoryLevel.Suggestion, 0, 0, [.. Adapter, "Roaming Aggressiveness", "5. Highest", "3. Medium", "1. Lowest"]),
+         new Advisory(AdvisoryCode.EthernetSpeedForced, AdvisoryLevel.Important, 100, 0, ["Realtek PCIe GbE", "Speed & Duplex", "100 Mbps Half Duplex", "Auto Negotiation"], "Half"),
+         new Advisory(AdvisoryCode.JumboFrames, AdvisoryLevel.Suggestion, 0, 0, ["Realtek PCIe GbE", "Jumbo Packet", "9014 Bytes", "Disabled"]),
+         new Advisory(AdvisoryCode.TcpTweaks, AdvisoryLevel.Important, 0, 0, ["EnablePMTUDiscovery=0, Tcp1323Opts=2"]),
+         new Advisory(AdvisoryCode.AdapterErrors, AdvisoryLevel.Important, 500, 0.5, ["Realtek PCIe GbE"], "Ethernet"),
+         new Advisory(AdvisoryCode.MtuUnusual, AdvisoryLevel.Suggestion, 1280, 0, ["Ethernet"]),
+         new Advisory(AdvisoryCode.WeakWifiSignal, AdvisoryLevel.Important, 3, 180, ["HomeNet", .. Adapter, "#-73"], "Dbm")]);
+
+    [Fact]
+    public void New_advice_offers_the_place_that_fixes_it()
+    {
+        using var vm = Vm(new Store(Newer()), shell: new FakeShell());
+        RecommendationAction? Action(string titleStart) => vm.BestPractices.Single(b => b.Title.StartsWith(titleStart, StringComparison.Ordinal)).Action;
+
+        Assert.Equal("http://192.168.1.1/", Action("12% of the frames")!.Target); // channel and security are router settings
+        Assert.Equal("http://192.168.1.1/", Action("“HomeNet” uses outdated TKIP")!.Target);
+        Assert.Equal("devmgmt.msc", Action("“Channel Width for 5GHz”")!.Target);
+        Assert.Equal("devmgmt.msc", Action("“Roaming Aggressiveness”")!.Target);
+        Assert.Equal("devmgmt.msc", Action("“Speed & Duplex”")!.Target);
+        Assert.Equal("devmgmt.msc", Action("“Jumbo Packet”")!.Target);
+        Assert.Null(Action("Realtek PCIe GbE reported")); // a cable and a port are physical
+        Assert.Null(Action("Weak Wi-Fi signal")); // so is distance
+    }
+
+    [Fact]
+    public void Commands_are_copied_only_for_values_and_names_the_app_itself_reports()
+    {
+        var shell = new FakeShell();
+        using var vm = Vm(new Store(Newer()), shell: shell);
+        var tcp = vm.BestPractices.Single(b => b.Title.StartsWith("Registry tweaks", StringComparison.Ordinal)).Action!;
+        var mtu = vm.BestPractices.Single(b => b.Title.StartsWith("The packet size", StringComparison.Ordinal)).Action!;
+        Assert.Equal((RecommendationActionKind.CopyText, "Copy command"), (tcp.Kind, tcp.Label));
+
+        vm.RunActionCommand.Execute(tcp);
+        vm.RunActionCommand.Execute(mtu);
+        Assert.Equal([@"reg delete ""HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters"" /v EnablePMTUDiscovery /f" + Environment.NewLine
+            + @"reg delete ""HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters"" /v Tcp1323Opts /f",
+            @"netsh interface ipv4 set subinterface ""Ethernet"" mtu=1500 store=persistent"], shell.Copied);
+    }
+
+    [Fact]
+    public void Saved_data_with_an_unexpected_value_name_or_connection_name_never_becomes_a_command()
+    {
+        var saved = Newer() with
+        {
+            Advisories =
+            [
+                new Advisory(AdvisoryCode.TcpTweaks, AdvisoryLevel.Important, 0, 0, ["Hacked=1, DefaultTTL=1; calc"]),
+                new Advisory(AdvisoryCode.MtuUnusual, AdvisoryLevel.Suggestion, 1280, 0, ["Ethernet\" & calc & \""]),
+            ],
+        };
+        using var vm = Vm(new Store(saved), shell: new FakeShell());
+        Assert.All(vm.BestPractices, b => Assert.Null(b.Action));
+    }
+
+    [Fact]
+    public void New_advice_sends_nothing_personal_to_the_online_reviewers()
+    {
+        var reviewer = new FakeReviewer(_ => true);
+        using var vm = Vm(new Store(Newer()), reviewer: reviewer);
+
+        Assert.Equal(10, reviewer.Seen.Count);
+        foreach (var personal in new[] { "HomeNet", "Intel(R)", "Realtek", "Roaming Aggressiveness", "5. Highest", "Speed & Duplex", "100 Mbps",
+            "EnablePMTUDiscovery", "-73", "1280", "(0.5%)" })
+            Assert.DoesNotContain(reviewer.Seen, t => t.Contains(personal, StringComparison.Ordinal));
+        Assert.Contains(reviewer.Seen, t => t.Contains("uses outdated TKIP security", StringComparison.Ordinal)); // the cipher is not personal
+        Assert.Contains(reviewer.Seen, t => t.Contains("Weak Wi-Fi signal on “[name]” (N dBm)", StringComparison.Ordinal));
     }
 }

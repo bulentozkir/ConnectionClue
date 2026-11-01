@@ -26,9 +26,11 @@ public sealed class ReviewerTests
     private sealed class MemoryCache : IReviewCache
     {
         public Dictionary<string, ReviewVerdict> Items { get; } = [];
+        public int Saves { get; private set; }
         public IReadOnlyDictionary<string, ReviewVerdict> Load() => Items;
         public void Save(IReadOnlyDictionary<string, ReviewVerdict> verdicts)
         {
+            Saves++;
             Items.Clear();
             foreach (var (k, v) in verdicts) Items[k] = v;
         }
@@ -130,6 +132,36 @@ public sealed class ReviewerTests
         _time.Advance(OnlineAdviceReviewer.CacheFor + TimeSpan.FromMinutes(1));
         await reviewer.ReviewAsync([Good], TestContext.Current.CancellationToken);
         Assert.Equal(2, handler.Requests.Count);
+    }
+
+    [Fact]
+    public async Task Remembered_gives_only_unexpired_verdicts_and_neither_asks_nor_writes()
+    {
+        var (reviewer, handler, cache) = Create((_, _) => Reply(Verdicts("ok")));
+        Assert.Empty(reviewer.Remembered([Good, Bad])); // nothing known yet
+        await reviewer.ReviewAsync([Good], TestContext.Current.CancellationToken);
+        (int requests, int saves) = (handler.Requests.Count, cache.Saves);
+
+        var known = reviewer.Remembered([Good, Bad]);
+        Assert.Equal([Good], known.Keys); // the unknown text is simply missing
+        Assert.True(known[Good].Ok);
+        _time.Advance(OnlineAdviceReviewer.CacheFor + TimeSpan.FromMinutes(1));
+        Assert.Empty(reviewer.Remembered([Good]));
+        Assert.Equal((requests, saves), (handler.Requests.Count, cache.Saves));
+    }
+
+    [Fact]
+    public async Task The_cache_file_is_rewritten_only_when_a_verdict_is_new_or_expired()
+    {
+        var (reviewer, _, cache) = Create((_, _) => Reply(Verdicts("ok")));
+        await reviewer.ReviewAsync([Good], TestContext.Current.CancellationToken);
+        Assert.Equal(1, cache.Saves);
+        await reviewer.ReviewAsync([Good], TestContext.Current.CancellationToken); // answered from the cache
+        await reviewer.ReviewAsync([], TestContext.Current.CancellationToken);
+        Assert.Equal(1, cache.Saves);
+        _time.Advance(OnlineAdviceReviewer.CacheFor + TimeSpan.FromMinutes(1));
+        await reviewer.ReviewAsync([Good], TestContext.Current.CancellationToken); // expired: asked again and written
+        Assert.Equal(2, cache.Saves);
     }
 
     [Theory]

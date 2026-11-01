@@ -89,7 +89,13 @@ internal static class AppData
     public static readonly string Folder = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ConnectionClue");
 
-    public static readonly JsonSerializerOptions Json = new() { Converters = { new JsonStringEnumConverter() } };
+    public static readonly JsonSerializerOptions Json = new()
+    {
+        Converters = { new JsonStringEnumConverter() },
+        // Most fields of a background check summary are empty: leaving them out roughly halves every file, and a missing
+        // value reads back as the same null.
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+    };
 
     public static T? Read<T>(string name)
     {

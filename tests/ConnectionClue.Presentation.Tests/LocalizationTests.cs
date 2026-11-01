@@ -165,8 +165,22 @@ public partial class LocalizationTests
         return set.Cast<DictionaryEntry>().ToDictionary(e => (string)e.Key, e => (string)e.Value!);
     }
 
+    // Advice and check areas added in 1.0.9 (driver settings, Wi-Fi quality, TCP/IP tweaks) wait for translation review.
+    private static readonly string[] NewAdviceKeys =
+    [
+        "Advice_WifiRetries_", "Advice_WifiInsecureCipher_", "Advice_WifiDriverLimit_", "Advice_WifiRoaming_", "Advice_EthernetSpeedForced_",
+        "Advice_JumboFrames_", "Advice_TcpTweaks_", "Advice_AdapterErrors_", "Advice_MtuUnusual_", "Advice_WeakWifiSignal_TitleDbm",
+        "Advice_WeakWifiSignal_DetailDbm", "Advice_WifiLinkSlow_DetailBand5", "Advice_EnergyEfficientEthernet_TitleGreen",
+        "Advice_EnergyEfficientEthernet_DetailGreen", "Area_WifiSecurity", "Area_WifiRetries", "Area_DriverSettings", "Area_TcpIpSettings",
+        "Area_AdapterErrors", "Area_Mtu", "Cipher_",
+        "Advice_ReceiveScalingDisabled_", "Advice_AdapterOffloadDisabled_", "Advice_InterruptModeration_",
+        "Advice_LinkLocalAddress_", "Advice_StaticNetworkConfiguration_", "Advice_NetworkSettingsUnavailable_",
+        "Area_ReceiveScaling", "Area_Offloads", "Area_Addressing", "Area_SettingsCoverage",
+    ];
+
     private static bool UsesEnglishFallback(string key) =>
-        key.StartsWith("Target_", StringComparison.Ordinal)
+        NewAdviceKeys.Any(prefix => key.StartsWith(prefix, StringComparison.Ordinal))
+        || key.StartsWith("Target_", StringComparison.Ordinal)
         || key.StartsWith("Settings_Targets", StringComparison.Ordinal)
         || key.StartsWith("Diagnostics_", StringComparison.Ordinal)
         || key.StartsWith("SupportReport_", StringComparison.Ordinal)

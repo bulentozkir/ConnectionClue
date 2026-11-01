@@ -34,7 +34,7 @@ public sealed partial class MainViewModel
     private void ConfirmClearHistory()
     {
         _history = [];
-        _historyStore?.Save(_history);
+        SaveHistory();
         RefreshHistory();
         (IsConfirmingClearHistory, HistoryClearStatus) = (false, _l.Get("History_Cleared", _ui));
         Emit(HistoryClearStatus, AnnouncementKind.SessionState);

@@ -22,6 +22,10 @@ public interface IAdviceReviewer
 {
     /// <summary>Verdicts by text for the texts that could be decided; texts no reviewer could answer are missing.</summary>
     Task<IReadOnlyDictionary<string, ReviewVerdict>> ReviewAsync(IReadOnlyList<string> texts, CancellationToken ct);
+
+    /// <summary>The verdicts already remembered for these texts. Never contacts a reviewer and never writes the cache, so a
+    /// scheduled check can keep what the reviewers said without waiting for them.</summary>
+    IReadOnlyDictionary<string, ReviewVerdict> Remembered(IReadOnlyList<string> texts) => new Dictionary<string, ReviewVerdict>();
 }
 
 /// <summary>
@@ -45,7 +49,9 @@ public sealed class OnlineAdviceReviewer(HttpClient http, IReadOnlyList<Reviewer
     public async Task<IReadOnlyDictionary<string, ReviewVerdict>> ReviewAsync(IReadOnlyList<string> texts, CancellationToken ct)
     {
         var now = time.GetUtcNow();
-        var cached = cache.Load().Where(p => now - p.Value.CheckedAtUtc < CacheFor).ToDictionary(p => p.Key, p => p.Value);
+        var stored = cache.Load();
+        var cached = stored.Where(p => now - p.Value.CheckedAtUtc < CacheFor).ToDictionary(p => p.Key, p => p.Value);
+        bool changed = cached.Count != stored.Count; // expired verdicts leave the file
         var decided = new Dictionary<string, ReviewVerdict>();
         var open = new List<string>();
         foreach (var text in texts.Distinct())
@@ -74,13 +80,29 @@ public sealed class OnlineAdviceReviewer(HttpClient http, IReadOnlyList<Reviewer
             open = [.. open.Where(t => !decided.ContainsKey(t))];
         }
 
-        foreach (var (text, verdict) in decided) cached[Key(text)] = verdict;
-        cache.Save(cached);
+        foreach (var (text, verdict) in decided)
+        {
+            string key = Key(text);
+            if (cached.TryGetValue(key, out var known) && known == verdict) continue;
+            cached[key] = verdict;
+            changed = true;
+        }
+        if (changed) cache.Save(cached); // answers from the cache alone leave the file as it is
         return decided;
     }
 
     /// <summary>Stable cache key for a generic text.</summary>
     public static string Key(string text) => Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(text)));
+
+    public IReadOnlyDictionary<string, ReviewVerdict> Remembered(IReadOnlyList<string> texts)
+    {
+        var now = time.GetUtcNow();
+        var stored = cache.Load();
+        var known = new Dictionary<string, ReviewVerdict>();
+        foreach (var text in texts.Distinct())
+            if (stored.TryGetValue(Key(text), out var verdict) && now - verdict.CheckedAtUtc < CacheFor) known[text] = verdict;
+        return known;
+    }
 
     private async Task<List<(string Text, bool Ok, string Reason)>?> AskAsync(ReviewerEndpoint reviewer, List<string> texts, CancellationToken ct)
     {

@@ -118,12 +118,12 @@ public sealed class SampleStrip : FrameworkElement
         var position = e.GetPosition(this);
         (_tip.HorizontalOffset, _tip.VerticalOffset) = (position.X + 14, position.Y + 18);
         double pxPerSecond = ActualWidth / Math.Max(DurationSeconds, 1);
-        if (Samples is not { Count: > 0 } samples)
+        if (Samples is not { Count: > 0 } samples
+            || SampleSearch.Nearest(samples, pxPerSecond > 0 ? position.X / pxPerSecond : 0) is not { } nearest)
         {
             _tip.Visibility = Visibility.Collapsed;
             return;
         }
-        var nearest = samples.MinBy(s => Math.Abs(s.Seconds * pxPerSecond - position.X))!;
         var f = CultureInfo.CurrentCulture;
         string seconds = nearest.Seconds.ToString("0", f);
         _tip.Content = nearest.Milliseconds is { } ms

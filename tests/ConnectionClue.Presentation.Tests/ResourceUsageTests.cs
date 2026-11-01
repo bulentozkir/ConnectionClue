@@ -98,6 +98,30 @@ public sealed class ResourceUsageTests
         Assert.Throws<ArgumentOutOfRangeException>(() => SampleDownsampling.Reduce(samples, 0));
     }
 
+    [Fact]
+    public void Hovering_a_chart_finds_the_nearest_sample_like_a_full_scan_does()
+    {
+        Sample[] samples = [.. Enumerable.Range(0, 1000).Select(i => new Sample(i * 0.5 + i % 7 * 0.01, i % 5 == 0 ? null : 20))];
+        var random = new Random(7);
+        for (int i = 0; i < 500; i++)
+        {
+            double at = random.NextDouble() * 520 - 10;
+            Assert.Equal(samples.MinBy(s => Math.Abs(s.Seconds - at)), SampleSearch.Nearest(samples, at));
+        }
+    }
+
+    [Fact]
+    public void Nearest_sample_handles_the_ends_ties_and_an_empty_series()
+    {
+        Assert.Null(SampleSearch.Nearest([], 5));
+        Sample[] samples = [new(1, 10), new(3, 30), new(7, 70)];
+        Assert.Equal(samples[0], SampleSearch.Nearest(samples, -4));
+        Assert.Equal(samples[2], SampleSearch.Nearest(samples, 100));
+        Assert.Equal(samples[0], SampleSearch.Nearest(samples, 2)); // equally near: the earlier one
+        Assert.Equal(samples[1], SampleSearch.Nearest(samples, 2.01));
+        Assert.Equal(samples[1], SampleSearch.Nearest(samples, 3));
+    }
+
     private static ProbeObservation Observation()
     {
         var request = new ProbeRequest(Guid.NewGuid(), Guid.NewGuid(), 0,

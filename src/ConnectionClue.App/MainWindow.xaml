@@ -7,7 +7,7 @@
         x:Name="Root" Title="ConnectionClue" Width="1280" Height="800" MinWidth="900" MinHeight="600"
         WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="pack://application:,,,/Assets/ConnectionClue.ico">
     <Window.InputBindings>
-        <KeyBinding Key="F5" Command="{Binding QuickCheckCommand}" />
+        <KeyBinding Key="F5" Modifiers="Control" Command="{Binding QuickCheckCommand}" />
         <KeyBinding Key="L" Modifiers="Control" Command="{Binding MarkerCommand}" />
     </Window.InputBindings>
     <Window.Resources>
