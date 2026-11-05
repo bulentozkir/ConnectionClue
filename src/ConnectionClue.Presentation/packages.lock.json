@@ -11,7 +11,7 @@
       "connectionclue.analysis": {
         "type": "Project",
         "dependencies": {
-          "ConnectionClue.Core": "[1.0.10, )"
+          "ConnectionClue.Core": "[1.0.11, )"
         }
       },
       "connectionclue.core": {

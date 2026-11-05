@@ -18,6 +18,31 @@ public sealed class AppLifecycleTests
         Assert.Equal("afterInstallInitialize", (string?)upgrade.Attribute("Schedule"));
         Assert.NotEqual("yes", (string?)upgrade.Attribute("AllowDowngrades"));
         Assert.NotEqual("yes", (string?)upgrade.Attribute("IgnoreRemoveFailure"));
+        // Replacing also needs a new product code for every build and one install place for every architecture: a pinned
+        // ProductCode would make a rebuild a repair of the same product, and a per-user or per-architecture install would sit
+        // beside the old one instead of replacing it.
+        Assert.True((string?)package.Attribute("ProductCode") is null or "*");
+        Assert.Equal("perMachine", (string?)package.Attribute("Scope"));
+        var programFiles = Assert.Single(package.Elements(wix + "StandardDirectory"));
+        Assert.Equal("ProgramFiles6432Folder", (string?)programFiles.Attribute("Id"));
+        Assert.Equal("ConnectionClue", (string?)Assert.Single(programFiles.Elements(wix + "Directory")).Attribute("Name"));
+    }
+
+    [Fact]
+    public void Every_install_channel_replaces_the_installed_app_instead_of_adding_a_second_one()
+    {
+        var document = System.Xml.Linq.XDocument.Load(Path.Combine(AppContext.BaseDirectory, "ConnectionClue.wxs"));
+        System.Xml.Linq.XNamespace wix = "http://wixtoolset.org/schemas/v4/wxs";
+        string upgradeCode = (string)Assert.Single(document.Descendants(wix + "Package")).Attribute("UpgradeCode")!;
+        string script = Read("build-release.ps1");
+        // winget recognises the installed MSI by its upgrade code: another one would install the new version beside the old.
+        Assert.Contains($"UpgradeCode: '{{{upgradeCode}}}'", script, StringComparison.OrdinalIgnoreCase);
+        // The MSIX carries the Store's reserved identity: any other name or publisher is a second app beside the Store's
+        // and beside earlier sideloads, and both architectures take the same identity from the one template.
+        Assert.Contains("[string]$IdentityName = 'BulentOzkir.ConnectionClue'", script, StringComparison.Ordinal);
+        Assert.Contains("[string]$Publisher = 'CN=06D08AF4-6BB1-40DF-9B96-5DF27BEE0635'", script, StringComparison.Ordinal);
+        Assert.Contains("<Identity Name=\"{Name}\" Publisher=\"{Publisher}\" Version=\"{Version}\" ProcessorArchitecture=\"{Arch}\" />",
+            Read("AppxManifest.xml"), StringComparison.Ordinal);
     }
 
     [Fact]
@@ -58,17 +83,56 @@ public sealed class AppLifecycleTests
     {
         string code = Read("App.xaml.cs");
         Assert.Contains("bool startHidden = atSignIn && settings.BackgroundEnabled;", code, StringComparison.Ordinal);
-        Assert.Contains("if (!activatedExisting && !atSignIn)", code, StringComparison.Ordinal);
+        Assert.Contains("if (!activatedExisting && !App.StartedAtSignIn(args))", Read("Program.cs"), StringComparison.Ordinal);
     }
 
     [Fact]
     public void A_start_at_sign_in_is_recognised_for_the_registry_entry_and_for_an_installed_package()
     {
-        Assert.Contains("bool atSignIn = !snapshotRun && (e.Args.Contains(\"--startup\") || StartupManager.LaunchedByStartupTask());",
-            Read("App.xaml.cs"), StringComparison.Ordinal);
+        string code = Read("App.xaml.cs");
+        Assert.Contains("internal static bool StartedAtSignIn(string[] args) => args.Contains(\"--startup\") || StartupManager.LaunchedByStartupTask();",
+            code, StringComparison.Ordinal);
+        Assert.Contains("bool atSignIn = !snapshotRun && StartedAtSignIn(e.Args);", code, StringComparison.Ordinal);
         // The package's startup task cannot carry a flag, so Windows' own activation record says how the copy was started.
         Assert.Contains("AppInstance.GetActivatedEventArgs()?.Kind == ActivationKind.StartupTask", Read("StartupManager.cs"), StringComparison.Ordinal);
         Assert.Contains("run.SetValue(RunValue, $\"\\\"{executablePath}\\\" --startup\"", Read("StartupManager.cs"), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void A_second_launch_hands_over_before_wpf_starts_anything()
+    {
+        string main = Read("Program.cs");
+        Assert.Contains("[STAThread]", main, StringComparison.Ordinal);
+        int acquire = main.IndexOf("SingleInstanceGate.Acquire(", StringComparison.Ordinal);
+        Assert.True(acquire > 0 && acquire < main.IndexOf("new App(", StringComparison.Ordinal),
+            "The check must come before the application is created.");
+        // A visual check never takes part in it.
+        Assert.Contains("if (App.Arg(args, \"--snapshot\") is null)", main, StringComparison.Ordinal);
+        Assert.DoesNotContain("SingleInstanceGate.Acquire(", Read("App.xaml.cs"), StringComparison.Ordinal);
+        // The Main WPF generates for an application definition would start the app without the check.
+        string project = Read("ConnectionClue.App.csproj");
+        Assert.Contains("<ApplicationDefinition Remove=\"App.xaml\" />", project, StringComparison.Ordinal);
+        Assert.Contains("<Page Include=\"App.xaml\" />", project, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void A_launch_passes_on_its_right_to_take_the_foreground_before_it_asks_the_running_copy_to_show_its_window()
+    {
+        string gate = Read("SingleInstanceGate.cs");
+        // Live statements, in this order: a commented-out call must not satisfy the check.
+        Assert.Matches(@"(?m)^\s+AllowForeground\(\);\r?\n\s+activate\.Set\(\);", gate);
+        Assert.Matches(@"(?m)^[^/\r\n]*AllowSetForegroundWindow\(other\.Id\)", gate);
+    }
+
+    [Fact]
+    public void A_language_change_starts_the_new_copy_only_after_this_one_released_the_instance_lock()
+    {
+        string code = Read("App.xaml.cs");
+        // Started earlier, the new copy would find this one holding the lock, hand over to it and end: nothing would run.
+        Assert.Contains("_restartOnExit = true;", code, StringComparison.Ordinal);
+        Assert.Equal(1, Count(code, "Process.Start(")); // StartNewCopy, called from OnExit
+        int release = code.IndexOf("_singleInstance?.Dispose();", StringComparison.Ordinal);
+        Assert.True(release > 0 && release < code.IndexOf("if (_restartOnExit) StartNewCopy();", StringComparison.Ordinal));
     }
 
     [Fact]

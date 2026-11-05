@@ -20,6 +20,12 @@
     <TieredPGO>false</TieredPGO>
   </PropertyGroup>
   <ItemGroup>
+    <!-- Program.Main is the entry point: it checks for a running copy before WPF starts anything. App.xaml is therefore a page, so
+         no second Main is generated that would start the app without that check. -->
+    <ApplicationDefinition Remove="App.xaml" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <!-- The Fluent theme would put a Mica backdrop behind every window: more work for the desktop compositor (the GPU) for a
          window that is a plain panel. Off, the window paints its own theme background. -->
     <RuntimeHostConfigurationOption Include="Switch.System.Windows.Appearance.DisableFluentThemeWindowBackdrop" Value="true" />

@@ -32,7 +32,7 @@ public partial class App : Application
     private SingleInstanceGate? _singleInstance;
     private CultureInfo _ui = CultureInfo.InvariantCulture;
     private string? _language;
-    private bool _exiting, _trayHintShown, _offline, _suppressStartupChange, _started;
+    private bool _exiting, _trayHintShown, _offline, _suppressStartupChange, _started, _restartOnExit;
     private int _connectivityRefreshQueued;
     private long? _trimmedAt;
     private bool _windowReleased;
@@ -40,8 +40,10 @@ public partial class App : Application
     private WindowState _restoreState = WindowState.Maximized;
     private Rect _restoreBounds = Rect.Empty;
 
-    public App()
+    /// <param name="singleInstance">The instance lock Program.Main took before starting WPF; null for a visual check, which never takes it.</param>
+    internal App(SingleInstanceGate? singleInstance)
     {
+        _singleInstance = singleInstance;
         // Set before InitializeComponent loads resources or any window can render. The app never uses the graphics card.
         System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
         // A tray app runs for days: a stray exception on the UI thread must not end it or raise Windows' crash dialog. One
@@ -60,21 +62,7 @@ public partial class App : Application
         base.OnStartup(e);
         // A visual check (--snapshot) only renders the window to a file and exits: it never hands off to a running copy.
         bool snapshotRun = Arg(e.Args, "--snapshot") is not null;
-        // Started by Windows at sign-in: the registry entry passes --startup, an installed package starts through its startup task.
-        bool atSignIn = !snapshotRun && (e.Args.Contains("--startup") || StartupManager.LaunchedByStartupTask());
-        if (!snapshotRun)
-        {
-            _singleInstance = SingleInstanceGate.Acquire(e.Args.Contains("--start"), out bool activatedExisting);
-            if (_singleInstance is null)
-            {
-                // A copy started at sign-in must never put a message in front of the user.
-                if (!activatedExisting && !atSignIn)
-                    MessageBox.Show("ConnectionClue is already running, but Windows could not activate its window. Use its notification-area icon to open it.",
-                        "ConnectionClue", MessageBoxButton.OK, MessageBoxImage.Information);
-                Shutdown();
-                return;
-            }
-        }
+        bool atSignIn = !snapshotRun && StartedAtSignIn(e.Args);
         _offline = e.Args.Contains("--offline");
         var saved = SettingsStore.Load();
         _language = saved.Language;
@@ -133,7 +121,7 @@ public partial class App : Application
         {
             _language = name;
             Persist();
-            System.Diagnostics.Process.Start(Environment.ProcessPath!);
+            _restartOnExit = true; // OnExit starts the new copy, once this one no longer holds the instance lock
             ExitApp();
         };
 
@@ -218,7 +206,19 @@ public partial class App : Application
         _tray?.Dispose();
         _vm?.Dispose();
         _singleInstance?.Dispose();
+        // Only now: started earlier, the new copy would find this one still holding the instance lock, hand over to it and
+        // end, and nothing would be left running.
+        if (_restartOnExit) StartNewCopy();
         base.OnExit(e);
+    }
+
+    private static void StartNewCopy()
+    {
+        try { System.Diagnostics.Process.Start(Environment.ProcessPath!)?.Dispose(); }
+        catch (Exception e) when (e is Win32Exception or InvalidOperationException)
+        {
+            // The language is saved: the next start uses it.
+        }
     }
 
     private void OnViewModelChanged(object? sender, PropertyChangedEventArgs e)
@@ -418,7 +418,10 @@ public partial class App : Application
         finally { _suppressStartupChange = false; }
     }
 
-    private static string? Arg(string[] args, string name) => args.SkipWhile(a => a != name).Skip(1).FirstOrDefault();
+    internal static string? Arg(string[] args, string name) => args.SkipWhile(a => a != name).Skip(1).FirstOrDefault();
+
+    /// <summary>Started by Windows at sign-in: the registry entry passes --startup, an installed package starts through its startup task.</summary>
+    internal static bool StartedAtSignIn(string[] args) => args.Contains("--startup") || StartupManager.LaunchedByStartupTask();
 
     /// <summary>
     /// Taskbar jump list (right-click the taskbar button): "Quick check" starts a second copy with --start, which hands the

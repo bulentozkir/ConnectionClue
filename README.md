@@ -62,10 +62,10 @@ The nine requested PNGs are written to `logos\`: BoxArt 1080×1080; Logo 44×44,
 Build the x64 and ARM64 MSI installers and combined MSIX bundle with:
 
 ```powershell
-pwsh tools/build-release.ps1 -Version 1.0.10
+pwsh tools/build-release.ps1 -Version 1.0.11
 ```
 
-Packages are written to `releases\1.0.10\`, with winget manifests under `releases\1.0.10\winget\`. Publish the GitHub release `v1.0.10` with the MSI files before submitting the manifests to microsoft/winget-pkgs, and set `-WingetLicense` to the project's license.
+Packages are written to `releases\1.0.11\`, with winget manifests under `releases\1.0.11\winget\`. Publish the GitHub release `v1.0.11` with the MSI files before submitting the manifests to microsoft/winget-pkgs, and set `-WingetLicense` to the project's license.
 
 The MSIX bundle uses the reserved Microsoft Store identity by default (`BulentOzkir.ConnectionClue`, publisher `CN=06D08AF4-6BB1-40DF-9B96-5DF27BEE0635`, publisher display name `Bulent Ozkir`), so it can be uploaded to Partner Center as is; the Store replaces its signature. For sideloading, it is signed with a self-signed test certificate for that publisher (`ConnectionClue-msix-test-signing.cer`). The MSIs are signed with the self-signed `CN=ConnectionClue Test` certificate (`ConnectionClue-test-signing.cer`) unless `-CertificateThumbprint` names an approved code-signing certificate, which MSI distribution requires because the Store never signs MSIs. Test-signed packages install only where their certificate is trusted. See the developer handoff for signing and release-validation requirements.
 
@@ -73,7 +73,7 @@ The MSI is per-machine and requires Windows Installer elevation; the installed a
 
 MSI installers replace existing MSI installations with the fixed UpgradeCode, including rebuilds of the same three-part version. The old product is removed before the new files are installed, inside the Windows Installer transaction, so a failed upgrade can restore the old product. Failure to remove it fails the upgrade; lower three-part versions remain blocked. MSI cannot distinguish newer and older builds with the same three-part version, so installing an older same-version MSI also replaces the current one. Use a higher public version for released updates.
 
-MSIX updates retain the same package identity/publisher and must have a higher package version to supersede an installed package automatically. Store-compatible bundles keep the fourth version field at zero: a rebuilt `1.0.10.0` is not an automatic update to another `1.0.10.0`; release a higher version for that case. MSI and MSIX are separate installation channels and do not remove each other automatically. Exit the app from the tray before upgrading. Do not uninstall an MSIX just to update it without backing up its local data.
+MSIX updates retain the same package identity/publisher and must have a higher package version to supersede an installed package automatically. Store-compatible bundles keep the fourth version field at zero: a rebuilt `1.0.11.0` is not an automatic update to another `1.0.11.0`; release a higher version for that case. MSI and MSIX are separate installation channels and do not remove each other automatically. Exit the app from the tray before upgrading. Do not uninstall an MSIX just to update it without backing up its local data.
 
 The MSIX manifest declares Hausa as `ha-Latn-NG`, while the existing .NET translations remain under `ha`. Windows package registration rejects bare `ha` with `0x80073CF6` / `0x80070057`, even when `makeappx` accepts the package. Before Store submission, test installation of the actual bundle on a supported Windows version; a successful build or unpack is not an installation test.
 

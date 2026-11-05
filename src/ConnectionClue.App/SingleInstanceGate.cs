@@ -1,3 +1,6 @@
+using System.Diagnostics;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
@@ -14,6 +17,7 @@ internal sealed class SingleInstanceGate : IDisposable
     private readonly Mutex _mutex;
     private readonly EventWaitHandle _activate, _check;
     private RegisteredWaitHandle? _activateListener, _checkListener;
+    private bool _disposed;
 
     private SingleInstanceGate(Mutex mutex, EventWaitHandle activate, EventWaitHandle check) =>
         (_mutex, _activate, _check) = (mutex, activate, check);
@@ -21,10 +25,25 @@ internal sealed class SingleInstanceGate : IDisposable
     /// <summary>Raised on a thread-pool thread; the argument is true when the later launch asked for a quick check.</summary>
     public event EventHandler<bool>? ActivationRequested;
 
-    public static SingleInstanceGate? Acquire(bool quickCheck, out bool activatedExisting)
+    public static SingleInstanceGate? Acquire(bool quickCheck, out bool activatedExisting) =>
+        Acquire(Name(), quickCheck, out activatedExisting);
+
+    /// <param name="name">Which instance is meant: one per user and session in the app, a private one in tests.</param>
+    internal static SingleInstanceGate? Acquire(string name, bool quickCheck, out bool activatedExisting)
     {
-        string name = Name();
-        var mutex = new Mutex(initiallyOwned: true, Prefix + name, out bool createdNew);
+        Mutex mutex;
+        bool createdNew;
+        try
+        {
+            mutex = new Mutex(initiallyOwned: true, Prefix + name, out createdNew);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            // The running copy is this user's but runs with other rights (as administrator): this one cannot even signal it.
+            activatedExisting = false;
+            return null;
+        }
+
         if (!createdNew)
         {
             // A copy from before the check event existed still accepts plain activation.
@@ -75,6 +94,8 @@ internal sealed class SingleInstanceGate : IDisposable
 
     public void Dispose()
     {
+        if (_disposed) return;
+        _disposed = true;
         _activateListener?.Unregister(null);
         _checkListener?.Unregister(null);
         _activate.Dispose();
@@ -90,6 +111,7 @@ internal sealed class SingleInstanceGate : IDisposable
             try
             {
                 using var activate = EventWaitHandle.OpenExisting(eventName);
+                AllowForeground();
                 activate.Set();
                 return true;
             }
@@ -97,9 +119,39 @@ internal sealed class SingleInstanceGate : IDisposable
             {
                 Thread.Sleep(50);
             }
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
         }
         return false;
     }
+
+    // The user just started this launch, so Windows lets it bring a window forward; the running copy, started long before,
+    // may not and would only flash its taskbar button. Passing the right on is what makes the second launch switch to it.
+    private static void AllowForeground()
+    {
+        if (Path.GetFileNameWithoutExtension(Environment.ProcessPath) is not { Length: > 0 } name) return;
+        try
+        {
+            foreach (var other in Process.GetProcessesByName(name))
+            {
+                using (other)
+                {
+                    if (other.Id != Environment.ProcessId) AllowSetForegroundWindow(other.Id);
+                }
+            }
+        }
+        catch (Exception e) when (e is not OutOfMemoryException)
+        {
+            // Best effort, and never a reason to skip the hand-off itself: without the right the running copy still opens its
+            // window, it just may stay behind the others.
+        }
+    }
+
+    [DllImport("user32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool AllowSetForegroundWindow(int processId);
 
     private static string Name()
     {

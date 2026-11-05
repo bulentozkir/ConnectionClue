@@ -6,6 +6,8 @@
     <IsPackable>false</IsPackable>  </PropertyGroup>
   <ItemGroup>
     <Using Include="Xunit" />
+    <!-- Compiled in, not just referenced: the single-instance gate has no WPF dependency, so its real behaviour is tested here. -->
+    <Compile Include="..\..\src\ConnectionClue.App\SingleInstanceGate.cs" Link="SingleInstanceGate.cs" />
     <PackageReference Include="xunit.v3" />
     <ProjectReference Include="..\..\src\ConnectionClue.Windows\ConnectionClue.Windows.csproj" />
   </ItemGroup>

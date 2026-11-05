@@ -1,6 +1,6 @@
 # ConnectionClue help
 
-For ConnectionClue 1.0.10.
+For ConnectionClue 1.0.11.
 
 ConnectionClue checks this PC's path to the internet, explains what it observed in plain sentences with local times, and suggests next steps. It changes a Windows setting only when you ask: the DNS switch, which Windows confirms with an administrator prompt and which you can undo.
 
