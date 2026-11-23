@@ -17,6 +17,8 @@ public sealed class InterfaceMonitor(TimeProvider time) : IDisposable
     private readonly Channel<(long Timestamp, ulong Luid, IpFamily? Family)> _raw =
         Channel.CreateBounded<(long, ulong, IpFamily?)>(new BoundedChannelOptions(1024) { SingleReader = true });
     private readonly Dictionary<ulong, bool> _connected = [];
+    private readonly Lock _lifecycle = new();
+    private bool _disposed;
     private GCHandle _self;
     private HANDLE _interfaceHandle, _routeHandle;
     private Task? _pump;
@@ -27,27 +29,46 @@ public sealed class InterfaceMonitor(TimeProvider time) : IDisposable
 
     public unsafe void Start()
     {
-        Snapshot();
-        _self = GCHandle.Alloc(this);
-        var context = (void*)GCHandle.ToIntPtr(_self);
-        HANDLE h;
-        Check(PInvoke.NotifyIpInterfaceChange(default, &OnInterfaceChange, context, default, &h));
-        _interfaceHandle = h;
-        Check(PInvoke.NotifyRouteChange2(default, &OnRouteChange, context, default, &h));
-        _routeHandle = h;
-        _pump = Task.Run(PumpAsync);
+        lock (_lifecycle)
+        {
+            ObjectDisposedException.ThrowIf(_disposed, this);
+            if (_pump is not null) return;
+            try
+            {
+                Snapshot();
+                _self = GCHandle.Alloc(this);
+                var context = (void*)GCHandle.ToIntPtr(_self);
+                HANDLE h;
+                Check(PInvoke.NotifyIpInterfaceChange(default, &OnInterfaceChange, context, default, &h));
+                _interfaceHandle = h;
+                Check(PInvoke.NotifyRouteChange2(default, &OnRouteChange, context, default, &h));
+                _routeHandle = h;
+                _pump = Task.Run(PumpAsync);
+            }
+            catch
+            {
+                Dispose();
+                throw;
+            }
+        }
     }
 
     public void Dispose()
     {
         // Never call from a notification callback: CancelMibChangeNotify2 waits for in-flight callbacks.
-        if (_interfaceHandle != default) PInvoke.CancelMibChangeNotify2(_interfaceHandle);
-        if (_routeHandle != default) PInvoke.CancelMibChangeNotify2(_routeHandle);
-        _interfaceHandle = _routeHandle = default;
-        _raw.Writer.TryComplete();
-        _pump?.Wait(TimeSpan.FromSeconds(5));
-        _out.Complete();
-        if (_self.IsAllocated) _self.Free();
+        lock (_lifecycle)
+        {
+            if (_disposed) return;
+            if (_interfaceHandle != default) Check((WIN32_ERROR)PInvoke.CancelMibChangeNotify2(_interfaceHandle));
+            _interfaceHandle = default;
+            if (_routeHandle != default) Check((WIN32_ERROR)PInvoke.CancelMibChangeNotify2(_routeHandle));
+            _routeHandle = default;
+            if (_self.IsAllocated) _self.Free();
+            _disposed = true;
+            _raw.Writer.TryComplete();
+            try { _pump?.GetAwaiter().GetResult(); }
+            finally { _out.Complete(); }
+        }
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]

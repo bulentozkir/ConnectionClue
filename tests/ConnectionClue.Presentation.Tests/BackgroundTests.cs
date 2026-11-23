@@ -137,6 +137,29 @@ public class RecurringChecksTests
     }
 
     [Fact]
+    public async Task Cancelling_one_check_does_not_cancel_the_schedule()
+    {
+        int attempts = 0;
+        using var checks = new RecurringChecks(_time, () => ++attempts == 1
+            ? Task.FromCanceled(new CancellationToken(true))
+            : _calls.Writer.WriteAsync(attempts).AsTask());
+        checks.Configure(true, RecurringChecks.MinimumInterval, runNow: true);
+        _time.Advance(RecurringChecks.MinimumInterval);
+        await Next();
+        Assert.Equal(2, attempts);
+    }
+
+    [Fact]
+    public async Task Invalid_reconfiguration_keeps_the_previous_schedule()
+    {
+        using var checks = Create();
+        checks.Configure(true, RecurringChecks.MinimumInterval);
+        Assert.Throws<ArgumentOutOfRangeException>(() => checks.Configure(true, TimeSpan.FromDays(90)));
+        _time.Advance(RecurringChecks.MinimumInterval);
+        await Next();
+    }
+
+    [Fact]
     public void Rejects_intervals_below_the_minimum()
     {
         using var checks = Create();

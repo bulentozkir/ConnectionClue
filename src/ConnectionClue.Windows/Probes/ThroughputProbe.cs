@@ -40,6 +40,7 @@ public sealed class ThroughputProbe : IThroughputProbe, IDisposable
             UseProxy = true,
             Proxy = proxy ?? HttpClient.DefaultProxy,
             MaxConnectionsPerServer = ThroughputBudget.FullStreams,
+            MaxResponseDrainSize = 0,
         }) { Timeout = Timeout.InfiniteTimeSpan };
         _client.DefaultRequestHeaders.UserAgent.ParseAdd("ConnectionClue/1.0");
     }
@@ -55,11 +56,31 @@ public sealed class ThroughputProbe : IThroughputProbe, IDisposable
         var moved = budget.StopWhenSettled ? new List<(double Seconds, long Bytes)> { (0, 0) } : null;
         double? settled = null;
 
+        int streams = Math.Max(1, budget.Streams);
+        long unassigned = cap;
+        long chunk = Math.Min(direction == ThroughputDirection.Download ? DownloadChunk : UploadChunk,
+            Math.Max(1, cap / streams));
+        var assignment = new Lock();
+
+        void ReturnUnused(long bytes)
+        {
+            lock (assignment) unassigned += bytes;
+        }
+
+        long Reserve()
+        {
+            lock (assignment)
+            {
+                long bytes = Math.Min(unassigned, chunk);
+                unassigned -= bytes;
+                return bytes;
+            }
+        }
+
         void Count(int bytes)
         {
             long counted = Interlocked.Add(ref total, bytes);
             if (moved is not null) Settle(counted);
-            if (counted >= cap) stop.Cancel();
         }
 
         void Settle(long counted)
@@ -82,19 +103,29 @@ public sealed class ThroughputProbe : IThroughputProbe, IDisposable
             {
                 while (!stop.IsCancellationRequested)
                 {
+                    long reserved = Reserve();
+                    if (reserved <= 0) break;
                     if (buffer is not null)
                     {
-                        var url = string.Format(CultureInfo.InvariantCulture, _downloadUrl, Math.Min(DownloadChunk, cap));
+                        var url = string.Format(CultureInfo.InvariantCulture, _downloadUrl, reserved);
                         using var response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, stop.Token);
                         response.EnsureSuccessStatusCode();
                         await using var body = await response.Content.ReadAsStreamAsync(stop.Token);
-                        int n;
-                        while ((n = await body.ReadAsync(buffer.AsMemory(0, 64 * 1024), stop.Token)) > 0) Count(n);
+                        long left = reserved;
+                        while (left > 0)
+                        {
+                            int n = await body.ReadAsync(buffer.AsMemory(0, (int)Math.Min(64 * 1024, left)), stop.Token);
+                            if (n == 0) break;
+                            Count(n);
+                            left -= n;
+                        }
+                        if (left == reserved) break; // don't retry empty responses in a tight loop
+                        if (left > 0) ReturnUnused(left);
                     }
                     else
                     {
-                        using var content = new PayloadContent(Math.Min(UploadChunk, cap), Count);
-                        using var response = await _client.PostAsync(_uploadUrl, content, stop.Token);
+                        using var request = new HttpRequestMessage(HttpMethod.Post, _uploadUrl) { Content = new PayloadContent(reserved, Count) };
+                        using var response = await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, stop.Token);
                         response.EnsureSuccessStatusCode();
                     }
                 }
@@ -105,7 +136,7 @@ public sealed class ThroughputProbe : IThroughputProbe, IDisposable
             }
         }
 
-        var workers = Enumerable.Range(0, Math.Max(1, budget.Streams)).Select(_ => WorkerAsync()).ToArray();
+        var workers = Enumerable.Range(0, streams).Select(_ => WorkerAsync()).ToArray();
         var all = Task.WhenAll(workers);
         var reported = samples[0];
         using (var sampler = new PeriodicTimer(TimeSpan.FromMilliseconds(250), _time))
@@ -129,7 +160,8 @@ public sealed class ThroughputProbe : IThroughputProbe, IDisposable
         var end = (elapsed.TotalSeconds, Interlocked.Read(ref total));
         samples.Add(end);
         if (ct.IsCancellationRequested) return new(direction, ProbeStatus.Cancelled, null, total, elapsed);
-        if (moved is not null)
+        var failure = workers.Where(w => w.IsFaulted).Select(w => w.Exception!.InnerException).FirstOrDefault(e => e is not OperationCanceledException);
+        if (moved is not null && failure is null)
         {
             lock (moved)
             {
@@ -139,8 +171,7 @@ public sealed class ThroughputProbe : IThroughputProbe, IDisposable
             }
         }
 
-        var failure = workers.Where(w => w.IsFaulted).Select(w => w.Exception!.InnerException).FirstOrDefault(e => e is not OperationCanceledException);
-        if (total == 0 || failure is not null && ThroughputMath.Mbps(samples) is null)
+        if (total == 0 || failure is not null)
         {
             string code = failure is HttpRequestException { StatusCode: { } status } ? $"Http{(int)status}"
                 : failure is HttpRequestException h ? h.HttpRequestError.ToString()

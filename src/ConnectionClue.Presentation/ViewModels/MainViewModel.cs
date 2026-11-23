@@ -352,7 +352,6 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private readonly Func<bool>? _isMobileNetwork;
     private readonly INetworkDiagnostics? _networkDiagnostics;
     private readonly ISupportReportExporter? _reportExporter;
-    private IReadOnlyList<DnsResolverMeasurement> _dnsMeasurements = [];
     private IReadOnlyList<CheckHistoryEntry> _history = [];
     private int _reviewVersion;
     private DateTimeOffset? _lastCheckedAtUtc;
@@ -593,11 +592,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [ObservableProperty]
     public partial bool IsCheckingForUpdates { get; set; }
 
-    [ObservableProperty, NotifyCanExecuteChangedFor(nameof(TestServicesCommand))]
+    [ObservableProperty, NotifyCanExecuteChangedFor(nameof(TestServicesCommand), nameof(QuickCheckCommand), nameof(LongCaptureCommand))]
     public partial bool IsTestingTarget { get; set; }
 
     [ObservableProperty, NotifyCanExecuteChangedFor(nameof(TraceRouteCommand), nameof(ComparePublicDnsCommand), nameof(ScanWifiCommand),
-        nameof(SwitchToFastestDnsCommand), nameof(RestoreAutomaticDnsCommand))]
+        nameof(SwitchToFastestDnsCommand), nameof(RestoreAutomaticDnsCommand), nameof(QuickCheckCommand), nameof(LongCaptureCommand))]
     public partial bool IsRunningNetworkTool { get; set; }
 
     [ObservableProperty]
@@ -769,7 +768,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [RelayCommand]
     private void DismissRecommendations() => ClearSaved();
 
-    private bool CanStart() => !_disposed && _activeCheck.IsCompleted && !IsRunning && !IsExportingResults;
+    private bool CanStart() => !_disposed && _activeCheck.IsCompleted && !IsRunning && !IsExportingResults && !IsTestingTarget && !IsRunningNetworkTool;
 
     private bool CanRunNetworkTool() =>
         _networkDiagnostics is not null && !IsDisconnected && !IsRunning && !IsRunningNetworkTool;
@@ -872,6 +871,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         bool connectionChanged = IsDisconnected != !connected;
         bool mobileChanged = IsMobileNetwork != mobileNetwork;
         IsMobileNetwork = mobileNetwork;
+        if (connected && mobileChanged) ResetDnsComparison();
         if (!connected)
         {
             if (connectionChanged || !_disconnectNotified) ShowDisconnected(announce: true);
@@ -890,6 +890,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private void ShowDisconnected(bool announce)
     {
         IsDisconnected = true;
+        ResetDnsComparison();
         CancelReconnectCheck();
         ConfigureRecurringChecks();
         string title = _l.Get("Hero_Disconnected", _ui), detail = _l.Get("Summary_Disconnected", _ui);

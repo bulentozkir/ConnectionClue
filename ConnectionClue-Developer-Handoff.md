@@ -798,7 +798,7 @@ Target: WCAG 2.2 AA, applied to desktop software through EN 301 549 clause 11. I
 dotnet build ConnectionClue.slnx -c Release
 dotnet test --solution ConnectionClue.slnx -c Release
 pwsh tools/generate-icons.ps1
-pwsh tools/build-release.ps1 -Version 1.0.11  # → releases/1.0.11/ (git-ignored; publish via GitHub Releases)
+pwsh tools/build-release.ps1 -Version 1.0.12  # → releases/1.0.12/ (git-ignored; publish via GitHub Releases)
 ```
 
 - Run `python tools/validate_schema.py` for the SQLite schema checks. WiX 5 is pinned in `dotnet-tools.json` and restored by the release script.

@@ -68,13 +68,14 @@ internal sealed unsafe class DnsOperation
     public static DnsOperation Start(string name, ushort type)
     {
         var op = new DnsOperation(type);
-        op.Begin(name);
+        try { op.Begin(name); }
+        finally { op.Release(); }
         return op;
     }
 
     private void Begin(string name)
     {
-        int size = sizeof(QueryRequest) + sizeof(QueryResult) + sizeof(QueryCancel) + (name.Length + 1) * sizeof(char);
+        int size = checked(sizeof(QueryRequest) + sizeof(QueryResult) + sizeof(QueryCancel) + (name.Length + 1) * sizeof(char));
         _block = (byte*)NativeMemory.AllocZeroed((nuint)size);
         name.AsSpan().CopyTo(new Span<char>(Name, name.Length));
         _self = GCHandle.Alloc(this);
@@ -88,7 +89,15 @@ internal sealed unsafe class DnsOperation
             Context = (void*)GCHandle.ToIntPtr(_self),
         };
         Result->Version = Version1;
-        int rc = DnsQueryEx(Request, Result, CancelHandle);
+        // A pending query can invoke its callback before DnsQueryEx returns to this thread.
+        Interlocked.Increment(ref _refs);
+        int rc;
+        try { rc = DnsQueryEx(Request, Result, CancelHandle); }
+        catch
+        {
+            Release();
+            throw;
+        }
         if (rc != RequestPending) Complete(Result, rc); // synchronous completion: the callback will not run
     }
 
@@ -101,8 +110,11 @@ internal sealed unsafe class DnsOperation
             if (refs == 0) return;
         } while (Interlocked.CompareExchange(ref _refs, refs + 1, refs) != refs);
 
-        if (Volatile.Read(ref _completed) == 0) _ = DnsCancelQuery(CancelHandle); // completion reports ERROR_CANCELLED
-        Release();
+        try
+        {
+            if (Volatile.Read(ref _completed) == 0) _ = DnsCancelQuery(CancelHandle); // completion reports ERROR_CANCELLED
+        }
+        finally { Release(); }
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
@@ -127,6 +139,6 @@ internal sealed unsafe class DnsOperation
         if (Interlocked.Decrement(ref _refs) != 0) return;
         NativeMemory.Free(_block);
         _block = null;
-        _self.Free();
+        if (_self.IsAllocated) _self.Free();
     }
 }

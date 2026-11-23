@@ -1,4 +1,3 @@
-using System.Net.Http.Json;
 using System.Text.Json;
 
 namespace ConnectionClue.Presentation.Updates;
@@ -23,14 +22,20 @@ public sealed class ReleaseUpdateChecker(HttpClient httpClient, Version currentV
         await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
         using var document = await JsonDocument.ParseAsync(stream, cancellationToken: cancellationToken);
         var root = document.RootElement;
-        string tag = root.GetProperty("tag_name").GetString() ?? throw new InvalidDataException("Release tag is missing.");
-        string urlText = root.GetProperty("html_url").GetString() ?? throw new InvalidDataException("Release URL is missing.");
+        string tag = ReadString(root, "tag_name");
+        string urlText = ReadString(root, "html_url");
         if (!Version.TryParse(tag.TrimStart('v', 'V'), out var latest))
             throw new InvalidDataException("Release tag is not a numeric version.");
         if (!Uri.TryCreate(urlText, UriKind.Absolute, out var releaseUri) ||
             releaseUri.Scheme != Uri.UriSchemeHttps || releaseUri.Host != ReleaseRoot.Host ||
+            !releaseUri.IsDefaultPort || releaseUri.UserInfo.Length != 0 ||
             !releaseUri.AbsolutePath.StartsWith(ReleaseRoot.AbsolutePath, StringComparison.Ordinal))
             throw new InvalidDataException("Release URL is outside the official repository.");
         return new(currentVersion.ToString(), tag, latest > currentVersion, releaseUri);
     }
+
+    private static string ReadString(JsonElement root, string name) =>
+        root.ValueKind == JsonValueKind.Object && root.TryGetProperty(name, out var value) && value.ValueKind == JsonValueKind.String
+            ? value.GetString()!
+            : throw new InvalidDataException($"Release metadata is missing a string '{name}'.");
 }

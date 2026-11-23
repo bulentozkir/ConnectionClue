@@ -45,13 +45,13 @@ public static class DriverSettingsReader
 {
     public static IReadOnlyList<DriverSettingValue> Read(IRegistryNode adapter)
     {
-        using var parameters = adapter.OpenSubKey(@"Ndi\params");
+        using var parameters = Open(adapter, @"Ndi\params");
         if (parameters is null) return [];
         var settings = new List<DriverSettingValue>();
         foreach (var keyword in parameters.SubKeyNames)
         {
             using var node = Open(parameters, keyword);
-            if (node?.GetValue("ParamDesc") is not string { Length: > 0 } rawLabel) continue;
+            if (node?.GetValue("ParamDesc") is not string rawLabel || string.IsNullOrWhiteSpace(rawLabel)) continue;
             string? defaultValue = Text(node.GetValue("default"));
             string? value = Text(adapter.GetValue(keyword)) ?? defaultValue;
             if (value is null) continue;

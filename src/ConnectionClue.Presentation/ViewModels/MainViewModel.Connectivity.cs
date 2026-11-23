@@ -63,7 +63,7 @@ public sealed partial class MainViewModel
     private void SignalOperationChanged() =>
         Interlocked.Exchange(ref _operationChanged, null)?.TrySetResult();
 
-    private bool ReadyForReconnectCheck => CanStart() && !IsReviewing && !IsTestingTarget && !IsRunningNetworkTool
+    private bool ReadyForReconnectCheck => CanStart() && !IsReviewing
         && _reconnectBlockers.All(command => !command.IsRunning);
 
     private async Task WaitForReconnectSlotAsync(CancellationToken cancellationToken)

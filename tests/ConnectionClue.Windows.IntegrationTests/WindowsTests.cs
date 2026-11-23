@@ -39,6 +39,20 @@ public class RouteAndMonitorTests
     }
 
     [Fact]
+    public void Disposed_monitors_cannot_register_new_callbacks()
+    {
+        var links = new InterfaceMonitor(TimeProvider.System);
+        var wlan = new WlanMonitor(TimeProvider.System);
+        var power = new PowerMonitor(TimeProvider.System);
+        links.Dispose();
+        wlan.Dispose();
+        power.Dispose();
+        Assert.Throws<ObjectDisposedException>(links.Start);
+        Assert.Throws<ObjectDisposedException>(() => { wlan.Start(); });
+        Assert.Throws<ObjectDisposedException>(power.Start);
+    }
+
+    [Fact]
     public void Wlan_monitor_reports_a_capability_state()
     {
         using var monitor = new WlanMonitor(TimeProvider.System);
@@ -248,6 +262,31 @@ public class HttpsProbeTests
 
 public class ThroughputProbeTests
 {
+    [Fact]
+    public async Task Parallel_downloads_stay_within_budget_even_when_the_server_returns_extra_bytes()
+    {
+        using var timeout = CancellationTokenSource.CreateLinkedTokenSource(Ct);
+        timeout.CancelAfter(TimeSpan.FromSeconds(10));
+        using var listener = new TcpListener(IPAddress.Loopback, 0);
+        listener.Start();
+        var url = new Uri($"http://127.0.0.1:{((IPEndPoint)listener.LocalEndpoint).Port}/");
+        using var probe = new ThroughputProbe(TimeProvider.System, url.AbsoluteUri + "?bytes={0}", url, proxy: new WebProxy());
+        var measurement = probe.MeasureAsync(ThroughputDirection.Download, new(TimeSpan.FromSeconds(10), 4, 1024), null, timeout.Token);
+        for (int i = 0; i < 4; i++)
+        {
+            using var client = await listener.AcceptTcpClientAsync(timeout.Token);
+            using var stream = client.GetStream();
+            using var reader = new StreamReader(stream);
+            string? request = await reader.ReadLineAsync(timeout.Token);
+            Assert.StartsWith("GET /?bytes=256 ", request);
+            while (await reader.ReadLineAsync(timeout.Token) is { Length: > 0 }) { }
+            await stream.WriteAsync("HTTP/1.1 200 OK\r\nContent-Length: 512\r\nConnection: close\r\n\r\n"u8.ToArray(), timeout.Token);
+            await stream.WriteAsync(new byte[512], timeout.Token);
+        }
+        var result = await measurement;
+        Assert.Equal((ProbeStatus.Success, 1024L), (result.Status, result.Bytes));
+    }
+
     // LAB endpoint; byte caps keep the test to a few MB.
     private static ThroughputProbe Probe() => new(TimeProvider.System, "https://speed.cloudflare.com/__down?bytes={0}",
         new Uri("https://speed.cloudflare.com/__up"), maxDownloadBytes: 8_000_000, maxUploadBytes: 3_000_000);
@@ -264,7 +303,7 @@ public class ThroughputProbeTests
         var r = await probe.MeasureAsync(direction, budget, new Progress<double>(live.Add), Ct);
         Assert.Equal(ProbeStatus.Success, r.Status);
         Assert.True(r.Mbps > 0);
-        Assert.InRange(r.Bytes, 1, (direction == ThroughputDirection.Download ? 8_000_000 : 3_000_000) + 4 * 81_920 + 4 * 65_536);
+        Assert.InRange(r.Bytes, 1, direction == ThroughputDirection.Download ? 8_000_000 : 3_000_000);
     }
 
     [Theory]
@@ -279,7 +318,7 @@ public class ThroughputProbeTests
         var r = await probe.MeasureAsync(direction, budget, null, Ct);
         Assert.Equal(ProbeStatus.Success, r.Status);
         Assert.True(r.Mbps > 0);
-        Assert.InRange(r.Bytes, 1, budget.MaxBytes + 81_920 + 65_536);
+        Assert.InRange(r.Bytes, 1, budget.MaxBytes);
         Assert.InRange(r.Elapsed, TimeSpan.Zero, budget.Duration + TimeSpan.FromSeconds(1));
     }
 

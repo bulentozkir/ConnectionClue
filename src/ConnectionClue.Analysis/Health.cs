@@ -6,7 +6,7 @@ public readonly record struct Sample(double Seconds, double? Milliseconds)
     public bool Answered => Milliseconds is not null;
 }
 
-/// <summary>Consecutive unanswered checks. End includes one typical spacing: the outage lasted at least that long.</summary>
+/// <summary>Consecutive unanswered checks. End includes one typical spacing, bounded by the next reply when known.</summary>
 public sealed record FailureRun(double StartSeconds, double EndSeconds, int Count)
 {
     public double DurationSeconds => EndSeconds - StartSeconds;
@@ -50,7 +50,7 @@ public sealed record StepStatistics(
             }
             else if (count > 0)
             {
-                runs.Add(new FailureRun(start, last + spacing, count));
+                runs.Add(new FailureRun(start, Math.Min(last + spacing, s.Seconds), count));
                 count = 0;
             }
         }

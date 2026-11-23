@@ -16,6 +16,8 @@ public sealed unsafe class WlanMonitor(TimeProvider time) : IDisposable
         ErrorServiceNotActive = 1062, AcmConnectionComplete = 10, AcmDisconnected = 21;
 
     private readonly MonitorChannel _out = new();
+    private readonly Lock _lifecycle = new();
+    private bool _disposed;
     private GCHandle _self;
     private HANDLE _client;
 
@@ -25,6 +27,21 @@ public sealed unsafe class WlanMonitor(TimeProvider time) : IDisposable
     public long DroppedEvents => _out.Dropped;
 
     public CapabilityState Start()
+    {
+        lock (_lifecycle)
+        {
+            ObjectDisposedException.ThrowIf(_disposed, this);
+            if (_client != default) return State;
+            try { return Register(); }
+            catch
+            {
+                Close();
+                throw;
+            }
+        }
+    }
+
+    private CapabilityState Register()
     {
         uint negotiated;
         HANDLE h;
@@ -51,8 +68,13 @@ public sealed unsafe class WlanMonitor(TimeProvider time) : IDisposable
 
     public void Dispose()
     {
-        Close();
-        _out.Complete();
+        lock (_lifecycle)
+        {
+            if (_disposed) return;
+            Close();
+            _out.Complete();
+            _disposed = true;
+        }
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
@@ -83,7 +105,8 @@ public sealed unsafe class WlanMonitor(TimeProvider time) : IDisposable
         {
             _ = PInvoke.WlanRegisterNotification(_client, WLAN_NOTIFICATION_SOURCES.WLAN_NOTIFICATION_SOURCE_NONE, (BOOL)1,
                 null, null, null, null);
-            _ = PInvoke.WlanCloseHandle(_client, null);
+            uint rc = PInvoke.WlanCloseHandle(_client, null);
+            if (rc != 0) throw new System.ComponentModel.Win32Exception((int)rc);
             _client = default;
         }
         if (_self.IsAllocated) _self.Free();

@@ -14,11 +14,16 @@ public sealed class RecurringChecks(TimeProvider time, Func<Task> runCheck, Acti
 
     public void Configure(bool enabled, TimeSpan interval, bool runNow = false)
     {
-        Stop();
-        if (!enabled) return;
+        if (!enabled)
+        {
+            Stop();
+            return;
+        }
         ArgumentOutOfRangeException.ThrowIfLessThan(interval, MinimumInterval);
+        var timer = new PeriodicTimer(interval, time);
+        Stop();
         _cts = new CancellationTokenSource();
-        _ = LoopAsync(new PeriodicTimer(interval, time), runNow, _cts.Token);
+        _ = LoopAsync(timer, runNow, _cts.Token);
     }
 
     public void Dispose() => Stop();
@@ -49,6 +54,7 @@ public sealed class RecurringChecks(TimeProvider time, Func<Task> runCheck, Acti
     private async Task RunAsync()
     {
         try { await runCheck(); }
-        catch (Exception e) when (e is not OperationCanceledException) { onError?.Invoke(e); }
+        catch (OperationCanceledException) { } // Cancelling one check does not disable future ticks.
+        catch (Exception e) { onError?.Invoke(e); }
     }
 }

@@ -161,15 +161,15 @@ internal sealed class NetworkDiagnostics : INetworkDiagnostics
         cancellationToken.ThrowIfCancellationRequested();
         try
         {
-            var access = await WiFiAdapter.RequestAccessAsync();
+            var access = await WiFiAdapter.RequestAccessAsync().AsTask(cancellationToken);
             if (access != WiFiAccessStatus.Allowed) return new(WifiScanStatus.PermissionDenied, []);
-            var adapters = await WiFiAdapter.FindAllAdaptersAsync();
+            var adapters = await WiFiAdapter.FindAllAdaptersAsync().AsTask(cancellationToken);
             if (adapters.Count == 0) return new(WifiScanStatus.NoAdapter, []);
 
             var internetProfile = global::Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile();
             var adapter = adapters.FirstOrDefault(a =>
                 a.NetworkAdapter.NetworkAdapterId == internetProfile?.NetworkAdapter?.NetworkAdapterId) ?? adapters[0];
-            await adapter.ScanAsync();
+            await adapter.ScanAsync().AsTask(cancellationToken);
             cancellationToken.ThrowIfCancellationRequested();
 
             var networks = adapter.NetworkReport.AvailableNetworks;

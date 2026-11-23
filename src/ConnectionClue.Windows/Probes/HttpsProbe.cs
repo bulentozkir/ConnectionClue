@@ -85,6 +85,10 @@ public sealed class HttpsProbe(SessionClock clock, ITargetResolver targets, IWeb
             var (status, error) = Classify(ex, ep);
             return Failure(status, error);
         }
+        catch (HttpIOException ex) when (ex.HttpRequestError is HttpRequestError.InvalidResponse or HttpRequestError.ResponseEnded)
+        {
+            return Failure(ProbeStatus.HttpUnexpected, "InvalidResponse");
+        }
 
         ProbeObservation Failure(ProbeStatus status, string? error) =>
             Observations.NoDuration(request, status, attribution, ep.Family, started, clock.NowUs, error,

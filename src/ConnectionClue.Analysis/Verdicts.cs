@@ -40,7 +40,7 @@ public sealed record Verdict(RuleId Rule, double? StartSeconds = null, double? D
 /// </summary>
 public static class VerdictEvaluator
 {
-    /// <summary>Evidence belongs to a lag mark when it starts up to 10 s before the mark or 2 s after it.</summary>
+    /// <summary>Evidence belongs to a lag mark when it overlaps the 10 s before the mark or the 2 s after it.</summary>
     public const double MarkerLeadSeconds = 10, MarkerLagSeconds = 2, OverlapSeconds = 5;
 
     /// <summary>A delay spike is at least double the usual delay and this much above it.</summary>
@@ -59,7 +59,7 @@ public static class VerdictEvaluator
         var drops = Drops(input.Links);
         if (drops.Count > 0)
         {
-            var (start, duration) = drops.MinBy(d => Rank(d.Start, markers));
+            var (start, duration) = drops.MinBy(d => Rank(d.Start, markers, d.Duration ?? double.PositiveInfinity));
             found.Add(new(RuleId.R01, start, duration, drops.Count));
         }
 
@@ -72,26 +72,26 @@ public static class VerdictEvaluator
         var gateway = StepStatistics.From(input.Gateway);
 
         // Outages: consecutive unanswered internet checks. A link drop explains the outage it causes.
-        var outages = internet.Runs(HealthEvaluator.OutageRun(internet.TypicalSpacingSeconds))
-            .Where(o => !drops.Any(d => Overlaps(o.StartSeconds, o.EndSeconds, d.Start, d.Start + (d.Duration ?? double.PositiveInfinity))))
-            .ToList();
+        var outages = internet.Runs(HealthEvaluator.OutageRun(internet.TypicalSpacingSeconds)).ToList();
         var local = new List<FailureRun>();
         var external = new List<(FailureRun Run, bool Beyond)>();
         foreach (var o in outages)
         {
+            if (drops.Any(d => Overlaps(o.StartSeconds, o.EndSeconds, d.Start, d.Start + (d.Duration ?? double.PositiveInfinity)))) continue;
             bool routerFailed = gateway.Runs(HealthEvaluator.LocalRun).Any(r => Overlaps(r.StartSeconds, r.EndSeconds, o.StartSeconds, o.EndSeconds));
             if (routerFailed && input.Gateway.Any(s => s.Answered && s.Seconds < o.StartSeconds)) local.Add(o);
             else external.Add((o, !routerFailed && input.Gateway.Any(s => s.Answered && s.Seconds >= o.StartSeconds && s.Seconds <= o.EndSeconds)));
         }
-        double? Lasted(FailureRun o) => input.Internet.Any(s => s.Answered && s.Seconds > o.EndSeconds - 0.001) ? o.DurationSeconds : null;
+        double? lastReply = input.Internet.Where(s => s.Answered).Select(s => (double?)s.Seconds).Max();
+        double? Lasted(FailureRun o) => lastReply >= o.EndSeconds ? o.DurationSeconds : null;
         if (local.Count > 0)
         {
-            var o = local.MinBy(r => Rank(r.StartSeconds, markers))!;
+            var o = local.MinBy(r => Rank(r.StartSeconds, markers, Lasted(r) ?? double.PositiveInfinity))!;
             found.Add(new(RuleId.R03, o.StartSeconds, Lasted(o), local.Count));
         }
         if (external.Count > 0)
         {
-            var o = external.MinBy(r => Rank(r.Run.StartSeconds, markers)).Run;
+            var o = external.MinBy(r => Rank(r.Run.StartSeconds, markers, Lasted(r.Run) ?? double.PositiveInfinity)).Run;
             found.Add(new(RuleId.R04, o.StartSeconds, Lasted(o), external.Count, BeyondRouter: external.All(e => e.Beyond)));
         }
 
@@ -137,7 +137,7 @@ public static class VerdictEvaluator
         if (internet.MedianMs is not { } usual || internet.Answered < HealthEvaluator.MinDelaySamples) return;
         var markers = input.Markers;
         double spikeAt = usual + Math.Max(MinSpikeMs, usual);
-        var spikes = input.Internet.Where(s => s.Milliseconds > spikeAt).ToList();
+        var spikes = input.Internet.Where(s => s.Milliseconds >= spikeAt).ToList();
         bool sustained = usual > input.Limits.MaxDelayMs;
         bool jittery = internet.VariationMs > input.Limits.MaxVariationMs;
         bool pattern = spikes.Count >= MinSpikes || spikes.Any(s => NearMarker(s.Seconds, null, markers)) || (jittery && spikes.Count > 0);
@@ -167,17 +167,18 @@ public static class VerdictEvaluator
         double routerSpikeAt = routerUsual + Math.Max(MinRouterSpikeMs, routerUsual);
         double? RouterPeak(double t) => input.Gateway.Where(g => g.Answered && Math.Abs(g.Seconds - t) <= OverlapSeconds)
             .Select(g => (double?)g.Milliseconds!.Value).Max();
-        var shared = spikes.Where(s => RouterPeak(s.Seconds) > routerSpikeAt).ToList();
+        var observed = spikes.Select(s => (Spike: s, Router: RouterPeak(s.Seconds))).Where(x => x.Router.HasValue).ToList();
+        var shared = observed.Where(x => x.Router >= routerSpikeAt).ToList();
         if (shared.Count > 0)
         {
-            var first = shared.MinBy(s => Rank(s.Seconds, markers));
-            found.Add(new(RuleId.R08, first.Seconds, Count: shared.Count, Value: RouterPeak(first.Seconds), Baseline: routerUsual));
+            var first = shared.MinBy(x => Rank(x.Spike.Seconds, markers));
+            found.Add(new(RuleId.R08, first.Spike.Seconds, Count: shared.Count, Value: first.Router, Baseline: routerUsual));
         }
-        else if (spikes.Any(s => RouterPeak(s.Seconds) is not null))
+        else if (observed.Count > 0)
         {
-            var first = spikes.MinBy(s => Rank(s.Seconds, markers));
-            found.Add(new(RuleId.R09, first.Seconds, Count: spikes.Count, Value: first.Milliseconds, Baseline: usual,
-                Router: routerUsual, BeyondRouter: true));
+            var first = observed.MinBy(x => Rank(x.Spike.Seconds, markers));
+            found.Add(new(RuleId.R09, first.Spike.Seconds, Count: observed.Count, Value: first.Spike.Milliseconds, Baseline: usual,
+                Router: first.Router, BeyondRouter: true));
         }
         else
         {
@@ -203,7 +204,8 @@ public static class VerdictEvaluator
     }
 
     private static IReadOnlyList<Verdict> Order(List<Verdict> found, IReadOnlyList<double> markers) =>
-        [.. found.Select(v => v with { AtMarker = v.AtMarker || v.StartSeconds is { } s && NearMarker(s, v.DurationSeconds, markers) })
+        [.. found.Select(v => v with { AtMarker = v.AtMarker || v.StartSeconds is { } s && NearMarker(s,
+                v.DurationSeconds ?? (v.Rule is RuleId.R01 or RuleId.R03 or RuleId.R04 ? double.PositiveInfinity : 0), markers) })
             .OrderByDescending(v => v.AtMarker)
             .ThenBy(v => Array.IndexOf(Priority, v.Rule))
             .ThenBy(v => v.StartSeconds ?? double.MaxValue)
@@ -213,8 +215,8 @@ public static class VerdictEvaluator
         markers.Any(m => start <= m + MarkerLagSeconds && start + (duration ?? 0) >= m - MarkerLeadSeconds);
 
     /// <summary>Sort key that prefers evidence at a lag mark, then the earliest.</summary>
-    private static (int, double) Rank(double seconds, IReadOnlyList<double> markers) =>
-        (NearMarker(seconds, null, markers) ? 0 : 1, seconds);
+    private static (int, double) Rank(double seconds, IReadOnlyList<double> markers, double duration = 0) =>
+        (NearMarker(seconds, duration, markers) ? 0 : 1, seconds);
 
     private static bool Overlaps(double aStart, double aEnd, double bStart, double bEnd) =>
         aStart <= bEnd + OverlapSeconds && bStart <= aEnd + OverlapSeconds;

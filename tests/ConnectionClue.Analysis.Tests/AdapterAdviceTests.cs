@@ -211,6 +211,10 @@ public class AdapterAdviceTests
     // Wired ------------------------------------------------------------------------------------------------------------------
 
     [Fact]
+    public void Lowercase_gigabit_units_do_not_make_a_forced_fast_link_slow() =>
+        Assert.False(DriverRules.IsForcedSlow(new("*SpeedDuplex", "Speed & Duplex", "6", "1.0 gbps Full Duplex")));
+
+    [Fact]
     public void A_speed_typed_in_by_hand_replaces_the_generic_slow_cable_advice()
     {
         var forced = Assert.Single(Eval(Wired(100, settings: [Duplex("4")])));

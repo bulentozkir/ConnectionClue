@@ -30,6 +30,9 @@ public sealed class BufferbloatTests
     [Theory]
     [InlineData(null, 20.0, 30.0)]
     [InlineData(-1.0, 20.0, 30.0)]
+    [InlineData(double.NaN, 20.0, 30.0)]
+    [InlineData(double.PositiveInfinity, 20.0, 30.0)]
+    [InlineData(20.0, double.PositiveInfinity, null)]
     [InlineData(20.0, null, null)]
     [InlineData(20.0, -1.0, -1.0)]
     public void Missing_or_invalid_measurements_are_not_graded(double? idle, double? down, double? up) =>

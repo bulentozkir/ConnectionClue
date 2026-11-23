@@ -42,6 +42,25 @@ public class VerdictTests
     }
 
     [Fact]
+    public void Recovery_before_the_next_typical_interval_closes_the_outage()
+    {
+        Sample[] internet = [new(0, 20), new(2, 20), new(4, 20), new(6, null), new(8, null), new(10, null), new(10.5, 20)];
+        var outage = Assert.Single(Eval(internet: internet));
+        Assert.True(outage is { Rule: RuleId.R04, StartSeconds: 6, DurationSeconds: 4.5 });
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Mark_inside_a_later_long_drop_selects_that_drop_even_if_it_never_closed(bool recovered)
+    {
+        LinkEvent[] links = recovered ? [new(0, false), new(2, true), new(5, false), new(28, true)]
+            : [new(0, false), new(2, true), new(5, false)];
+        var drop = Assert.Single(Eval(links: links, markers: [24]));
+        Assert.True(drop is { Rule: RuleId.R01, AtMarker: true, StartSeconds: 5, Count: 2 });
+    }
+
+    [Fact]
     public void Router_failing_with_internet_after_answering_is_R03()
     {
         var v = Eval(router: Series(30, i => i is >= 10 and < 16 ? null : 3), internet: Series(30, i => i is >= 10 and < 16 ? null : 20))[0];
@@ -55,6 +74,14 @@ public class VerdictTests
         var v = Assert.Single(Eval(dns: dns), x => x.Rule == RuleId.R05);
         Assert.Equal((6.0, FailureKind.Timeout, 2), (v.StartSeconds!.Value, v.Failure, v.Count));
         Assert.DoesNotContain(Eval(dns: [new(6, null, FailureKind.ServerError)]), x => x.Rule == RuleId.R05); // one failure is not a pattern
+    }
+
+    [Fact]
+    public void Lookup_failures_during_a_link_outage_are_not_a_separate_dns_problem()
+    {
+        var verdicts = Eval(internet: Series(30, i => i is >= 10 and < 14 ? null : 20),
+            links: [new(10, false), new(14, true)], dns: [new(10, null, FailureKind.Timeout), new(13, null, FailureKind.Timeout)]);
+        Assert.Equal(RuleId.R01, Assert.Single(verdicts).Rule);
     }
 
     [Fact]
@@ -73,6 +100,22 @@ public class VerdictTests
 
         var upstream = Eval(internet: spiky)[0];
         Assert.True(upstream is { Rule: RuleId.R09, StartSeconds: 8, Value: 150, Baseline: 20, Router: 3, BeyondRouter: true });
+    }
+
+    [Fact]
+    public void Spikes_exactly_at_the_minimum_are_localized()
+    {
+        var v = Assert.Single(Eval(router: Series(30, i => i == 20 ? 23 : 3),
+            internet: Series(30, i => i == 20 ? 50 : 20), markers: [21]));
+        Assert.True(v is { Rule: RuleId.R08, Value: 23, AtMarker: true });
+    }
+
+    [Fact]
+    public void Beyond_router_spikes_only_report_times_with_router_evidence()
+    {
+        var v = Assert.Single(Eval(router: Series(30, i => i <= 10 ? null : i == 24 ? 10 : 3),
+            internet: Series(30, i => i is 1 or 3 or 24 ? 150 : 20), markers: [3]));
+        Assert.True(v is { Rule: RuleId.R09, StartSeconds: 24, Count: 1, Router: 10, AtMarker: false });
     }
 
     [Fact]

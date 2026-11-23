@@ -17,6 +17,8 @@ public sealed unsafe class PowerMonitor(TimeProvider time) : IDisposable
     private const REGISTER_NOTIFICATION_FLAGS DeviceNotifyCallback = (REGISTER_NOTIFICATION_FLAGS)2;
 
     private readonly MonitorChannel _out = new();
+    private readonly Lock _lifecycle = new();
+    private bool _disposed;
     private GCHandle _self;
     private DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS* _parameters;
     private void* _registration;
@@ -26,29 +28,44 @@ public sealed unsafe class PowerMonitor(TimeProvider time) : IDisposable
 
     public void Start()
     {
-        _self = GCHandle.Alloc(this);
-        _parameters = (DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS*)NativeMemory.AllocZeroed((nuint)sizeof(DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS));
-        _parameters->Callback = &OnPowerEvent;
-        _parameters->Context = (void*)GCHandle.ToIntPtr(_self);
-        void* registration;
-        var rc = PInvoke.PowerRegisterSuspendResumeNotification(DeviceNotifyCallback, new HANDLE(_parameters), &registration);
-        if (rc != WIN32_ERROR.NO_ERROR)
+        lock (_lifecycle)
         {
-            Release();
-            throw new Win32Exception((int)rc);
+            ObjectDisposedException.ThrowIf(_disposed, this);
+            if (_registration is not null) return;
+            try
+            {
+                _self = GCHandle.Alloc(this);
+                _parameters = (DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS*)NativeMemory.AllocZeroed((nuint)sizeof(DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS));
+                _parameters->Callback = &OnPowerEvent;
+                _parameters->Context = (void*)GCHandle.ToIntPtr(_self);
+                void* registration;
+                var rc = PInvoke.PowerRegisterSuspendResumeNotification(DeviceNotifyCallback, new HANDLE(_parameters), &registration);
+                if (rc != WIN32_ERROR.NO_ERROR) throw new Win32Exception((int)rc);
+                _registration = registration;
+            }
+            catch
+            {
+                Release();
+                throw;
+            }
         }
-        _registration = registration;
     }
 
     public void Dispose()
     {
-        if (_registration is not null)
+        lock (_lifecycle)
         {
-            PInvoke.PowerUnregisterSuspendResumeNotification((HPOWERNOTIFY)(nint)_registration);
-            _registration = null;
+            if (_disposed) return;
+            if (_registration is not null)
+            {
+                var rc = PInvoke.PowerUnregisterSuspendResumeNotification((HPOWERNOTIFY)(nint)_registration);
+                if ((uint)rc != 0) throw new Win32Exception((int)rc);
+                _registration = null;
+            }
+            Release();
+            _out.Complete();
+            _disposed = true;
         }
-        Release();
-        _out.Complete();
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]

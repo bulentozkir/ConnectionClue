@@ -18,6 +18,15 @@ public sealed class DiagnosticsAnalysisTests
     }
 
     [Fact]
+    public void A_lasting_first_hop_delay_is_reported_only_if_that_hop_answered()
+    {
+        var later = Hop(2, "203.0.113.9", 42, 2, status: NetworkToolStatus.Success);
+        var trace = DiagnosticsAnalysis.Summarize([Hop(1, "192.168.1.1", 40, null), later]);
+        Assert.Equal((1, 40d), (trace.DelayHop, trace.DelayIncreaseMs));
+        Assert.Null(DiagnosticsAnalysis.Summarize([Hop(1, "", null, null, 0), later]).DelayHop);
+    }
+
+    [Fact]
     public void Slow_ping_replies_at_one_hop_and_silent_hops_are_not_blamed()
     {
         // Hop 2 answers pings slowly but forwards normally; hop 3 never answers pings.

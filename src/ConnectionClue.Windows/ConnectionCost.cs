@@ -14,8 +14,9 @@ public static class ConnectionCost
         {
             if (NetworkInformation.GetInternetConnectionProfile() is { } internet)
                 return internet.IsWwanConnectionProfile || IsMetered(internet.GetConnectionCost());
-            return NetworkInformation.GetConnectionProfiles().Any(profile =>
-                profile.IsWwanConnectionProfile && profile.GetNetworkConnectivityLevel() != NetworkConnectivityLevel.None);
+            var connected = NetworkInformation.GetConnectionProfiles()
+                .Where(profile => profile.GetNetworkConnectivityLevel() != NetworkConnectivityLevel.None).ToList();
+            return connected.Count == 0 || connected.Any(profile => profile.IsWwanConnectionProfile || IsMetered(profile.GetConnectionCost()));
         }
         catch (Exception e) when (e is System.Runtime.InteropServices.COMException or UnauthorizedAccessException)
         {
@@ -37,6 +38,6 @@ public static class ConnectionCost
     }
 
     private static bool IsMetered(global::Windows.Networking.Connectivity.ConnectionCost? cost) =>
-        cost is not null && (cost.NetworkCostType is NetworkCostType.Fixed or NetworkCostType.Variable
-            || cost.ApproachingDataLimit || cost.OverDataLimit || cost.Roaming);
+        cost is null || cost.NetworkCostType != NetworkCostType.Unrestricted
+            || cost.ApproachingDataLimit || cost.OverDataLimit || cost.Roaming;
 }

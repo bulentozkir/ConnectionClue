@@ -9,8 +9,8 @@ public static class BufferbloatEvaluator
 {
     public static BufferbloatResult? Evaluate(double? idleMedianMs, double? loadedDownloadMs, double? loadedUploadMs)
     {
-        if (idleMedianMs is not { } idle || idle < 0) return null;
-        var loaded = new[] { loadedDownloadMs, loadedUploadMs }.Where(x => x is >= 0).Select(x => x!.Value).ToArray();
+        if (idleMedianMs is not { } idle || !double.IsFinite(idle) || idle < 0) return null;
+        var loaded = new[] { loadedDownloadMs, loadedUploadMs }.OfType<double>().Where(x => double.IsFinite(x) && x >= 0).ToArray();
         if (loaded.Length == 0) return null;
         double measured = loaded.Max();
         double increase = Math.Max(0, measured - idle);

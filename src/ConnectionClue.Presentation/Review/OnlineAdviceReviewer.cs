@@ -128,7 +128,8 @@ public sealed class OnlineAdviceReviewer(HttpClient http, IReadOnlyList<Reviewer
             using var response = await http.SendAsync(request, timeout.Token);
             if (!response.IsSuccessStatusCode) return null;
             var reply = JsonNode.Parse(await response.Content.ReadAsStringAsync(timeout.Token));
-            return Parse(reply?["choices"]?[0]?["message"]?["content"]?.GetValue<string>(), texts);
+            if (reply?["choices"] is not JsonArray { Count: > 0 } choices) return null;
+            return Parse(choices[0]?["message"]?["content"]?.GetValue<string>(), texts);
         }
         catch (Exception e) when (e is HttpRequestException or TaskCanceledException or JsonException or InvalidOperationException
             or FormatException or NotSupportedException)

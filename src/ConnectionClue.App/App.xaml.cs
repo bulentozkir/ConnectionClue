@@ -257,7 +257,11 @@ public partial class App : Application
         {
             if (window.WindowState != WindowState.Minimized) _restoreState = window.WindowState;
             else if (_vm.Settings.BackgroundEnabled) // minimize goes to the tray too
-                Dispatcher.BeginInvoke(() => { if (ReferenceEquals(_window, window)) window.Close(); });
+                Dispatcher.BeginInvoke(() =>
+                {
+                    if (ReferenceEquals(_window, window) && window.WindowState == WindowState.Minimized && _vm.Settings.BackgroundEnabled)
+                        window.Close();
+                });
         };
         window.Closing += (_, _) =>
         {

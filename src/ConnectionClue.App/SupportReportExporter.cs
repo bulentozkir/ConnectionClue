@@ -23,7 +23,7 @@ internal sealed class SupportReportExporter : ISupportReportExporter
             Title = "Export ConnectionClue report",
         };
         if (dialog.ShowDialog() != true) return false;
-        await File.WriteAllTextAsync(dialog.FileName, SupportReportHtml.Build(report), new UTF8Encoding(false), cancellationToken);
+        await ReportFile.WriteAsync(dialog.FileName, SupportReportHtml.Build(report), new UTF8Encoding(false), cancellationToken);
         return true;
     }
 
@@ -31,10 +31,18 @@ internal sealed class SupportReportExporter : ISupportReportExporter
     {
         var document = CreateDocument(report);
         var dialog = new PrintDialog();
-        SelectPdfPrinter(dialog);
-        if (dialog.ShowDialog() != true) return false;
+        LocalPrintServer? server = null;
+        PrintQueue? pdf = null;
         try
         {
+            try
+            {
+                server = new LocalPrintServer();
+                pdf = server.GetPrintQueue("Microsoft Print to PDF");
+                dialog.PrintQueue = pdf;
+            }
+            catch (PrintSystemException) { } // not installed: keep the default printer
+            if (dialog.ShowDialog() != true) return false;
             dialog.PrintDocument(((IDocumentPaginatorSource)document).DocumentPaginator, report.Title);
             return true;
         }
@@ -42,13 +50,11 @@ internal sealed class SupportReportExporter : ISupportReportExporter
         {
             throw new IOException("The report could not be sent to the selected printer.", e);
         }
-    }
-
-    /// <summary>Preselects Windows' built-in PDF printer, so Print saves a PDF; another printer can still be chosen.</summary>
-    private static void SelectPdfPrinter(PrintDialog dialog)
-    {
-        try { dialog.PrintQueue = new LocalPrintServer().GetPrintQueue("Microsoft Print to PDF"); }
-        catch (PrintSystemException) { } // not installed: keep the default printer
+        finally
+        {
+            pdf?.Dispose();
+            server?.Dispose();
+        }
     }
 
     private static FlowDocument CreateDocument(SupportReportData report)

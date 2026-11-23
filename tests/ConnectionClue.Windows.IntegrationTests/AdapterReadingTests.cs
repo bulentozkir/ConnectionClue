@@ -80,7 +80,7 @@ public class DriverSettingsReaderTests
             new()
             {
                 ["Hidden"] = Param(null, "0"),
-                ["Blank"] = Param("", "0"),
+                ["Blank"] = Param("   ", "0"),
                 ["Nothing"] = Param("Nothing stored, no default"),
                 ["Binary"] = Param("Binary value", null, "edit"),
                 ["Kept"] = Param("Kept", "1"),
@@ -101,6 +101,8 @@ public class DriverSettingsReaderTests
     {
         using var plain = new FakeNode(new() { ["DriverDesc"] = "x" });
         Assert.Empty(DriverSettingsReader.Read(plain));
+        using var denied = new FakeNode(denied: ["Ndi"]);
+        Assert.Empty(DriverSettingsReader.Read(denied));
     }
 
     [Fact]
@@ -163,6 +165,8 @@ public class WlanStatisticsTests
     public void A_counter_beyond_the_range_of_a_signed_number_is_clamped()
     {
         Assert.Equal(long.MaxValue, WlanInfo.ParseStatistics(Stats((ulong.MaxValue, 0, 0)))!.Sent);
+        Assert.Equal(new WifiFrameCounts(long.MaxValue, long.MaxValue, long.MaxValue),
+            WlanInfo.ParseStatistics(Stats((1, 3, 2), (long.MaxValue, ulong.MaxValue, long.MaxValue))));
     }
 }
 

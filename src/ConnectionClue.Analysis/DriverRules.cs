@@ -124,7 +124,7 @@ public static partial class DriverRules
     {
         var m = SpeedPattern().Match(text);
         if (!m.Success || !double.TryParse(m.Groups[1].Value.Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out var n)) return null;
-        return m.Groups[2].Value.StartsWith('G') ? n * 1000 : n;
+        return m.Groups[2].Value.StartsWith("G", StringComparison.OrdinalIgnoreCase) ? n * 1000 : n;
     }
 
     [GeneratedRegex(@"(\d+(?:[.,]\d+)?)\s*(Mbps|Mb/s|Gbps|Gb/s)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]

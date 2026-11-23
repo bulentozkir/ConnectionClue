@@ -39,6 +39,7 @@ public sealed class ConnectivityTests
     private sealed class FakeNetworkDiagnostics : INetworkDiagnostics
     {
         public int Calls { get; private set; }
+        public TaskCompletionSource<IReadOnlyList<DnsResolverMeasurement>>? PendingComparison { get; set; }
 
         public Task<IReadOnlyList<TraceHop>> TraceRouteAsync(CancellationToken cancellationToken)
         {
@@ -49,7 +50,7 @@ public sealed class ConnectivityTests
         public Task<IReadOnlyList<DnsResolverMeasurement>> ComparePublicDnsAsync(CancellationToken cancellationToken)
         {
             Calls++;
-            return Task.FromResult<IReadOnlyList<DnsResolverMeasurement>>(
+            return PendingComparison?.Task ?? Task.FromResult<IReadOnlyList<DnsResolverMeasurement>>(
                 [new("", "192.168.1.1", 40, 3, NetworkToolStatus.Success, IsCurrent: true), new("Cloudflare", "1.1.1.1", 15, 3, NetworkToolStatus.Success)]);
         }
 
@@ -111,6 +112,33 @@ public sealed class ConnectivityTests
             vm.UpdateConnectivity(true);
             Assert.True(vm is { IsDisconnected: false, Hero: HeroState.Idle, HeroTitle: "Check your connection" });
         }
+    }
+
+    [Fact]
+    public async Task An_interrupted_dns_comparison_cannot_switch_or_restore_dns_on_the_next_connection()
+    {
+        var tools = new FakeNetworkDiagnostics();
+        int starts = 0;
+        using var vm = new MainViewModel(Localizer.Default, En, new FakeTimeProvider(), (_, _) =>
+            { starts++; throw new InvalidOperationException(); }, new(), new SettingsViewModel(Localizer.Default, En, backgroundEnabled: false),
+            new NoStore(), networkDiagnostics: tools);
+        await vm.ComparePublicDnsCommand.ExecuteAsync(null);
+        Assert.True(vm.SwitchToFastestDnsCommand.CanExecute(null));
+
+        tools.PendingComparison = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        var pending = vm.ComparePublicDnsCommand.ExecuteAsync(null);
+        Assert.False(vm.QuickCheckCommand.CanExecute(null));
+        await vm.RunCheckAsync(false);
+        Assert.Equal(0, starts);
+        vm.UpdateConnectivity(false);
+        vm.UpdateConnectivity(true);
+        tools.PendingComparison.SetResult([new("Cloudflare", "1.1.1.1", 10, 3, NetworkToolStatus.Success)]);
+        await pending;
+
+        Assert.False(vm.SwitchToFastestDnsCommand.CanExecute(null));
+        await vm.SwitchToFastestDnsCommand.ExecuteAsync(null);
+        Assert.Empty(tools.Switched);
+        Assert.True(vm.QuickCheckCommand.CanExecute(null));
     }
 
     [Fact]

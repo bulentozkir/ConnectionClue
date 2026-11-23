@@ -109,7 +109,15 @@ public class AddressPolicyTests
     [InlineData("fe80::1", false)]
     [InlineData("fd00::1", false)]
     [InlineData("2001:db8::1", false)]
+    [InlineData("fec0::42", false)]
+    [InlineData("2001:2::1", false)]
+    [InlineData("3fff:fff::1", false)]
+    [InlineData("::192.168.1.1", false)]
+    [InlineData("64:ff9b:1::1", false)]
+    [InlineData("64:ff9b::192.168.1.1", false)]
+    [InlineData("64:ff9b::1.1.1.1", true)]
     [InlineData("::ffff:10.0.0.1", false)]
+    [InlineData("::ffff:1.1.1.1", true)]
     public void Classifies(string address, bool isPublic) =>
         Assert.Equal(isPublic, AddressPolicy.IsPublicUnicast(IPAddress.Parse(address)));
 }

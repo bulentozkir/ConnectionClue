@@ -33,9 +33,10 @@ public static class DiagnosticsAnalysis
             envelope[i] = Math.Min(answered[i].MedianRoundTripMilliseconds!.Value, i + 1 < answered.Count ? envelope[i + 1] : double.MaxValue);
         TraceHop? worst = null;
         double largest = 0;
-        for (int i = 1; i < answered.Count; i++)
+        for (int i = 0; i < answered.Count; i++)
         {
-            double increase = envelope[i] - envelope[i - 1];
+            if (i == 0 && answered[i].Hop != 1) continue; // No baseline for an unobserved first hop.
+            double increase = envelope[i] - (i == 0 ? 0 : envelope[i - 1]);
             if (increase >= NotableIncreaseMs && increase > largest) (worst, largest) = (answered[i], increase);
         }
 

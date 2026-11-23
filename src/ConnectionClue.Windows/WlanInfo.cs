@@ -44,18 +44,19 @@ public static unsafe class WlanInfo
         if (data.Length < FirstPhyOffset) return null;
         uint phys = BitConverter.ToUInt32(data.Slice(PhyCountOffset, 4));
         long sent = 0, retried = 0, failed = 0;
-        for (int i = 0; i < phys && FirstPhyOffset + (i + 1) * PhyBlockSize <= data.Length; i++)
+        int blocks = (int)Math.Min(phys, (uint)((data.Length - FirstPhyOffset) / PhyBlockSize));
+        for (int i = 0; i < blocks; i++)
         {
             var phy = data[(FirstPhyOffset + i * PhyBlockSize)..];
-            sent += Count(phy, 0);
-            failed += Count(phy, 16);
-            retried += Count(phy, 24);
+            sent = AddCount(sent, phy, 0);
+            failed = AddCount(failed, phy, 16);
+            retried = AddCount(retried, phy, 24);
         }
         return new(sent, retried, failed);
     }
 
-    private static long Count(ReadOnlySpan<byte> block, int offset) =>
-        (long)Math.Min(BitConverter.ToUInt64(block.Slice(offset, 8)), long.MaxValue);
+    private static long AddCount(long total, ReadOnlySpan<byte> block, int offset) =>
+        total + (long)Math.Min(BitConverter.ToUInt64(block.Slice(offset, 8)), (ulong)(long.MaxValue - total));
 
     private static byte[]? Query(HANDLE client, Guid interfaceGuid, WLAN_INTF_OPCODE opcode)
     {

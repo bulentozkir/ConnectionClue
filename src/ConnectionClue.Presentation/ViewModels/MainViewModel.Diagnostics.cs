@@ -10,6 +10,21 @@ namespace ConnectionClue.Presentation.ViewModels;
 public sealed partial class MainViewModel
 {
     private DnsChoice _dnsChoice = new(null, false);
+    private int _dnsComparisonVersion;
+
+    private void InvalidateDnsChoice()
+    {
+        _dnsComparisonVersion++;
+        _dnsChoice = new(null, false);
+        OnPropertyChanged(nameof(SwitchDnsLabel));
+        SwitchToFastestDnsCommand.NotifyCanExecuteChanged();
+    }
+
+    private void ResetDnsComparison()
+    {
+        InvalidateDnsChoice();
+        DnsComparisonText = DnsStatus = "";
+    }
 
     /// <summary>Outcome of the latest DNS switch or restore; empty before one.</summary>
     [ObservableProperty]
@@ -102,13 +117,15 @@ public sealed partial class MainViewModel
             return;
         }
         IsRunningNetworkTool = true;
+        InvalidateDnsChoice();
+        int version = _dnsComparisonVersion;
         DnsComparisonText = Loc("Diagnostics_Running");
         DnsStatus = "";
         try
         {
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
             var results = await _networkDiagnostics.ComparePublicDnsAsync(timeout.Token);
-            _dnsMeasurements = results;
+            if (version != _dnsComparisonVersion) return;
             _dnsChoice = DiagnosticsAnalysis.ChooseDns(results);
             OnPropertyChanged(nameof(SwitchDnsLabel));
             bool currentMeasured = results.Any(r => r.IsCurrent && r.MedianMilliseconds is not null);
@@ -122,7 +139,7 @@ public sealed partial class MainViewModel
         }
         catch (OperationCanceledException)
         {
-            DnsComparisonText = Loc("Diagnostics_TimedOut");
+            if (version == _dnsComparisonVersion) DnsComparisonText = Loc("Diagnostics_TimedOut");
         }
         finally
         {
@@ -136,7 +153,8 @@ public sealed partial class MainViewModel
     private bool CanRestoreDns() => _networkDiagnostics is not null && !IsRunning && !IsRunningNetworkTool;
 
     [RelayCommand(CanExecute = nameof(CanSwitchDns))]
-    private Task SwitchToFastestDnsAsync() => ChangeDnsAsync(_dnsChoice.Fastest?.Provider);
+    private Task SwitchToFastestDnsAsync() => CanSwitchDns() && _dnsChoice.Fastest is { } fastest && NetworkAvailableForTool()
+        ? ChangeDnsAsync(fastest.Provider) : Task.CompletedTask;
 
     [RelayCommand(CanExecute = nameof(CanRestoreDns))]
     private Task RestoreAutomaticDnsAsync() => ChangeDnsAsync(null);
@@ -160,10 +178,7 @@ public sealed partial class MainViewModel
             };
             bool changed = result is DnsSwitchResult.Switched or DnsSwitchResult.Restored;
             if (changed)
-            {
-                _dnsChoice = new(null, false); // the comparison no longer describes this PC's DNS
-                OnPropertyChanged(nameof(SwitchDnsLabel));
-            }
+                InvalidateDnsChoice();
             Emit(DnsStatus, changed ? AnnouncementKind.SessionState : AnnouncementKind.Error);
         }
         catch (OperationCanceledException)

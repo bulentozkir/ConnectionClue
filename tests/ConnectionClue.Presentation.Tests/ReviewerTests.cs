@@ -69,6 +69,17 @@ public sealed class ReviewerTests
     }
 
     [Fact]
+    public async Task Empty_choices_fall_back_to_the_next_reviewer()
+    {
+        var (reviewer, _, _) = Create((host, _) => host == "a.example"
+            ? new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent("""{"choices":[]}""") }
+            : Reply(Verdicts("ok")));
+
+        var result = await reviewer.ReviewAsync([Good], TestContext.Current.CancellationToken);
+        Assert.Equal("B", result[Good].Reviewer);
+    }
+
+    [Fact]
     public async Task Rejects_only_when_two_reviewers_say_wrong()
     {
         var (reviewer, handler, _) = Create((host, body) => host == "a.example" ? Reply(Verdicts("ok", "wrong")) : Reply(Verdicts("wrong")));

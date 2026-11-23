@@ -27,11 +27,13 @@ internal sealed class ResultsExporter(Func<IReadOnlyList<FrameworkElement>> visu
 
     public Task<ExportOutcome> ExportPdfAsync(ResultsExportData data, CancellationToken cancellationToken)
     {
-        PrintQueue queue;
-        try { queue = new LocalPrintServer().GetPrintQueue(PdfPrinter); }
-        catch (PrintSystemException) { return Task.FromResult(ExportOutcome.NoPdfPrinter); }
+        cancellationToken.ThrowIfCancellationRequested();
+        LocalPrintServer? server = null;
+        PrintQueue? queue = null;
         try
         {
+            server = new LocalPrintServer();
+            queue = server.GetPrintQueue(PdfPrinter);
             var ticket = queue.UserPrintTicket ?? queue.DefaultPrintTicket;
             var page = ticket.PageMediaSize is { Width: { } width, Height: { } height } ? new Size(width, height) : A4;
             var document = Build(data, page, visuals());
@@ -45,7 +47,12 @@ internal sealed class ResultsExporter(Func<IReadOnlyList<FrameworkElement>> visu
         }
         catch (PrintSystemException)
         {
-            return Task.FromResult(ExportOutcome.Failed);
+            return Task.FromResult(queue is null ? ExportOutcome.NoPdfPrinter : ExportOutcome.Failed);
+        }
+        finally
+        {
+            queue?.Dispose();
+            server?.Dispose();
         }
     }
 
@@ -95,17 +102,7 @@ internal sealed class ResultsExporter(Func<IReadOnlyList<FrameworkElement>> visu
         CancellationToken cancellationToken)
     {
         string archive = await Task.Run(() => ResultsMhtml.Build(data, images), cancellationToken);
-        string temp = Path.ChangeExtension(path, Guid.NewGuid().ToString("N") + ".tmp");
-        try
-        {
-            await File.WriteAllTextAsync(temp, archive, Encoding.ASCII, cancellationToken);
-            cancellationToken.ThrowIfCancellationRequested();
-            File.Move(temp, path, overwrite: true);
-        }
-        finally
-        {
-            if (File.Exists(temp)) File.Delete(temp);
-        }
+        await ReportFile.WriteAsync(path, archive, Encoding.ASCII, cancellationToken);
     }
 
     /// <summary>Text sections first, then each visual on its own page with its caption, then the measurement tables.</summary>

@@ -28,6 +28,10 @@ public sealed class ReleaseUpdateCheckerTests
     }
 
     [Theory]
+    [InlineData("[]")]
+    [InlineData("{}")]
+    [InlineData("""{"tag_name":123,"html_url":null}""")]
+    [InlineData("""{"tag_name":"v1.0.3","html_url":"https://github.com:444/bulentozkir/ConnectionClue/releases/tag/v1.0.3"}""")]
     [InlineData("""{"tag_name":"bad","html_url":"https://github.com/bulentozkir/ConnectionClue/releases/tag/bad"}""")]
     [InlineData("""{"tag_name":"v1.0.3","html_url":"https://example.com/"}""")]
     public async Task Rejects_invalid_or_non_official_release_metadata(string json)
